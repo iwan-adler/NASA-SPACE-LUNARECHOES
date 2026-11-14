@@ -7,6 +7,9 @@ assistant that can make .pptx files). If the tool accepts image uploads, also up
 Before using the slides: fill in the team names, and have a teammate check every number against
 `docs/research-sources.md`.
 
+The prompt deliberately leaves out screenshots of the website, because the interface is being redesigned.
+After the redesign, add a live demo or fresh screenshots by hand.
+
 ---
 
 ```text
@@ -23,6 +26,9 @@ STRICT ACCURACY RULES
 - Every photo must carry its credit line exactly as given below, in small text on the slide.
 - Do not generate AI images of spacecraft, astronauts or planets. Use only the NASA photos listed below,
   or plain shapes and typography.
+- Do NOT include screenshots, mock-ups or drawings of the website's interface, and do not describe its
+  layout, colours or buttons. The interface is being redesigned. Describe what the website does
+  (its ideas and features), not how it looks.
 
 DESIGN DIRECTION
 - Feel: a premium digital museum or a scientific archive, like a calm space documentary. Not a corporate dashboard.
@@ -90,10 +96,11 @@ NASA DATA WE USED
 - Where no verified value exists (e.g. exact coordinates for 3 objects), the site shows "Not available"
   instead of guessing.
 
-WHAT THE WEBSITE DOES
-Landing page with live counts · Collection with Moon/Mars filter and search · Five-chapter object stories ·
-Mission journeys · Then vs Now photos · Moon vs Mars comparison · Location explorer (only verified coordinates) ·
-Teaching quiz that explains the story behind every answer · Works offline, on phones, and with a keyboard.
+WHAT THE WEBSITE DOES (features only; the visual design will change)
+Browse the collection by world (Moon or Mars) and search it · Read each object's story in five chapters ·
+Follow each object's dated mission journey · Compare "Then vs Now" photos · Compare the Moon and Mars ·
+See where objects rest (only verified coordinates are used) · Learn through a quiz that explains the story behind
+every answer · Works offline, on phones, and with a keyboard.
 Built with plain HTML, CSS and JavaScript; no backend, no paid services.
 
 AI USE (be honest on the slide)
@@ -114,8 +121,10 @@ SLIDE PLAN
 6. Spotlight: InSight Then vs Now (two photos side by side). Big number "1,319 marsquakes".
 7. Moon vs Mars: two columns (silver vs rust), five rows from the comparison above.
 8. Real NASA data: NSSDCA + NASA Science pages + NASA Image Library; "no fact without a source".
-9. What the website does: feature icons/labels in a clean grid, plus a phone mock-up placeholder [SCREENSHOT].
-10. Live demo: one line "Let's visit the museum" with a placeholder [SCREENSHOT OF LANDING PAGE].
+9. What the website does: the features above as simple labels or line icons in a clean grid.
+   No screenshots or interface mock-ups.
+10. Live demo: a calm title slide with one line, "Let's visit the museum", over a NASA photo (for example
+   as11-40-5903). We will switch to the live website at this point.
 11. AI use and what's next.
 12. Thank you: team names and roles [TEAM], project link [REPO OR SITE LINK].
 
