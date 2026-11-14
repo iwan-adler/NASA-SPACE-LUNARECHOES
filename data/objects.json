@@ -16,6 +16,7 @@
       "science": "By digging and photographing, Surveyor 3 tested how firm the lunar soil was, information NASA needed to check that the Apollo design suited the lunar surface. Engineers and scientists later studied its returned parts to see what 31 months on the Moon had done to them.",
       "fate": "It stopped working after sunset on 3 May 1967. On 19 November 1969, Apollo 12 landed about 180 m away. Pete Conrad and Alan Bean walked over, and Conrad used cutters to remove its camera, scoop and other parts to bring back to Earth. The rest of Surveyor 3 is still in its crater.",
       "legacy": "Apollo 12 made a \"pinpoint landing\" within walking distance of Surveyor 3, so astronauts could visit a robot that had landed two and a half years earlier and bring part of it home.",
+      "heritage": {"verified": "NASA's 2011 guidance for future Moon missions names Surveyor among the U.S. heritage lander sites, and recommends that landers not fly over such sites within 2.0 km. It also notes that parts returned from Surveyor 3 showed chemical contamination from Apollo 12's rocket exhaust.", "source": {"name": "NASA's Recommendations to Space-Faring Entities (2011), pp. 7 and 9", "url": "https://www.nasa.gov/wp-content/uploads/2017/10/617743main_nasa-usg_lunar_historic_sites_reva-508.pdf"}, "interpretation": "Surveyor 3 is a scientific time capsule. It shows what years on the Moon do to a machine, and also how easily a visit can change the very thing being studied."},
       "events": [
         { "date": "1967-04-17", "label": "Launched from Cape Canaveral" },
         { "date": "1967-04-20", "label": "Bounces three times and lands in a crater" },
@@ -46,6 +47,7 @@
       "science": "Eagle was the first crewed vehicle to land on the Moon. It carried the first science experiments that astronauts set up on the lunar surface, including the laser reflector and seismometer in this collection.",
       "fate": "When the moonwalk was over, the top half of the lunar module (the ascent stage) blasted off, using the bottom half as its launch pad, and carried the astronauts back to the command module. The descent stage stayed behind at Tranquility Base.",
       "legacy": "A plaque on its ladder strut reads: \"Here men from the planet Earth first set foot on the Moon July 1969, A.D.\" Forty years later, NASA's Lunar Reconnaissance Orbiter photographed the landing site from orbit.",
+      "heritage": {"verified": "NASA's 2011 guidance calls Apollo 11 \"a watershed in human history and humanity\" and recommends treating its site as unique: no visits to any part of it, and an exclusion zone of 75 m around the descent stage.", "source": {"name": "NASA's Recommendations to Space-Faring Entities (2011), p. 17", "url": "https://www.nasa.gov/wp-content/uploads/2017/10/617743main_nasa-usg_lunar_historic_sites_reva-508.pdf"}, "interpretation": "Eagle's descent stage marks the first place people set foot on another world. Its value comes from being left exactly as the crew left it."},
       "events": [
         { "date": "1969-07-20", "label": "Lands at Tranquility Base, 20:17:40 UT" },
         { "date": "1969-07-21", "label": "Armstrong steps onto the Moon, 02:56 UT" },
@@ -55,6 +57,7 @@
       "thenNow": {
         "image": "https://images-assets.nasa.gov/image/PIA12909/PIA12909~orig.jpg",
         "imagePage": "https://images.nasa.gov/details/PIA12909",
+        "date": "2009",
         "credit": "NASA/JPL – PIA12909, \"Apollo 11: Second Look\" (2009)",
         "caption": "NASA's Lunar Reconnaissance Orbiter passed over the Apollo 11 landing site again in 2009, giving a new view of the historic site from orbit."
       },
@@ -81,6 +84,7 @@
       "science": "Laser ranging can measure the Earth-Moon distance to within a few millimetres. It showed that the Moon is slowly moving away from Earth by about 3.8 cm every year, and it helps spacecraft that orbit and land on the Moon know exactly where they are.",
       "fate": "The crew left it at Tranquility Base when they flew home in July 1969. Unlike the other experiments, it has no power to run out, so it was never switched off.",
       "legacy": "The only object in this museum that is still used for science. Lunar laser ranging has provided data continuously for more than 57 years.",
+      "heritage": {"verified": "NASA's 2011 guidance notes that the Apollo 11 reflector \"continues to be an active scientific experiment\" and recommends that laser ranging retro-reflectors \"should be carefully preserved.\"", "source": {"name": "NASA's Recommendations to Space-Faring Entities (2011), pp. 18 and 20", "url": "https://www.nasa.gov/wp-content/uploads/2017/10/617743main_nasa-usg_lunar_historic_sites_reva-508.pdf"}, "interpretation": "Here heritage and science overlap: protecting this historic site also protects research that is still happening."},
       "events": [
         { "date": "1969-07", "label": "Set up at Tranquility Base" },
         { "date": "1969-07", "label": "Left behind, needing no power" },
@@ -109,6 +113,7 @@
       "science": "It was designed to measure seismic activity and the physical properties of the lunar crust and interior. Because it ran on solar panels, it could only work during the lunar day.",
       "fate": "It got 30 °C hotter than planned but kept working, and it was switched on again for a second lunar day. On 27 August 1969 it stopped accepting commands from Earth, and the experiment ended. It is still on the Moon.",
       "legacy": "Short-lived, but it worked: it was switched on from Earth while the astronauts were still on the Moon, and it kept running in heat 30 °C beyond its planned maximum.",
+      "heritage": {"verified": "It was set up about 17 m from the descent stage, inside the Apollo 11 site that NASA's 2011 guidance recommends should not be visited (exclusion zone: 75 m around the descent stage).", "source": {"name": "NASA's Recommendations to Space-Faring Entities (2011), p. 17", "url": "https://www.nasa.gov/wp-content/uploads/2017/10/617743main_nasa-usg_lunar_historic_sites_reva-508.pdf"}, "interpretation": "Short-lived as it was, it belongs to the first set of science experiments that people set up by hand on another world."},
       "events": [
         { "date": "1969-07-20", "label": "Arrives on the Moon aboard Eagle" },
         { "date": "1969-07-21", "label": "Switched on from Earth" },
@@ -137,6 +142,7 @@
       "science": "With the rover's help, the crew covered 27.9 km on three moonwalks and collected 77.31 kg of rocks and soil for scientists on Earth.",
       "fate": "Only the top part of the lander flew back to orbit, so when the crew left, the rover stayed behind at Hadley-Apennine.",
       "legacy": "It was the first time a vehicle like this had been used on the Moon, and NASA reports that its performance on the lunar terrain was very successful.",
+      "heritage": {"verified": "NASA's 2011 guidance states that \"all the Apollo sites represent significant historical/heritage value in material culture\" and recommends that landers not fly over Apollo sites within 2.0 km.", "source": {"name": "NASA's Recommendations to Space-Faring Entities (2011), pp. 7 and 17", "url": "https://www.nasa.gov/wp-content/uploads/2017/10/617743main_nasa-usg_lunar_historic_sites_reva-508.pdf"}, "interpretation": "The first vehicle of its kind driven on the Moon, parked where its crew left it, is a landmark in the history of exploration vehicles."},
       "events": [
         { "date": "1971-07-30", "label": "Apollo 15 lands near the Apennines" },
         { "date": "1971-07-31", "label": "Rover unloaded and driven for the first time" },
@@ -166,6 +172,7 @@
       "science": "It sent data from the Moon for almost five years after the last astronauts went home.",
       "fate": "The crew lifted off on 14 December 1972, leaving the station running. On 30 September 1977 it was shut down along with all the other Apollo science stations.",
       "legacy": "Set up by the last people to walk on the Moon, it was one of the Apollo stations that NASA shut down together on 30 September 1977.",
+      "heritage": {"verified": "NASA's 2011 guidance treats the Apollo 17 site, the last Apollo landing, as unique alongside Apollo 11: no visits, and an exclusion zone of 225 m around the descent stage.", "source": {"name": "NASA's Recommendations to Space-Faring Entities (2011), p. 17", "url": "https://www.nasa.gov/wp-content/uploads/2017/10/617743main_nasa-usg_lunar_historic_sites_reva-508.pdf"}, "interpretation": "It is a monument to the last time people walked on the Moon, and a reminder that science stations can keep working after the people who built them have gone home."},
       "events": [
         { "date": "1972-12-11", "label": "Apollo 17 lands near Littrow crater" },
         { "date": "1972-12-12", "label": "Station switched on" },
@@ -195,6 +202,7 @@
       "science": "It sent back the first pictures from the surface of the Red Planet and studied martian soil, weather and air for more than six years.",
       "fate": "Its seismometer never unlocked, and a stuck pin on its sampler arm took 5 days to shake loose, but the lander kept working until 13 November 1982, when contact was lost.",
       "legacy": "NASA calls it the first truly successful landing on Mars. NASA's later Mars missions continue building on what the Vikings began.",
+      "heritage": {"verified": "NASA calls Viking 1 the first truly successful landing on Mars, and says later Mars missions continue building on what the Vikings began.", "source": {"name": "NASA Science: Viking 1", "url": "https://science.nasa.gov/mission/viking-1/"}, "interpretation": "As the first long-lasting outpost on the surface of Mars, its landing site is arguably one of the most historic places on the planet.", "unknown": "We found no NASA heritage-protection guidance for hardware on Mars in our sources. NASA's 2011 recommendations cover sites on the Moon."},
       "events": [
         { "date": "1975-08-20", "label": "Launched towards Mars" },
         { "date": "1976-06-19", "label": "Enters orbit around Mars" },
@@ -224,6 +232,7 @@
       "science": "Sojourner tested rocks and soil in Ares Vallis, one of the largest outflow channels on Mars. It was carved by a huge ancient flood, possibly as much water as all five Great Lakes.",
       "fate": "The lander and rover worked until 27 September 1997, when communications were lost for unknown reasons.",
       "legacy": "The first rover on Mars. NASA's mission goal, to show that a low-cost landing and rover could work on Mars, was met.",
+      "heritage": {"verified": "NASA describes Sojourner as the first-ever robotic rover delivered to the Martian surface.", "source": {"name": "NASA Science: Mars Pathfinder", "url": "https://science.nasa.gov/mission/mars-pathfinder/"}, "interpretation": "Its small size is part of its story: a 63 cm rover opened the era of driving on Mars.", "unknown": "We found no NASA heritage-protection guidance for hardware on Mars in our sources. NASA's 2011 recommendations cover sites on the Moon."},
       "events": [
         { "date": "1996-12-04", "label": "Launched towards Mars" },
         { "date": "1997-07-04", "label": "Lands on airbags in Ares Vallis" },
@@ -253,6 +262,7 @@
       "science": "Spirit travelled 7.73 km over 6 years and 2 months. It explored Gusev Crater, which may once have been filled with water.",
       "fate": "On 23 April 2009 it broke through a thin crust into soft sand and got stuck. Its solar panels could not get enough sunlight to survive the winter, and its last transmission came on 22 March 2010.",
       "legacy": "It kept exploring on five working wheels, and even after it got stuck it went on transmitting until March 2010.",
+      "heritage": {"verified": "Spirit explored Gusev Crater for 6 years and 2 months, travelling 7.73 km, before its last transmission on 22 March 2010.", "source": {"name": "NASA NSSDCA record 2003-027A", "url": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=2003-027A"}, "interpretation": "Its final resting place, stuck in soft sand, is itself part of the record of how robots and Mars interact.", "unknown": "We found no NASA heritage-protection guidance for hardware on Mars in our sources. NASA's 2011 recommendations cover sites on the Moon."},
       "events": [
         { "date": "2004-01-04", "label": "Lands in Gusev Crater" },
         { "date": "2004-01-15", "label": "Drives onto the surface" },
@@ -282,6 +292,7 @@
       "science": "It explored Terra Meridiani, nicknamed the \"Hematite Site\" because it contains hematite, an iron-rich mineral that usually forms in water.",
       "fate": "On 10 June 2018, as a planet-wide dust storm blanketed the solar-powered rover, it sent its last message to Earth. When the storm cleared, an orbiting camera could still spot it as a tiny blip.",
       "legacy": "Opportunity drove 45.16 km, the longest drive on another world until NASA's Perseverance rover passed it on 11 October 2026.",
+      "heritage": {"verified": "NASA reports that Opportunity's 45.16 km drive was the longest on another world until Perseverance passed it on 11 October 2026.", "source": {"name": "NASA Science: Spirit and Opportunity", "url": "https://science.nasa.gov/mission/mars-exploration-rovers-spirit-and-opportunity/"}, "interpretation": "Its silent body marks the end of a 14-year journey, a record of how far a human-made explorer could travel on another world.", "unknown": "We found no NASA heritage-protection guidance for hardware on Mars in our sources. NASA's 2011 recommendations cover sites on the Moon."},
       "events": [
         { "date": "2004-01-25", "label": "Lands inside a 20 m crater" },
         { "date": "2018-06-10", "label": "Last message, during a dust storm" },
@@ -291,6 +302,7 @@
       "thenNow": {
         "image": "https://images-assets.nasa.gov/image/PIA22549/PIA22549~medium.jpg",
         "imagePage": "https://images.nasa.gov/details/PIA22549",
+        "date": "20 Sep 2018",
         "credit": "NASA/JPL – PIA22549, \"Opportunity After the Dust Storm\" (2018)",
         "caption": "On 20 September 2018, after the dust storm had cleared, the HiRISE camera on Mars Reconnaissance Orbiter photographed Opportunity from about 268 km up. The rover appears as a blip."
       },
@@ -317,6 +329,7 @@
       "science": "On 31 July 2008 NASA announced that Phoenix's instruments had identified water in a soil sample by heating it. Scientists called it the first time martian water had been \"touched and tasted\".",
       "fate": "As the martian summer ended there was less sunlight for its solar panels, and it sent its last signal on 2 November 2008.",
       "legacy": "Photos from orbit taken nearly a decade apart show dust slowly hiding the lander and the marks its landing left on the ground.",
+      "heritage": {"verified": "NASA's 2008 announcement called Phoenix's result the first time Martian water had been \"touched and tasted\". Orbital photos from 2008 and 2017 show dust slowly covering the landing site.", "source": {"name": "NASA press release (31 Jul 2008) and NASA image PIA22223", "url": "https://images.nasa.gov/details/PIA22223"}, "interpretation": "Its slow disappearance under dust shows that Mars, too, is changing these sites over time.", "unknown": "We found no NASA heritage-protection guidance for hardware on Mars in our sources. NASA's 2011 recommendations cover sites on the Moon."},
       "events": [
         { "date": "2007-08-04", "label": "Launched towards Mars" },
         { "date": "2008-05-25", "label": "Lands on the northern plains" },
@@ -327,6 +340,7 @@
       "thenNow": {
         "image": "https://images-assets.nasa.gov/image/PIA22223/PIA22223~small.jpg",
         "imagePage": "https://images.nasa.gov/details/PIA22223",
+        "date": "21 Dec 2017",
         "credit": "NASA/JPL – PIA22223, \"NASA's Phoenix Lander on Mars, Nearly a Decade Later\"",
         "caption": "HiRISE photos from 20 July 2008 and 21 December 2017 show the same area, about 300 m wide. By late 2017, dust had hidden much of what was visible two months after landing."
       },
@@ -353,6 +367,7 @@
       "science": "Its seismometer recorded 1,319 marsquakes. Using them, scientists found that the crust under InSight is about 25 to 40 km thick and that Mars has a molten core about 1,800 km in radius, bigger than expected.",
       "fate": "Over four years, dust slowly covered its solar panels. It last talked to Earth on 15 December 2022, and after it missed two more calls, NASA declared the mission over on 21 December 2022.",
       "legacy": "InSight gathered new information about all three of Mars' major layers: crust, mantle and core. Seen from orbit in 2024, it had taken on the same reddish-brown colour as the rest of Mars.",
+      "heritage": {"verified": "NASA reports that InSight gathered new information about Mars' crust, mantle and core. A 2024 orbital photo shows the lander taking on the same reddish-brown colour as the planet.", "source": {"name": "NASA Science: InSight science highlights", "url": "https://science.nasa.gov/mission/insight/science-highlights/"}, "interpretation": "Some of what we know about the inside of Mars came from a lander that is now fading into its landscape.", "unknown": "We found no NASA heritage-protection guidance for hardware on Mars in our sources. NASA's 2011 recommendations cover sites on the Moon."},
       "events": [
         { "date": "2018-05-05", "label": "Launched towards Mars" },
         { "date": "2018-11-26", "label": "Lands in Elysium Planitia" },
@@ -363,6 +378,7 @@
       "thenNow": {
         "image": "https://images-assets.nasa.gov/image/PIA26515/PIA26515~orig.jpg",
         "imagePage": "https://images.nasa.gov/details/PIA26515",
+        "date": "23 Oct 2024",
         "credit": "NASA/JPL – PIA26515, \"HiRISE Studies the Dust on InSight\" (image taken 23 October 2024)",
         "caption": "The HiRISE camera on Mars Reconnaissance Orbiter shows InSight taking on the same reddish-brown colour as the rest of Mars, while the dark patch scorched by its landing rockets fades away."
       },

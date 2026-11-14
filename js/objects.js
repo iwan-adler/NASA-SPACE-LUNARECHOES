@@ -26,6 +26,35 @@ function makeEl(tag, className, text) {
   return el;
 }
 
+// ---------- Evidence boundary ----------
+// Every statement in the archive is one of these kinds. The label is always visible.
+var EVIDENCE_KINDS = {
+  verified: { label: "Verified", title: "Documented in a NASA source, linked nearby" },
+  interpretation: { label: "Interpretation", title: "Our reasoning based on the verified facts, not a NASA statement" },
+  unknown: { label: "Unknown", title: "Not documented in our NASA sources. We do not guess." },
+  hypothetical: { label: "Hypothetical", title: "An imagined educational scenario, not a real mission or NASA decision" }
+};
+
+function makeTag(kind) {
+  var k = EVIDENCE_KINDS[kind] || EVIDENCE_KINDS.verified;
+  var tag = makeEl("span", "ev-tag ev-" + kind, k.label);
+  tag.title = k.title;
+  return tag;
+}
+
+// A short legend explaining the labels (used at the top of the evidence features)
+function makeBoundaryLegend() {
+  var legend = makeEl("div", "ev-legend");
+  legend.setAttribute("aria-label", "How to read the labels");
+  ["verified", "interpretation", "unknown"].forEach(function (kind) {
+    var item = makeEl("span", "ev-legend-item");
+    item.appendChild(makeTag(kind));
+    item.appendChild(document.createTextNode(" " + EVIDENCE_KINDS[kind].title));
+    legend.appendChild(item);
+  });
+  return legend;
+}
+
 // Adds an <img> only when there is an image path. If it fails to load,
 // the image is removed so no broken-image icon is ever shown.
 function addImage(parent, item, className) {
@@ -310,18 +339,223 @@ function formatLocation(item) {
          Math.abs(lon).toFixed(2) + "° " + (lon >= 0 ? "E" : "W");
 }
 
-// The five story chapters, in order. Missing text shows "Not available".
-function storyChapters(item) {
-  return [
-    ["Designed", "Why it was built", item.purpose],
-    ["Mission", "What it did", item.story],
-    ["Discovery", "What it helped us learn", item.science],
-    ["Left behind", "What happened to it", item.fate],
-    ["Legacy", "Where it stands today", item.legacy]
-  ];
+// ---------- Then vs Now ----------
+// A two-state view: THEN = archival mission photo + original purpose,
+// NOW = documented present status (+ a later NASA orbital photo only where one exists).
+// It also says plainly what our sources do NOT document, instead of guessing.
+var thenNowCount = 0;
+
+function makeThenNow(item) {
+  var uid = "tn-" + (++thenNowCount);
+  var wrap = makeEl("div", "tn " + planetClass(item));
+
+  // The switch
+  var controls = makeEl("div", "tn-switch");
+  controls.setAttribute("role", "group");
+  controls.setAttribute("aria-label", "Show the object then or now");
+  var thenBtn = makeEl("button", "tn-btn", "Then · " + showValue(item.year));
+  var nowBtn = makeEl("button", "tn-btn", "Now · today");
+  [thenBtn, nowBtn].forEach(function (b) {
+    b.type = "button";
+    b.setAttribute("aria-controls", uid);
+  });
+  controls.appendChild(thenBtn);
+  controls.appendChild(nowBtn);
+  wrap.appendChild(controls);
+
+  var panel = makeEl("div", "tn-panel");
+  panel.id = uid;
+  panel.setAttribute("aria-live", "polite");
+  wrap.appendChild(panel);
+
+  function figure(url, alt, label, captionText, credit, page) {
+    var fig = makeEl("figure", "tn-figure");
+    if (!isMissing(url)) addImageUrl(fig, url, alt, "tn-image");
+    var cap = makeEl("figcaption");
+    cap.appendChild(makeEl("span", "tn-tag", label));
+    if (!isMissing(captionText)) cap.appendChild(makeEl("span", "tn-caption", captionText));
+    var c = makeEl("span", "tn-credit", "Photo: " + showValue(credit) + " ");
+    if (isWebLink(page)) c.appendChild(makeLink(page, "(NASA ↗)"));
+    cap.appendChild(c);
+    fig.appendChild(cap);
+    return fig;
+  }
+
+  function factRow(dl, label, value, cls, kind) {
+    var dt = makeEl("dt", cls || "", label + " ");
+    if (kind) dt.appendChild(makeTag(kind));
+    dl.appendChild(dt);
+    dl.appendChild(makeEl("dd", cls || "", value));
+  }
+
+  function showThen() {
+    panel.innerHTML = "";
+    panel.className = "tn-panel is-then";
+    panel.appendChild(figure(item.image, "Archival photo: " + showValue(item.name),
+      "Archival mission photograph", "", item.imageCredit, item.imagePage));
+    var dl = makeEl("dl", "tn-facts");
+    factRow(dl, "Arrived", showValue(item.mission) + ", " + showValue(item.year), "", "verified");
+    factRow(dl, "Designed to", showValue(item.purpose), "", "verified");
+    panel.appendChild(dl);
+    thenBtn.setAttribute("aria-pressed", "true");
+    nowBtn.setAttribute("aria-pressed", "false");
+  }
+
+  function showNow() {
+    panel.innerHTML = "";
+    panel.className = "tn-panel is-now";
+    if (item.thenNow && !isMissing(item.thenNow.image)) {
+      panel.appendChild(figure(item.thenNow.image, "Later orbital photo: " + showValue(item.name),
+        "Later NASA orbital image · " + showValue(item.thenNow.date), item.thenNow.caption,
+        item.thenNow.credit, item.thenNow.imagePage));
+    } else {
+      var none = makeEl("div", "tn-nophoto");
+      none.appendChild(makeEl("strong", "", "No recent photograph in our NASA sources."));
+      none.appendChild(makeEl("span", "", "We show no imagined or simulated view. The status below is what NASA has documented."));
+      panel.appendChild(none);
+    }
+    var dl = makeEl("dl", "tn-facts");
+    factRow(dl, "Documented today", showValue(item.status), "", "verified");
+    if (!isMissing(item.site)) factRow(dl, "Resting place", item.site + (formatLocation(item) ? " (" + formatLocation(item) + ")" : ""), "", "verified");
+    var unknown = ["its close-up physical condition today"];
+    if (!formatLocation(item)) unknown.push("its exact position");
+    factRow(dl, "Not documented in our sources", unknown.join("; ") + ".", "tn-unknown", "unknown");
+    panel.appendChild(dl);
+    thenBtn.setAttribute("aria-pressed", "false");
+    nowBtn.setAttribute("aria-pressed", "true");
+  }
+
+  thenBtn.addEventListener("click", showThen);
+  nowBtn.addEventListener("click", showNow);
+  showThen();
+  return wrap;
 }
 
-// Opens the story for one object. `opener` gets focus back when it closes.
+// ---------- Digital heritage passport ----------
+
+function passportNumber(item) {
+  var n = allObjects.indexOf(item) + 1;
+  return "LE-P-" + (n < 10 ? "0" : "") + n;
+}
+
+function nssdcUrl(item) {
+  return /^[A-Z0-9-]+$/i.test(String(item.nssdcId || ""))
+    ? "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=" + encodeURIComponent(item.nssdcId)
+    : null;
+}
+
+// The identity card at the top of every passport
+function makePassportCard(item) {
+  var card = makeEl("div", "passport-card");
+  var head = makeEl("div", "passport-head");
+  head.appendChild(makeEl("span", "passport-kicker", "Digital heritage passport"));
+  head.appendChild(makeEl("span", "passport-no", passportNumber(item)));
+  card.appendChild(head);
+  var dl = makeEl("dl", "passport-id");
+  function row(label, value, node) {
+    dl.appendChild(makeEl("dt", "", label));
+    var dd = makeEl("dd", "", node ? undefined : showValue(value));
+    if (node) dd.appendChild(node);
+    dl.appendChild(dd);
+  }
+  row("Object", item.name);
+  row("Type", item.category);
+  row("World", item.planet);
+  row("Mission", item.mission);
+  row("Arrived", item.year);
+  row("Resting place", item.site);
+  row("Coordinates", formatLocation(item) || NOT_AVAILABLE + " (not given in our NASA sources)");
+  var url = nssdcUrl(item);
+  row("NSSDCA record", null, url ? makeLink(url, item.nssdcId + " ↗") : document.createTextNode(NOT_AVAILABLE));
+  row("Status", null, makeStatusBadge(item) || document.createTextNode(NOT_AVAILABLE));
+  card.appendChild(dl);
+  return card;
+}
+
+// Every NASA source used for this object, without duplicates
+function sourceList(item) {
+  var list = [];
+  function add(name, url) {
+    if (!isWebLink(url)) return;
+    if (list.some(function (s) { return s.url === url; })) return;
+    list.push({ name: name, url: url });
+  }
+  add("Primary source: " + sourceName(item.source).replace(" ↗", ""), item.source);
+  add("NSSDCA catalogue record " + showValue(item.nssdcId), nssdcUrl(item));
+  if (item.heritage && item.heritage.source) add("Heritage: " + item.heritage.source.name, item.heritage.source.url);
+  add("Photo: " + showValue(item.imageCredit), item.imagePage);
+  if (item.thenNow) add("Later photo: " + showValue(item.thenNow.credit), item.thenNow.imagePage);
+  return list;
+}
+
+// ---------- Field note: a printable one-page discovery report ----------
+// Opens a clean, printable page in a new tab built only from this object's verified record.
+function openFieldNote(item) {
+  function esc(s) {
+    return String(s === undefined || s === null ? NOT_AVAILABLE : s)
+      .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  }
+  var h = item.heritage || {};
+  var img = localImagePath(item.image) ? new URL(localImagePath(item.image), location.href).href : item.image;
+  var today = new Date();
+  var dateText = today.getDate() + " " + MONTHS[today.getMonth()] + " " + today.getFullYear();
+  var events = (item.events || []).map(function (e) {
+    return "<li><b>" + esc(formatDate(e.date)) + "</b> " + esc(e.label) + "</li>";
+  }).join("");
+  var sources = sourceList(item).map(function (s) {
+    return "<li>" + esc(s.name) + "<br><span class=\"url\">" + esc(s.url) + "</span></li>";
+  }).join("");
+  var html = "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\">" +
+    "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">" +
+    "<title>Field note: " + esc(item.name) + "</title><style>" +
+    "body{font-family:Georgia,'Times New Roman',serif;color:#111;background:#fff;max-width:760px;margin:24px auto;padding:0 20px;line-height:1.45}" +
+    "h1{font-size:26px;margin:4px 0}h2{font-family:Arial,sans-serif;font-size:12px;letter-spacing:.12em;text-transform:uppercase;margin:18px 0 4px;border-bottom:1px solid #999;padding-bottom:2px}" +
+    ".k{font-family:Arial,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#555}" +
+    ".row{display:flex;gap:20px;align-items:flex-start}.row img{width:42%;border:1px solid #999}.row dl{flex:1;margin:0;font-size:14px}" +
+    "dt{font-family:Arial,sans-serif;font-size:11px;text-transform:uppercase;color:#555;margin-top:6px}dd{margin:0}" +
+    "p,li{font-size:14px}.tag{font-family:Arial,sans-serif;font-size:10px;font-weight:bold;border:1px solid #333;padding:0 4px;text-transform:uppercase;letter-spacing:.06em}" +
+    ".url{font-family:Arial,sans-serif;font-size:11px;color:#444;word-break:break-all}.note{border:1px dashed #666;padding:8px 10px;margin-top:6px;min-height:60px}" +
+    "footer{margin-top:18px;font-family:Arial,sans-serif;font-size:10px;color:#555;border-top:1px solid #999;padding-top:6px}" +
+    "button{font-family:Arial,sans-serif;padding:8px 14px;margin:8px 0}@media print{button{display:none}body{margin:0}}" +
+    "</style></head><body>" +
+    "<button onclick=\"window.print()\">Print or save as PDF</button>" +
+    "<div class=\"k\">Lunar Echoes · Field note · " + esc(passportNumber(item)) + " · " + esc(dateText) + "</div>" +
+    "<h1>" + esc(item.name) + "</h1>" +
+    "<div class=\"row\">" + (img ? "<img src=\"" + esc(img) + "\" alt=\"" + esc(item.name) + "\">" : "") +
+    "<dl><dt>World</dt><dd>" + esc(item.planet) + "</dd><dt>Mission</dt><dd>" + esc(item.mission) + " (" + esc(item.year) + ")</dd>" +
+    "<dt>Type</dt><dd>" + esc(item.category) + "</dd><dt>Resting place</dt><dd>" + esc(item.site) + "</dd>" +
+    "<dt>Coordinates</dt><dd>" + esc(formatLocation(item) || NOT_AVAILABLE + " (not given in our NASA sources)") + "</dd>" +
+    "<dt>NSSDCA record</dt><dd>" + esc(item.nssdcId) + "</dd><dt>Status today</dt><dd>" + esc(item.status) + "</dd></dl></div>" +
+    "<h2>Purpose <span class=\"tag\">Verified</span></h2><p>" + esc(item.purpose) + "</p>" +
+    "<h2>Mission <span class=\"tag\">Verified</span></h2><p>" + esc(item.story) + "</p>" +
+    "<h2>Scientific contribution <span class=\"tag\">Verified</span></h2><p>" + esc(item.science) + "</p>" +
+    "<h2>Documented history <span class=\"tag\">Verified</span></h2><ul>" + events + "</ul><p>" + esc(item.fate) + "</p>" +
+    "<h2>Heritage significance</h2>" +
+    (h.verified ? "<p><span class=\"tag\">Verified</span> " + esc(h.verified) + "</p>" : "") +
+    (h.interpretation ? "<p><span class=\"tag\">Interpretation</span> " + esc(h.interpretation) + "</p>" : "") +
+    (h.unknown ? "<p><span class=\"tag\">Unknown</span> " + esc(h.unknown) + "</p>" : "") +
+    "<p><span class=\"tag\">Unknown</span> Its close-up physical condition today is not documented in our NASA sources.</p>" +
+    "<h2>My observations</h2><div class=\"note\"></div>" +
+    "<h2>Sources</h2><ol>" + sources + "</ol>" +
+    "<footer>Photo: " + esc(item.imageCredit) + ". Generated by Lunar Echoes (NASA Space Apps Challenge 2026). " +
+    "Facts from NASA sources listed above. This project is not affiliated with or endorsed by NASA.</footer>" +
+    "</body></html>";
+  var blob = new Blob([html], { type: "text/html" });
+  var url = URL.createObjectURL(blob);
+  var win = window.open(url, "_blank"); // our own generated page, so no "noopener" (it would hide the result)
+  if (!win) {
+    // Pop-up blocked: download the report instead
+    var a = document.createElement("a");
+    a.href = url;
+    a.download = "field-note-" + item.id + ".html";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+  }
+  setTimeout(function () { URL.revokeObjectURL(url); }, 60000);
+}
+
+// Opens the heritage passport (story view) for one object. `opener` gets focus back when it closes.
 function openStory(item, opener) {
   var dialog = document.getElementById("story-modal");
   if (!dialog) {
@@ -362,101 +596,85 @@ function openStory(item, opener) {
     body.appendChild(credit);
   }
 
+  // --- Digital heritage passport: identity card ---
+  body.appendChild(makePassportCard(item));
+
   // Today: status, highlighted green when still in use
   var fate = makeEl("p", "story-fate" + (item.statusType === "in-use" ? " is-in-use" : ""));
   fate.appendChild(makeEl("strong", "", "Today: "));
-  fate.appendChild(document.createTextNode(showValue(item.status)));
+  fate.appendChild(document.createTextNode(showValue(item.status) + " "));
+  fate.appendChild(makeTag("verified"));
   body.appendChild(fate);
+  body.appendChild(makeBoundaryLegend());
 
-  // --- Five chapters ---
-  var chapters = makeEl("ol", "story-chapters");
-  chapters.setAttribute("aria-label", "The story in five chapters");
-  storyChapters(item).forEach(function (chapter) {
-    var li = makeEl("li", "story-chapter");
-    var h = makeEl("h3", "", chapter[0]);
-    h.setAttribute("title", chapter[1]);
+  // --- Passport sections ---
+  var sections = makeEl("ol", "passport-sections");
+  sections.setAttribute("aria-label", "Heritage passport");
+  function section(title, kind, fill) {
+    var li = makeEl("li", "passport-section");
+    var h = makeEl("h3", "", title + " ");
+    if (kind) h.appendChild(makeTag(kind));
     li.appendChild(h);
-    li.appendChild(makeEl("p", "", showValue(chapter[2])));
-    chapters.appendChild(li);
-  });
-  body.appendChild(chapters);
+    fill(li);
+    sections.appendChild(li);
+  }
+  function para(parent, text, kind) {
+    var p = makeEl("p", "");
+    if (kind) { p.appendChild(makeTag(kind)); p.appendChild(document.createTextNode(" ")); }
+    p.appendChild(document.createTextNode(showValue(text)));
+    parent.appendChild(p);
+  }
 
-  // --- Mission journey ---
-  if (Array.isArray(item.events) && item.events.length > 0) {
-    body.appendChild(makeEl("h3", "story-subtitle", "Mission journey"));
-    var journey = makeEl("ol", "journey");
-    item.events.forEach(function (event) {
-      var step = makeEl("li", "journey-step");
-      step.appendChild(makeEl("span", "journey-date", formatDate(event.date)));
-      step.appendChild(makeEl("span", "journey-label", showValue(event.label)));
-      journey.appendChild(step);
+  section("Purpose", "verified", function (li) { para(li, item.purpose); });
+  section("Mission", "verified", function (li) { para(li, item.story); });
+  section("Scientific contribution", "verified", function (li) { para(li, item.science); });
+  section("Documented history", "verified", function (li) {
+    if (Array.isArray(item.events) && item.events.length > 0) {
+      var journey = makeEl("ol", "journey");
+      journey.setAttribute("aria-label", "Mission journey");
+      item.events.forEach(function (event) {
+        var step = makeEl("li", "journey-step");
+        step.appendChild(makeEl("span", "journey-date", formatDate(event.date)));
+        step.appendChild(makeEl("span", "journey-label", showValue(event.label)));
+        journey.appendChild(step);
+      });
+      li.appendChild(journey);
+    }
+    para(li, item.fate);
+  });
+  section("Current status: then vs now", "", function (li) { li.appendChild(makeThenNow(item)); });
+  section("Heritage significance", "", function (li) {
+    var h = item.heritage || {};
+    if (!isMissing(item.legacy)) para(li, item.legacy, "verified");
+    if (!isMissing(h.verified)) {
+      para(li, h.verified, "verified");
+      if (h.source && isWebLink(h.source.url)) {
+        var s = makeEl("p", "evidence-source", "Source: ");
+        s.appendChild(makeLink(h.source.url, h.source.name + " ↗"));
+        li.appendChild(s);
+      }
+    }
+    if (!isMissing(h.interpretation)) para(li, h.interpretation, "interpretation");
+    if (!isMissing(h.unknown)) para(li, h.unknown, "unknown");
+  });
+  section("Source evidence", "", function (li) {
+    var ul = makeEl("ul", "passport-sources");
+    sourceList(item).forEach(function (s) {
+      var row = makeEl("li");
+      row.appendChild(makeLink(s.url, s.name + " ↗"));
+      ul.appendChild(row);
     });
-    body.appendChild(journey);
-  }
-
-  // --- Then vs Now (only where NASA has a later photo of the same hardware) ---
-  if (item.thenNow && !isMissing(item.thenNow.image)) {
-    body.appendChild(makeEl("h3", "story-subtitle", "Then and now"));
-    var tn = makeEl("div", "then-now");
-
-    var thenFig = makeEl("figure");
-    if (!isMissing(item.image)) addImageUrl(thenFig, item.image, "Then: " + showValue(item.name), "");
-    var thenCap = makeEl("figcaption");
-    thenCap.appendChild(makeEl("span", "tn-label", "Then"));
-    thenCap.appendChild(document.createTextNode(showValue(item.imageCredit)));
-    thenFig.appendChild(thenCap);
-
-    var nowFig = makeEl("figure");
-    addImageUrl(nowFig, item.thenNow.image, "Now, seen from orbit: " + showValue(item.name), "");
-    var nowCap = makeEl("figcaption");
-    nowCap.appendChild(makeEl("span", "tn-label", "Now"));
-    nowCap.appendChild(document.createTextNode(showValue(item.thenNow.caption) + " " + showValue(item.thenNow.credit) + " "));
-    if (isWebLink(item.thenNow.imagePage)) nowCap.appendChild(makeLink(item.thenNow.imagePage, "↗"));
-    nowFig.appendChild(nowCap);
-
-    tn.appendChild(thenFig);
-    tn.appendChild(nowFig);
-    body.appendChild(tn);
-  }
-
-  // --- Archive record ---
-  body.appendChild(makeEl("h3", "story-subtitle", "Archive record"));
-  var fields = makeEl("dl", "story-fields");
-  [
-    ["Planet", item.planet],
-    ["Mission", item.mission],
-    ["Arrived", item.year],
-    ["Type", item.category],
-    ["Resting place", item.site],
-    ["Coordinates", formatLocation(item)],
-    ["Image credit", item.imageCredit]
-  ].forEach(function (pair) {
-    fields.appendChild(makeEl("dt", "", pair[0]));
-    fields.appendChild(makeEl("dd", "", showValue(pair[1])));
+    li.appendChild(ul);
+    li.appendChild(makeEl("p", "evidence-source", "Full reference list with page numbers: docs/research-sources.md in the project."));
   });
+  body.appendChild(sections);
 
-  // Link to the object's record in the NASA NSSDCA Master Catalog
-  fields.appendChild(makeEl("dt", "", "NSSDCA record"));
-  var nssdcDd = makeEl("dd");
-  if (/^[A-Z0-9-]+$/i.test(String(item.nssdcId || ""))) {
-    nssdcDd.appendChild(makeLink(
-      "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=" + encodeURIComponent(item.nssdcId),
-      item.nssdcId + " ↗"));
-  } else {
-    nssdcDd.textContent = NOT_AVAILABLE;
-  }
-  fields.appendChild(nssdcDd);
+  // --- Field note (printable one-page report) ---
+  var noteBtn = makeEl("button", "btn btn-ghost field-note-btn", "Create a field note (printable report)");
+  noteBtn.type = "button";
+  noteBtn.addEventListener("click", function () { openFieldNote(item); });
+  body.appendChild(noteBtn);
 
-  // Source: a real link only when it is a web address
-  fields.appendChild(makeEl("dt", "", "Source"));
-  var sourceDd = makeEl("dd");
-  if (isWebLink(item.source)) {
-    sourceDd.appendChild(makeLink(item.source, sourceName(item.source)));
-  } else {
-    sourceDd.textContent = showValue(item.source);
-  }
-  fields.appendChild(sourceDd);
-  body.appendChild(fields);
 
   // --- Previous / next object (follows the current filter and search) ---
   var list = getVisibleObjects();

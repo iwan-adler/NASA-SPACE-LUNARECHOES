@@ -1,6 +1,12 @@
 /* Lunar Echoes - responsive layout for tablets and phones */
 
 @media (max-width: 900px) {
+  .case-shelf { grid-template-columns: 1fr; }
+  .case-folder { flex-direction: row; }
+  .case-folder-img { width: 38%; aspect-ratio: auto; min-height: 100%; }
+  .case-grid,
+  .decision-brief { grid-template-columns: 1fr; }
+  .case-photo { position: static; }
   .card-grid { grid-template-columns: repeat(2, 1fr); }
   .hero-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .compare,
@@ -39,4 +45,12 @@
   .world-facts .group-start { margin-top: 0.5rem; }
 
   #quiz-box { padding: 1.1rem; }
+
+  .case-view { padding: 1rem; }
+  .case-folder { flex-direction: column; }
+  .case-folder-img { width: 100%; aspect-ratio: 16 / 9; }
+  .decision-choices,
+  .decision-tradeoffs { grid-template-columns: 1fr; }
+  .passport-id { grid-template-columns: 1fr 1fr; }
+  .passport-section { padding-left: 2.4rem; }
 }

@@ -1,0 +1,45 @@
+{
+  "_note": "Mission Control Decision Room. A HYPOTHETICAL educational scenario, not a real NASA decision. Every trade-off cites a NASA source (see docs/research-sources.md). NASA's 2011 recommendations are not legal requirements; the scenario says so.",
+  "title": "Mission Control Decision Room",
+  "disclaimer": "This is a hypothetical educational scenario. It is not a real mission and not an actual NASA decision. The facts used to explain each choice come from NASA sources, linked below each answer.",
+  "scenario": "Imagine a future robotic lander that will touch down in the Sea of Tranquility, the same region as Apollo 11. You are in mission control. Your team wants to learn from the Apollo 11 hardware that has been there since 1969, including the Eagle descent stage and the laser reflector that scientists still use. What do you tell your lander to do?",
+  "objectIds": ["apollo11-eagle-descent-stage", "apollo11-lrrr"],
+  "choices": [
+    {
+      "id": "close-look",
+      "label": "Drive right up to Eagle and photograph it up close",
+      "gains": "You would get the most detailed pictures of the Apollo 11 hardware since 1969.",
+      "costs": "NASA's 2011 guidance recommends that visiting vehicles stay at least 75 m from the Eagle descent stage, and that no one visit the Apollo 11 site at all. Rocket exhaust can blow lunar dust onto a site, and NASA warns the still-active laser reflector \"can be easily degraded by particulate and chemical contamination.\"",
+      "verdict": "High detail, but high risk to a site NASA recommends leaving untouched."
+    },
+    {
+      "id": "retrieve",
+      "label": "Collect a piece of the hardware and bring it back to Earth",
+      "gains": "There is a precedent. Apollo 12 astronauts removed Surveyor 3's camera and other parts, and engineers studied what 31 months on the Moon had done to them. Old hardware can show how materials age in the lunar environment.",
+      "costs": "The same returned Surveyor 3 parts showed chemical contamination from Apollo 12's own rocket exhaust, and NASA reports that the nearby landing caused \"significant sandblasting and pitting\". A visit can change the very thing you want to study. NASA's guidance treats the Apollo 11 site as a place not to be visited at all.",
+      "verdict": "Real science value, but it permanently changes a one-of-a-kind historic site."
+    },
+    {
+      "id": "distance",
+      "label": "Land at least 2 km away and document the site from a distance",
+      "gains": "NASA's guidance recommends that landers not fly over a historic site within 2.0 km, to avoid rocket plumes, blown dust and the risk of a crash during landing. Documenting from a distance, or from orbit, has worked before: NASA's Lunar Reconnaissance Orbiter photographed the Apollo 11 landing site in 2009.",
+      "costs": "Pictures from far away or from orbit show far less detail. You cannot measure up close how the materials have aged.",
+      "verdict": "Lowest risk to the site, but the least new detail."
+    },
+    {
+      "id": "leave",
+      "label": "Leave the site alone and keep studying it from Earth",
+      "gains": "The laser reflector is still an active experiment. Observatories keep bouncing lasers off it from Earth, measuring the Earth–Moon distance to within a few millimetres, with no need to go near it.",
+      "costs": "You learn nothing new about how the descent stage and other hardware have changed after decades on the Moon. NASA notes that sites like this hold scientific data about the long-term exposure of human-made systems to the lunar environment.",
+      "verdict": "Protects the site and an active experiment, but leaves open questions unanswered."
+    }
+  ],
+  "reflection": "There is no single right answer. Every choice trades knowledge against preservation. Future explorers will have to weigh history, science and risk together, on the Moon, on Mars and beyond.",
+  "closing": "In 2011, NASA published technical recommendations for protecting U.S. lunar heritage sites. NASA states that they \"are not legal requirements; rather they are technical recommendations for consideration by interested entities.\" They cover lunar sites such as Apollo and Surveyor; we found no equivalent NASA document for Mars hardware in our sources.",
+  "sources": [
+    { "name": "NASA's Recommendations to Space-Faring Entities: How to Protect and Preserve the Historic and Scientific Value of U.S. Government Lunar Artifacts (2011, rev. A)", "url": "https://www.nasa.gov/wp-content/uploads/2017/10/617743main_nasa-usg_lunar_historic_sites_reva-508.pdf" },
+    { "name": "NASA history: 55 Years Ago, Apollo 12 Makes a Pinpoint Landing on the Moon", "url": "https://www.nasa.gov/history/55-years-ago-apollo-12-makes-a-pinpoint-landing-on-the-moon/" },
+    { "name": "NASA image PIA12909: Apollo 11, Second Look (LRO, 2009)", "url": "https://images.nasa.gov/details/PIA12909" },
+    { "name": "NASA: The Apollo Experiment That Keeps on Giving", "url": "https://www.nasa.gov/missions/apollo/apollo-11/the-apollo-experiment-that-keeps-on-giving/" }
+  ]
+}
