@@ -1334,6 +1334,194 @@ main > section {
 .decision-closing { color: #d4d3cd; font-size: 0.95rem; }
 .decision-hint { margin: 0.5rem 0 0; font-size: 0.85rem; color: var(--muted); font-style: italic; }
 
+/* =========================================================
+   Beyond the Archive: NASA citizen science
+   ========================================================= */
+.beyond-intro {
+  max-width: 46rem;
+  margin: 0 0 2rem;
+  font-family: var(--serif);
+  font-size: clamp(1.2rem, 2.4vw, 1.5rem);
+  line-height: 1.45;
+  color: #e4e2da;
+}
+.beyond-subtitle,
+.demo-step {
+  margin: 0 0 0.75rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.beyond-how { margin-bottom: 2.5rem; }
+.beyond-steps {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 0 0 0.5rem;
+  padding: 0;
+  list-style: none;
+  counter-reset: step;
+}
+.beyond-step {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--panel);
+  font-size: 0.92rem;
+  color: #d4d3cd;
+}
+.beyond-step strong::before {
+  counter-increment: step;
+  content: counter(step) " · ";
+  color: var(--accent);
+}
+.beyond-step strong { font-family: var(--serif); font-weight: 400; font-size: 1.25rem; color: var(--text); }
+
+.beyond-project {
+  margin: 0 0 2rem;
+  padding: 1.75rem;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  animation: rise 0.4s ease-out;
+}
+.beyond-project.planet-moon {
+  border-top: 4px solid var(--moon);
+  background: radial-gradient(circle at 100% 0%, rgba(205, 213, 230, 0.08), transparent 45%), var(--panel);
+}
+.beyond-project.planet-mars {
+  border-top: 4px solid var(--mars);
+  background: radial-gradient(circle at 100% 0%, rgba(224, 122, 79, 0.1), transparent 45%), var(--panel);
+}
+.beyond-name { margin: 0.5rem 0 0.1rem; font-family: var(--serif); font-weight: 400; font-size: clamp(1.8rem, 4vw, 2.6rem); }
+.planet-moon .beyond-name { color: var(--moon); }
+.planet-mars .beyond-name { color: var(--mars); }
+.beyond-tagline { margin: 0 0 1.25rem; color: var(--muted); font-style: italic; }
+.beyond-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  gap: 2rem;
+  align-items: start;
+}
+.beyond-info h4 { margin: 1rem 0 0.3rem; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.beyond-info h4:first-child { margin-top: 0; }
+.beyond-info p { margin: 0 0 0.5rem; }
+.beyond-connection {
+  margin: 1.25rem 0;
+  padding: 1rem 1.1rem;
+  border-left: 3px solid var(--accent);
+  border-radius: 6px;
+  background: var(--bg);
+}
+.beyond-connection h4 { margin-top: 0; color: var(--accent); }
+.beyond-connection .btn { margin-top: 0.4rem; font: inherit; font-size: 0.92rem; cursor: pointer; }
+.beyond-join { margin-top: 0.5rem; font-size: 1.05rem; }
+.planet-moon .beyond-join { background: var(--moon); color: #10131f; }
+.planet-mars .beyond-join { background: var(--mars); color: #1f0d05; }
+.beyond-join:hover { filter: brightness(1.1); }
+.beyond-join-note { margin-top: 0.4rem; font-size: 0.82rem; color: var(--muted); }
+
+.beyond-demo {
+  padding: 1.25rem;
+  border: 1px dashed var(--line);
+  border-radius: 12px;
+  background: var(--bg);
+}
+.demo-title { margin: 0 0 0.3rem; font-family: var(--serif); font-weight: 400; font-size: 1.4rem; }
+.demo-label { margin: 0 0 0.9rem; font-size: 0.85rem; color: #cfe6ff; }
+.demo-flag {
+  display: inline-block;
+  padding: 0.05rem 0.45rem;
+  border: 1px solid #8cc8ff;
+  border-radius: 4px;
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #8cc8ff;
+}
+.demo-prompt { margin: 0 0 0.75rem; font-weight: 600; }
+
+.find-stage { position: relative; line-height: 0; }
+.find-image-btn {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--panel-2);
+  cursor: crosshair;
+}
+.find-image { width: 100%; aspect-ratio: 1041 / 654; object-fit: cover; }
+.find-marker {
+  position: absolute;
+  width: 34px;
+  height: 34px;
+  margin: -17px 0 0 -17px;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: rise 0.25s ease-out;
+}
+.find-marker.is-guess { border: 3px solid #8cc8ff; box-shadow: 0 0 0 3px rgba(7, 8, 13, 0.6); }
+.find-marker.is-answer { width: 64px; height: 64px; margin: -32px 0 0 -32px; border: 3px dashed var(--ok); box-shadow: 0 0 0 3px rgba(7, 8, 13, 0.6); }
+.find-regions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.35rem; margin-top: 0.6rem; }
+.find-region {
+  padding: 0.5rem;
+  font: inherit;
+  font-size: 0.85rem;
+  color: var(--text);
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  cursor: pointer;
+}
+.find-region:hover { border-color: var(--accent); }
+.demo-controls { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0.75rem 0; }
+.demo-controls .btn,
+.demo-result .btn,
+.cloud-quiz .btn { font: inherit; font-size: 0.9rem; padding: 0.45rem 1rem; cursor: pointer; }
+.demo-result p { margin: 0 0 0.5rem; }
+.demo-verdict { font-weight: 700; }
+.demo-verdict.is-correct { color: var(--ok); }
+.demo-verdict.is-incorrect { color: #ffb4a8; }
+
+.cloud-figure { margin: 0 0 1rem; }
+.cloud-image { width: 100%; aspect-ratio: 1142 / 525; object-fit: cover; border-radius: 8px; background: var(--panel-2); }
+.cloud-figure figcaption { display: flex; flex-direction: column; gap: 0.3rem; margin-top: 0.45rem; font-size: 0.85rem; color: var(--muted); }
+.cloud-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.6rem; }
+.cloud-chip {
+  padding: 0.35rem 0.8rem;
+  font: inherit;
+  font-size: 0.85rem;
+  color: var(--text);
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  cursor: pointer;
+}
+.cloud-chip[aria-pressed="true"] { background: var(--mars); border-color: var(--mars); color: #1f0d05; }
+.cloud-type-text { min-height: 3em; margin: 0 0 0.25rem; }
+.cloud-quiz { margin-top: 0.25rem; }
+.cloud-q { font-weight: 600; margin: 0 0 0.6rem; }
+.cloud-options { display: grid; gap: 0.45rem; }
+.cloud-feedback { margin: 0.6rem 0; min-height: 1.4em; }
+.cloud-quiz .quiz-next { margin-top: 0.25rem; }
+
+.beyond-disclaimer {
+  margin: 0;
+  padding: 0.9rem 1.1rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+.beyond-disclaimer strong { color: var(--text); }
+
 /* Respect users who prefer less motion */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

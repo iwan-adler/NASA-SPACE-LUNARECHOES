@@ -154,6 +154,30 @@ https://www.nasa.gov/wp-content/uploads/2017/10/617743main_nasa-usg_lunar_histor
 
 Interpretations are our team's views and should be reviewed by a human.
 
+### Beyond the Archive: NASA citizen science (`data/citizen-science.json`)
+
+All pages read on 14 Nov 2026. Participation happens only on the official sites. Nothing done on our site is sent anywhere.
+
+| Fact used | Source |
+|---|---|
+| MoonDiff compares NASA Lunar Orbiter (1967) and Lunar Reconnaissance Orbiter (2009–present) images. Volunteers "comb" for new craters to explore what impacts are like and how often they happen. PI Aaron Curtis: rocks from space collide with the Moon several times a month, spacecraft land and sometimes crash, landslides. Volunteers "might also spot historical objects, like the missing ascent stage of the Apollo 11 lunar lander". | [NASA: Join MoonDiff and Go Moon-Combing with NASA! (1 Aug 2023)](https://science.nasa.gov/get-involved/citizen-science/join-moondiff-and-go-moon-combing-with-nasa/) |
+| Official MoonDiff project | https://trek.nasa.gov/moondiff |
+| Martian clouds help regulate climate. Open questions: daily, seasonal and yearly patterns, links to winds, similarity to Earth's clouds. Volunteers tag clouds in MAVEN images to build a database. Tutorial takes 10–15 min. Launched 2024. Caption of the two-view image. | [NASA: Cloudspotting on Mars: Shapes](https://science.nasa.gov/citizen-science/cloudspotting-on-mars-shapes/) |
+| Clouds reflect sunlight (cooling) and absorb outgoing infrared (warming) | Zooniverse project introduction (public project API) |
+| Cloud types: disk/cap, vortex, streak, gravity-wave and twilight clouds; the red line marks sunrise and sunset | Zooniverse project field guide (public API, project 17802) |
+| Official Cloudspotting project | https://www.zooniverse.org/projects/matteocrismani/cloudspotting-on-mars-shapes |
+| Apollo S-IVB stages deliberately impacted from Apollo 13 on. Seismometers left by earlier crews measured the impacts. Apollo 16's site was found by LRO after decades, ~30 km from the Apollo-era estimate. | [NASA image GSFC_20171208_Archive_e000501](https://images.nasa.gov/details/GSFC_20171208_Archive_e000501) (description) |
+| MAVEN = Mars Atmosphere and Volatile EvolutioN, which observes the upper atmosphere | [NASA image GSFC_20171208_Archive_e000979](https://images.nasa.gov/details/GSFC_20171208_Archive_e000979) |
+
+**Demo images:**
+- **Moon:** "LRO Finds Apollo 16 Booster Rocket Impact Site", credit NASA/Goddard/Arizona State University.
+- **Mars:** the MAVEN two-view cloud image from NASA's Cloudspotting page, credit NASA/LASP/CU Boulder, image processing by Kyle Connour.
+- Both load from NASA's servers. No offline copies have been saved yet.
+
+**Demo answer location (interpretation):** in the Moon demo, the "correct" spot is the rayed crater at the centre of NASA's image of the impact site. NASA's description identifies the site but does not mark a pixel position, so the click target (centre ±9 %) is our reading of the image.
+
+**Not used:** MoonDiff's article image (a screenshot of the MoonDiff website), and PIA18613 (MAVEN ultraviolet image). NASA describes PIA18613 as showing an escaping atmosphere, not clouds.
+
 ### Coordinates
 
 - Stored as planetocentric degrees, **east longitude positive, −180 to 180**.

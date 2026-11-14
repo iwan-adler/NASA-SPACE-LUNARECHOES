@@ -37,6 +37,8 @@ js/explore.js              Landing numbers, Moon vs Mars, location explorer
 js/cases.js                Evidence Room case files and the Future Explorer scenario
 data/cases.json            The three case files: evidence, question, explanation, significance
 data/decision.json         The hypothetical Future Explorer scenario and its sourced trade-offs
+js/citizen.js              Beyond the Archive: citizen-science section and practice demos
+data/citizen-science.json  MoonDiff and Cloudspotting content, sources and demo data
 data/objects.json          12 NASA-sourced object records
 data/worlds.json           Moon/Mars facts from NASA NSSDCA fact sheets
 assets/images/             Offline copies of the 16 NASA photos (credits in docs/research-sources.md)
@@ -81,6 +83,10 @@ for the things we leave there?*
   (our reasoning), **Unknown** (not documented; never guessed) or **Hypothetical**.
 - **Field Note:** a printable one-page discovery report for any object, with sources and space for the visitor's
   own observations.
+- **Beyond the Archive** (`js/citizen.js`, `data/citizen-science.json`): two real NASA citizen-science projects,
+  **MoonDiff** (Moon) and **Cloudspotting on Mars: Shapes** (Mars). Each has an explanation, a link to our archive,
+  a practice demo (find the Apollo 16 booster crater; learn Martian cloud types) and a "Join" link to the official
+  project. The demos are educational only: nothing is sent to NASA or Zooniverse, and the site says so.
 
 ## Features
 

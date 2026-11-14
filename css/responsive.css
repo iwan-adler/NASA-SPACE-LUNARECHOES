@@ -7,6 +7,8 @@
   .case-grid,
   .decision-brief { grid-template-columns: 1fr; }
   .case-photo { position: static; }
+  .beyond-grid { grid-template-columns: 1fr; }
+  .beyond-steps { grid-template-columns: 1fr 1fr; }
   .card-grid { grid-template-columns: repeat(2, 1fr); }
   .hero-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .compare,
@@ -52,5 +54,7 @@
   .decision-choices,
   .decision-tradeoffs { grid-template-columns: 1fr; }
   .passport-id { grid-template-columns: 1fr 1fr; }
+  .beyond-project { padding: 1.1rem; }
+  .beyond-steps { grid-template-columns: 1fr; }
   .passport-section { padding-left: 2.4rem; }
 }

@@ -42,7 +42,7 @@ function showLoadError(error) {
   if (location.protocol === "file:") {
     message += " Open the site through a local server (see README).";
   }
-  ["case-shelf", "objects-list", "decision-box", "timeline-list", "compare-box", "map-box", "quiz-box"].forEach(function (id, i) {
+  ["case-shelf", "objects-list", "decision-box", "timeline-list", "compare-box", "map-box", "quiz-box", "beyond-box"].forEach(function (id, i) {
     var el = document.getElementById(id);
     if (el) {
       el.innerHTML = "";
@@ -64,6 +64,7 @@ async function startApp() {
   var worldsPromise = loadOptional("data/worlds.json");
   var casesPromise = loadOptional("data/cases.json");
   var decisionPromise = loadOptional("data/decision.json");
+  var citizenPromise = loadOptional("data/citizen-science.json");
   try {
     objects = await loadObjects();
   } catch (error) {
@@ -73,6 +74,7 @@ async function startApp() {
   var worlds = await worldsPromise;
   var cases = await casesPromise;
   var decision = await decisionPromise;
+  var citizen = await citizenPromise;
 
   // Each part runs separately, so one bug does not break the others.
   [
@@ -81,7 +83,8 @@ async function startApp() {
     ["Future explorer", function () { renderDecision(objects, decision); }], // js/cases.js
     ["Timeline", function () { renderTimeline(objects); }],            // js/timeline.js
     ["Explore", function () { renderExplore(objects, worlds); }],      // js/explore.js
-    ["Quiz", function () { startQuiz(objects); }]                      // js/quiz.js
+    ["Quiz", function () { startQuiz(objects); }],                     // js/quiz.js
+    ["Citizen science", function () { renderCitizenScience(citizen); }] // js/citizen.js
   ].forEach(function (part) {
     try {
       part[1]();

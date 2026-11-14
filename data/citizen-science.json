@@ -1,0 +1,109 @@
+{
+  "_note": "Content for 'Beyond the Archive: NASA citizen science'. Every fact is taken from the source pages listed in each block (read 14 Nov 2026). The demos are educational only: nothing done on this website is sent to NASA, MoonDiff or Zooniverse. See docs/research-sources.md.",
+  "intro": "Human exploration leaves footprints. Scientific discovery continues long after the mission ends. You have explored what humanity left behind. Now discover how you can contribute to what humanity learns next.",
+  "steps": [
+    { "title": "Learn", "text": "Each project starts with a short tutorial. Cloudspotting on Mars: Shapes says its tutorial takes 10–15 minutes and provides all the instruction needed." },
+    { "title": "Look", "text": "Volunteers examine real spacecraft images, from NASA's Lunar Orbiter and Lunar Reconnaissance Orbiter for the Moon, and NASA's MAVEN orbiter for Mars." },
+    { "title": "Mark", "text": "You mark what you see: changes between old and new Moon images in MoonDiff, or clouds of each common type in Cloudspotting." },
+    { "title": "Contribute", "text": "Your marks help scientists. MoonDiff helps them learn about the Moon's dynamic surface, and Cloudspotting builds a database to answer open questions about Martian clouds." }
+  ],
+  "stepsSources": [
+    { "name": "NASA: Join MoonDiff and Go Moon-Combing with NASA!", "url": "https://science.nasa.gov/get-involved/citizen-science/join-moondiff-and-go-moon-combing-with-nasa/" },
+    { "name": "NASA: Cloudspotting on Mars: Shapes", "url": "https://science.nasa.gov/citizen-science/cloudspotting-on-mars-shapes/" }
+  ],
+  "projects": [
+    {
+      "id": "moondiff",
+      "world": "Moon",
+      "name": "MoonDiff",
+      "tagline": "Comb the Moon for changes",
+      "joinLabel": "Join MoonDiff",
+      "joinUrl": "https://trek.nasa.gov/moondiff",
+      "infoUrl": "https://science.nasa.gov/get-involved/citizen-science/join-moondiff-and-go-moon-combing-with-nasa/",
+      "infoName": "NASA: Join MoonDiff and Go Moon-Combing with NASA! (1 Aug 2023)",
+      "what": "MoonDiff lets you compare images of the same area of the Moon taken years apart: from NASA's Lunar Orbiter in 1967 and from NASA's Lunar Reconnaissance Orbiter (2009–present). You \"comb\" the surface for new craters, to explore what meteorite impacts on the Moon are like and measure how often they happen.",
+      "why": "The Moon is not frozen in time. The project's principal investigator, Aaron Curtis, says rocks from space collide with the Moon several times a month, spacecraft land and sometimes crash, and there are landslides. Because orbiters have photographed the Moon since the 1960s, comparing old and new pictures of the same place reveals what has changed.",
+      "connection": {
+        "text": "NASA says MoonDiff volunteers \"might also spot historical objects, like the missing ascent stage of the Apollo 11 lunar lander.\" That is the top half of Eagle, which carried Armstrong and Aldrin back to orbit. Its bottom half, the descent stage, is in our archive.",
+        "objectId": "apollo11-eagle-descent-stage",
+        "buttonLabel": "Open the Eagle descent stage passport"
+      },
+      "demo": {
+        "kind": "find",
+        "title": "Moon-combing practice",
+        "label": "Educational demo. Not a MoonDiff task, and nothing is sent anywhere.",
+        "prompt": "Somewhere in this NASA orbital image is a crater made by a human-made object. Click where you think it is.",
+        "hint": "Look for a crater surrounded by bright rays of freshly thrown-out material.",
+        "image": "https://images-assets.nasa.gov/image/GSFC_20171208_Archive_e000501/GSFC_20171208_Archive_e000501~orig.jpg",
+        "imagePage": "https://images.nasa.gov/details/GSFC_20171208_Archive_e000501",
+        "credit": "NASA/Goddard/Arizona State University. \"LRO Finds Apollo 16 Booster Rocket Impact Site\"",
+        "alt": "Grey lunar surface seen from orbit, with many small craters and one crater surrounded by bright rays near the centre.",
+        "target": { "x": 50.5, "y": 47, "radius": 9 },
+        "found": "You found it: the crater with bright rays near the centre is where the Apollo 16 S-IVB rocket stage hit the Moon.",
+        "missed": "Not quite. The crater is near the centre of the image, surrounded by bright rays. It is now marked.",
+        "story": "Beginning with Apollo 13, NASA deliberately crashed the used S-IVB rocket stages into the Moon. Seismometers left by earlier Apollo astronauts measured the energy of these impacts to learn about the Moon's interior. Contact with Apollo 16's booster was lost before impact, so its crash site stayed uncertain for decades, until the Lunar Reconnaissance Orbiter's camera found it about 30 km from the Apollo-era estimate.",
+        "storyObjectId": "apollo17-alsep",
+        "storyButton": "See an Apollo science station in our archive",
+        "storySourceName": "NASA image GSFC_20171208_Archive_e000501 (description)",
+        "storySourceUrl": "https://images.nasa.gov/details/GSFC_20171208_Archive_e000501"
+      }
+    },
+    {
+      "id": "cloudspotting",
+      "world": "Mars",
+      "name": "Cloudspotting on Mars: Shapes",
+      "tagline": "Map the clouds of Mars",
+      "joinLabel": "Join Cloudspotting on Mars",
+      "joinUrl": "https://www.zooniverse.org/projects/matteocrismani/cloudspotting-on-mars-shapes",
+      "infoUrl": "https://science.nasa.gov/citizen-science/cloudspotting-on-mars-shapes/",
+      "infoName": "NASA: Cloudspotting on Mars: Shapes (launched 2024)",
+      "what": "You examine images of Mars from NASA's MAVEN spacecraft (Mars Atmosphere and Volatile EvolutioN), an orbiter that studies the Martian atmosphere, and click to tag clouds of each common type. Your tags help build a database of where and when different cloud shapes appear.",
+      "why": "Clouds on Mars help regulate its climate, just as they do on Earth. Clouds can reflect incoming sunlight, which cools, and absorb the heat the planet gives off, which warms. Yet scientists still lack answers to basic questions: what are the daily, seasonal and yearly patterns in Martian cloud shapes? How do clouds reflect wind patterns? Do clouds that look like Earth's form the same way?",
+      "connection": {
+        "text": "The six Mars machines in our archive all lived under this sky. The atmosphere decided some of their fates: Opportunity sent its last message on 10 June 2018, as a planet-wide dust storm blanketed the solar-powered rover.",
+        "objectId": "opportunity",
+        "buttonLabel": "Open the Opportunity passport"
+      },
+      "demo": {
+        "kind": "clouds",
+        "title": "Cloud-spotting practice",
+        "label": "Educational demo. Not a Zooniverse classification, and nothing is sent anywhere.",
+        "image": "https://assets.science.nasa.gov/content/dam/science/cds/citizen-science/projects/mars-cloudspotting-green-purple.jpg",
+        "imagePage": "https://science.nasa.gov/citizen-science/cloudspotting-on-mars-shapes/",
+        "credit": "NASA/LASP/CU Boulder, image processing by Kyle Connour",
+        "alt": "Two views of Mars from orbit. Left: a globe covered in swirls and streaks of white cloud, with a thin red line near the right edge. Right: a globe where dust and cloud mix into large pale features, with craters visible in the lower half.",
+        "caption": "Left: Martian clouds in many forms, lit by the Sun from the right; the red line marks the change from day to night. Right: dust and clouds mixing into huge features that cross large parts of Mars. Craters are easy to see in the lower half, where the air is clearer.",
+        "types": [
+          { "name": "Disk or cap cloud", "text": "Round, bright clouds. They can be mistaken for surface ice or craters, so volunteers check what lies on the ground underneath, such as a volcano." },
+          { "name": "Vortex cloud", "text": "Clouds that curl in on themselves like a spiral, a little like a hurricane on Earth, though without the same destructive energy." },
+          { "name": "Streak cloud", "text": "Long, narrow, mostly straight clouds of roughly the same width. Sometimes you can even see their shadow." },
+          { "name": "Gravity-wave clouds", "text": "Clouds that form in rows, appearing and disappearing in a preferred direction." },
+          { "name": "Twilight cloud", "text": "Clouds high enough to stay lit by the Sun even though the ground below is already in darkness, just past the day–night line." }
+        ],
+        "typesSourceName": "Zooniverse: Cloudspotting on Mars: Shapes field guide",
+        "typesSourceUrl": "https://www.zooniverse.org/projects/matteocrismani/cloudspotting-on-mars-shapes",
+        "questions": [
+          {
+            "q": "In the left view, what does the thin red line show?",
+            "options": ["The edge of a dust storm", "Where day turns into night", "The path of the MAVEN spacecraft"],
+            "answer": "Where day turns into night",
+            "explain": "The red line marks the transition from day to night, where someone on the ground would see sunrise or sunset."
+          },
+          {
+            "q": "A cloud just past the red line is still bright, but the ground beneath it is dark. What type is it?",
+            "options": ["Streak cloud", "Disk or cap cloud", "Twilight cloud"],
+            "answer": "Twilight cloud",
+            "explain": "Twilight clouds are high enough in the atmosphere to keep reflecting sunlight after the surface below has gone dark."
+          },
+          {
+            "q": "In the right view, why are craters easy to see in the lower half?",
+            "options": ["The air there is clearer of dust and clouds", "That half was photographed at night", "Craters are brighter than clouds"],
+            "answer": "The air there is clearer of dust and clouds",
+            "explain": "NASA's caption explains that the atmosphere in the lower half is clearer of dust and clouds, so the surface craters show through."
+          }
+        ]
+      }
+    }
+  ],
+  "disclaimer": "Lunar Echoes is an independent educational project made for the NASA Space Apps Challenge 2026. It is not affiliated with or endorsed by NASA, MoonDiff or Zooniverse. The practice activities on this page are for learning only: nothing you do here is sent to NASA or used in research. To contribute, join the official projects on their own websites."
+}
