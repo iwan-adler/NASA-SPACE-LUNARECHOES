@@ -1,27 +1,277 @@
-// Lunar Echoes - object cards
-// Draws one card per object from data/objects.json.
+// Lunar Echoes - Object Explorer
+// Shows equipment cards, Moon/Mars filter, search, and the story modal.
+//
+// Loaded first, so it also holds small helpers used by timeline.js and quiz.js.
 
+// ---------- Shared helpers ----------
+
+var NOT_AVAILABLE = "Not available";
+
+// True when a field is empty, null or missing.
+function isMissing(value) {
+  return value === undefined || value === null || String(value).trim() === "";
+}
+
+// Returns the value, or "Not available" when it is missing. Never invents data.
+function showValue(value) {
+  return isMissing(value) ? NOT_AVAILABLE : String(value);
+}
+
+// Small helper to create an element with an optional class and text.
+function makeEl(tag, className, text) {
+  var el = document.createElement(tag);
+  if (className) el.className = className;
+  if (text !== undefined) el.textContent = text;
+  return el;
+}
+
+// Adds an <img> only when there is an image path. If it fails to load,
+// the image is removed so no broken-image icon is ever shown.
+function addImage(parent, item, className) {
+  if (isMissing(item.image)) return;
+  var img = document.createElement("img");
+  img.className = className;
+  img.src = item.image;
+  img.alt = isMissing(item.name) ? "" : item.name;
+  img.loading = "lazy";
+  img.style.maxWidth = "100%";
+  img.addEventListener("error", function () {
+    img.remove();
+  });
+  parent.appendChild(img);
+}
+
+// ---------- Explorer state ----------
+
+var allObjects = [];
+var currentPlanet = "all"; // "all", "moon" or "mars"
+var currentSearch = "";
+
+// Called from main.js with the array from data/objects.json.
 function renderObjects(objects) {
-  const container = document.getElementById("objects-list");
+  allObjects = Array.isArray(objects) ? objects : [];
+  buildControls();
+  buildStoryModal();
+  drawCards();
+}
+
+// ---------- Filter + search controls ----------
+
+// The controls are created here because index.html has no slots for them yet.
+// CSS classes to style: .explorer-controls, .filter-btn, .search-input, .result-count
+function buildControls() {
+  if (document.getElementById("explorer-controls")) return; // only build once
+
+  var list = document.getElementById("objects-list");
+  var controls = makeEl("div", "explorer-controls");
+  controls.id = "explorer-controls";
+
+  // Filter buttons
+  var filterGroup = makeEl("div", "filter-group");
+  filterGroup.setAttribute("role", "group");
+  filterGroup.setAttribute("aria-label", "Filter by planet");
+
+  [
+    { value: "all", label: "All" },
+    { value: "moon", label: "Moon" },
+    { value: "mars", label: "Mars" }
+  ].forEach(function (option) {
+    var btn = makeEl("button", "filter-btn", option.label);
+    btn.type = "button";
+    btn.dataset.planet = option.value;
+    btn.setAttribute("aria-pressed", option.value === currentPlanet ? "true" : "false");
+    btn.addEventListener("click", function () {
+      currentPlanet = option.value;
+      updateFilterButtons();
+      drawCards();
+    });
+    filterGroup.appendChild(btn);
+  });
+
+  // Search box (with a real label for screen readers)
+  var searchLabel = makeEl("label", "search-label", "Search by object or mission ");
+  var searchInput = makeEl("input", "search-input");
+  searchInput.type = "search";
+  searchInput.id = "object-search";
+  searchInput.placeholder = "e.g. rover, Apollo";
+  searchInput.addEventListener("input", function () {
+    currentSearch = searchInput.value.trim().toLowerCase();
+    drawCards();
+  });
+  searchLabel.appendChild(searchInput);
+
+  // Result count, read out by screen readers when it changes
+  var count = makeEl("p", "result-count");
+  count.id = "result-count";
+  count.setAttribute("aria-live", "polite");
+
+  controls.appendChild(filterGroup);
+  controls.appendChild(searchLabel);
+  controls.appendChild(count);
+  list.parentNode.insertBefore(controls, list);
+  updateFilterButtons();
+}
+
+function updateFilterButtons() {
+  document.querySelectorAll(".filter-btn").forEach(function (btn) {
+    var active = btn.dataset.planet === currentPlanet;
+    btn.setAttribute("aria-pressed", active ? "true" : "false");
+    btn.style.fontWeight = active ? "bold" : "normal"; // visible even before CSS styles it
+  });
+}
+
+// Returns the objects that match the current filter and search text.
+function getVisibleObjects() {
+  return allObjects.filter(function (item) {
+    var planet = String(item.planet || "").toLowerCase();
+    var planetOk = currentPlanet === "all" || planet === currentPlanet;
+
+    var haystack = (String(item.name || "") + " " + String(item.mission || "")).toLowerCase();
+    var searchOk = currentSearch === "" || haystack.indexOf(currentSearch) !== -1;
+
+    return planetOk && searchOk;
+  });
+}
+
+// ---------- Cards ----------
+
+function drawCards() {
+  var container = document.getElementById("objects-list");
+  var count = document.getElementById("result-count");
+  var visible = getVisibleObjects();
   container.innerHTML = "";
 
-  if (!objects || objects.length === 0) {
-    container.textContent = "No objects yet. Add some to data/objects.json.";
+  if (allObjects.length === 0) {
+    container.textContent = "No equipment records yet. Add some to data/objects.json.";
+    if (count) count.textContent = "";
     return;
   }
 
-  objects.forEach(function (item) {
-    const card = document.createElement("article");
-    card.className = "card";
+  if (count) {
+    count.textContent = "Showing " + visible.length + " of " + allObjects.length + " objects";
+  }
 
-    const title = document.createElement("h3");
-    title.textContent = item.name;
+  if (visible.length === 0) {
+    container.appendChild(makeEl("p", "no-results", "No objects match your search. Try another word or filter."));
+    return;
+  }
 
-    const description = document.createElement("p");
-    description.textContent = item.description;
-
-    card.appendChild(title);
-    card.appendChild(description);
-    container.appendChild(card);
+  visible.forEach(function (item) {
+    container.appendChild(makeCard(item));
   });
+}
+
+function makeCard(item) {
+  var card = makeEl("article", "card");
+  addImage(card, item, "card-image");
+
+  card.appendChild(makeEl("h3", "card-title", showValue(item.name)));
+  card.appendChild(
+    makeEl("p", "card-meta",
+      showValue(item.planet) + " · " + showValue(item.mission) + " · " + showValue(item.year))
+  );
+
+  var btn = makeEl("button", "story-btn", "Read its story");
+  btn.type = "button";
+  btn.setAttribute("aria-label", "Read the story of " + showValue(item.name));
+  btn.addEventListener("click", function () {
+    openStory(item, btn);
+  });
+  card.appendChild(btn);
+
+  // Clicking anywhere on the card also opens the story
+  card.style.cursor = "pointer";
+  card.addEventListener("click", function (event) {
+    if (event.target !== btn) openStory(item, btn);
+  });
+
+  return card;
+}
+
+// ---------- Story modal ----------
+
+// Uses the native <dialog> element: it traps focus, closes on Escape,
+// and is announced correctly by screen readers.
+// CSS classes to style: .story-modal, .story-close, .story-fields
+function buildStoryModal() {
+  if (document.getElementById("story-modal")) return;
+
+  var dialog = makeEl("dialog", "story-modal");
+  dialog.id = "story-modal";
+  dialog.setAttribute("aria-labelledby", "story-title");
+  dialog.style.maxWidth = "600px";
+  dialog.style.width = "90%";
+
+  // Click on the dark backdrop (outside the box) closes the modal
+  dialog.addEventListener("click", function (event) {
+    if (event.target === dialog) dialog.close();
+  });
+
+  document.body.appendChild(dialog);
+}
+
+var lastFocused = null;
+
+// Opens the story for one object. `opener` gets focus back when it closes.
+function openStory(item, opener) {
+  var dialog = document.getElementById("story-modal");
+  if (!dialog) {
+    buildStoryModal();
+    dialog = document.getElementById("story-modal");
+  }
+  lastFocused = opener || document.activeElement;
+  dialog.innerHTML = "";
+
+  var closeBtn = makeEl("button", "story-close", "Close ✕");
+  closeBtn.type = "button";
+  closeBtn.setAttribute("aria-label", "Close story");
+  closeBtn.addEventListener("click", function () {
+    dialog.close();
+  });
+
+  var title = makeEl("h2", "story-title", showValue(item.name));
+  title.id = "story-title";
+
+  dialog.appendChild(closeBtn);
+  dialog.appendChild(title);
+  addImage(dialog, item, "story-image");
+
+  // Field list: label + value. Missing values show "Not available".
+  var fields = makeEl("dl", "story-fields");
+  [
+    ["Planet", item.planet],
+    ["Mission", item.mission],
+    ["Mission year", item.year],
+    ["Original purpose", item.purpose],
+    ["What happened to it", item.story],
+    ["Scientific contribution", item.science],
+    ["Image credit", item.imageCredit]
+  ].forEach(function (pair) {
+    fields.appendChild(makeEl("dt", "", pair[0]));
+    fields.appendChild(makeEl("dd", "", showValue(pair[1])));
+  });
+
+  // Source: a real link only when it is a web address
+  fields.appendChild(makeEl("dt", "", "Source"));
+  var sourceDd = makeEl("dd");
+  if (!isMissing(item.source) && /^https?:\/\//i.test(item.source)) {
+    var link = makeEl("a", "story-source", item.source);
+    link.href = item.source;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    sourceDd.appendChild(link);
+  } else {
+    sourceDd.textContent = showValue(item.source);
+  }
+  fields.appendChild(sourceDd);
+
+  dialog.appendChild(fields);
+
+  dialog.addEventListener("close", function restoreFocus() {
+    dialog.removeEventListener("close", restoreFocus);
+    if (lastFocused && lastFocused.focus) lastFocused.focus();
+  });
+
+  dialog.showModal();
+  closeBtn.focus();
 }
