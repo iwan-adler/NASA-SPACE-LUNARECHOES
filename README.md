@@ -1,0 +1,2 @@
+# NASA-SPACE-LUNARECHOES
+Team repository for the NASA SPACE APPS CHALLENGE 2026 at VIT University-AP.
