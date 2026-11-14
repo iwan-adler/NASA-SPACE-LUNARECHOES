@@ -170,7 +170,11 @@ function makeCard(item) {
   var card = makeEl("article", "card " + planetClass(item));
   addImage(card, item, "card-image");
 
-  card.appendChild(makeEl("span", "planet-badge", showValue(item.planet)));
+  var badges = makeEl("div", "card-badges");
+  badges.appendChild(makeEl("span", "planet-badge", showValue(item.planet)));
+  var statusBadge = makeStatusBadge(item);
+  if (statusBadge) badges.appendChild(statusBadge);
+  card.appendChild(badges);
   card.appendChild(makeEl("h3", "card-title", showValue(item.name)));
   card.appendChild(
     makeEl("p", "card-meta", showValue(item.mission) + " · " + showValue(item.year))
@@ -217,6 +221,14 @@ function buildStoryModal() {
 }
 
 var lastFocused = null;
+
+// "Still in use" / "Inactive" label from the statusType field (null if missing or unknown)
+function makeStatusBadge(item) {
+  var labels = { "in-use": "Still in use", "inactive": "Inactive" };
+  var label = labels[item.statusType];
+  if (!label) return null;
+  return makeEl("span", "status-badge status-" + item.statusType, label);
+}
 
 function isWebLink(value) {
   return !isMissing(value) && /^https?:\/\//i.test(value);
@@ -271,10 +283,20 @@ function openStory(item, opener) {
   title.id = "story-title";
 
   dialog.appendChild(closeBtn);
-  dialog.appendChild(makeEl("span", "planet-badge", showValue(item.planet)));
+  var badges = makeEl("div", "card-badges");
+  badges.appendChild(makeEl("span", "planet-badge", showValue(item.planet)));
+  var statusBadge = makeStatusBadge(item);
+  if (statusBadge) badges.appendChild(statusBadge);
+  dialog.appendChild(badges);
   dialog.appendChild(title);
   dialog.appendChild(makeEl("p", "story-meta",
-    showValue(item.mission) + " · " + showValue(item.year) + " · " + showValue(item.status)));
+    showValue(item.mission) + " · " + showValue(item.year) + " · " + showValue(item.category)));
+
+  // Where it is now and what state it is in (from the NSSDCA record)
+  var fate = makeEl("p", "story-fate");
+  fate.appendChild(makeEl("strong", "", "Today: "));
+  fate.appendChild(document.createTextNode(showValue(item.status)));
+  dialog.appendChild(fate);
 
   // Image with its NASA credit underneath
   if (!isMissing(item.image)) {
@@ -308,12 +330,25 @@ function openStory(item, opener) {
     ["Mission", item.mission],
     ["Mission year", item.year],
     ["Type", item.category],
-    ["Location", formatLocation(item)],
+    ["Resting place", item.site],
+    ["Coordinates", formatLocation(item)],
     ["Image credit", item.imageCredit]
   ].forEach(function (pair) {
     fields.appendChild(makeEl("dt", "", pair[0]));
     fields.appendChild(makeEl("dd", "", showValue(pair[1])));
   });
+
+  // Link to the object's record in the NASA NSSDCA Master Catalog
+  fields.appendChild(makeEl("dt", "", "NSSDCA record"));
+  var nssdcDd = makeEl("dd");
+  if (/^[A-Z0-9-]+$/i.test(String(item.nssdcId || ""))) {
+    nssdcDd.appendChild(makeLink(
+      "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=" + encodeURIComponent(item.nssdcId),
+      item.nssdcId + " ↗"));
+  } else {
+    nssdcDd.textContent = NOT_AVAILABLE;
+  }
+  fields.appendChild(nssdcDd);
 
   // Source: a real link only when it is a web address
   fields.appendChild(makeEl("dt", "", "Source"));
