@@ -3,8 +3,13 @@ Team repository for the NASA SPACE APPS CHALLENGE 2026 at VIT University-AP.
 
 ## Lunar Echoes
 
-Lunar Echoes is a simple, interactive web page that helps people explore objects
-connected to the Moon, see them on a timeline, and test what they learned with a short quiz.
+Lunar Echoes helps school-age explorers discover the equipment NASA left on the Moon and Mars
+(landers, rovers and science stations) and the science each one made possible. Explore the objects,
+read their stories, follow the timeline, then test yourself with a quiz.
+
+**Data:** 11 objects (5 Moon, 6 Mars) with facts from the NASA NSSDCA Master Catalog and nasa.gov,
+and photos from the NASA Image and Video Library. Every record links to its source.
+See `docs/research-sources.md`.
 
 This is a **3-hour hackathon prototype**. It is kept small and beginner-friendly on purpose.
 
@@ -42,6 +47,9 @@ python -m http.server 8000
 
 Then open http://localhost:8000. (The VS Code "Live Server" extension also works.)
 
+Images load from NASA's servers (`images-assets.nasa.gov`), so you need an internet connection to see
+them. Without one, the cards still work; the images are simply hidden.
+
 ## JavaScript features
 
 - **Object Explorer** (`js/objects.js`): cards from `data/objects.json`, All / Moon / Mars filter,
@@ -61,6 +69,8 @@ latitude, longitude, image, imageCredit, source`
 
 `planet` should be `"Moon"` or `"Mars"`. `year` should be a number like `1969`.
 `source` should start with `https://` so it becomes a link.
+Optional extra field: `imagePage`, a link to the image's page on images.nasa.gov (shown as "view at NASA").
+Coordinates use east-positive longitude from −180 to 180.
 
 ### CSS classes created by JavaScript (for the CSS team)
 

@@ -161,15 +161,23 @@ function drawCards() {
   });
 }
 
+// Lowercase planet name for CSS hooks, e.g. "planet-moon" / "planet-mars".
+function planetClass(item) {
+  return "planet-" + String(item.planet || "unknown").toLowerCase().replace(/[^a-z]/g, "");
+}
+
 function makeCard(item) {
-  var card = makeEl("article", "card");
+  var card = makeEl("article", "card " + planetClass(item));
   addImage(card, item, "card-image");
 
+  card.appendChild(makeEl("span", "planet-badge", showValue(item.planet)));
   card.appendChild(makeEl("h3", "card-title", showValue(item.name)));
   card.appendChild(
-    makeEl("p", "card-meta",
-      showValue(item.planet) + " · " + showValue(item.mission) + " · " + showValue(item.year))
+    makeEl("p", "card-meta", showValue(item.mission) + " · " + showValue(item.year))
   );
+  if (!isMissing(item.status)) {
+    card.appendChild(makeEl("p", "card-status", item.status));
+  }
 
   var btn = makeEl("button", "story-btn", "Read its story");
   btn.type = "button";
@@ -199,8 +207,6 @@ function buildStoryModal() {
   var dialog = makeEl("dialog", "story-modal");
   dialog.id = "story-modal";
   dialog.setAttribute("aria-labelledby", "story-title");
-  dialog.style.maxWidth = "600px";
-  dialog.style.width = "90%";
 
   // Click on the dark backdrop (outside the box) closes the modal
   dialog.addEventListener("click", function (event) {
@@ -212,6 +218,37 @@ function buildStoryModal() {
 
 var lastFocused = null;
 
+function isWebLink(value) {
+  return !isMissing(value) && /^https?:\/\//i.test(value);
+}
+
+// Link that opens in a new tab
+function makeLink(url, text) {
+  var link = makeEl("a", "story-source", text);
+  link.href = url;
+  link.target = "_blank";
+  link.rel = "noopener noreferrer";
+  return link;
+}
+
+// Friendly name for a source URL, e.g. "NASA NSSDCA catalogue (nssdc.gsfc.nasa.gov)"
+function sourceName(url) {
+  var host = url.replace(/^https?:\/\//i, "").split("/")[0];
+  if (host.indexOf("nssdc.gsfc.nasa.gov") !== -1) return "NASA NSSDCA catalogue entry ↗";
+  if (host.indexOf("nasa.gov") !== -1) return "NASA article (" + host + ") ↗";
+  return host + " ↗";
+}
+
+// "26.13° N, 3.63° E" from latitude/longitude, or null when either is missing.
+function formatLocation(item) {
+  if (isMissing(item.latitude) || isMissing(item.longitude)) return null;
+  var lat = Number(item.latitude);
+  var lon = Number(item.longitude);
+  if (isNaN(lat) || isNaN(lon)) return null;
+  return Math.abs(lat).toFixed(2) + "° " + (lat >= 0 ? "N" : "S") + ", " +
+         Math.abs(lon).toFixed(2) + "° " + (lon >= 0 ? "E" : "W");
+}
+
 // Opens the story for one object. `opener` gets focus back when it closes.
 function openStory(item, opener) {
   var dialog = document.getElementById("story-modal");
@@ -221,6 +258,7 @@ function openStory(item, opener) {
   }
   lastFocused = opener || document.activeElement;
   dialog.innerHTML = "";
+  dialog.className = "story-modal " + planetClass(item); // colours the planet badge
 
   var closeBtn = makeEl("button", "story-close", "Close ✕");
   closeBtn.type = "button";
@@ -233,18 +271,44 @@ function openStory(item, opener) {
   title.id = "story-title";
 
   dialog.appendChild(closeBtn);
+  dialog.appendChild(makeEl("span", "planet-badge", showValue(item.planet)));
   dialog.appendChild(title);
-  addImage(dialog, item, "story-image");
+  dialog.appendChild(makeEl("p", "story-meta",
+    showValue(item.mission) + " · " + showValue(item.year) + " · " + showValue(item.status)));
 
-  // Field list: label + value. Missing values show "Not available".
+  // Image with its NASA credit underneath
+  if (!isMissing(item.image)) {
+    var figure = makeEl("figure", "story-figure");
+    addImage(figure, item, "story-image");
+    var caption = makeEl("figcaption", "story-credit");
+    caption.appendChild(document.createTextNode("Image: " + showValue(item.imageCredit) + " "));
+    if (isWebLink(item.imagePage)) {
+      caption.appendChild(makeLink(item.imagePage, "(view at NASA)"));
+    }
+    figure.appendChild(caption);
+    dialog.appendChild(figure);
+  }
+
+  // The story, told in three chapters. Missing text shows "Not available".
+  [
+    ["Why it was sent", item.purpose],
+    ["What happened", item.story],
+    ["Why it matters", item.science]
+  ].forEach(function (pair) {
+    var chapter = makeEl("section", "story-chapter");
+    chapter.appendChild(makeEl("h3", "", pair[0]));
+    chapter.appendChild(makeEl("p", "", showValue(pair[1])));
+    dialog.appendChild(chapter);
+  });
+
+  // Quick facts: label + value
   var fields = makeEl("dl", "story-fields");
   [
     ["Planet", item.planet],
     ["Mission", item.mission],
     ["Mission year", item.year],
-    ["Original purpose", item.purpose],
-    ["What happened to it", item.story],
-    ["Scientific contribution", item.science],
+    ["Type", item.category],
+    ["Location", formatLocation(item)],
     ["Image credit", item.imageCredit]
   ].forEach(function (pair) {
     fields.appendChild(makeEl("dt", "", pair[0]));
@@ -254,12 +318,8 @@ function openStory(item, opener) {
   // Source: a real link only when it is a web address
   fields.appendChild(makeEl("dt", "", "Source"));
   var sourceDd = makeEl("dd");
-  if (!isMissing(item.source) && /^https?:\/\//i.test(item.source)) {
-    var link = makeEl("a", "story-source", item.source);
-    link.href = item.source;
-    link.target = "_blank";
-    link.rel = "noopener noreferrer";
-    sourceDd.appendChild(link);
+  if (isWebLink(item.source)) {
+    sourceDd.appendChild(makeLink(item.source, sourceName(item.source)));
   } else {
     sourceDd.textContent = showValue(item.source);
   }

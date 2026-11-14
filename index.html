@@ -10,36 +10,55 @@
 <body>
   <header class="site-header">
     <h1>Lunar Echoes</h1>
-    <p class="tagline">A Space Apps Challenge 2026 prototype</p>
-    <nav>
-      <a href="#objects">Objects</a>
+    <p class="tagline">The machines we left behind on the Moon and Mars, and what they taught us</p>
+    <nav aria-label="Main">
+      <a href="#objects">Explore</a>
       <a href="#timeline">Timeline</a>
       <a href="#quiz">Quiz</a>
     </nav>
   </header>
 
   <main>
+    <section id="intro" class="intro">
+      <p class="intro-lead">
+        Right now, on two other worlds, there are landers, rovers and science
+        stations that people built and sent there. Most went quiet long ago.
+        One still answers when scientists shine a laser at it.
+      </p>
+      <p>
+        Every object here is an <strong>echo</strong> of a mission: a story of
+        where it landed, what went wrong or right, and what it taught us.
+        All facts and images come from NASA sources, linked on every story.
+      </p>
+      <a class="intro-cta" href="#objects">Start exploring ↓</a>
+    </section>
+
     <section id="objects">
-      <h2>Objects on the Moon</h2>
+      <h2>Objects on the Moon and Mars</h2>
+      <p class="section-intro">Pick a world, search for a mission, then open an object to read its story.</p>
       <!-- js/objects.js fills this list from data/objects.json -->
       <div id="objects-list" class="card-grid">Loading…</div>
     </section>
 
     <section id="timeline">
       <h2>Timeline</h2>
+      <p class="section-intro">From the first robot on the Moon to the last lander on Mars. Click a name to read its story.</p>
       <!-- js/timeline.js fills this list -->
       <ol id="timeline-list"></ol>
     </section>
 
     <section id="quiz">
       <h2>Quiz</h2>
+      <p class="section-intro">Five questions built from the stories above. How much do you remember?</p>
       <!-- js/quiz.js fills this box -->
       <div id="quiz-box"></div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <p>Built for the NASA Space Apps Challenge 2026. See <code>docs/research-sources.md</code> for data sources.</p>
+    <p>Built for the NASA Space Apps Challenge 2026 by a student team.</p>
+    <p>Facts: NASA Space Science Data Coordinated Archive (NSSDCA) and nasa.gov. Images: NASA Image and Video Library.
+      This project is not affiliated with or endorsed by NASA.</p>
   </footer>
 
   <!-- Order matters: helpers first, main.js last -->

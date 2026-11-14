@@ -16,4 +16,29 @@
   .card-grid {
     grid-template-columns: 1fr;
   }
+
+  /* Stack the explorer controls and the story facts on phones */
+  .site-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .search-label,
+  .search-input {
+    width: 100%;
+    min-width: 0;
+    margin-left: 0;
+  }
+
+  .story-modal {
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .story-fields {
+    grid-template-columns: 1fr;
+  }
+
+  .story-fields dd {
+    margin-bottom: 0.4rem;
+  }
 }

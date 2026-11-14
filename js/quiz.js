@@ -34,18 +34,30 @@ function wrongAnswers(field, answer, objects) {
   return shuffle(result).slice(0, 3);
 }
 
+// True when the object's name already contains the mission's key word
+// (e.g. "Apollo 15 Lunar Roving Vehicle" + "Apollo 15"), which would give the answer away.
+var GENERIC_WORDS = ["mars", "rover", "exploration", "lander", "mission", "the"];
+function nameGivesAwayMission(o) {
+  var name = String(o.name).toLowerCase();
+  var words = String(o.mission).toLowerCase().replace(/[^a-z0-9 ]/g, " ").split(/\s+/);
+  return words.some(function (w) {
+    return w.length > 2 && GENERIC_WORDS.indexOf(w) === -1 && name.indexOf(w) !== -1;
+  });
+}
+
 // Question types. Each uses only fields that exist on the record.
-// `ask` = the question, `field` = where the answer and wrong answers come from.
+// `ask` = the question, `field` = where the answer and wrong answers come from,
+// `skip` = optional check that rules out questions that would be too easy.
 var QUESTION_TYPES = [
-  { needs: ["name", "mission"], field: "mission",
+  { needs: ["name", "mission"], field: "mission", skip: nameGivesAwayMission,
     ask: function (o) { return "Which mission left behind the " + o.name + "?"; } },
   { needs: ["name", "planet"], field: "planet",
     ask: function (o) { return "Where can you find the " + o.name + " today?"; } },
   { needs: ["mission", "year"], field: "year",
-    ask: function (o) { return "In which year did " + o.mission + " take place?"; } },
-  { needs: ["name", "purpose"], field: "purpose",
-    ask: function (o) { return "What was the original purpose of the " + o.name + "?"; } },
-  { needs: ["mission", "name"], field: "name",
+    ask: function (o) { return "In which year did " + o.mission + " land?"; } },
+  { needs: ["name", "category"], field: "category",
+    ask: function (o) { return "What kind of object is the " + o.name + "?"; } },
+  { needs: ["mission", "name"], field: "name", skip: nameGivesAwayMission,
     ask: function (o) { return "Which of these objects was part of " + o.mission + "?"; },
     // Wrong answers must come from OTHER missions, or they could also be correct
     pool: function (o, all) {
@@ -60,6 +72,7 @@ function buildQuestions(objects) {
     QUESTION_TYPES.forEach(function (type) {
       var hasFields = type.needs.every(function (f) { return !isMissing(item[f]); });
       if (!hasFields) return;
+      if (type.skip && type.skip(item)) return;
       var answer = String(item[type.field]).trim();
       var pool = type.pool ? type.pool(item, objects) : objects;
       var wrong = wrongAnswers(type.field, answer, pool);
