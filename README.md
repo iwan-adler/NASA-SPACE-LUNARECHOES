@@ -32,8 +32,10 @@ css/responsive.css         Mobile / tablet tweaks
 js/main.js                 Loads data and starts the app
 js/objects.js              Object cards
 js/timeline.js             Timeline list
-js/quiz.js                 Quiz generated from the data
+js/quiz.js                 Teaching quiz generated from the data
+js/explore.js              Landing numbers, Moon vs Mars, location explorer
 data/objects.json          12 NASA-sourced object records
+data/worlds.json           Moon/Mars facts from NASA NSSDCA fact sheets
 assets/images/             Local images (empty: photos load from NASA's image server)
 docs/research-sources.md   Every fact and its source
 docs/ai-disclosure.md      How AI tools were used
@@ -54,17 +56,29 @@ Then open http://localhost:8000. (The VS Code "Live Server" extension also works
 Images load from NASA's servers (`images-assets.nasa.gov`), so you need an internet connection to see
 them. Without one, the cards still work; the images are simply hidden.
 
-## JavaScript features
+## Features
 
-- **Object Explorer** (`js/objects.js`): cards from `data/objects.json`, All / Moon / Mars filter,
-  search by object name or mission, "Still in use" / "Inactive" labels, and a story popup showing
-  today's status, why it was sent, what happened, why it matters, resting place, coordinates,
-  NSSDCA record link, image credit and source link.
-- **Timeline** (`js/timeline.js`): missions grouped by the `year` field, oldest first.
-  Objects without a year are left out (with a note). Click a name to open its story.
-- **Quiz** (`js/quiz.js`): five multiple-choice questions built automatically from the data
-  (mission, planet, year, type of object, which object belongs to a mission), with feedback and a score.
-  Questions whose wording would give away the answer are skipped.
+- **Landing:** a split Moon/Mars hero with live counts from the data, and a button that opens the
+  one object still in use.
+- **Collection** (`js/objects.js`): cards from `data/objects.json`, All / Moon / Mars filter,
+  search by object name or mission, and "Still in use" / "Inactive" labels.
+- **Object story:** each story contains:
+  - a photo header and a "Today:" status line
+  - five chapters: **Designed, Mission, Discovery, Left behind, Legacy**
+  - a dated **mission journey**
+  - **Then vs Now** orbital photos (4 objects)
+  - an archive record: resting place, coordinates, NSSDCA record link, image credit, source
+  - previous / next buttons to walk through the collection
+- **Timeline** (`js/timeline.js`): arrivals grouped by year, colour-coded Moon/Mars.
+- **Moon vs Mars** (`js/explore.js`): counts from our collection, side by side with NASA fact-sheet values.
+- **Location explorer** (`js/explore.js`): objects with verified NSSDCA coordinates plotted on a
+  latitude/longitude grid. The Moon panel is zoomed to the near side. Objects without verified
+  coordinates are listed, not guessed.
+- **Teaching quiz** (`js/quiz.js`): five questions generated from the data. After each answer it shows
+  "The story behind the answer" and an "Open its full story" button, and the score screen reviews every answer.
+  Questions whose wording gives the answer away are skipped.
+- **Accessibility:** skip link, visible keyboard focus, native `<dialog>` (Escape closes it and focus
+  returns), labelled controls, alt text, a text list alongside each map, and support for reduced motion.
 - **Missing data** shows as "Not available". Missing or broken images are hidden.
 - **Errors** loading the JSON file are shown on the page instead of a blank screen.
 
@@ -76,6 +90,10 @@ latitude, longitude, image, imageCredit, source`
 `planet` should be `"Moon"` or `"Mars"`. `year` should be a number like `1969`.
 `source` should start with `https://` so it becomes a link.
 Extra fields:
+- `fate`, `legacy`: the "Left behind" and "Legacy" story chapters.
+- `events`: the mission journey, a list of `{ "date": "YYYY[-MM[-DD]]", "label": "…" }`.
+- `thenNow` (optional): a later NASA orbital photo `{ image, imagePage, credit, caption }`.
+  Only add one when NASA's own description confirms what it shows.
 - `nssdcId`: the NSSDCA Master Catalog record ID (e.g. `1969-059C`), shown as a link.
 - `site`: the object's resting place, by name.
 - `statusType`: `"in-use"` or `"inactive"`, shown as a label.
@@ -83,16 +101,11 @@ Extra fields:
 
 Coordinates use east-positive longitude from −180 to 180.
 
-### CSS classes created by JavaScript (for the CSS team)
+### Styling
 
-The filter, search and popup are added by JavaScript, so `index.html` did not need to change.
-These classes are ready to style:
-`.explorer-controls .filter-group .filter-btn[aria-pressed="true"] .search-label .search-input
-.result-count .no-results .card-image .card-title .card-meta .story-btn .story-modal
-.story-modal::backdrop .story-close .story-title .story-image .story-fields .story-source
-.timeline-entry .timeline-year .timeline-items .timeline-item .timeline-link .timeline-note
-.quiz-progress .quiz-question .quiz-options .quiz-option .quiz-option.correct .quiz-option.wrong
-.quiz-feedback .quiz-next .quiz-score .quiz-message .quiz-restart .load-error`
+All styles are in `css/style.css`, with colour tokens at the top (`--moon`, `--mars`, `--accent`, …).
+Phone and tablet layouts are in `css/responsive.css`. Components created by JavaScript (story view,
+journey, then-now, comparison, map, quiz) are styled in their own labelled sections of `style.css`.
 
 ## Team rules
 

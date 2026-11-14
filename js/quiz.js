@@ -45,20 +45,40 @@ function nameGivesAwayMission(o) {
   });
 }
 
+// True when the object's name contains a word of its category
+// (e.g. "Sojourner Rover" + "Rover"), which would give the answer away.
+function nameGivesAwayCategory(o) {
+  var name = String(o.name).toLowerCase();
+  return String(o.category).toLowerCase().split(/\s+/).some(function (w) {
+    return w.length > 3 && name.indexOf(w) !== -1;
+  });
+}
+
+// Joins the parts that exist, so a missing field never prints "undefined".
+function joinFacts(parts) {
+  return parts.filter(function (p) { return !isMissing(p); }).join(" ");
+}
+
 // Question types. Each uses only fields that exist on the record.
 // `ask` = the question, `field` = where the answer and wrong answers come from,
-// `skip` = optional check that rules out questions that would be too easy.
+// `skip` = optional check that rules out questions that would be too easy,
+// `explain` = the lesson shown after answering, built only from the record's own verified text.
 var QUESTION_TYPES = [
   { needs: ["name", "mission"], field: "mission", skip: nameGivesAwayMission,
-    ask: function (o) { return "Which mission left behind the " + o.name + "?"; } },
+    ask: function (o) { return "Which mission left behind the " + o.name + "?"; },
+    explain: function (o) { return joinFacts([o.story, o.legacy]); } },
   { needs: ["name", "planet"], field: "planet",
-    ask: function (o) { return "Where can you find the " + o.name + " today?"; } },
+    ask: function (o) { return "Where can you find the " + o.name + " today?"; },
+    explain: function (o) { return joinFacts([isMissing(o.site) ? "" : "Resting place: " + o.site + ".", o.status]); } },
   { needs: ["mission", "year"], field: "year",
-    ask: function (o) { return "In which year did " + o.mission + " land?"; } },
-  { needs: ["name", "category"], field: "category",
-    ask: function (o) { return "What kind of object is the " + o.name + "?"; } },
+    ask: function (o) { return "In which year did " + o.mission + " land?"; },
+    explain: function (o) { return joinFacts([o.story]); } },
+  { needs: ["name", "category"], field: "category", skip: nameGivesAwayCategory,
+    ask: function (o) { return "What kind of object is the " + o.name + "?"; },
+    explain: function (o) { return joinFacts([o.purpose]); } },
   { needs: ["mission", "name"], field: "name", skip: nameGivesAwayMission,
     ask: function (o) { return "Which of these objects was part of " + o.mission + "?"; },
+    explain: function (o) { return joinFacts([o.science]); },
     // Wrong answers must come from OTHER missions, or they could also be correct
     pool: function (o, all) {
       return all.filter(function (x) { return String(x.mission) !== String(o.mission); });
@@ -79,9 +99,11 @@ function buildQuestions(objects) {
       if (wrong.length === 0) return; // need at least one wrong option
       candidates.push({
         objectId: item.id,
+        object: item,
         typeIndex: QUESTION_TYPES.indexOf(type),
         text: type.ask(item),
         answer: answer,
+        explain: type.explain ? type.explain(item) : "",
         options: shuffle(wrong.concat([answer]))
       });
     });
@@ -104,12 +126,15 @@ function buildQuestions(objects) {
   return chosen;
 }
 
+var quizResults = []; // { question, correct } for the review at the end
+
 // Called from main.js
 function startQuiz(objects) {
   quizObjects = objects;
   quizQuestions = buildQuestions(objects);
   quizIndex = 0;
   quizScore = 0;
+  quizResults = [];
 
   var box = document.getElementById("quiz-box");
   box.innerHTML = "";
@@ -131,6 +156,12 @@ function showQuestion() {
 
   box.appendChild(makeEl("p", "quiz-progress",
     "Question " + (quizIndex + 1) + " of " + quizQuestions.length));
+  var bar = makeEl("div", "quiz-progress-bar");
+  bar.setAttribute("aria-hidden", "true");
+  var fill = makeEl("span");
+  fill.style.width = (quizIndex / quizQuestions.length * 100) + "%";
+  bar.appendChild(fill);
+  box.appendChild(bar);
   var heading = makeEl("h3", "quiz-question", q.text);
   heading.tabIndex = -1; // lets us move focus here for keyboard users
   box.appendChild(heading);
@@ -145,8 +176,6 @@ function showQuestion() {
   q.options.forEach(function (option) {
     var btn = makeEl("button", "quiz-option", option);
     btn.type = "button";
-    btn.style.display = "block";
-    btn.style.margin = "0.4rem 0";
     btn.addEventListener("click", function () {
       answerQuestion(btn, option, optionsWrap, feedback);
     });
@@ -179,7 +208,17 @@ function answerQuestion(clicked, chosen, optionsWrap, feedback) {
   feedback.textContent = correct
     ? "Correct! Great job, explorer."
     : "Not quite. The right answer is: " + q.answer;
+  quizResults.push({ question: q, correct: correct });
 
+  // Teach, don't just test: the story behind the answer, from the object's own record
+  if (!isMissing(q.explain)) {
+    var lesson = makeEl("div", "quiz-explain");
+    lesson.appendChild(makeEl("p", "quiz-explain-title", "The story behind the answer"));
+    lesson.appendChild(makeEl("p", "", q.explain));
+    feedback.parentNode.appendChild(lesson);
+  }
+
+  var actions = makeEl("div", "quiz-actions");
   var isLast = quizIndex === quizQuestions.length - 1;
   var next = makeEl("button", "quiz-next", isLast ? "See my score" : "Next question");
   next.type = "button";
@@ -188,7 +227,16 @@ function answerQuestion(clicked, chosen, optionsWrap, feedback) {
     if (isLast) showScore();
     else showQuestion();
   });
-  feedback.parentNode.appendChild(next);
+  actions.appendChild(next);
+
+  var learn = makeEl("button", "quiz-learn", "Open its full story");
+  learn.type = "button";
+  learn.addEventListener("click", function () {
+    openStory(q.object, learn); // from objects.js
+  });
+  actions.appendChild(learn);
+
+  feedback.parentNode.appendChild(actions);
   next.focus();
 }
 
@@ -206,6 +254,20 @@ function showScore() {
   else if (quizScore >= total / 2) message = "Nice work! Explore the object stories to learn even more.";
   else message = "Good try! Read a few object stories above and try again.";
   box.appendChild(makeEl("p", "quiz-message", message));
+
+  // Review: every question, whether it was right, and a link back to the object
+  var review = makeEl("ol", "quiz-review");
+  review.setAttribute("aria-label", "Your answers");
+  quizResults.forEach(function (r) {
+    var li = makeEl("li", "", (r.correct ? "✓ " : "✗ ") + r.question.text + " ");
+    var b = makeEl("button", "timeline-link", r.question.answer);
+    b.type = "button";
+    b.setAttribute("aria-label", "Answer: " + r.question.answer + ". Open the story of " + r.question.object.name);
+    b.addEventListener("click", function () { openStory(r.question.object, b); });
+    li.appendChild(b);
+    review.appendChild(li);
+  });
+  box.appendChild(review);
 
   if (total < QUIZ_LENGTH) {
     box.appendChild(makeEl("p", "quiz-note",

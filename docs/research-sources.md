@@ -69,6 +69,58 @@ All 12 missions have ended.
 | `phoenix` | [2007-034A](https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=2007-034A) | Inactive since 2 Nov 2008 (power ran out) | NSSDCA: objectives, landed 25 May 2008 at 68.15 N 125.9 W, 30–60 % ice, last signal 2 Nov 2008. [NASA press release, 31 Jul 2008](https://nssdc.gsfc.nasa.gov/planetary/text/phoenix_pr_20080731.txt) (linked from NSSDCA): water identified in a soil sample; "touched and tasted" |
 | `insight` | [2018-042A](https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=2018-042A) | Inactive; last contact 15 Dec 2022, declared over 21 Dec 2022 | NSSDCA: objectives, landed western Elysium Planitia 26 Nov 2018. [NASA: InSight retired](https://www.nasa.gov/missions/insight/nasa-retires-insight-mars-lander-mission-after-years-of-science/): 1,319 marsquakes, last contact 15 Dec, two missed calls. [NASA Science highlights](https://science.nasa.gov/mission/insight/science-highlights/): crust 25–40 km, molten core ~1,800 km radius |
 
+### Story chapters, journeys and Then vs Now (added in the museum upgrade)
+
+The five story chapters reuse the facts above:
+- **Designed** = `purpose`
+- **Mission** = `story`
+- **Discovery** = `science`
+- **Left behind** = `fate`
+- **Legacy** = `legacy` + `status`
+
+The new `fate`, `legacy` and `events` text uses only facts from the pages already listed, plus the following:
+
+| Object | New fact | Source |
+|---|---|---|
+| `surveyor-3` | Launched 17 Apr 1967 | [NASA Science: Surveyor 3](https://science.nasa.gov/mission/surveyor-3/) |
+| `surveyor-3` | Apollo 12 "pinpoint landing … within walking distance" | [NASA history: Apollo 12](https://www.nasa.gov/history/55-years-ago-apollo-12-makes-a-pinpoint-landing-on-the-moon/) |
+| `apollo11-eagle-descent-stage` | Armstrong stepped onto the surface 02:56:15 UT, 21 Jul 1969 | NSSDCA 1969-059C |
+| `apollo15-lrv` | LRV unloaded and driven on 31 Jul; 12.5 km traverse on 1 Aug; third EVA on 2 Aug 1971 | NSSDCA 1971-063C |
+| `apollo17-alsep` | LM lifted off from the Moon 14 Dec 1972, 22:54:37 UT | NSSDCA 1972-096C |
+| `viking1-lander` | Launched 20 Aug 1975; entered Mars orbit 19 Jun 1976. NASA's later missions continue "building on what the Vikings began" | NSSDCA 1975-075C; NASA Science: Viking 1 |
+| `sojourner` | Launched 4 Dec 1996; lander imaged the rover and relayed its data; mission objective "was met" | NSSDCA 1996-068A |
+| `spirit` | Drove off its platform 15 Jan 2004 | NSSDCA 2003-027A |
+| `phoenix` | Launched 4 Aug 2007 | NSSDCA 2007-034A |
+| `insight` | Launched 5 May 2018. The arm placed the seismometer on the ground | NASA Science: InSight; NSSDCA 2018-042A |
+| `apollo11-lrrr` | Moon's recession rate from Earth 3.8 cm/yr (independent confirmation) | [NSSDCA Moon Fact Sheet](https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html) |
+
+**Then vs Now photos.** These were used only where NASA's own image description confirms the photo shows that hardware later on:
+
+| Object | NASA image | What NASA's description says |
+|---|---|---|
+| Apollo 11 Eagle | [PIA12909](https://images.nasa.gov/details/PIA12909) (NASA/JPL, 2009) | Lunar Reconnaissance Orbiter "passed over the site again providing a new view of the historic site" |
+| Opportunity | [PIA22549](https://images.nasa.gov/details/PIA22549) (NASA/JPL, 2018) | HiRISE, 20 Sep 2018, from ~268 km: "Opportunity appears as a blip" after the dust storm |
+| Phoenix | [PIA22223](https://images.nasa.gov/details/PIA22223) (NASA/JPL, 2018) | HiRISE images from 20 Jul 2008 and 21 Dec 2017: "dust had obscured much of what was visible". Also gives 68° N, 234° E, which matches our −125.9° E |
+| InSight | [PIA26515](https://images.nasa.gov/details/PIA26515) (NASA/JPL, 2024) | HiRISE images up to 23 Oct 2024: InSight "acquires the same reddish-brown hue"; the landing scorch mark fades |
+
+### Moon vs Mars comparison (`data/worlds.json`)
+
+| Fact | Moon | Mars | Source |
+|---|---|---|---|
+| Radius | 1,737.4 km | 3,389.5 km | [NSSDCA Moon Fact Sheet](https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html), [NSSDCA Mars Fact Sheet](https://nssdc.gsfc.nasa.gov/planetary/factsheet/marsfact.html) |
+| Surface gravity | 1.62 m/s² (0.165 × Earth) | 3.73 m/s² (0.380 × Earth) | same |
+| Length of day | synodic period 29.53 days | 24.6597 h | same |
+| Distance from Earth | 378,000 km | 54.6 to 401.4 million km | same |
+| Air | 3 × 10⁻¹⁵ bar (night) | 6.36 mb, 95.1 % CO₂. Under 1 % of Earth's 1014 mb ([NSSDCA Earth Fact Sheet](https://nssdc.gsfc.nasa.gov/planetary/factsheet/earthfact.html)) | same |
+| Temperature | 95 K to 390 K at the equator (−178 to +117 °C) | ~214 K (−59 °C) average | same |
+
+The museum counts (objects per world, first and latest arrival, number still in use) are calculated from `data/objects.json`.
+
+### Corrections made during the upgrade
+
+- The old timeline intro said "From the first robot on the Moon…". Surveyor 3 was **not** the first robot on the Moon, so the line was rewritten.
+- One planned journey event (the seismometer's restart on its second lunar day) was dropped. NSSDCA confirms the restart but gives no date.
+
 ### Coordinates
 
 - Stored as planetocentric degrees, **east longitude positive, −180 to 180**.

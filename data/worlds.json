@@ -1,0 +1,37 @@
+{
+  "_note": "Planet facts for the Moon vs Mars comparison. Values copied from the NASA NSSDCA planetary fact sheets (the NSSDCA is the dataset listed by the challenge), read 14 Nov 2026. Do not add rows without a source.",
+  "worlds": {
+    "Moon": {
+      "source": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html",
+      "sourceName": "NASA NSSDCA Moon Fact Sheet",
+      "facts": {
+        "radius": "1,737 km",
+        "gravity": "1.62 m/s² (about 1/6 of Earth's)",
+        "day": "29.5 Earth days (one sunrise to the next)",
+        "distance": "about 378,000 km",
+        "air": "almost none (3 × 10⁻¹⁵ bar at night)",
+        "temperature": "−178 °C to +117 °C at the equator"
+      }
+    },
+    "Mars": {
+      "source": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/marsfact.html",
+      "sourceName": "NASA NSSDCA Mars Fact Sheet",
+      "facts": {
+        "radius": "3,390 km",
+        "gravity": "3.73 m/s² (about 2/5 of Earth's)",
+        "day": "24 hours 40 minutes",
+        "distance": "54.6 to 401.4 million km",
+        "air": "thin carbon-dioxide air (6.36 millibars, under 1% of Earth's)",
+        "temperature": "about −59 °C on average"
+      }
+    }
+  },
+  "rows": [
+    { "key": "radius", "label": "Radius" },
+    { "key": "gravity", "label": "Surface gravity" },
+    { "key": "day", "label": "Length of a day" },
+    { "key": "distance", "label": "Distance from Earth" },
+    { "key": "air", "label": "Air" },
+    { "key": "temperature", "label": "Temperature" }
+  ]
+}

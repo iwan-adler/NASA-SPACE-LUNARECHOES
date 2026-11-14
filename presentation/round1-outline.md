@@ -18,13 +18,24 @@
 4. **Who it is for**
    Students aged about 9–15, teachers, and anyone curious about space.
 
-5. **Live demo (90 s)**
-   - Filter **Moon → Mars**, search "rover".
-   - Open **Apollo 11 Eagle (descent stage)**: the launch pad left behind, with its plaque.
-   - Open **Apollo 11 Laser Ranging Retroreflector**, the only object labelled "Still in use": Moon moving away ~3.8 cm/year.
-   - Open **InSight**: 1,319 marsquakes; dust covered its solar panels.
-   - Timeline: 1967 (Surveyor 3) → 2018 (InSight).
-   - Quiz: answer one right, one wrong, show the feedback and score.
+5. **Live demo: the first 60 seconds**
+   - **0–10 s:** Landing page. Read the last line aloud: *"One still answers when scientists shine a laser at it."*
+     Point to the numbers: 12 objects, 6 Moon, 6 Mars, 1967–2018, 1 still in use.
+   - **10–30 s:** Click **"Meet the one still in use"**. Show the green "Still in use" label and the "Today:" line,
+     then scroll the five chapters. Stop on **Discovery**: the Moon is moving away 3.8 cm a year.
+     Show the **NSSDCA record** link in the archive record ("every fact links to NASA's own catalogue").
+   - **30–45 s:** Click **Next →** to the seismometer, beside it at Tranquility Base, which went silent in August 1969.
+     That's the contrast: the same mission, but one object is still working and one is silent.
+   - **45–60 s:** Close the story, open **InSight**, scroll to **Then and now**: its final selfie vs. the 2024 orbital
+     photo, the lander now "the same reddish-brown hue" as Mars.
+
+   **If you have another 60 seconds:**
+   - **Moon vs Mars:** gravity, day length and air side by side, from NASA fact sheets.
+   - **Location explorer:** click a dot on Mars and the story opens.
+   - **Quiz:** answer one question wrong on purpose and show "The story behind the answer".
+
+   **Before presenting:** check you're online (the images load from NASA), use the full-screen browser and
+   zoom to 100–110 %, and scroll back to the top.
 
 6. **NASA data we used**
    - **NSSDCA Master Catalog** (the dataset listed by the challenge): each object links to its NSSDCA record. Its
