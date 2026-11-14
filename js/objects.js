@@ -33,15 +33,30 @@ function addImage(parent, item, className) {
   return addImageUrl(parent, item.image, isMissing(item.name) ? "" : item.name, className);
 }
 
+// Offline copies: a NASA image URL like
+// https://images-assets.nasa.gov/image/PIA25287/PIA25287~medium.jpg
+// is saved as assets/images/PIA25287~medium.jpg. Returns null for other URLs.
+function localImagePath(url) {
+  var match = /^https:\/\/images-assets\.nasa\.gov\/image\/[^/]+\/([^/]+\.jpg)$/i.exec(String(url || ""));
+  return match ? "assets/images/" + match[1] : null;
+}
+
+// Tries the local copy first (works offline), then NASA's server,
+// and removes the image if both fail, so no broken-image icon is shown.
 function addImageUrl(parent, url, alt, className) {
   var img = document.createElement("img");
+  var local = localImagePath(url);
   img.className = className;
-  img.src = url;
+  img.src = local || url;
   img.alt = alt;
   img.loading = "lazy";
   img.decoding = "async";
   img.addEventListener("error", function () {
-    img.remove();
+    if (local && img.src.indexOf(local) !== -1) {
+      img.src = url; // local copy missing: fall back to NASA's server
+    } else {
+      img.remove();
+    }
   });
   parent.appendChild(img);
   return img;

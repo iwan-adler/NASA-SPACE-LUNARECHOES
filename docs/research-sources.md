@@ -149,6 +149,10 @@ NASA media usage guidelines: https://www.nasa.gov/nasa-brand-center/images-and-m
 | Phoenix | [PIA10691](https://images.nasa.gov/details/PIA10691) | NASA/JPL | Phoenix footpad on Mars |
 | InSight | [PIA25287](https://images.nasa.gov/details/PIA25287) | NASA/JPL | Final selfie, April 2022 |
 
+**Offline copies:** the 16 images above (12 object photos plus 4 Then vs Now photos) were downloaded unchanged
+from `images-assets.nasa.gov` on 14 Nov 2026 into `assets/images/`, keeping NASA's file names. Each was
+checked to be a JPEG. The credits and links above still apply.
+
 **Credit-line note:** the image library lists the NASA centre (JSC or JPL). Some JPL photojournal pages credit
 "NASA/JPL-Caltech" plus partners (e.g. Cornell for the rover cameras). This needs a human check before final submission.
 

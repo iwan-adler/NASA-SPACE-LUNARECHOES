@@ -183,12 +183,14 @@ input:focus-visible,
   background-position: center;
   filter: saturate(0.9);
 }
+/* Local copies of NASA photos (works offline). Originals:
+   images.nasa.gov/details/as15-86-11603 and images.nasa.gov/details/PIA17759 */
 .hero-moon {
-  background-image: url("https://images-assets.nasa.gov/image/as15-86-11603/as15-86-11603~medium.jpg");
+  background-image: url("../assets/images/as15-86-11603~medium.jpg");
   filter: grayscale(1) contrast(1.05);
 }
 .hero-mars {
-  background-image: url("https://images-assets.nasa.gov/image/PIA17759/PIA17759~medium.jpg");
+  background-image: url("../assets/images/PIA17759~medium.jpg");
 }
 
 /* Dark veil so text is always readable over the photos */
