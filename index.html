@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lunar Echoes</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <header class="site-header">
+    <h1>Lunar Echoes</h1>
+    <p class="tagline">A Space Apps Challenge 2026 prototype</p>
+    <nav>
+      <a href="#objects">Objects</a>
+      <a href="#timeline">Timeline</a>
+      <a href="#quiz">Quiz</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="objects">
+      <h2>Objects on the Moon</h2>
+      <!-- js/objects.js fills this list from data/objects.json -->
+      <div id="objects-list" class="card-grid">Loading…</div>
+    </section>
+
+    <section id="timeline">
+      <h2>Timeline</h2>
+      <!-- js/timeline.js fills this list -->
+      <ol id="timeline-list"></ol>
+    </section>
+
+    <section id="quiz">
+      <h2>Quiz</h2>
+      <!-- js/quiz.js fills this box -->
+      <div id="quiz-box"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Built for the NASA Space Apps Challenge 2026. See <code>docs/research-sources.md</code> for data sources.</p>
+  </footer>
+
+  <!-- Order matters: helpers first, main.js last -->
+  <script src="js/objects.js"></script>
+  <script src="js/timeline.js"></script>
+  <script src="js/quiz.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

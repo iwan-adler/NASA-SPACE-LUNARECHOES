@@ -1,0 +1,15 @@
+{
+  "_note": "PLACEHOLDER DATA. Replace with real entries and cite each source in docs/research-sources.md. Do not add coordinates or dates without a source.",
+  "objects": [
+    {
+      "id": "example-object",
+      "name": "Example object (replace me)",
+      "description": "Short description goes here, written from a cited source.",
+      "year": null,
+      "latitude": null,
+      "longitude": null,
+      "image": "",
+      "source": ""
+    }
+  ]
+}
