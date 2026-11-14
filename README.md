@@ -42,6 +42,37 @@ python -m http.server 8000
 
 Then open http://localhost:8000. (The VS Code "Live Server" extension also works.)
 
+## JavaScript features
+
+- **Object Explorer** (`js/objects.js`): cards from `data/objects.json`, All / Moon / Mars filter,
+  search by object name or mission, and a story popup with planet, mission, year, purpose,
+  what happened, science, image credit and source link.
+- **Timeline** (`js/timeline.js`): missions grouped by the `year` field, oldest first.
+  Objects without a year are left out (with a note). Click a name to open its story.
+- **Quiz** (`js/quiz.js`): five multiple-choice questions built automatically from the data
+  (mission, planet, year, purpose, which object belongs to a mission), with feedback and a score.
+- **Missing data** shows as "Not available". Missing or broken images are hidden.
+- **Errors** loading the JSON file are shown on the page instead of a blank screen.
+
+### Data fields used
+
+`id, name, planet, mission, year, category, status, purpose, story, science,
+latitude, longitude, image, imageCredit, source`
+
+`planet` should be `"Moon"` or `"Mars"`. `year` should be a number like `1969`.
+`source` should start with `https://` so it becomes a link.
+
+### CSS classes created by JavaScript (for the CSS team)
+
+The filter, search and popup are added by JavaScript, so `index.html` did not need to change.
+These classes are ready to style:
+`.explorer-controls .filter-group .filter-btn[aria-pressed="true"] .search-label .search-input
+.result-count .no-results .card-image .card-title .card-meta .story-btn .story-modal
+.story-modal::backdrop .story-close .story-title .story-image .story-fields .story-source
+.timeline-entry .timeline-year .timeline-items .timeline-item .timeline-link .timeline-note
+.quiz-progress .quiz-question .quiz-options .quiz-option .quiz-option.correct .quiz-option.wrong
+.quiz-feedback .quiz-next .quiz-score .quiz-message .quiz-restart .load-error`
+
 ## Team rules
 
 - **No invented facts.** Every fact, date and coordinate needs a source in `docs/research-sources.md`.
