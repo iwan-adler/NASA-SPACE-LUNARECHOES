@@ -3,43 +3,162 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lunar Echoes</title>
+  <meta name="description" content="Lunar Echoes: Interactive storytelling about NASA's discarded equipment and silent monuments on the Moon and Mars for NASA Space Apps Challenge 2026.">
+  <title>Lunar Echoes | NASA Space Apps Challenge 2026</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/responsive.css">
 </head>
 <body>
-  <header class="site-header">
-    <h1>Lunar Echoes</h1>
-    <p class="tagline">A Space Apps Challenge 2026 prototype</p>
-    <nav>
-      <a href="#objects">Objects</a>
-      <a href="#timeline">Timeline</a>
-      <a href="#quiz">Quiz</a>
-    </nav>
+  <!-- 1. Header and navigation -->
+  <header id="site-header" class="site-header" role="banner">
+    <div class="header-content">
+      <h1>Lunar Echoes</h1>
+      <p class="tagline">Storytelling About NASA's Discarded Equipment on the Moon and Mars — NASA Space Apps Challenge 2026</p>
+      <nav id="site-nav" class="site-nav" aria-label="Main Navigation">
+        <a href="#hero">Overview</a>
+        <a href="#destination-selection">Destinations</a>
+        <a href="#object-explorer">Explorer</a>
+        <a href="#timeline">Timeline</a>
+        <a href="#quiz-container">Quiz</a>
+        <a href="#footer">Sources</a>
+      </nav>
+    </div>
   </header>
 
-  <main>
-    <section id="objects">
-      <h2>Objects on the Moon</h2>
-      <!-- js/objects.js fills this list from data/objects.json -->
-      <div id="objects-list" class="card-grid">Loading…</div>
+  <main id="main-content" role="main">
+    <!-- 2. Hero section -->
+    <section id="hero" class="hero" aria-labelledby="hero-title">
+      <div class="hero-body">
+        <p class="hero-badge">NASA Space Apps Challenge 2026 Prototype</p>
+        <h2 id="hero-title">Silent Monuments of Human Exploration</h2>
+        <p class="hero-intro">
+          Since the dawn of the Space Age in the 1960s, humanity has sent robotic probes and daring astronauts to touch the surfaces of other worlds. When missions end and fuel runs dry, these extraordinary machines remain behind—becoming silent time capsules and scientific monuments across the extraterrestrial landscape.
+        </p>
+        <p class="hero-mission">
+          <strong>Lunar Echoes</strong> uncovers the untold stories of NASA's historic descent stages, moon buggies, supersonic parachutes, and sky cranes resting on the Moon and Mars. Grounded strictly in official NASA datasets, our project translates technical telemetry into vivid narratives for the next generation of space explorers.
+        </p>
+        <div class="hero-actions">
+          <a href="#destination-selection" class="hero-btn">Choose Destination</a>
+          <a href="#object-explorer" class="hero-btn secondary">Explore Equipment</a>
+        </div>
+      </div>
     </section>
 
-    <section id="timeline">
-      <h2>Timeline</h2>
+    <!-- 3. Moon and Mars destination selection -->
+    <section id="destination-selection" class="destination-selection" aria-labelledby="destination-title">
+      <h2 id="destination-title">Choose Your Destination</h2>
+      <p class="section-desc">Select a world to filter artifacts, or explore all human hardware resting across our solar neighborhood.</p>
+      
+      <div class="destination-cards">
+        <article class="destination-card moon-card">
+          <h3>The Moon (Luna)</h3>
+          <p>
+            Earth's natural satellite, home to the Apollo Lunar Module descent stages, electric Lunar Roving Vehicles (LRVs), Surveyor soft-landers, and automated ALSEP scientific stations.
+          </p>
+        </article>
+        <article class="destination-card mars-card">
+          <h3>Mars (The Red Planet)</h3>
+          <p>
+            A dynamic, dust-swept desert planet hosting rocket-powered Sky Crane descent stages, high-speed supersonic parachutes, backshells, and pioneering rovers in Jezero and Gale craters.
+          </p>
+        </article>
+      </div>
+
+      <!-- 7. Planet filter -->
+      <div id="planet-filter" class="planet-filter filter-group" role="group" aria-label="Filter equipment by planet">
+        <button type="button" class="filter-btn" data-planet="all" aria-pressed="true">All Worlds</button>
+        <button type="button" class="filter-btn" data-planet="moon" aria-pressed="false">Moon (Luna)</button>
+        <button type="button" class="filter-btn" data-planet="mars" aria-pressed="false">Mars</button>
+      </div>
+    </section>
+
+    <!-- 4. Object explorer -->
+    <section id="object-explorer" class="object-explorer" aria-labelledby="explorer-title">
+      <h2 id="explorer-title">Object Explorer</h2>
+      <p class="section-desc">Search and inspect verified historical equipment records. Click any card to read its full operational story, engineering purpose, and scientific contribution.</p>
+
+      <div class="explorer-search-bar">
+        <!-- 6. Search input -->
+        <label for="search-input" class="search-label">Search by object or mission </label>
+        <input type="search" id="search-input" class="search-input" placeholder="e.g. Apollo, Rover, Sky Crane, Parachute..." aria-label="Search by object name or mission">
+      </div>
+
+      <!-- 5. Object card container with id="object-grid" -->
+      <div id="object-grid" class="object-grid card-container">
+        <!-- js/objects.js populates cards into objects-list from data/objects.json -->
+        <div id="objects-list" class="card-grid" aria-live="polite">Loading equipment records…</div>
+      </div>
+    </section>
+
+    <!-- 9. Mission timeline with id="timeline" -->
+    <section id="timeline" class="timeline timeline-section" aria-labelledby="timeline-title">
+      <h2 id="timeline-title">Mission Timeline</h2>
+      <p class="section-desc">A chronological journey through mission history, grouped by year from the earliest robotic surveyors to contemporary Mars exploration.</p>
       <!-- js/timeline.js fills this list -->
-      <ol id="timeline-list"></ol>
+      <ol id="timeline-list" class="timeline-list"></ol>
     </section>
 
-    <section id="quiz">
-      <h2>Quiz</h2>
+    <!-- 10. Quiz section with id="quiz-container" -->
+    <section id="quiz-container" class="quiz-section quiz-container" aria-labelledby="quiz-title">
+      <h2 id="quiz-title">Equipment &amp; Mission Quiz</h2>
+      <p class="section-desc">Test your space exploration knowledge! Questions are generated dynamically using verified facts directly from our NASA catalog.</p>
       <!-- js/quiz.js fills this box -->
-      <div id="quiz-box"></div>
+      <div id="quiz-box" class="quiz-box"></div>
     </section>
   </main>
 
-  <footer class="site-footer">
-    <p>Built for the NASA Space Apps Challenge 2026. See <code>docs/research-sources.md</code> for data sources.</p>
+  <!-- 8. Story modal with id="story-modal" -->
+  <dialog id="story-modal" class="story-modal" aria-labelledby="story-title" style="max-width: 600px; width: 90%;">
+    <!-- js/objects.js populates this dialog upon opening an object story -->
+    <button type="button" class="story-close" aria-label="Close story">Close ✕</button>
+    <h2 id="story-title" class="story-title">Object Story</h2>
+    <div class="story-body">
+      <p>Loading object details…</p>
+    </div>
+  </dialog>
+
+  <!-- 11. Footer with NASA data references -->
+  <footer id="footer" class="site-footer" role="contentinfo">
+    <div class="footer-content">
+      <h3>NASA Data References &amp; Acknowledgments</h3>
+      <p>
+        Built for the <strong>NASA International Space Apps Challenge 2026</strong>.
+        Every fact, mission date, coordinate, and status in Lunar Echoes is verified and referenced in
+        <a href="docs/research-sources.md"><code>docs/research-sources.md</code></a>.
+      </p>
+      <ul class="footer-sources-list">
+        <li>
+          <strong>NASA Space Science Data Coordinated Archive (NSSDCA):</strong>
+          <a href="https://nssdc.gsfc.nasa.gov/" target="_blank" rel="noopener noreferrer">nssdc.gsfc.nasa.gov</a>
+          — Official Challenge Dataset for mission parameters and spacecraft master catalog.
+        </li>
+        <li>
+          <strong>NASA Planetary Data System (PDS):</strong>
+          <a href="https://pds.nasa.gov/" target="_blank" rel="noopener noreferrer">pds.nasa.gov</a>
+          — Planetary science archives and surface coordinate frames.
+        </li>
+        <li>
+          <strong>Lunar Reconnaissance Orbiter Camera (LROC):</strong>
+          <a href="https://www.lroc.asu.edu/" target="_blank" rel="noopener noreferrer">lroc.asu.edu</a>
+          — High-resolution lunar surface imagery and landing site coordinate references (Wagner et al., 2017).
+        </li>
+        <li>
+          <strong>Mars Reconnaissance Orbiter HiRISE:</strong>
+          <a href="https://uahirise.org/" target="_blank" rel="noopener noreferrer">uahirise.org</a>
+          — Sub-meter orbital imagery of Martian descent stages, parachutes, and blast scars.
+        </li>
+        <li>
+          <strong>NASA Image and Video Library:</strong>
+          <a href="https://images.nasa.gov/" target="_blank" rel="noopener noreferrer">images.nasa.gov</a>
+          &amp; <strong>JPL Photojournal:</strong>
+          <a href="https://photojournal.jpl.nasa.gov/" target="_blank" rel="noopener noreferrer">photojournal.jpl.nasa.gov</a>
+          — Public domain NASA mission photography and aerial surveys.
+        </li>
+      </ul>
+      <p class="footer-note">
+        This project strictly adheres to NASA Space Apps Challenge branding and open science guidelines. No unverified facts were used.
+      </p>
+    </div>
   </footer>
 
   <!-- Order matters: helpers first, main.js last -->
@@ -47,5 +166,48 @@
   <script src="js/timeline.js"></script>
   <script src="js/quiz.js"></script>
   <script src="js/main.js"></script>
+
+  <!-- Connector to synchronize agreed interface contract controls with JS modules -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Connect contract #search-input with js/objects.js search handler
+      var contractSearch = document.getElementById("search-input");
+      if (contractSearch) {
+        contractSearch.addEventListener("input", function () {
+          var jsSearch = document.getElementById("object-search");
+          if (jsSearch) {
+            jsSearch.value = contractSearch.value;
+            jsSearch.dispatchEvent(new Event("input"));
+          } else if (typeof currentSearch !== "undefined" && typeof drawCards === "function") {
+            currentSearch = contractSearch.value.trim().toLowerCase();
+            drawCards();
+          }
+        });
+      }
+
+      // Connect contract #planet-filter buttons with js/objects.js filter handler
+      var contractFilter = document.getElementById("planet-filter");
+      if (contractFilter) {
+        contractFilter.querySelectorAll(".filter-btn").forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            var planet = btn.dataset.planet;
+            contractFilter.querySelectorAll(".filter-btn").forEach(function (b) {
+              var active = b.dataset.planet === planet;
+              b.setAttribute("aria-pressed", active ? "true" : "false");
+              b.style.fontWeight = active ? "bold" : "normal";
+            });
+            var jsBtn = document.querySelector('#explorer-controls .filter-btn[data-planet="' + planet + '"]');
+            if (jsBtn) {
+              jsBtn.click();
+            } else if (typeof currentPlanet !== "undefined" && typeof drawCards === "function") {
+              currentPlanet = planet;
+              if (typeof updateFilterButtons === "function") updateFilterButtons();
+              drawCards();
+            }
+          });
+        });
+      }
+    });
+  </script>
 </body>
 </html>
