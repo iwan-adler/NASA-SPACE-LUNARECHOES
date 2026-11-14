@@ -3,49 +3,133 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Lunar Echoes: a digital museum of the machines NASA left on the Moon and Mars, and the science they made possible.">
   <title>Lunar Echoes</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/responsive.css">
 </head>
 <body>
+  <a class="skip-link" href="#objects">Skip to the collection</a>
+
   <header class="site-header">
-    <h1>Lunar Echoes</h1>
-    <p class="tagline">A Space Apps Challenge 2026 prototype</p>
-    <nav>
-      <a href="#objects">Objects</a>
+    <a class="brand" href="#top" aria-label="Lunar Echoes, back to top">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-name">Lunar Echoes</span>
+    </a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="#objects">Collection</a>
       <a href="#timeline">Timeline</a>
+      <a href="#compare">Moon vs Mars</a>
+      <a href="#map">Locations</a>
       <a href="#quiz">Quiz</a>
     </nav>
   </header>
 
-  <main>
-    <section id="objects">
-      <h2>Objects on the Moon</h2>
-      <!-- js/objects.js fills this list from data/objects.json -->
-      <div id="objects-list" class="card-grid">Loading…</div>
+  <!-- ===== Landing ===== -->
+  <section id="top" class="hero" aria-labelledby="hero-title">
+    <div class="hero-worlds" aria-hidden="true">
+      <div class="hero-world hero-moon"></div>
+      <div class="hero-world hero-mars"></div>
+    </div>
+    <div class="hero-inner">
+      <p class="eyebrow">A digital museum of the machines we left behind</p>
+      <h1 id="hero-title">Lunar Echoes</h1>
+      <p class="hero-lead">
+        On the Moon and on Mars, landers, rovers and science stations still stand
+        where people sent them. Most went silent long ago.
+        <strong>One still answers when scientists shine a laser at it.</strong>
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#objects">Enter the collection</a>
+        <button class="btn btn-ghost" type="button" data-open-story="apollo11-lrrr">Meet the one still in use</button>
+      </div>
+      <!-- js/explore.js fills these numbers from data/objects.json -->
+      <dl id="hero-stats" class="hero-stats" aria-label="The collection in numbers"></dl>
+    </div>
+    <p class="hero-credit">Photos: Apollo 15 rover (NASA/JSC, AS15-86-11603) · Opportunity self-portrait (NASA/JPL, PIA17759)</p>
+  </section>
+
+  <main id="main">
+    <!-- ===== Why this museum ===== -->
+    <section id="intro" class="intro" aria-labelledby="intro-title">
+      <h2 id="intro-title" class="section-title">Every machine is an echo of a mission</h2>
+      <div class="intro-grid">
+        <div class="intro-item">
+          <h3>What was left</h3>
+          <p>Landers, rovers, a lunar car and science stations on the Moon and Mars, placed there between 1967 and 2018.</p>
+        </div>
+        <div class="intro-item">
+          <h3>Why it matters</h3>
+          <p>Each one was built for a purpose, did its job, and taught us something about another world before it fell silent.</p>
+        </div>
+        <div class="intro-item">
+          <h3>How we know</h3>
+          <p>Every date, place and status comes from NASA's NSSDCA catalogue and NASA mission pages, linked on every story.</p>
+        </div>
+      </div>
     </section>
 
-    <section id="timeline">
-      <h2>Timeline</h2>
+    <!-- ===== Collection ===== -->
+    <section id="objects" aria-labelledby="objects-title">
+      <p class="eyebrow">The collection</p>
+      <h2 id="objects-title" class="section-title">Objects on the Moon and Mars</h2>
+      <p class="section-intro">Choose a world, search for a mission, then open an object to read its story in five chapters.</p>
+      <!-- js/objects.js fills this list from data/objects.json -->
+      <div id="objects-list" class="card-grid" aria-busy="true">
+        <p class="loading">Opening the archive…</p>
+      </div>
+    </section>
+
+    <!-- ===== Timeline ===== -->
+    <section id="timeline" aria-labelledby="timeline-title">
+      <p class="eyebrow">Through time</p>
+      <h2 id="timeline-title" class="section-title">Timeline of arrivals</h2>
+      <p class="section-intro">From a 1967 robot lander on the Moon to a 2018 marsquake listener on Mars. Select a name to read its story.</p>
       <!-- js/timeline.js fills this list -->
       <ol id="timeline-list"></ol>
     </section>
 
-    <section id="quiz">
-      <h2>Quiz</h2>
+    <!-- ===== Moon vs Mars ===== -->
+    <section id="compare" aria-labelledby="compare-title">
+      <p class="eyebrow">Two worlds</p>
+      <h2 id="compare-title" class="section-title">Moon vs Mars</h2>
+      <p class="section-intro">Two very different places to leave a machine. Planet facts come from NASA's NSSDCA fact sheets.</p>
+      <!-- js/explore.js fills this from data/worlds.json and data/objects.json -->
+      <div id="compare-box" class="compare"></div>
+    </section>
+
+    <!-- ===== Location explorer ===== -->
+    <section id="map" aria-labelledby="map-title">
+      <p class="eyebrow">Where they rest</p>
+      <h2 id="map-title" class="section-title">Location explorer</h2>
+      <p class="section-intro">Positions from NASA's NSSDCA records, plotted on a latitude/longitude grid.
+        Only objects with verified coordinates are shown.</p>
+      <!-- js/explore.js fills this -->
+      <div id="map-box" class="map"></div>
+    </section>
+
+    <!-- ===== Quiz ===== -->
+    <section id="quiz" aria-labelledby="quiz-title">
+      <p class="eyebrow">Test and learn</p>
+      <h2 id="quiz-title" class="section-title">Mission quiz</h2>
+      <p class="section-intro">Five questions built from the stories in this museum. Every answer reveals a piece of the story.</p>
       <!-- js/quiz.js fills this box -->
       <div id="quiz-box"></div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <p>Built for the NASA Space Apps Challenge 2026. See <code>docs/research-sources.md</code> for data sources.</p>
+    <p class="footer-title">Lunar Echoes</p>
+    <p>Built for the NASA Space Apps Challenge 2026 ("Abandoned but not Forgotten") by a student team.</p>
+    <p>Facts: NASA Space Science Data Coordinated Archive (NSSDCA) Master Catalog and fact sheets, nasa.gov and science.nasa.gov.
+      Images: NASA Image and Video Library. This project is not affiliated with or endorsed by NASA.</p>
   </footer>
 
   <!-- Order matters: helpers first, main.js last -->
   <script src="js/objects.js"></script>
   <script src="js/timeline.js"></script>
   <script src="js/quiz.js"></script>
+  <script src="js/explore.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

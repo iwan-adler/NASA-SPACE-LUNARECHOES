@@ -23,43 +23,61 @@ async function loadObjects() {
   return objects;
 }
 
+// Planet facts for the comparison. Optional: if this fails, the rest still works.
+async function loadWorlds() {
+  try {
+    var response = await fetch("data/worlds.json");
+    if (!response.ok) return null;
+    return await response.json();
+  } catch (e) {
+    console.warn("data/worlds.json could not be loaded:", e);
+    return null;
+  }
+}
+
 // Shows a friendly error in every section instead of a blank page.
 function showLoadError(error) {
   console.error(error);
-  var message = "Sorry, the equipment data could not be loaded. " + error.message;
+  var message = "Sorry, the museum archive could not be loaded. " + error.message;
   if (location.protocol === "file:") {
     message += " Open the site through a local server (see README).";
   }
-  ["objects-list", "timeline-list", "quiz-box"].forEach(function (id) {
+  ["objects-list", "timeline-list", "compare-box", "map-box", "quiz-box"].forEach(function (id, i) {
     var el = document.getElementById(id);
     if (el) {
       el.innerHTML = "";
-      var p = document.createElement("p");
+      el.removeAttribute("aria-busy");
+      var p = document.createElement(el.tagName === "OL" ? "li" : "p");
       p.className = "load-error";
-      p.setAttribute("role", "alert");
+      if (i === 0) p.setAttribute("role", "alert"); // announce once, not five times
       p.textContent = message;
       el.appendChild(p);
     }
   });
+  var stats = document.getElementById("hero-stats");
+  if (stats) stats.hidden = true;
 }
 
 async function startApp() {
   var objects;
+  var worldsPromise = loadWorlds(); // load both files at the same time
   try {
     objects = await loadObjects();
   } catch (error) {
     showLoadError(error);
     return;
   }
+  var worlds = await worldsPromise;
 
   // Each part runs separately, so one bug does not break the others.
   [
-    ["Object explorer", renderObjects],   // js/objects.js
-    ["Timeline", renderTimeline],         // js/timeline.js
-    ["Quiz", startQuiz]                   // js/quiz.js
+    ["Object explorer", function () { renderObjects(objects); }],      // js/objects.js
+    ["Timeline", function () { renderTimeline(objects); }],            // js/timeline.js
+    ["Explore", function () { renderExplore(objects, worlds); }],      // js/explore.js
+    ["Quiz", function () { startQuiz(objects); }]                      // js/quiz.js
   ].forEach(function (part) {
     try {
-      part[1](objects);
+      part[1]();
     } catch (error) {
       console.error(part[0] + " failed:", error);
     }

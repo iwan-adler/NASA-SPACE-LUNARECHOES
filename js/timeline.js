@@ -42,7 +42,7 @@ function renderTimeline(objects) {
 
     var items = makeEl("ul", "timeline-items");
     byYear[year].forEach(function (item) {
-      var li = makeEl("li", "timeline-item");
+      var li = makeEl("li", "timeline-item " + planetClass(item)); // Moon/Mars colour stripe
       var btn = makeEl("button", "timeline-link", showValue(item.name));
       btn.type = "button";
       btn.addEventListener("click", function () {
