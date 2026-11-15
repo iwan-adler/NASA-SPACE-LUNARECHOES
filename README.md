@@ -83,10 +83,19 @@ for the things we leave there?*
   (our reasoning), **Unknown** (not documented; never guessed) or **Hypothetical**.
 - **Field Note:** a printable one-page discovery report for any object, with sources and space for the visitor's
   own observations.
-- **Beyond the Archive** (`js/citizen.js`, `data/citizen-science.json`): two real NASA citizen-science projects,
-  **MoonDiff** (Moon) and **Cloudspotting on Mars: Shapes** (Mars). Each has an explanation, a link to our archive,
-  a practice demo (find the Apollo 16 booster crater; learn Martian cloud types) and a "Join" link to the official
-  project. The demos are educational only: nothing is sent to NASA or Zooniverse, and the site says so.
+- **BEYOND THE ARCHIVE** (`js/citizen.js`, `data/citizen-science.json`): an invitation to real planetary
+  citizen science.
+  - Visitors pick a world (Moon / Mars tabs; progress is kept when switching).
+  - **The Lunar Investigation** (MoonDiff) and **The Martian Atmosphere Lab** (Cloudspotting on Mars: Shapes) each
+    have five stages: enter, compare / discover shapes, the **Observation Lab** (a real credited NASA image, three
+    questions on observation vs interpretation, evidence vs assumption and uncertainty, with "Not sure" always
+    valid), connect to the archive, and continue on the official project.
+  - The Moon comparison is a labelled **illustration** of align, blink, fade and flag, because no verified Lunar
+    Orbiter / LRO image pair was available.
+  - **Moon vs Mars table**, and **My Discovery Journal**: milestones saved only in this browser tab, with a
+    "My Planetary Science Journey" summary.
+  - Nothing is sent to NASA, MoonDiff or Zooniverse, and the page says so.
+  - Deep links: `#beyond-moon`, `#beyond-mars`, `#beyond-journal`.
 
 ## Features
 

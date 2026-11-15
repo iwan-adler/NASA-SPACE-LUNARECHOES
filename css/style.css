@@ -1335,104 +1335,142 @@ main > section {
 .decision-hint { margin: 0.5rem 0 0; font-size: 0.85rem; color: var(--muted); font-style: italic; }
 
 /* =========================================================
-   Beyond the Archive: NASA citizen science
+   BEYOND THE ARCHIVE: two investigations, observation lab, journal
    ========================================================= */
-.beyond-intro {
-  max-width: 46rem;
-  margin: 0 0 2rem;
-  font-family: var(--serif);
-  font-size: clamp(1.2rem, 2.4vw, 1.5rem);
-  line-height: 1.45;
-  color: #e4e2da;
+:root {
+  --lunar-white: #eef0f5;
+  --graphite: #1a1d26;
+  --mars-deep: #6e2412;
 }
-.beyond-subtitle,
-.demo-step {
-  margin: 0 0 0.75rem;
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--accent);
+
+/* Shared intro */
+.beyond-hero {
+  position: relative;
+  margin: 0 0 1.5rem;
+  padding: clamp(1.5rem, 4vw, 3rem);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 0% 100%, rgba(205, 213, 230, 0.14), transparent 55%),
+    radial-gradient(ellipse at 100% 0%, rgba(224, 122, 79, 0.16), transparent 55%),
+    var(--panel);
+  animation: rise 0.5s ease-out;
 }
-.beyond-how { margin-bottom: 2.5rem; }
-.beyond-steps {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1rem;
-  margin: 0 0 0.5rem;
-  padding: 0;
-  list-style: none;
-  counter-reset: step;
-}
-.beyond-step {
+.beyond-tagline-top { margin: 0; color: var(--accent); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; }
+.beyond-hero-title { margin: 0.4rem 0 0.6rem; max-width: 22ch; font-family: var(--serif); font-weight: 400; font-size: clamp(1.9rem, 4.6vw, 3.1rem); line-height: 1.12; }
+.beyond-hero-text { max-width: 46rem; margin: 0 0 1.4rem; font-size: 1.1rem; color: #dcdad3; }
+.beyond-begin { font: inherit; font-weight: 700; cursor: pointer; border: none; }
+.beyond-principles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin: 1.75rem 0 0; padding: 0; list-style: none; }
+.beyond-principles li { display: flex; flex-direction: column; gap: 0.25rem; padding-top: 0.8rem; border-top: 1px solid var(--line); font-size: 0.9rem; color: var(--muted); }
+.beyond-principles strong { font-family: var(--serif); font-weight: 400; font-size: 1.1rem; color: var(--text); }
+
+.beyond-subnav { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0 0 1.25rem; }
+.beyond-subnav a { padding: 0.4rem 0.9rem; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); text-decoration: none; font-size: 0.9rem; }
+.beyond-subnav a:hover { color: var(--text); border-color: var(--accent); }
+
+/* Two-world selector */
+.world-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+.world-tab {
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
-  padding: 1rem;
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  background: var(--panel);
-  font-size: 0.92rem;
-  color: #d4d3cd;
-}
-.beyond-step strong::before {
-  counter-increment: step;
-  content: counter(step) " · ";
-  color: var(--accent);
-}
-.beyond-step strong { font-family: var(--serif); font-weight: 400; font-size: 1.25rem; color: var(--text); }
-
-.beyond-project {
-  margin: 0 0 2rem;
-  padding: 1.75rem;
+  justify-content: flex-end;
+  gap: 0.2rem;
+  min-height: 200px;
+  padding: 1.25rem 1.4rem;
+  text-align: left;
+  font: inherit;
+  color: var(--text);
+  background-color: var(--panel);
+  background-size: cover;
+  background-position: center;
   border: 1px solid var(--line);
   border-radius: 14px;
-  animation: rise 0.4s ease-out;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.25s, border-color 0.25s, transform 0.25s;
 }
-.beyond-project.planet-moon {
-  border-top: 4px solid var(--moon);
-  background: radial-gradient(circle at 100% 0%, rgba(205, 213, 230, 0.08), transparent 45%), var(--panel);
-}
-.beyond-project.planet-mars {
-  border-top: 4px solid var(--mars);
-  background: radial-gradient(circle at 100% 0%, rgba(224, 122, 79, 0.1), transparent 45%), var(--panel);
-}
-.beyond-name { margin: 0.5rem 0 0.1rem; font-family: var(--serif); font-weight: 400; font-size: clamp(1.8rem, 4vw, 2.6rem); }
-.planet-moon .beyond-name { color: var(--moon); }
-.planet-mars .beyond-name { color: var(--mars); }
-.beyond-tagline { margin: 0 0 1.25rem; color: var(--muted); font-style: italic; }
-.beyond-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
-  gap: 2rem;
-  align-items: start;
-}
-.beyond-info h4 { margin: 1rem 0 0.3rem; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
-.beyond-info h4:first-child { margin-top: 0; }
-.beyond-info p { margin: 0 0 0.5rem; }
-.beyond-connection {
-  margin: 1.25rem 0;
-  padding: 1rem 1.1rem;
-  border-left: 3px solid var(--accent);
-  border-radius: 6px;
-  background: var(--bg);
-}
-.beyond-connection h4 { margin-top: 0; color: var(--accent); }
-.beyond-connection .btn { margin-top: 0.4rem; font: inherit; font-size: 0.92rem; cursor: pointer; }
-.beyond-join { margin-top: 0.5rem; font-size: 1.05rem; }
-.planet-moon .beyond-join { background: var(--moon); color: #10131f; }
-.planet-mars .beyond-join { background: var(--mars); color: #1f0d05; }
-.beyond-join:hover { filter: brightness(1.1); }
-.beyond-join-note { margin-top: 0.4rem; font-size: 0.82rem; color: var(--muted); }
+.world-tab:hover { opacity: 0.95; }
+.world-tab[aria-selected="true"] { opacity: 1; transform: translateY(-2px); }
+.world-tab.is-moon[aria-selected="true"] { border-color: var(--moon); box-shadow: inset 0 -4px 0 var(--moon); }
+.world-tab.is-mars[aria-selected="true"] { border-color: var(--mars); box-shadow: inset 0 -4px 0 var(--mars); }
+.world-tab-name { font-family: var(--serif); font-size: clamp(1.8rem, 4vw, 2.6rem); letter-spacing: 0.08em; }
+.world-tab.is-moon .world-tab-name { color: var(--lunar-white); }
+.world-tab.is-mars .world-tab-name { color: #ff9f75; }
+.world-tab-line { font-size: 1rem; }
+.world-tab-project { font-size: 0.85rem; color: var(--muted); }
+.world-tab-progress { margin-top: 0.4rem; font-size: 0.78rem; font-family: "Courier New", Courier, monospace; color: var(--accent); }
 
-.beyond-demo {
-  padding: 1.25rem;
-  border: 1px dashed var(--line);
-  border-radius: 12px;
-  background: var(--bg);
+/* One world panel */
+.world-panel {
+  margin-bottom: 2.5rem;
+  padding: clamp(1rem, 3vw, 2rem);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  animation: rise 0.35s ease-out;
 }
-.demo-title { margin: 0 0 0.3rem; font-family: var(--serif); font-weight: 400; font-size: 1.4rem; }
-.demo-label { margin: 0 0 0.9rem; font-size: 0.85rem; color: #cfe6ff; }
+.world-panel.is-moon { background: linear-gradient(180deg, rgba(205, 213, 230, 0.07), transparent 240px), var(--graphite); border-top: 4px solid var(--moon); }
+.world-panel.is-mars { background: linear-gradient(180deg, rgba(224, 122, 79, 0.12), transparent 240px), #160f0d; border-top: 4px solid var(--mars); }
+.world-title { margin: 0.1rem 0 0.3rem; font-family: var(--serif); font-weight: 400; font-size: clamp(1.7rem, 3.8vw, 2.4rem); }
+.is-moon .world-title { color: var(--lunar-white); }
+.is-mars .world-title { color: #ffb08c; }
+.world-opening { margin: 0 0 1.25rem; max-width: 44rem; font-family: var(--serif); font-style: italic; font-size: 1.2rem; color: #dcdad3; }
+
+.stage-stepper { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0.4rem; margin: 0 0 1.5rem; padding: 0; list-style: none; }
+.stage-step {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  height: 100%;
+  padding: 0.55rem 0.6rem;
+  font: inherit;
+  font-size: 0.82rem;
+  text-align: left;
+  color: var(--muted);
+  background: rgba(7, 8, 13, 0.5);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  cursor: pointer;
+}
+.stage-step:hover { color: var(--text); }
+.stage-no { flex: none; display: grid; place-items: center; width: 1.6rem; height: 1.6rem; border-radius: 50%; border: 1px solid currentColor; font-weight: 700; }
+.stage-step[aria-current="step"] { color: var(--text); border-color: var(--accent); }
+.is-moon .stage-step[aria-current="step"] .stage-no { background: var(--moon); color: #10131f; border-color: var(--moon); }
+.is-mars .stage-step[aria-current="step"] .stage-no { background: var(--mars); color: #1f0d05; border-color: var(--mars); }
+.stage { animation: rise 0.3s ease-out; }
+.stage-title { margin: 0 0 1rem; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
+.stage-nav { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.75rem; padding-top: 1rem; border-top: 1px solid var(--line); }
+.stage-nav .btn,
+.beyond-journal .btn,
+.obs-lab .btn,
+.connect-card .btn,
+.cmp-controls .btn { font: inherit; font-size: 0.92rem; padding: 0.5rem 1.1rem; cursor: pointer; }
+.stage-nav .btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.stage-other { margin-left: auto; }
+
+/* Stage 1: eras */
+.eras { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.25rem; }
+.era { padding: 1.25rem; border-radius: 12px; border: 1px solid var(--line); }
+.era ul { margin: 0.5rem 0 0; padding-left: 1.1rem; font-size: 0.95rem; color: #d4d3cd; }
+.era li { margin: 0.35rem 0; }
+.era-label { font-family: "Courier New", Courier, monospace; font-size: 0.8rem; letter-spacing: 0.1em; color: var(--accent); }
+.era-craft { margin: 0.2rem 0 0; font-family: var(--serif); font-weight: 400; font-size: 1.4rem; }
+.era-lo { background: repeating-linear-gradient(0deg, rgba(196, 184, 150, 0.05) 0 2px, transparent 2px 6px), #1d1b16; border-color: #4a4434; }
+.era-lo .era-craft { color: #e6dcc0; }
+.era-lro { background: linear-gradient(rgba(140, 200, 255, 0.05) 1px, transparent 1px) 0 0 / 14px 14px, linear-gradient(90deg, rgba(140, 200, 255, 0.05) 1px, transparent 1px) 0 0 / 14px 14px, #12161f; border-color: #2c3a52; }
+.era-lro .era-craft { color: var(--lunar-white); }
+.era-maven { background: #1b1210; border-color: #4f2a1e; }
+.era-clouds { background: radial-gradient(circle at 100% 0, rgba(255, 255, 255, 0.06), transparent 60%), #1b1210; border-color: #4f2a1e; }
+.era-maven .era-craft, .era-clouds .era-craft { color: #ffb08c; }
+.beyond-callout { margin: 0 0 1rem; padding: 1rem 1.2rem; border-left: 3px solid var(--accent); border-radius: 6px; background: var(--bg); }
+.beyond-callout h5 { margin: 0 0 0.3rem; font-family: var(--serif); font-weight: 400; font-size: 1.15rem; }
+.beyond-callout p { margin: 0; }
+.beyond-small-title { margin: 1rem 0 0.4rem; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.open-questions { margin: 0 0 0.75rem; padding-left: 1.1rem; font-family: var(--serif); font-size: 1.1rem; }
+
+/* Stage 2 (Moon): comparison illustration */
+.illus-label { margin: 0 0 1rem; font-size: 0.88rem; color: #cfe6ff; }
 .demo-flag {
   display: inline-block;
   padding: 0.05rem 0.45rem;
@@ -1444,82 +1482,125 @@ main > section {
   text-transform: uppercase;
   color: #8cc8ff;
 }
-.demo-prompt { margin: 0 0 0.75rem; font-weight: 600; }
-
-.find-stage { position: relative; line-height: 0; }
-.find-image-btn {
-  display: block;
-  width: 100%;
-  padding: 0;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  overflow: hidden;
-  background: var(--panel-2);
-  cursor: crosshair;
-}
-.find-image { width: 100%; aspect-ratio: 1041 / 654; object-fit: cover; }
-.find-marker {
-  position: absolute;
-  width: 34px;
-  height: 34px;
-  margin: -17px 0 0 -17px;
-  border-radius: 50%;
-  pointer-events: none;
-  animation: rise 0.25s ease-out;
-}
-.find-marker.is-guess { border: 3px solid #8cc8ff; box-shadow: 0 0 0 3px rgba(7, 8, 13, 0.6); }
-.find-marker.is-answer { width: 64px; height: 64px; margin: -32px 0 0 -32px; border: 3px dashed var(--ok); box-shadow: 0 0 0 3px rgba(7, 8, 13, 0.6); }
-.find-regions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.35rem; margin-top: 0.6rem; }
-.find-region {
-  padding: 0.5rem;
-  font: inherit;
-  font-size: 0.85rem;
-  color: var(--text);
-  background: var(--panel);
-  border: 1px solid var(--line);
-  border-radius: 6px;
-  cursor: pointer;
-}
+.compare-grid { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); gap: 1.5rem; align-items: start; }
+.compare-steps { margin: 0; padding: 0; list-style: none; display: grid; gap: 0.6rem; }
+.compare-step { display: flex; flex-direction: column; gap: 0.2rem; padding: 0.8rem 0.9rem; border: 1px solid var(--line); border-radius: 8px; font-size: 0.9rem; color: var(--muted); transition: border-color 0.2s, color 0.2s; }
+.compare-step strong { color: var(--text); }
+.compare-step.is-current { border-color: var(--accent); color: #dcdad3; }
+.cmp-stage { position: relative; aspect-ratio: 400 / 260; overflow: hidden; border-radius: 10px; border: 1px solid var(--line); background: #0c0d12; cursor: crosshair; }
+.cmp-layer { position: absolute; inset: 0; transition: transform 0.15s, opacity 0.12s; }
+.cmp-layer svg { display: block; width: 100%; height: 100%; }
+.cmp-layer.is-old { filter: sepia(0.35) contrast(1.1); }
+.cmp-tag { position: absolute; top: 0.5rem; padding: 0.15rem 0.5rem; border-radius: 4px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; background: rgba(7, 8, 13, 0.8); pointer-events: none; }
+.cmp-tag.is-old { left: 0.5rem; color: #e6dcc0; }
+.cmp-tag.is-new { right: 0.5rem; color: var(--lunar-white); }
+.cmp-flag { position: absolute; width: 46px; height: 46px; margin: -23px 0 0 -23px; border-radius: 6px; border: 3px solid #8cc8ff; pointer-events: none; animation: rise 0.2s ease-out; }
+.cmp-flag.is-good { border-color: var(--ok); }
+.cmp-flag.is-warn { border-color: #ffb86b; }
+.cmp-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 1.25rem; margin-top: 0.75rem; }
+.cmp-slider { display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; color: var(--muted); }
+.cmp-slider input { accent-color: var(--moon); width: 9rem; }
+.cmp-status { margin: 0.6rem 0 0; font-size: 0.9rem; color: #dcdad3; }
+.cmp-kb { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.6rem; }
+.find-region { padding: 0.45rem 0.7rem; font: inherit; font-size: 0.85rem; color: var(--text); background: var(--panel); border: 1px solid var(--line); border-radius: 6px; cursor: pointer; }
 .find-region:hover { border-color: var(--accent); }
-.demo-controls { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0.75rem 0; }
-.demo-controls .btn,
-.demo-result .btn,
-.cloud-quiz .btn { font: inherit; font-size: 0.9rem; padding: 0.45rem 1rem; cursor: pointer; }
+.demo-result { margin-top: 1rem; }
 .demo-result p { margin: 0 0 0.5rem; }
-.demo-verdict { font-weight: 700; }
+.demo-verdict { font-weight: 600; }
 .demo-verdict.is-correct { color: var(--ok); }
-.demo-verdict.is-incorrect { color: #ffb4a8; }
+.demo-verdict.is-incorrect { color: #ffcf9e; }
 
-.cloud-figure { margin: 0 0 1rem; }
-.cloud-image { width: 100%; aspect-ratio: 1142 / 525; object-fit: cover; border-radius: 8px; background: var(--panel-2); }
-.cloud-figure figcaption { display: flex; flex-direction: column; gap: 0.3rem; margin-top: 0.45rem; font-size: 0.85rem; color: var(--muted); }
+/* Stage 3 (Moon): what to look for */
+.lookfor { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.75rem; margin-bottom: 1.5rem; }
+.lookfor-item { padding: 0.9rem; border: 1px solid var(--line); border-radius: 10px; background: rgba(7, 8, 13, 0.4); font-size: 0.9rem; }
+.lookfor-item h5 { margin: 0 0 0.35rem; font-family: var(--serif); font-weight: 400; font-size: 1.05rem; }
+.lookfor-item p { margin: 0; color: #d4d3cd; }
+
+/* Mars: shapes */
+.shapes-grid { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: 1.5rem; align-items: start; }
 .cloud-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.6rem; }
-.cloud-chip {
-  padding: 0.35rem 0.8rem;
-  font: inherit;
-  font-size: 0.85rem;
-  color: var(--text);
-  background: transparent;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  cursor: pointer;
-}
+.cloud-chip { padding: 0.4rem 0.85rem; font: inherit; font-size: 0.88rem; color: var(--text); background: transparent; border: 1px solid #4f2a1e; border-radius: 999px; cursor: pointer; }
+.cloud-chip:hover { border-color: var(--mars); }
 .cloud-chip[aria-pressed="true"] { background: var(--mars); border-color: var(--mars); color: #1f0d05; }
-.cloud-type-text { min-height: 3em; margin: 0 0 0.25rem; }
-.cloud-quiz { margin-top: 0.25rem; }
-.cloud-q { font-weight: 600; margin: 0 0 0.6rem; }
-.cloud-options { display: grid; gap: 0.45rem; }
-.cloud-feedback { margin: 0.6rem 0; min-height: 1.4em; }
-.cloud-quiz .quiz-next { margin-top: 0.25rem; }
+.cloud-type-text { min-height: 4.5em; margin: 0 0 0.25rem; color: #dcdad3; }
 
-.beyond-disclaimer {
-  margin: 0;
-  padding: 0.9rem 1.1rem;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  font-size: 0.9rem;
-  color: var(--muted);
-}
+/* Figures */
+.beyond-figure { margin: 0; }
+.beyond-img { width: 100%; border-radius: 10px; background: var(--panel-2); }
+.beyond-figure figcaption { margin-top: 0.4rem; }
+.tn-credit { font-size: 0.8rem; color: var(--muted); }
+.tn-caption { display: block; margin-top: 0.4rem; font-size: 0.88rem; color: #d4d3cd; }
+
+/* Observation lab */
+.obs-lab { padding: 1.25rem; border: 1px dashed var(--line); border-radius: 12px; background: rgba(7, 8, 13, 0.55); }
+.obs-head { margin-bottom: 1rem; }
+.obs-note { font-size: 0.88rem; color: #cfe6ff; }
+.obs-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1.5rem; align-items: start; }
+.obs-meta { margin: 0.6rem 0 0; font-size: 0.9rem; color: #d4d3cd; }
+.obs-principle { margin: 0; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+.obs-question { margin: 0.3rem 0 0.8rem; font-family: var(--serif); font-size: 1.25rem; }
+.obs-options { display: grid; gap: 0.5rem; }
+.obs-options .quiz-option.unsure { color: var(--text); border-color: #8cc8ff; background: rgba(140, 200, 255, 0.1); }
+.obs-options .quiz-option.best { border-style: dashed; border-color: var(--ok); color: var(--text); }
+.obs-feedback { min-height: 1.5em; margin: 0.8rem 0; }
+.obs-q .quiz-next { cursor: pointer; }
+.can-cannot { display: grid; gap: 0.2rem; margin: 0.75rem 0 1rem; }
+.can-cannot dt { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-top: 0.5rem; }
+.can-cannot dd { margin: 0; }
+
+/* Stage 4: connect */
+.connect-intro { max-width: 46rem; }
+.connect-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
+.connect-card { display: flex; flex-direction: column; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: var(--panel); }
+.connect-img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+.connect-body { display: flex; flex-direction: column; gap: 0.5rem; padding: 0.9rem 1rem 1rem; flex: 1; }
+.connect-body h5 { margin: 0; font-family: var(--serif); font-weight: 400; font-size: 1.15rem; }
+.connect-body p { margin: 0; font-size: 0.92rem; color: #d4d3cd; }
+.connect-body .btn { margin-top: auto; align-self: flex-start; }
+
+/* Stage 5: continue */
+.continue-box { padding: 1.75rem; border-radius: 14px; text-align: center; border: 1px solid var(--line); }
+.continue-box.is-moon { background: radial-gradient(ellipse at 50% 0%, rgba(205, 213, 230, 0.16), transparent 70%), var(--bg); }
+.continue-box.is-mars { background: radial-gradient(ellipse at 50% 0%, rgba(224, 122, 79, 0.2), transparent 70%), var(--bg); }
+.continue-headline { margin: 0 0 1rem; font-family: var(--serif); font-size: clamp(1.4rem, 3vw, 2rem); }
+.continue-btn { font-size: 1.05rem; letter-spacing: 0.06em; text-transform: uppercase; }
+.continue-box.is-moon .continue-btn { background: var(--lunar-white); color: #10131f; }
+.continue-box.is-mars .continue-btn { background: var(--mars); color: #1f0d05; }
+.continue-must { margin: 0.9rem 0 0; font-size: 0.9rem; color: var(--muted); }
+.after-steps { margin: 0 0 1rem; padding-left: 1.3rem; color: #d4d3cd; }
+.after-steps li { margin: 0.35rem 0; }
+.continue-note { font-size: 0.92rem; }
+
+/* Comparison */
+.beyond-compare { margin: 0 0 2.5rem; }
+.beyond-section-title { margin: 0 0 1rem; font-family: var(--serif); font-weight: 400; font-size: clamp(1.5rem, 3.4vw, 2.1rem); }
+.table-scroll { overflow-x: auto; }
+.beyond-table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+.beyond-table th, .beyond-table td { padding: 0.75rem 0.9rem; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); }
+.beyond-table thead th { font-family: var(--serif); font-weight: 400; font-size: 1.3rem; }
+.beyond-table thead th.is-moon { color: var(--lunar-white); border-bottom: 2px solid var(--moon); }
+.beyond-table thead th.is-mars { color: #ffb08c; border-bottom: 2px solid var(--mars); }
+.beyond-table tbody th { width: 22%; font-weight: 600; color: var(--muted); font-size: 0.85rem; letter-spacing: 0.04em; }
+.beyond-compare-summary { margin-top: 1rem; max-width: 46rem; }
+
+/* Discovery journal */
+.beyond-journal { margin: 0 0 2rem; padding: clamp(1rem, 3vw, 1.75rem); border: 1px solid var(--line); border-radius: 16px; background: var(--panel); }
+.journal-progress { margin: -0.5rem 0 1rem; font-family: "Courier New", Courier, monospace; color: var(--accent); }
+.journal-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.25rem; }
+.journal-col h4 { margin: 0 0 0.5rem; font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase; }
+.journal-col.is-moon h4 { color: var(--lunar-white); }
+.journal-col.is-mars h4 { color: #ffb08c; }
+.journal-list { margin: 0; padding: 0; list-style: none; font-size: 0.92rem; color: var(--muted); }
+.journal-list li { margin: 0.35rem 0; }
+.journal-list li.is-done { color: var(--text); }
+.journey-summary { padding: 1.5rem; border-radius: 12px; border: 1px solid rgba(232, 194, 122, 0.4); background: radial-gradient(ellipse at 0 0, rgba(232, 194, 122, 0.1), transparent 60%), var(--bg); }
+.journey-kicker { margin: 0; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); }
+.journey-title { margin: 0.2rem 0 0.75rem; font-family: var(--serif); font-weight: 400; font-size: 1.8rem; }
+.journey-summary ul { margin: 0 0 0.5rem; padding-left: 1.1rem; }
+.journey-links { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.journey-note { margin: 1rem 0 0.75rem; font-size: 0.85rem; color: var(--muted); }
+
+.beyond-disclaimer { margin: 0; padding: 0.9rem 1.1rem; border: 1px solid var(--line); border-radius: 8px; font-size: 0.9rem; color: var(--muted); }
 .beyond-disclaimer strong { color: var(--text); }
 
 /* Respect users who prefer less motion */
