@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="css/detective.css?v=20261115d">
   <link rel="stylesheet" href="css/heritage-map.css?v=20261115d">
   <link rel="stylesheet" href="css/footprints.css?v=20261115d">
+  <link rel="stylesheet" href="css/experiences.css?v=20261115g">
   <link rel="stylesheet" href="css/responsive.css?v=20261115">
   <!-- Cinematic visual layer: loaded last so it restyles without changing component code -->
   <link rel="stylesheet" href="css/cinematic.css?v=20261115f">
@@ -59,7 +60,11 @@
           <li><a href="#beyond">Citizen science</a></li>
           <li><a href="#decision">Future explorer</a></li>
           <li><a href="#ethics">The Ethics of Exploration</a></li>
+          <li><a href="#museum">Virtual Planetary Museum</a></li>
+          <li><a href="#landing">Landing Site Designer</a></li>
+          <li><a href="#capsule">Planetary Time Capsule</a></li>
           <li><a href="#quiz">Mission quiz</a></li>
+          <li><a href="#logbook">My Explorer's Logbook</a></li>
         </ul>
       </div>
       <a href="#about">About</a>
@@ -108,6 +113,7 @@
           <ul class="hj-links">
             <li><a href="#objects"><strong>Planetary Heritage Archive</strong><span>12 objects, each with its passport and sources</span></a></li>
             <li><a href="#last-signal"><strong>The Last Signal</strong><span>How each mission progressed and ended</span></a></li>
+            <li><a href="#museum"><strong>Virtual Planetary Museum</strong><span>Two galleries, one exhibit at a time, with narration</span></a></li>
             <li><a href="#timeline"><strong>Timeline of arrivals</strong><span>1967 to 2018, year by year</span></a></li>
           </ul>
         </li>
@@ -132,7 +138,10 @@
             <li><a href="#decision"><strong>Future explorer</strong><span>Document, study or preserve? See the trade-offs</span></a></li>
             <li><a href="#ethics"><strong>The Ethics of Exploration</strong><span>Four dilemmas, four perspectives, no score</span></a></li>
             <li><a href="#beyond-charter"><strong>Future Explorer Charter</strong><span>Write your own principles</span></a></li>
+            <li><a href="#landing"><strong>Future Landing Site Designer</strong><span>Propose a site, see its distance from history</span></a></li>
+            <li><a href="#capsule"><strong>Planetary Time Capsule</strong><span>Seal a message for future explorers</span></a></li>
             <li><a href="#quiz"><strong>Mission quiz</strong><span>Five questions from the stories</span></a></li>
+            <li><a href="#logbook"><strong>My Explorer's Logbook</strong><span>Your journey through the museum</span></a></li>
           </ul>
         </li>
       </ol>
@@ -178,6 +187,14 @@
       <div id="objects-list" class="card-grid" aria-busy="true">
         <p class="loading">Opening the archive…</p>
       </div>
+    </section>
+
+    <!-- ===== Virtual Planetary Museum (js/museum.js) ===== -->
+    <section id="museum" class="env-archive" aria-labelledby="museum-title">
+      <p class="eyebrow">Museum mode</p>
+      <h2 id="museum-title" class="section-title">The Virtual Planetary Museum</h2>
+      <p class="section-intro">Walk through two galleries, one exhibit at a time: a large NASA photograph, a technical placard, the mission story and its scientific legacy. Press Listen to hear an exhibit read aloud.</p>
+      <div id="museum-box" class="mu" aria-busy="true"><p class="loading">Unlocking the galleries…</p></div>
     </section>
 
     <!-- ===== Timeline ===== -->
@@ -299,6 +316,22 @@
       </div>
     </section>
 
+    <!-- ===== Future Landing Site Designer (js/landing.js) ===== -->
+    <section id="landing" class="env-worlds" aria-labelledby="landing-title">
+      <p class="eyebrow">The future we leave · Design</p>
+      <h2 id="landing-title" class="section-title">Future Landing Site Designer</h2>
+      <p class="section-intro">Place a fictional landing site on a real NASA map of the Moon or Mars. The page measures how far it is from the heritage objects in this archive; you decide the goals, terrain assumptions and care measures, then read your proposal and its trade-offs.</p>
+      <div id="landing-box" class="ld" aria-busy="true"><p class="loading">Charting the surface…</p></div>
+    </section>
+
+    <!-- ===== Planetary Time Capsule (js/capsule.js) ===== -->
+    <section id="capsule" class="env-experience" aria-labelledby="capsule-title">
+      <p class="eyebrow">The future we leave · Create</p>
+      <h2 id="capsule-title" class="section-title">Planetary Time Capsule</h2>
+      <p class="section-intro">Seal a message for the explorers who come after us. Choose mission records, photographs and discoveries from the archive, write your message, add preservation instructions, then download or print your capsule.</p>
+      <div id="capsule-box" class="cap" aria-busy="true"><p class="loading">Preparing the capsule…</p></div>
+    </section>
+
     <!-- ===== Rover experiences (separate pages) ===== -->
     <section id="rover-experiences" class="env-experience" aria-labelledby="rover-exp-title">
       <p class="eyebrow">Hands-on experiences</p>
@@ -327,6 +360,14 @@
       <!-- js/quiz.js fills this box -->
       <div id="quiz-box"></div>
     </section>
+
+    <!-- ===== Explorer's Logbook: shared discovery journal (js/logbook.js) ===== -->
+    <section id="logbook" class="env-experience" aria-labelledby="logbook-title">
+      <p class="eyebrow">Your journey</p>
+      <h2 id="logbook-title" class="section-title">My Explorer's Logbook</h2>
+      <p class="section-intro">A summary of everything you have explored across Lunar Echoes: objects, cases, samples, instruments, questions, citizen-science visits and preservation decisions. It stays in this browser.</p>
+      <div id="logbook-box" class="lb" aria-busy="true"><p class="loading">Opening your logbook…</p></div>
+    </section>
   </main>
 
   <footer class="site-footer">
@@ -338,7 +379,8 @@
   </footer>
 
   <!-- Order matters: helpers first, main.js last -->
-  <script src="js/objects.js?v=20261115"></script>
+  <script src="js/objects.js?v=20261115g"></script>
+  <script src="js/perspectives.js?v=20261115g"></script>
   <script src="js/timeline.js?v=20261115"></script>
   <script src="js/quiz.js?v=20261115"></script>
   <script src="js/explore.js?v=20261115"></script>
@@ -350,7 +392,11 @@
   <script src="js/ethics.js?v=20261115d"></script>
   <script src="js/citizen.js?v=20261115"></script>
   <script src="js/beyond-extras.js?v=20261115"></script>
-  <script src="js/main.js?v=20261115d"></script>
+  <script src="js/museum.js?v=20261115g"></script>
+  <script src="js/capsule.js?v=20261115g"></script>
+  <script src="js/landing.js?v=20261115g"></script>
+  <script src="js/logbook.js?v=20261115g"></script>
+  <script src="js/main.js?v=20261115g"></script>
   <script src="js/cinematic.js?v=20261115e"></script>
 </body>
 </html>

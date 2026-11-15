@@ -42,7 +42,7 @@ function showLoadError(error) {
   if (location.protocol === "file:") {
     message += " Open the site through a local server (see README).";
   }
-  ["case-shelf", "objects-list", "decision-box", "ethics-box", "timeline-list", "signal-box", "footprints-box", "evidence-box", "compare-box", "map-box", "quiz-box", "beyond-box"].forEach(function (id, i) {
+  ["case-shelf", "objects-list", "decision-box", "ethics-box", "museum-box", "landing-box", "capsule-box", "logbook-box", "timeline-list", "signal-box", "footprints-box", "evidence-box", "compare-box", "map-box", "quiz-box", "beyond-box"].forEach(function (id, i) {
     var el = document.getElementById(id);
     if (el) {
       el.innerHTML = "";
@@ -94,6 +94,10 @@ async function startApp() {
     ["Evidence room", function () { renderCases(objects, cases); }],   // js/cases.js
     ["Future explorer", function () { renderDecision(objects, decision); }], // js/cases.js
     ["Ethics", function () { renderEthics(ethics); }],                 // js/ethics.js
+    ["Museum", function () { renderMuseum(objects); }],               // js/museum.js
+    ["Time capsule", function () { renderCapsule(objects); }],        // js/capsule.js
+    ["Landing designer", function () { renderLanding(objects, mapData, worlds); }], // js/landing.js
+    ["Logbook", function () { renderLogbook(); }],                    // js/logbook.js
     ["Timeline", function () { renderTimeline(objects); }],            // js/timeline.js
     ["Last signal", function () { renderLastSignal(objects, signal); }], // js/last-signal.js
     ["Explore", function () { renderExplore(objects, worlds); }],      // js/explore.js

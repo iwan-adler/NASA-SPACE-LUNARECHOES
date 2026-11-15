@@ -71,6 +71,14 @@
       all[S.mission] = S;
       sessionStorage.setItem(STORE, JSON.stringify(all));
     } catch (e) { /* storage unavailable: the game still works for this visit */ }
+    // Small mirror for the site-wide Explorer's Logbook (samples, instruments, answers only)
+    try {
+      var slim = {};
+      Object.keys(all || {}).forEach(function (m) {
+        slim[m] = { samples: (all[m].samples || []).map(function (s) { return { inst: s.inst, answers: s.answers }; }) };
+      });
+      localStorage.setItem("lunar-echoes-rover-mirror-v1", JSON.stringify(slim));
+    } catch (e) { /* optional */ }
   }
   function freshState(id) {
     return {
