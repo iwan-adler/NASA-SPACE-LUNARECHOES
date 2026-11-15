@@ -83,18 +83,32 @@ for the things we leave there?*
   (our reasoning), **Unknown** (not documented; never guessed) or **Hypothetical**.
 - **Field Note:** a printable one-page discovery report for any object, with sources and space for the visitor's
   own observations.
-- **BEYOND THE ARCHIVE** (`js/citizen.js`, `data/citizen-science.json`): an invitation to real planetary
-  citizen science.
-  - Visitors pick a world (Moon / Mars tabs; progress is kept when switching).
-  - **The Lunar Investigation** (MoonDiff) and **The Martian Atmosphere Lab** (Cloudspotting on Mars: Shapes) each
-    have five stages: enter, compare / discover shapes, the **Observation Lab** (a real credited NASA image, three
-    questions on observation vs interpretation, evidence vs assumption and uncertainty, with "Not sure" always
-    valid), connect to the archive, and continue on the official project.
-  - The Moon comparison is a labelled **illustration** of align, blink, fade and flag, because no verified Lunar
-    Orbiter / LRO image pair was available.
-  - **Moon vs Mars table**, and **My Discovery Journal**: milestones saved only in this browser tab, with a
-    "My Planetary Science Journey" summary.
+- **BEYOND THE ARCHIVE** (`js/citizen.js`, `js/beyond-extras.js`, `css/beyond.css`,
+  `data/citizen-science.json`, `data/beyond-learning.json`): an invitation to real planetary citizen science.
+  - **Planetary Mission Control:** a mission briefing with the objective, and two equal pathways (Moon / Mars).
+    Switching worlds keeps progress.
+  - **Past → Present → Future:** from archive hardware to today's science to participation, with artifact links.
+  - **The Lunar Investigation** (MoonDiff) and **The Martian Atmosphere Lab** (Cloudspotting on Mars: Shapes),
+    five stages each:
+    - enter;
+    - compare (Moon) or discover the shapes (Mars);
+    - the **Observation Lab**: Observation → Interpretation → Evidence → Uncertainty on a real credited NASA image,
+      with "Not enough evidence to decide" always valid;
+    - connect to the archive;
+    - continue on the official project.
+  - **Science behind the image:** expandable panels showing spacecraft, instrument, target, date, purpose and credit,
+    each labelled Verified / Interpretation / Unknown. Nothing is guessed.
+  - The Moon comparison is a labelled **illustration** (align, blink, fade, flag), with a stated limitation and a link
+    to MoonDiff's own intro video. No verified Lunar Orbiter / LRO pair was available.
+  - **Two worlds table**, the **Discovery Impact Chain** (how one observation helps science), the **Open Questions
+    Wall** (10 questions: Moon, Mars, Heritage) and **Ask a Planetary Scientist** (a searchable local question bank,
+    no AI).
+  - **Planetary Scientist Profile:** optional, rule-based, nothing stored.
+  - **My Discovery Journal:** session-only, with notes and a printable "My Planetary Discovery Journal". It is not a
+    certificate. Official visits are recorded only when the visitor says so.
+  - **Future Explorer Charter:** visitor-chosen principles, printable and copyable, labelled as not NASA policy.
   - Nothing is sent to NASA, MoonDiff or Zooniverse, and the page says so.
+  - Deep links: `#beyond-moon`, `#beyond-mars`, `#beyond-wall`, `#beyond-ask`, `#beyond-journal`, `#beyond-charter`.
   - Deep links: `#beyond-moon`, `#beyond-mars`, `#beyond-journal`.
 
 ## Features

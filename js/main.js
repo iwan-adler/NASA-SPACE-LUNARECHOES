@@ -3,7 +3,7 @@
 
 // Fetches the data file and checks it has the expected shape.
 async function loadObjects() {
-  var response = await fetch("data/objects.json");
+  var response = await fetch("data/objects.json", { cache: "no-cache" }); // always re-check for updated data
   if (!response.ok) {
     throw new Error("data/objects.json could not be loaded (HTTP " + response.status + ").");
   }
@@ -26,7 +26,7 @@ async function loadObjects() {
 // Optional data files (planet facts, case files, scenario). If one fails, the rest still works.
 async function loadOptional(path) {
   try {
-    var response = await fetch(path);
+    var response = await fetch(path, { cache: "no-cache" });
     if (!response.ok) return null;
     return await response.json();
   } catch (e) {
@@ -65,6 +65,7 @@ async function startApp() {
   var casesPromise = loadOptional("data/cases.json");
   var decisionPromise = loadOptional("data/decision.json");
   var citizenPromise = loadOptional("data/citizen-science.json");
+  var learningPromise = loadOptional("data/beyond-learning.json");
   try {
     objects = await loadObjects();
   } catch (error) {
@@ -75,6 +76,7 @@ async function startApp() {
   var cases = await casesPromise;
   var decision = await decisionPromise;
   var citizen = await citizenPromise;
+  var learning = await learningPromise;
 
   // Each part runs separately, so one bug does not break the others.
   [
@@ -84,7 +86,8 @@ async function startApp() {
     ["Timeline", function () { renderTimeline(objects); }],            // js/timeline.js
     ["Explore", function () { renderExplore(objects, worlds); }],      // js/explore.js
     ["Quiz", function () { startQuiz(objects); }],                     // js/quiz.js
-    ["Citizen science", function () { renderCitizenScience(citizen); }] // js/citizen.js
+    ["Citizen science", function () { renderCitizenScience(citizen); }], // js/citizen.js
+    ["Beyond extras", function () { renderBeyondExtras(learning); }]     // js/beyond-extras.js (after citizen.js)
   ].forEach(function (part) {
     try {
       part[1]();

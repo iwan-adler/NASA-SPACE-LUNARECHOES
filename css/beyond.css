@@ -1,0 +1,322 @@
+/* =========================================================
+   Lunar Echoes - BEYOND THE ARCHIVE extensions
+   Mission Control, Science behind the image, Past/Present/Future,
+   Impact chain, Open Questions Wall, Ask a scientist, Profile,
+   Journal additions and the Future Explorer Charter.
+   Uses the colour tokens from style.css (--moon, --mars, --accent ...).
+   ========================================================= */
+
+/* ---------- Planetary Mission Control ---------- */
+.mission-control { padding-bottom: clamp(1.5rem, 4vw, 2.5rem); }
+.mission-control::before {
+  /* faint orbital ring that hints at a control-room display */
+  content: "";
+  position: absolute;
+  right: -120px;
+  top: -120px;
+  width: 360px;
+  height: 360px;
+  border: 1px dashed rgba(232, 194, 122, 0.18);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.mc-subtitle { margin: 0 0 0.8rem; font-family: var(--serif); font-size: clamp(1.15rem, 2.4vw, 1.45rem); color: var(--accent); }
+.mc-briefing {
+  max-width: 46rem;
+  margin: 0 0 1.4rem;
+  padding: 1rem 1.2rem;
+  border: 1px solid rgba(232, 194, 122, 0.35);
+  border-left: 4px solid var(--accent);
+  border-radius: 8px;
+  background: rgba(7, 8, 13, 0.55);
+}
+.mc-briefing-label { margin: 0 0 0.3rem; font-family: "Courier New", Courier, monospace; font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
+.mc-objective { margin: 0; font-family: var(--serif); font-size: 1.15rem; }
+.mc-actions { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.mc-actions .btn { font: inherit; font-weight: 600; cursor: pointer; }
+.mc-path.is-moon:hover { border-color: var(--moon); color: var(--lunar-white, #eef0f5); }
+.mc-path.is-mars:hover { border-color: var(--mars); color: #ffb08c; }
+.mc-tagline { margin: 1rem 0 0; font-style: italic; color: var(--muted); }
+.mission-control .beyond-principles { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+/* ---------- Shared block layout ---------- */
+.beyond-block { margin: 0 0 2.5rem; }
+.beyond-block[hidden] { display: none; }
+.beyond-section-intro { max-width: 46rem; margin: -0.4rem 0 1.25rem; color: var(--muted); }
+.object-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.6rem 0; }
+.object-chip {
+  padding: 0.3rem 0.75rem;
+  font: inherit;
+  font-size: 0.85rem;
+  color: var(--text);
+  background: rgba(7, 8, 13, 0.5);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  cursor: pointer;
+}
+.object-chip.planet-moon { border-color: rgba(205, 213, 230, 0.5); }
+.object-chip.planet-mars { border-color: rgba(224, 122, 79, 0.6); }
+.object-chip:hover { border-color: var(--accent); }
+
+/* ---------- Science behind the image ---------- */
+.image-info {
+  margin-top: 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(7, 8, 13, 0.6);
+}
+.image-info summary {
+  padding: 0.6rem 0.9rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  cursor: pointer;
+}
+.image-info[open] summary { border-bottom: 1px solid var(--line); }
+.image-info-list { display: grid; grid-template-columns: max-content 1fr; gap: 0.4rem 1rem; margin: 0; padding: 0.8rem 0.9rem 0.2rem; font-size: 0.88rem; }
+.image-info-list dt { color: var(--muted); font-size: 0.8rem; }
+.image-info-list dd { margin: 0; }
+.image-info .evidence-source { padding: 0 0.9rem 0.8rem; margin: 0.4rem 0 0; }
+.illus-limitation { max-width: 50rem; font-size: 0.9rem; color: #dcdad3; }
+.obs-project-link { margin-top: 0.75rem; padding: 0.7rem 0.9rem; border-left: 3px solid var(--accent); background: rgba(232, 194, 122, 0.06); border-radius: 6px; font-size: 0.92rem; }
+.record-visit { margin-top: 0.9rem; font: inherit; font-size: 0.9rem; padding: 0.45rem 1rem; cursor: pointer; }
+.record-visit[aria-pressed="true"] { border-color: var(--ok); color: var(--ok); }
+
+/* ---------- Past -> Present -> Future ---------- */
+.ppf-rail {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+.ppf-rail::before {
+  content: "";
+  position: absolute;
+  left: 1.2rem;
+  right: 1.2rem;
+  top: 1.15rem;
+  height: 2px;
+  background: linear-gradient(90deg, var(--moon), var(--accent), var(--mars));
+  opacity: 0.45;
+}
+.ppf-step {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 2.2rem 0.9rem 0.9rem;
+  font: inherit;
+  text-align: left;
+  color: var(--muted);
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+.ppf-step::before {
+  content: "";
+  position: absolute;
+  left: 0.9rem;
+  top: 0.7rem;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid var(--accent);
+  background: var(--bg);
+}
+.ppf-step[aria-pressed="true"] { color: var(--text); border-color: var(--accent); }
+.ppf-step[aria-pressed="true"]::before { background: var(--accent); }
+.ppf-label { font-family: "Courier New", Courier, monospace; font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
+.ppf-step-title { font-family: var(--serif); font-size: 1.1rem; }
+.ppf-view { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.ppf-col { padding: 1.1rem 1.25rem; border-radius: 12px; border: 1px solid var(--line); animation: rise 0.3s ease-out; }
+.ppf-col.is-moon { background: linear-gradient(180deg, rgba(205, 213, 230, 0.08), transparent 70%), #1a1d26; border-top: 3px solid var(--moon); }
+.ppf-col.is-mars { background: linear-gradient(180deg, rgba(224, 122, 79, 0.12), transparent 70%), #160f0d; border-top: 3px solid var(--mars); }
+.ppf-col h4 { margin: 0 0 0.4rem; font-family: var(--serif); font-weight: 400; font-size: 1.4rem; }
+.ppf-col.is-moon h4 { color: #eef0f5; }
+.ppf-col.is-mars h4 { color: #ffb08c; }
+.ppf-col .btn { font: inherit; font-size: 0.9rem; padding: 0.45rem 1rem; cursor: pointer; margin: 0.3rem 0; }
+
+/* ---------- Discovery Impact Chain ---------- */
+.impact-toggle { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; margin-bottom: 1rem; }
+.impact-tab, .ask-topic, .profile-btn {
+  padding: 0.4rem 0.9rem;
+  font: inherit;
+  font-size: 0.88rem;
+  color: var(--text);
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  cursor: pointer;
+}
+.impact-tab[aria-pressed="true"], .ask-topic[aria-pressed="true"], .profile-btn[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.impact-play { margin-left: auto; font: inherit; font-size: 0.9rem; padding: 0.45rem 1rem; cursor: pointer; }
+.impact-chain { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0.6rem; margin: 0; padding: 0; list-style: none; counter-reset: none; }
+.impact-step {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--panel);
+  transition: border-color 0.3s, background-color 0.3s, transform 0.3s;
+}
+.impact-step:not(:last-child)::after {
+  content: "→";
+  position: absolute;
+  right: -0.55rem;
+  top: 1.1rem;
+  z-index: 1;
+  color: var(--accent);
+}
+.impact-no { display: grid; place-items: center; width: 1.8rem; height: 1.8rem; border-radius: 50%; border: 1px solid var(--accent); color: var(--accent); font-weight: 700; }
+.impact-step h4 { margin: 0; font-family: var(--serif); font-weight: 400; font-size: 1.05rem; }
+.impact-step p { margin: 0; font-size: 0.88rem; color: #d4d3cd; }
+.impact-step.is-lit { border-color: var(--accent); background: rgba(232, 194, 122, 0.07); transform: translateY(-2px); }
+.impact-chain.is-moon .impact-step.is-lit .impact-no { background: var(--moon); color: #10131f; border-color: var(--moon); }
+.impact-chain.is-mars .impact-step.is-lit .impact-no { background: var(--mars); color: #1f0d05; border-color: var(--mars); }
+.impact-caution { max-width: 50rem; margin-top: 1rem; }
+
+/* ---------- Open Questions Wall ---------- */
+.wall-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+.wall-col h4 { margin: 0 0 0.6rem; font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase; }
+.wall-col.is-moon h4 { color: #eef0f5; }
+.wall-col.is-mars h4 { color: #ffb08c; }
+.wall-col.is-heritage h4 { color: var(--accent); }
+.wall-q {
+  display: block;
+  width: 100%;
+  margin: 0 0 0.5rem;
+  padding: 0.8rem 0.9rem;
+  font-family: var(--serif);
+  font-size: 1.02rem;
+  line-height: 1.35;
+  text-align: left;
+  color: var(--text);
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+.wall-col.is-moon .wall-q:hover, .wall-col.is-moon .wall-q[aria-expanded="true"] { border-color: var(--moon); }
+.wall-col.is-mars .wall-q:hover, .wall-col.is-mars .wall-q[aria-expanded="true"] { border-color: var(--mars); }
+.wall-col.is-heritage .wall-q:hover, .wall-col.is-heritage .wall-q[aria-expanded="true"] { border-color: var(--accent); }
+.wall-detail { margin-top: 1rem; padding: 1.25rem 1.4rem; border: 1px solid var(--line); border-radius: 12px; background: var(--bg); animation: rise 0.25s ease-out; }
+.wall-detail.is-moon { border-top: 3px solid var(--moon); }
+.wall-detail.is-mars { border-top: 3px solid var(--mars); }
+.wall-detail.is-heritage { border-top: 3px solid var(--accent); }
+.wall-detail-title { margin: 0 0 0.8rem; font-family: var(--serif); font-weight: 400; font-size: 1.4rem; }
+.wall-dl { display: grid; grid-template-columns: max-content 1fr; gap: 0.5rem 1.2rem; margin: 0 0 0.75rem; }
+.wall-dl dt { font-size: 0.8rem; color: var(--muted); }
+.wall-dl dd { margin: 0; }
+.wall-detail .btn { font: inherit; font-size: 0.9rem; padding: 0.45rem 1rem; cursor: pointer; }
+.wall-noproject { color: var(--muted); font-style: italic; }
+
+/* ---------- Ask a planetary scientist ---------- */
+.ask-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 1.25rem; margin-bottom: 0.5rem; }
+.ask-search-label { color: var(--muted); font-size: 0.95rem; }
+.ask-search { margin-left: 0.4rem; padding: 0.5rem 0.8rem; min-width: 16rem; font: inherit; color: var(--text); background: var(--panel); border: 1px solid var(--line); border-radius: 999px; }
+.ask-topics { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+.ask-count { margin: 0 0 0.6rem; font-size: 0.85rem; color: var(--muted); }
+.ask-list { display: grid; gap: 0.5rem; }
+.ask-item { border: 1px solid var(--line); border-radius: 8px; background: var(--panel); }
+.ask-item summary { padding: 0.75rem 1rem; cursor: pointer; font-family: var(--serif); font-size: 1.05rem; }
+.ask-item[open] summary { border-bottom: 1px solid var(--line); }
+.ask-item > p { margin: 0.75rem 1rem 0.4rem; }
+.ask-item .evidence-source { margin: 0 1rem 0.8rem; }
+.ask-topic-tag { display: inline-block; margin-right: 0.3rem; padding: 0.02rem 0.45rem; border-radius: 4px; font-family: var(--sans); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); border: 1px solid var(--line); vertical-align: 0.15em; }
+
+/* ---------- Planetary scientist profile ---------- */
+.profile-qs { margin: 0 0 1rem; padding: 0; list-style: none; display: grid; gap: 0.5rem; }
+.profile-q { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.6rem; padding: 0.7rem 0.9rem; border: 1px solid var(--line); border-radius: 8px; background: var(--panel); }
+.profile-yn { display: flex; gap: 0.35rem; }
+.profile-actions { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.profile-actions .btn { font: inherit; font-weight: 600; cursor: pointer; border: 1px solid transparent; }
+.profile-out { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0.8rem; margin-top: 1rem; }
+.pathway { padding: 1rem 1.1rem; border: 1px solid rgba(232, 194, 122, 0.4); border-radius: 10px; background: var(--bg); animation: rise 0.25s ease-out; }
+.pathway h4 { margin: 0 0 0.35rem; font-family: var(--serif); font-weight: 400; font-size: 1.25rem; color: var(--accent); }
+.pathway p { margin: 0 0 0.6rem; font-size: 0.92rem; color: #d4d3cd; }
+.pathway-links { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.pathway-links .btn { font: inherit; font-size: 0.85rem; padding: 0.4rem 0.85rem; }
+
+/* ---------- Journal additions ---------- */
+.journal-cols { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.journal-col.is-both h4 { color: var(--accent); }
+.journal-notes-label { display: block; margin: 0 0 0.35rem; font-size: 0.88rem; color: var(--muted); }
+.journal-notes, .charter-text {
+  width: 100%;
+  margin-bottom: 1.25rem;
+  padding: 0.7rem 0.9rem;
+  font: inherit;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  resize: vertical;
+}
+.journey-actions { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.journey-actions .btn { font: inherit; font-size: 0.92rem; padding: 0.5rem 1.1rem; cursor: pointer; border: 1px solid transparent; }
+.journey-actions .btn-ghost { border-color: rgba(236, 235, 230, 0.4); }
+
+/* ---------- Future Explorer Charter ---------- */
+.charter-opening { max-width: 44rem; font-family: var(--serif); font-size: clamp(1.2rem, 2.6vw, 1.5rem); line-height: 1.4; }
+.charter-form fieldset { margin: 0 0 1rem; padding: 1rem 1.1rem; border: 1px solid var(--line); border-radius: 10px; }
+.charter-form legend { padding: 0 0.4rem; color: var(--muted); font-size: 0.9rem; }
+.charter-row { display: flex; gap: 0.6rem; align-items: flex-start; margin: 0.35rem 0; }
+.charter-row input { margin-top: 0.35rem; accent-color: var(--accent); }
+.charter-row label { cursor: pointer; }
+.charter-text-label { display: block; margin-bottom: 0.35rem; color: var(--muted); font-size: 0.9rem; }
+.charter-form .btn { font: inherit; font-weight: 700; cursor: pointer; border: none; }
+.charter-msg { min-height: 1.2em; color: #ffcf9e; }
+.charter-card {
+  max-width: 620px;
+  margin: 1rem auto 0.75rem;
+  padding: 2rem 2.2rem;
+  text-align: center;
+  border: 3px double rgba(232, 194, 122, 0.7);
+  border-radius: 6px;
+  background: radial-gradient(ellipse at 50% 0, rgba(232, 194, 122, 0.12), transparent 70%), #0d0f16;
+  animation: rise 0.35s ease-out;
+}
+.charter-kicker { margin: 0; font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); }
+.charter-card-title { margin: 0.3rem 0 0.6rem; font-family: var(--serif); font-weight: 400; font-size: 2rem; }
+.charter-card-opening { color: #d4d3cd; font-style: italic; }
+.charter-list { display: inline-block; margin: 0.8rem 0; padding-left: 1.2rem; text-align: left; }
+.charter-list li { margin: 0.35rem 0; }
+.charter-quote { margin: 0.8rem 0; font-family: var(--serif); font-size: 1.15rem; font-style: italic; color: var(--accent); }
+.charter-date { margin: 0.4rem 0 0; font-family: "Courier New", Courier, monospace; font-size: 0.85rem; color: var(--muted); }
+.charter-label { margin: 0.6rem 0 0; font-size: 0.8rem; color: var(--muted); }
+.charter-actions { display: flex; justify-content: center; gap: 0.6rem; }
+.charter-actions .btn { font: inherit; font-size: 0.9rem; padding: 0.45rem 1rem; cursor: pointer; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .mission-control .beyond-principles { grid-template-columns: 1fr 1fr; }
+  .ppf-view, .wall-grid { grid-template-columns: 1fr; }
+  .impact-chain { grid-template-columns: 1fr; }
+  .impact-step { flex-direction: row; align-items: flex-start; }
+  .impact-step:not(:last-child)::after { content: "↓"; right: auto; left: 1.4rem; top: auto; bottom: -0.95rem; }
+  .journal-cols { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .mission-control .beyond-principles,
+  .ppf-rail { grid-template-columns: 1fr; }
+  .ppf-rail::before { display: none; }
+  .impact-play { margin-left: 0; }
+  .image-info-list, .wall-dl { grid-template-columns: 1fr; gap: 0.1rem; }
+  .image-info-list dd, .wall-dl dd { margin-bottom: 0.5rem; }
+  .ask-search { min-width: 0; width: 100%; margin: 0.3rem 0 0; }
+  .ask-search-label { width: 100%; }
+  .charter-card { padding: 1.4rem 1.1rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .impact-step, .ppf-step { transition: none; }
+  .impact-step.is-lit { transform: none; }
+}

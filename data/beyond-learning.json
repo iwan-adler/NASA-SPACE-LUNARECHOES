@@ -1,0 +1,626 @@
+{
+  "_note": "Extended learning content for BEYOND THE ARCHIVE: past-present-future, impact chain, open questions, Ask a Planetary Scientist, scientist profile and Future Explorer Charter. Every fact cites a source in `sources` (keys below) and is listed in docs/research-sources.md. Statements marked kind 'interpretation' are our educational explanations, not NASA statements. No statistics or outcomes are invented.",
+  "sources": {
+    "md_nasa": {
+      "name": "NASA: Join MoonDiff and Go Moon-Combing with NASA!",
+      "url": "https://science.nasa.gov/get-involved/citizen-science/join-moondiff-and-go-moon-combing-with-nasa/"
+    },
+    "md_bg": {
+      "name": "MoonDiff background",
+      "url": "https://trek.nasa.gov/app/background/"
+    },
+    "md_app": {
+      "name": "MoonDiff (official project)",
+      "url": "https://trek.nasa.gov/app/"
+    },
+    "a16": {
+      "name": "NASA image: LRO Finds Apollo 16 Booster Rocket Impact Site",
+      "url": "https://images.nasa.gov/details/GSFC_20171208_Archive_e000501"
+    },
+    "cs_nasa": {
+      "name": "NASA: Cloudspotting on Mars: Shapes",
+      "url": "https://science.nasa.gov/citizen-science/cloudspotting-on-mars-shapes/"
+    },
+    "cs_launch": {
+      "name": "NASA: New Project Invites You To Do Martian Cloud Science (2024)",
+      "url": "https://science.nasa.gov/get-involved/citizen-science/new-project-invites-you-to-do-martian-cloud-science-with-nasa/"
+    },
+    "cs_zoo": {
+      "name": "Zooniverse: Cloudspotting on Mars: Shapes (science case, FAQ, field guide)",
+      "url": "https://www.zooniverse.org/projects/matteocrismani/cloudspotting-on-mars-shapes"
+    },
+    "heritage": {
+      "name": "NASA's Recommendations to Space-Faring Entities (2011)",
+      "url": "https://www.nasa.gov/wp-content/uploads/2017/10/617743main_nasa-usg_lunar_historic_sites_reva-508.pdf"
+    },
+    "lrrr": {
+      "name": "NASA: The Apollo Experiment That Keeps on Giving",
+      "url": "https://www.nasa.gov/missions/apollo/apollo-11/the-apollo-experiment-that-keeps-on-giving/"
+    },
+    "lro_a11": {
+      "name": "NASA image PIA12909: Apollo 11, Second Look (LRO, 2009)",
+      "url": "https://images.nasa.gov/details/PIA12909"
+    },
+    "citsci": {
+      "name": "NASA Citizen Science",
+      "url": "https://science.nasa.gov/citizen-science/"
+    },
+    "nssdc_s3": {
+      "name": "NASA NSSDCA record 1967-035A (Surveyor 3)",
+      "url": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1967-035A"
+    },
+    "nssdc_a11": {
+      "name": "NASA NSSDCA record 1969-059C (Apollo 11 LM)",
+      "url": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1969-059C"
+    },
+    "nssdc_viking": {
+      "name": "NASA NSSDCA record 1975-075C (Viking 1 Lander)",
+      "url": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1975-075C"
+    },
+    "nssdc_phoenix": {
+      "name": "NASA NSSDCA record 2007-034A (Phoenix)",
+      "url": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=2007-034A"
+    },
+    "mer": {
+      "name": "NASA Science: Spirit and Opportunity",
+      "url": "https://science.nasa.gov/mission/mars-exploration-rovers-spirit-and-opportunity/"
+    }
+  },
+  "ppf": {
+    "title": "From abandoned equipment to active science",
+    "intro": "Human exploration does not stop when a mission ends. Follow each world from the hardware we left behind, to the science happening now, to how you can take part.",
+    "eras": [
+      {
+        "id": "past",
+        "label": "Past",
+        "title": "Humanity's machines reach other worlds"
+      },
+      {
+        "id": "present",
+        "label": "Present",
+        "title": "Scientists keep investigating"
+      },
+      {
+        "id": "future",
+        "label": "Future",
+        "title": "People help expand what we know"
+      }
+    ],
+    "moon": {
+      "past": {
+        "text": "Surveyor 3 landed in 1967. In 1969 Apollo 11 left the Eagle descent stage and a laser reflector at Tranquility Base.",
+        "objects": [
+          "surveyor-3",
+          "apollo11-eagle-descent-stage",
+          "apollo11-lrrr"
+        ],
+        "sources": [
+          "nssdc_s3",
+          "nssdc_a11"
+        ]
+      },
+      "present": {
+        "text": "Scientists still bounce lasers off the Apollo 11 reflector. Since 2009, NASA's Lunar Reconnaissance Orbiter has imaged the Moon, photographed the Apollo 11 landing site from orbit, and found 222 new impact craters by comparing its own images.",
+        "objects": [
+          "apollo11-lrrr"
+        ],
+        "sources": [
+          "lrrr",
+          "lro_a11",
+          "md_bg"
+        ]
+      },
+      "future": {
+        "text": "Through MoonDiff, volunteers compare 1960s Lunar Orbiter images with LRO images to look for changes, including missing historical hardware such as Apollo 11's ascent stage.",
+        "objects": [
+          "apollo11-eagle-descent-stage"
+        ],
+        "sources": [
+          "md_nasa"
+        ],
+        "goto": "moon"
+      }
+    },
+    "mars": {
+      "past": {
+        "text": "Viking 1 measured weather from the ground in 1976. Phoenix studied the polar climate in 2008. A planet-wide dust storm ended Opportunity's mission in 2018.",
+        "objects": [
+          "viking1-lander",
+          "phoenix",
+          "opportunity"
+        ],
+        "sources": [
+          "nssdc_viking",
+          "nssdc_phoenix",
+          "mer"
+        ]
+      },
+      "present": {
+        "text": "NASA's MAVEN has orbited Mars since 21 September 2014. Its Imaging Ultraviolet Spectrograph observes the whole disk of Mars to measure water-ice and dust in the atmosphere.",
+        "objects": [],
+        "sources": [
+          "cs_launch",
+          "cs_zoo"
+        ]
+      },
+      "future": {
+        "text": "Through Cloudspotting on Mars: Shapes, volunteers tag cloud shapes in MAVEN images to help build a database of when and where Martian clouds form.",
+        "objects": [],
+        "sources": [
+          "cs_nasa",
+          "cs_zoo"
+        ],
+        "goto": "mars"
+      }
+    },
+    "kind": "verified"
+  },
+  "impact": {
+    "title": "How does one observation help science?",
+    "steps": [
+      {
+        "title": "Examine scientific imagery",
+        "moon": "Look at a coregistered pair: a 1960s Lunar Orbiter image and a modern LRO image of the same area.",
+        "mars": "Look at images of Mars made from MAVEN's Imaging Ultraviolet Spectrograph data."
+      },
+      {
+        "title": "Follow the project's instructions",
+        "moon": "MoonDiff's site offers a tour and an intro video, and its background page explains how the image pairs are prepared.",
+        "mars": "Complete the tutorial (about 10–15 minutes) and use the field guide to recognise cloud shapes."
+      },
+      {
+        "title": "Submit on the real platform",
+        "moon": "Draw a polygon around anything that changed, inside MoonDiff's comparison tool.",
+        "mars": "Click on the image to tag clouds of each type, on Zooniverse."
+      },
+      {
+        "title": "Researchers review and analyse",
+        "moon": "Lunar experts review each identified change in a separate review tool.",
+        "mars": "Researchers use the classifications to map clouds into a database."
+      },
+      {
+        "title": "Combined observations reveal patterns",
+        "moon": "Discoveries will be written up as scientific journal papers, helping answer questions such as how often impacts happen.",
+        "mars": "The team aims to build a library of how often cloud types appear, where, and how they vary from season to season."
+      }
+    ],
+    "caution": "One observation does not automatically create a discovery. A flagged change or a tagged cloud is a starting point that researchers check, combine and analyse.",
+    "sources": [
+      "md_bg",
+      "cs_nasa",
+      "cs_zoo"
+    ]
+  },
+  "wall": {
+    "title": "Questions we are still exploring",
+    "intro": "Real science is full of open questions. Select one to see what is known, what evidence matters and what remains uncertain. No single project can answer them all.",
+    "questions": [
+      {
+        "id": "moon-change",
+        "group": "Moon",
+        "q": "How does the lunar surface change over time?",
+        "why": "Changes reveal how often space rocks hit the Moon, which matters for understanding the lunar surface and for future exploration.",
+        "known": "Space rocks blast new craters, rocks roll down hills, and spacecraft land and crash. By comparing its own images, LRO has found 222 craters that appeared during its first 14 years.",
+        "evidence": "Repeated images of the same place, taken under similar lighting.",
+        "uncertain": "What has changed since the 1960s is harder to tell: Lunar Orbiter and LRO images differ in angle and lighting, and software cannot yet compare them reliably.",
+        "objects": [
+          "surveyor-3"
+        ],
+        "project": "moon",
+        "sources": [
+          "md_bg"
+        ]
+      },
+      {
+        "id": "moon-hardware",
+        "group": "Moon",
+        "q": "Where might historical spacecraft hardware be located?",
+        "why": "Knowing where historical hardware lies completes the record of exploration.",
+        "known": "MoonDiff keeps a table of landing and crash sites and says some are still being searched for. NASA calls Apollo 11's ascent stage \"missing\". The crater left by Apollo 16's S-IVB booster was identified only after decades, about 30 km from the Apollo-era estimate.",
+        "evidence": "Apollo-era tracking estimates, combined with high-resolution orbital images.",
+        "uncertain": "The exact locations of hardware that is still missing.",
+        "objects": [
+          "apollo11-eagle-descent-stage"
+        ],
+        "project": "moon",
+        "sources": [
+          "md_nasa",
+          "md_bg",
+          "a16"
+        ]
+      },
+      {
+        "id": "moon-newold",
+        "group": "Moon",
+        "q": "How can researchers tell new impact craters from older features?",
+        "why": "Counting only genuinely new craters is what allows researchers to measure the impact rate.",
+        "known": "LRO image pairs share geometry and lighting, so they can be compared automatically, but people still checked the automatic detections to remove false positives. Lunar Orbiter to LRO pairs need human eyes, and lunar experts review each change volunteers flag.",
+        "evidence": "A feature present in the newer image but absent in the older one, confirmed by expert review.",
+        "uncertain": "Each flagged change is only a candidate until it has been reviewed.",
+        "objects": [],
+        "project": "moon",
+        "sources": [
+          "md_bg"
+        ]
+      },
+      {
+        "id": "moon-together",
+        "group": "Moon",
+        "q": "What can historical and modern lunar images reveal together?",
+        "why": "Together they stretch the record of change on the Moon back to the 1960s.",
+        "known": "The five Lunar Orbiter missions photographed 99% of the Moon in 1966–1967; LRO has imaged it since 2009. MoonDiff compares the two.",
+        "evidence": "Coregistered image pairs reviewed by volunteers and experts.",
+        "uncertain": "MoonDiff says its discoveries will be written up as journal papers; we found no published results in our sources, so we make no claims about findings.",
+        "objects": [
+          "surveyor-3",
+          "apollo11-eagle-descent-stage"
+        ],
+        "project": "moon",
+        "sources": [
+          "md_bg"
+        ]
+      },
+      {
+        "id": "mars-clouds",
+        "group": "Mars",
+        "q": "What can cloud formations tell us about Mars?",
+        "why": "Clouds can both warm and cool the atmosphere, so they matter for Mars' weather and climate.",
+        "known": "Martian clouds form from water ice and carbon-dioxide ice. They may reveal winds that are otherwise invisible to spacecraft. On Earth, shapes such as gravity-wave clouds and cap clouds point to specific wind and moisture conditions.",
+        "evidence": "Maps of where and when each cloud shape appears.",
+        "uncertain": "Whether Martian clouds that look like Earth's actually form the same way.",
+        "objects": [
+          "viking1-lander",
+          "phoenix"
+        ],
+        "project": "mars",
+        "sources": [
+          "cs_zoo",
+          "cs_nasa"
+        ]
+      },
+      {
+        "id": "mars-vary",
+        "group": "Mars",
+        "q": "How do Martian atmospheric processes vary?",
+        "why": "Today's atmosphere is key to understanding Mars' past climate and how it evolved.",
+        "known": "MAVEN's ultraviolet spectrograph has observed since 2014, long enough to compare seasons and years. Dust storms are a defining feature of the Martian atmosphere.",
+        "evidence": "Years of repeated observations of the whole planet.",
+        "uncertain": "The daily, seasonal and yearly patterns in cloud shapes are still being mapped.",
+        "objects": [
+          "opportunity",
+          "insight"
+        ],
+        "project": "mars",
+        "sources": [
+          "cs_zoo",
+          "cs_launch"
+        ]
+      },
+      {
+        "id": "mars-maven",
+        "group": "Mars",
+        "q": "How can observations from MAVEN improve atmospheric understanding?",
+        "why": "MAVEN watches the atmosphere from orbit, across the whole planet, rather than from one spot on the ground.",
+        "known": "MAVEN studies how Mars' atmosphere responds to the Sun and solar wind, and how it is lost to space. Its Imaging Ultraviolet Spectrograph has several observing modes, including whole-disk images that show water-ice clouds and dust.",
+        "evidence": "Ultraviolet images in which clouds, which reflect ultraviolet strongly, stand out as white shapes.",
+        "uncertain": "The cloud database is still being built.",
+        "objects": [],
+        "project": "mars",
+        "sources": [
+          "cs_launch",
+          "cs_zoo"
+        ]
+      },
+      {
+        "id": "her-preserve",
+        "group": "Heritage",
+        "q": "How should humanity preserve historical exploration sites?",
+        "why": "Sites such as Tranquility Base mark firsts in human history, and some still hold active experiments.",
+        "known": "In 2011 NASA published technical recommendations, not legal requirements: no visits to the Apollo 11 and 17 sites, exclusion zones of 75 m and 225 m around their descent stages, and no low approach within 2 km of heritage lander sites.",
+        "evidence": "NASA's analysis of rocket plumes, blown dust and contamination, including damage measured on Surveyor 3's returned parts.",
+        "uncertain": "NASA's document anticipated more formal guidance and perhaps a multilateral approach. We found no equivalent NASA guidance for Mars hardware in our sources.",
+        "objects": [
+          "apollo11-eagle-descent-stage",
+          "apollo17-alsep"
+        ],
+        "project": null,
+        "sources": [
+          "heritage"
+        ]
+      },
+      {
+        "id": "her-document",
+        "group": "Heritage",
+        "q": "What should future explorers document before disturbing a site?",
+        "why": "Once a site is disturbed, its original state cannot be recovered.",
+        "known": "Orbital imaging can document a site without touching it: LRO photographed the Apollo 11 site from orbit in 2009. NASA's 2011 guidance says a careful, tangential low-altitude fly-by can image heritage sites with minimal risk.",
+        "evidence": "Surveyor 3's returned parts showed contamination from Apollo 12's exhaust, so a visit can change what is being studied.",
+        "uncertain": "Exactly what should be recorded before any future visit is a judgement call, and is part of our Future Explorer Charter.",
+        "objects": [
+          "surveyor-3",
+          "apollo11-eagle-descent-stage"
+        ],
+        "project": null,
+        "sources": [
+          "heritage",
+          "lro_a11"
+        ]
+      },
+      {
+        "id": "her-coexist",
+        "group": "Heritage",
+        "q": "How can scientific research and historical preservation coexist?",
+        "why": "Some heritage objects are also scientific instruments or records.",
+        "known": "The Apollo 11 laser reflector is both a historic object and an active experiment. NASA notes that the Apollo sites still produce scientific data on how human-made materials age on the Moon.",
+        "evidence": "Ongoing laser ranging, and studies of returned hardware.",
+        "uncertain": "How to weigh knowledge against preservation case by case. Try the trade-offs in the Future Explorer scenario.",
+        "objects": [
+          "apollo11-lrrr"
+        ],
+        "project": null,
+        "sources": [
+          "heritage",
+          "lrrr"
+        ]
+      }
+    ]
+  },
+  "ask": {
+    "title": "Ask a planetary scientist",
+    "intro": "A question bank written from our NASA and project sources. It is not a live scientist or an AI chat, and each answer links to its sources.",
+    "topics": [
+      "Moon",
+      "Mars",
+      "Method",
+      "Heritage"
+    ],
+    "items": [
+      {
+        "topic": "Moon",
+        "q": "Why do scientists compare lunar images?",
+        "a": "Comparing pictures of the same place taken years apart reveals what has changed: new impact craters, rocks that rolled, and spacecraft that landed or crashed. It helps answer questions like how often space rocks hit the Moon.",
+        "kind": "verified",
+        "sources": [
+          "md_bg",
+          "md_nasa"
+        ]
+      },
+      {
+        "topic": "Moon",
+        "q": "Why can't software compare old and new Moon images by itself?",
+        "a": "The 1960s Lunar Orbiter images were shot on film, developed on board, scanned and sent by radio. They were taken from different angles and in different lighting than LRO's digital images, and do not line up well. MoonDiff's team says that kind of comparison is beyond today's software, so it relies on human vision.",
+        "kind": "verified",
+        "sources": [
+          "md_bg"
+        ]
+      },
+      {
+        "topic": "Moon",
+        "q": "How do impact craters help researchers understand the Moon?",
+        "a": "Counting new craters helps measure the impact rate: how much space rock hits the Moon over time. Apollo rocket stages were also crashed into the Moon on purpose so that seismometers left by earlier crews could measure the impacts and help study the Moon's interior.",
+        "kind": "verified",
+        "sources": [
+          "md_bg",
+          "a16"
+        ]
+      },
+      {
+        "topic": "Mars",
+        "q": "What does MAVEN study?",
+        "a": "MAVEN (Mars Atmosphere and Volatile EvolutioN) has orbited Mars since September 2014. It studies how the atmosphere responds to the Sun and solar wind, and how these interactions can explain the loss of Mars' atmosphere to space.",
+        "kind": "verified",
+        "sources": [
+          "cs_launch"
+        ]
+      },
+      {
+        "topic": "Mars",
+        "q": "How does MAVEN see clouds?",
+        "a": "Its Imaging Ultraviolet Spectrograph measures ultraviolet light. Clouds reflect ultraviolet strongly, so they stand out as white shapes against the darker surface. The images are built by scanning across the planet, which is why Mars can look sliced into strips.",
+        "kind": "verified",
+        "sources": [
+          "cs_zoo"
+        ]
+      },
+      {
+        "topic": "Mars",
+        "q": "Why are clouds important when studying Mars?",
+        "a": "Clouds can both warm and cool the atmosphere, so they matter for weather and climate. They also show where water vapour is present and may reveal winds that are otherwise invisible.",
+        "kind": "verified",
+        "sources": [
+          "cs_zoo",
+          "cs_launch"
+        ]
+      },
+      {
+        "topic": "Mars",
+        "q": "What are Martian clouds made of?",
+        "a": "Water ice and, where it is cold enough, especially high up, carbon-dioxide ice. Carbon dioxide makes up about 95% of Mars' atmosphere.",
+        "kind": "verified",
+        "sources": [
+          "cs_zoo"
+        ]
+      },
+      {
+        "topic": "Method",
+        "q": "How does citizen science work?",
+        "a": "Volunteers learn a task, examine real data, and submit observations on the official platform. Researchers then review and combine them. In MoonDiff, experts review each flagged change; in Cloudspotting, classifications build a database of cloud shapes.",
+        "kind": "verified",
+        "sources": [
+          "md_bg",
+          "cs_nasa",
+          "citsci"
+        ]
+      },
+      {
+        "topic": "Method",
+        "q": "What is the difference between an observation and an interpretation?",
+        "a": "An observation is what you can directly see or measure, such as \"a crater with bright rays\". An interpretation is what you think it means, such as \"a rocket made it\". Science keeps them separate, so that conclusions can be checked against evidence.",
+        "kind": "interpretation",
+        "sources": []
+      },
+      {
+        "topic": "Method",
+        "q": "What makes a scientific observation reliable?",
+        "a": "It helps when observations can be checked: aligned images, repeated looks, and review by others. MoonDiff measures how well each image pair is aligned and has experts review every change; Cloudspotting asks volunteers to check a second view of the surface before calling something a cloud.",
+        "kind": "interpretation",
+        "sources": [
+          "md_bg",
+          "cs_launch"
+        ]
+      },
+      {
+        "topic": "Method",
+        "q": "Why do scientists sometimes say they do not know something?",
+        "a": "Because the evidence is not yet strong enough, and stating uncertainty honestly is part of science. Both projects publish their open questions, such as the lunar impact rate and the seasonal patterns of Martian clouds, and exist precisely because those answers are not yet known.",
+        "kind": "interpretation",
+        "sources": [
+          "md_bg",
+          "cs_zoo"
+        ]
+      },
+      {
+        "topic": "Heritage",
+        "q": "Why is planetary heritage important?",
+        "a": "Some sites mark turning points in human history. NASA calls Apollo 11 \"a watershed in human history and humanity\". Sites can also hold active experiments and scientific records of how materials age on the Moon, which is why NASA published recommendations for protecting them.",
+        "kind": "verified",
+        "sources": [
+          "heritage"
+        ]
+      }
+    ]
+  },
+  "profile": {
+    "title": "Your planetary scientist profile",
+    "intro": "An optional way to find where to start. It is not a personality test and says nothing about scientific ability. Nothing is stored or sent.",
+    "questions": [
+      {
+        "id": "compare",
+        "q": "Do you enjoy comparing images to spot differences?",
+        "pathway": "image"
+      },
+      {
+        "id": "moon",
+        "q": "Are you curious about the Moon's surface?",
+        "pathway": "lunar"
+      },
+      {
+        "id": "atmos",
+        "q": "Are you interested in planetary atmospheres and weather?",
+        "pathway": "mars"
+      },
+      {
+        "id": "patterns",
+        "q": "Do you enjoy identifying patterns?",
+        "pathway": "evidence"
+      },
+      {
+        "id": "instruments",
+        "q": "Are you interested in spacecraft and scientific instruments?",
+        "pathway": "image"
+      },
+      {
+        "id": "history",
+        "q": "Do you want to learn more about historical space missions?",
+        "pathway": "history"
+      }
+    ],
+    "pathways": {
+      "image": {
+        "name": "Planetary Image Investigator",
+        "why": "You enjoy looking closely at images and how they are made.",
+        "links": [
+          [
+            "Moon: compare the eras",
+            "#beyond-moon"
+          ],
+          [
+            "Science behind the image panels",
+            "#beyond-moon"
+          ]
+        ],
+        "project": "moon"
+      },
+      "lunar": {
+        "name": "Lunar Research Explorer",
+        "why": "You are curious about how the Moon's surface changes.",
+        "links": [
+          [
+            "The Lunar Investigation",
+            "#beyond-moon"
+          ],
+          [
+            "Open questions about the Moon",
+            "#beyond-wall"
+          ]
+        ],
+        "project": "moon"
+      },
+      "mars": {
+        "name": "Martian Atmosphere Explorer",
+        "why": "You are interested in atmospheres, clouds and weather.",
+        "links": [
+          [
+            "The Martian Atmosphere Lab",
+            "#beyond-mars"
+          ],
+          [
+            "Open questions about Mars",
+            "#beyond-wall"
+          ]
+        ],
+        "project": "mars"
+      },
+      "evidence": {
+        "name": "Scientific Evidence Investigator",
+        "why": "You like finding patterns and checking what the evidence really shows.",
+        "links": [
+          [
+            "The Observation Labs",
+            "#beyond-moon"
+          ],
+          [
+            "Ask a planetary scientist",
+            "#beyond-ask"
+          ]
+        ],
+        "project": "both"
+      },
+      "history": {
+        "name": "Space Mission Historian",
+        "why": "You want to know the stories of past missions and what they left behind.",
+        "links": [
+          [
+            "Case files",
+            "#cases"
+          ],
+          [
+            "The collection",
+            "#objects"
+          ],
+          [
+            "Timeline",
+            "#timeline"
+          ]
+        ],
+        "project": "both"
+      }
+    }
+  },
+  "charter": {
+    "title": "The Future Explorer Charter",
+    "opening": "We have learned from the footprints humanity has left behind. What principles should guide the footprints we leave next?",
+    "principles": [
+      "Document historical exploration sites.",
+      "Preserve scientific records.",
+      "Respect the historical value of equipment.",
+      "Investigate before making assumptions.",
+      "Support responsible planetary exploration.",
+      "Share scientific knowledge.",
+      "Balance scientific research with heritage preservation."
+    ],
+    "label": "A visitor-created educational statement. It is not an official NASA policy, declaration or certificate.",
+    "placeholder": "In my own words, why these principles matter (optional, max 280 characters). Please do not include personal information."
+  },
+  "disclaimer": "LUNAR ECHOES is an independent educational project developed for NASA Space Apps Challenge. It is not affiliated with, operated by or endorsed by NASA. NASA project names, imagery and resources are referenced for educational purposes. Actual citizen-science participation takes place through the respective official platforms."
+}

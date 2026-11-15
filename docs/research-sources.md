@@ -195,6 +195,25 @@ All pages were read on 14–15 Nov 2026. Real participation happens only on the 
 
 **Not used:** MoonDiff's article screenshot, and PIA18613. NASA describes PIA18613 as showing an escaping atmosphere, not clouds.
 
+**Extended learning (`data/beyond-learning.json`, added 15 Nov 2026).** Every item carries source keys that resolve to the URLs listed in that file. Additional facts:
+
+| Fact used | Source |
+|---|---|
+| IUVS measures ultraviolet; clouds reflect UV strongly and appear white; IUVS has five observing modes; it has observed since 2014; images are built by scanning, so the disk looks sliced; clouds form from water ice and CO₂ ice (CO₂ ≈ 95% of the atmosphere); clouds may reveal otherwise invisible winds; Earth analogues (gravity-wave, cap clouds); goal of mapping six major cloud types into a database and library | Zooniverse project 17802: science case, FAQ and introduction (public API, read 15 Nov 2026) |
+| The project's images come from IUVS. NASA's caption for our specific image does **not** name the instrument, so the "Science behind the image" panel labels it **Unknown** with that explanation. | as above + [NASA: Cloudspotting on Mars: Shapes](https://science.nasa.gov/citizen-science/cloudspotting-on-mars-shapes/) |
+| No observation date is given for either demo image | NASA image record GSFC_20171208_Archive_e000501; NASA Cloudspotting page caption |
+| Heritage questions: 2011 recommendations (75 m, 225 m, 2 km, non-binding; anticipated more formal and perhaps multilateral guidance; tangential low fly-by imaging "with minimal risk") | [NASA's Recommendations to Space-Faring Entities (2011)](https://www.nasa.gov/wp-content/uploads/2017/10/617743main_nasa-usg_lunar_historic_sites_reva-508.pdf), pp. 5, 7, 17, 28 |
+| MoonDiff's intro video (linked, not embedded) | https://trek.nasa.gov/app/static/moondiff_intro.webm |
+
+**Our own content:**
+- **Explanations, labelled "Interpretation":** some Ask answers on scientific method, the Moon image's "Scientific purpose" row, and some lab feedback.
+- **Visitor-generated content:**
+  - Profile pathway suggestions: rule-based, nothing stored.
+  - Charter: visitor-written, and labelled as not NASA policy.
+  - Journal: session-only, and labelled as not a certificate.
+
+No participation statistics or research outcomes are stated anywhere.
+
 ### Coordinates
 
 - Stored as planetocentric degrees, **east longitude positive, −180 to 180**.
