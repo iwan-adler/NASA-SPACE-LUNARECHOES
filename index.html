@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Lunar Echoes: a digital museum of the machines NASA left on the Moon and Mars, and the science they made possible.">
-  <title>Lunar Echoes</title>
+  <meta name="description" content="Lunar Echoes: a living archive of humanity's footprints beyond Earth. The machines NASA left on the Moon and Mars, and the science they made possible.">
+  <meta name="theme-color" content="#05060c">
+  <title>Lunar Echoes · A Living Archive of Humanity's Footprints Beyond Earth</title>
   <link rel="stylesheet" href="css/style.css?v=20261115">
   <link rel="stylesheet" href="css/beyond.css?v=20261115">
   <link rel="stylesheet" href="css/journey.css?v=20261115d">
@@ -13,59 +14,89 @@
   <link rel="stylesheet" href="css/heritage-map.css?v=20261115d">
   <link rel="stylesheet" href="css/footprints.css?v=20261115d">
   <link rel="stylesheet" href="css/responsive.css?v=20261115">
+  <!-- Cinematic visual layer: loaded last so it restyles without changing component code -->
+  <link rel="stylesheet" href="css/cinematic.css?v=20261115f">
 </head>
-<body>
+<body class="cine">
   <a class="skip-link" href="#objects">Skip to the collection</a>
+
+  <!-- Deep-space backdrop: CSS gradient + nebula (always), star field canvas (js/cinematic.js) -->
+  <div class="cosmos" aria-hidden="true">
+    <canvas id="starfield" class="cosmos-stars"></canvas>
+    <div class="cosmos-twinkle"></div>
+    <div class="cosmos-nebula"></div>
+  </div>
 
   <header class="site-header">
     <a class="brand" href="#top" aria-label="Lunar Echoes, back to top">
       <span class="brand-mark" aria-hidden="true"></span>
       <span class="brand-name">Lunar Echoes</span>
     </a>
-    <nav class="site-nav" aria-label="Main">
-      <a href="#journey">Journey</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+      <span class="nav-toggle-bars" aria-hidden="true"></span>
+      <span class="nav-toggle-text">Menu</span>
+    </button>
+    <nav id="site-nav" class="site-nav" aria-label="Main">
       <a href="#objects">Archive</a>
-      <a href="#last-signal">Last Signal</a>
-      <a href="#cases">Detective</a>
-      <a href="#map">Heritage map</a>
-      <a href="#beyond">Citizen science</a>
-      <a href="rover/index.html">Rover Rescue</a>
-      <a href="#decision">Future explorer</a>
-      <a href="#ethics">Ethics</a>
+      <a href="#objects" data-world="moon">Moon</a>
+      <a href="#objects" data-world="mars">Mars</a>
+      <div class="nav-group">
+        <button class="nav-menu-btn" type="button" aria-expanded="false" aria-controls="menu-investigations">Investigations</button>
+        <ul id="menu-investigations" class="nav-menu" hidden>
+          <li><a href="#cases">The Planetary Detective</a></li>
+          <li><a href="#evidence-game">Evidence or Assumption?</a></li>
+          <li><a href="#last-signal">The Last Signal</a></li>
+          <li><a href="#map">The Forgotten Footprints map</a></li>
+          <li><a href="#footprints">Mission Footprints Lab</a></li>
+          <li><a href="#compare">Moon vs Mars</a></li>
+        </ul>
+      </div>
+      <div class="nav-group">
+        <button class="nav-menu-btn" type="button" aria-expanded="false" aria-controls="menu-experiences">Experiences</button>
+        <ul id="menu-experiences" class="nav-menu" hidden>
+          <li><a href="rover/index.html">Rover Rescue</a></li>
+          <li><a href="rover/build.html">Build Your Own Rover</a></li>
+          <li><a href="#beyond">Citizen science</a></li>
+          <li><a href="#decision">Future explorer</a></li>
+          <li><a href="#ethics">The Ethics of Exploration</a></li>
+          <li><a href="#quiz">Mission quiz</a></li>
+        </ul>
+      </div>
+      <a href="#about">About</a>
     </nav>
   </header>
 
   <!-- ===== Landing ===== -->
   <section id="top" class="hero" aria-labelledby="hero-title">
-    <div class="hero-worlds" aria-hidden="true">
-      <div class="hero-world hero-moon"></div>
-      <div class="hero-world hero-mars"></div>
+    <!-- Real NASA global maps wrapped onto spheres (credits below) -->
+    <div class="hero-globes" aria-hidden="true">
+      <div class="globe globe-moon"><span class="globe-surface"></span></div>
+      <div class="globe globe-mars"><span class="globe-surface"></span></div>
     </div>
     <div class="hero-inner">
-      <p class="eyebrow">NASA Space Apps Challenge 2026 · A planetary heritage museum</p>
-      <h1 id="hero-title">Lunar Echoes <span class="hero-subtitle">Beyond the Archive</span></h1>
-      <p class="hero-tagline">Humanity explored. History remained. Discovery continues.</p>
-      <p class="hero-question">When humanity explores another world, what responsibility do we have for the things we leave there?</p>
+      <p class="eyebrow">NASA Space Apps Challenge 2026 · Beyond the Archive</p>
+      <h1 id="hero-title">Lunar Echoes</h1>
+      <p class="hero-subtitle-line">A Living Archive of Humanity's Footprints Beyond Earth.</p>
+      <p class="hero-tagline">Explore the past. Investigate the present. Shape the future.</p>
       <p class="hero-lead">
-        On the Moon and on Mars, landers, rovers and science stations still stand
-        where people sent them. Most went silent long ago.
-        <strong>One still answers when scientists shine a laser at it.</strong>
-        Investigate the evidence, then decide what future explorers should do.
+        Landers, rovers and science stations still stand where people sent them on the Moon and Mars.
+        Most went silent long ago. <strong>One still answers when scientists shine a laser at it.</strong>
       </p>
       <div class="hero-actions">
-        <a class="btn btn-primary" href="#journey">Begin the journey</a>
+        <a class="btn btn-primary btn-glow" href="#objects">Explore the Archive</a>
+        <a class="btn btn-ghost" href="#journey">Begin the journey</a>
         <button class="btn btn-ghost" type="button" data-open-case="0">Open a case file</button>
-        <a class="btn btn-ghost" href="#objects">Browse the archive</a>
       </div>
       <!-- js/explore.js fills these numbers from data/objects.json -->
       <dl id="hero-stats" class="hero-stats" aria-label="The collection in numbers"></dl>
     </div>
-    <p class="hero-credit">Photos: Apollo 15 rover (NASA/JSC, AS15-86-11603) · Opportunity self-portrait (NASA/JPL, PIA17759)</p>
+    <a class="scroll-cue" href="#journey"><span class="scroll-cue-line" aria-hidden="true"></span>Scroll to explore</a>
+    <p class="hero-credit">Globes: NASA SVS CGI Moon Kit (LRO) · Viking MDIM 2.1 mosaic (NASA/USGS) via NASA Mars Trek</p>
   </section>
 
   <main id="main">
     <!-- ===== The journey: one story through every experience (css/journey.css) ===== -->
-    <section id="journey" class="home-journey" aria-labelledby="journey-title">
+    <section id="journey" class="home-journey env-experience" aria-labelledby="journey-title">
       <p class="eyebrow">The challenge · Abandoned but not Forgotten</p>
       <h2 id="journey-title" class="section-title">Explore the past. Investigate the present. Shape the future.</h2>
       <p class="section-intro">Since 1967, NASA has sent landers, rovers and science stations to the Moon and Mars. Most fell silent long ago, but the hardware is still there.
@@ -89,13 +120,13 @@
             <li><a href="#map"><strong>The Forgotten Footprints</strong><span>Heritage map: verified, approximate and unknown locations</span></a></li>
             <li><a href="#footprints"><strong>Mission Footprints Lab</strong><span>Real NASA images, and what they can and cannot tell us</span></a></li>
             <li><a href="#compare"><strong>Moon vs Mars</strong><span>Two very different worlds to leave a machine</span></a></li>
-            <li><a href="#beyond"><strong>Citizen science</strong><span>MoonDiff and Cloudspotting on Mars: Shapes</span></a></li>
           </ul>
         </li>
         <li class="hj-step is-future">
           <p class="hj-no">03 · Shape the future</p>
           <h3>How should we explore next?</h3>
           <ul class="hj-links">
+            <li><a href="#beyond"><strong>Citizen science</strong><span>MoonDiff and Cloudspotting on Mars: Shapes</span></a></li>
             <li><a href="rover/index.html"><strong>Rover Rescue</strong><span>Drive, sample and reason like a planetary scientist</span></a></li>
             <li><a href="rover/build.html"><strong>Build Your Own Rover</strong><span>Engineer a rover for a mission, within a budget</span></a></li>
             <li><a href="#decision"><strong>Future explorer</strong><span>Document, study or preserve? See the trade-offs</span></a></li>
@@ -107,30 +138,10 @@
       </ol>
     </section>
 
-    <!-- ===== Case files (investigation mode) ===== -->
-    <section id="cases" class="cases" aria-labelledby="cases-title">
-      <p class="eyebrow">Evidence room · Case files</p>
-      <h2 id="cases-title" class="section-title">The Planetary Detective</h2>
-      <p class="section-intro">Become a planetary archaeologist. Pick a case, examine the photograph, records, timeline and NASA evidence, sort what is confirmed from what is guessed, then reach your conclusion and see the real record.</p>
-      <!-- js/cases.js fills these from data/cases.json -->
-      <div id="case-shelf" class="case-shelf" aria-busy="true">
-        <p class="loading">Unlocking the archive…</p>
-      </div>
-      <article id="case-view" class="case-view" aria-labelledby="case-title" hidden></article>
-    </section>
-
-    <!-- ===== Evidence or Assumption? (js/evidence-game.js, data/evidence-game.json) ===== -->
-    <section id="evidence-game" class="evidence-game" aria-labelledby="evidence-game-title">
-      <p class="eyebrow">Reasoning game</p>
-      <h2 id="evidence-game-title" class="section-title">Evidence or Assumption?</h2>
-      <p class="section-intro">Read the NASA evidence, then judge the claim. Is it supported, contradicted, or is there simply not enough evidence to decide? The evidence stays on screen: this is about reasoning, not memory.</p>
-      <div id="evidence-box" class="eg" aria-busy="true">
-        <p class="loading">Shuffling the claims…</p>
-      </div>
-    </section>
-
-    <!-- ===== Why this museum ===== -->
-    <section id="intro" class="intro" aria-labelledby="intro-title">
+    <!-- ===== About: why this museum ===== -->
+    <section id="about" class="intro" aria-labelledby="intro-title">
+      <span id="intro" class="anchor-alias" aria-hidden="true"></span>
+      <p class="eyebrow">About the museum</p>
       <h2 id="intro-title" class="section-title">Every machine is an echo of a mission</h2>
       <div class="intro-grid">
         <div class="intro-item">
@@ -148,8 +159,18 @@
       </div>
     </section>
 
+    <!-- ===== Chapter I: real NASA photo (Apollo 11, AS11-40-5903) ===== -->
+    <div class="chapter chapter-moon" role="presentation">
+      <div class="chapter-inner">
+        <p class="chapter-no">Chapter I</p>
+        <p class="chapter-title">Explore the past</p>
+        <p class="chapter-text">Twelve machines. Two worlds. Every one of them still out there.</p>
+      </div>
+      <p class="chapter-credit">Buzz Aldrin beside a leg of the lunar module Eagle, Apollo 11, July 1969. NASA/JSC, AS11-40-5903</p>
+    </div>
+
     <!-- ===== Collection ===== -->
-    <section id="objects" aria-labelledby="objects-title">
+    <section id="objects" class="env-archive" aria-labelledby="objects-title">
       <p class="eyebrow">The collection</p>
       <h2 id="objects-title" class="section-title">Objects on the Moon and Mars</h2>
       <p class="section-intro">Choose a world, search for a mission, then open an object to read its story in five chapters.</p>
@@ -159,27 +180,8 @@
       </div>
     </section>
 
-    <!-- ===== Future Explorer (Mission Control Decision Room) ===== -->
-    <section id="decision" aria-labelledby="decision-title">
-      <p class="eyebrow">Future explorer · Mission control</p>
-      <h2 id="decision-title" class="section-title">What would you do?</h2>
-      <p class="section-intro">One day, explorers will land beside the hardware we left behind. Should they document it, study it or preserve it? Make the call and see the trade-offs.</p>
-      <!-- js/cases.js fills this from data/decision.json -->
-      <div id="decision-box" class="decision"></div>
-    </section>
-
-    <!-- ===== The Ethics of Exploration (js/ethics.js, data/ethics.json) ===== -->
-    <section id="ethics" class="ethics" aria-labelledby="ethics-title">
-      <p class="eyebrow">Shape the future · Decision simulator</p>
-      <h2 id="ethics-title" class="section-title">The Ethics of Exploration</h2>
-      <p class="section-intro">Four dilemmas about the hardware we leave behind. Choose, then see the consequences for science, history, preservation and future explorers. There is no score: these are trade-offs, not quiz questions.</p>
-      <div id="ethics-box" class="eth" aria-busy="true">
-        <p class="loading">Convening the committee…</p>
-      </div>
-    </section>
-
     <!-- ===== Timeline ===== -->
-    <section id="timeline" aria-labelledby="timeline-title">
+    <section id="timeline" class="env-archive" aria-labelledby="timeline-title">
       <p class="eyebrow">Through time</p>
       <h2 id="timeline-title" class="section-title">Timeline of arrivals</h2>
       <p class="section-intro">From a 1967 robot lander on the Moon to a 2018 marsquake listener on Mars. Select a name to read its story.</p>
@@ -188,7 +190,7 @@
     </section>
 
     <!-- ===== The Last Signal (js/last-signal.js, data/last-signal.json, css/last-signal.css) ===== -->
-    <section id="last-signal" class="last-signal" aria-labelledby="last-signal-title">
+    <section id="last-signal" class="last-signal env-archive" aria-labelledby="last-signal-title">
       <p class="eyebrow">Mission histories</p>
       <h2 id="last-signal-title" class="section-title">The Last Signal</h2>
       <p class="section-intro">Every mission has a beginning and an end. Tune in to a channel to follow one from launch to its last documented event, and see what stayed behind.
@@ -198,27 +200,50 @@
       </div>
     </section>
 
-    <!-- ===== Moon vs Mars ===== -->
-    <section id="compare" aria-labelledby="compare-title">
-      <p class="eyebrow">Two worlds</p>
-      <h2 id="compare-title" class="section-title">Moon vs Mars</h2>
-      <p class="section-intro">Two very different places to leave a machine. Planet facts come from NASA's NSSDCA fact sheets.</p>
-      <!-- js/explore.js fills this from data/worlds.json and data/objects.json -->
-      <div id="compare-box" class="compare"></div>
+    <!-- ===== Chapter II: real NASA photo (Spirit, PIA16442) ===== -->
+    <div class="chapter chapter-mars" role="presentation">
+      <div class="chapter-inner">
+        <p class="chapter-no">Chapter II</p>
+        <p class="chapter-title">Investigate the present</p>
+        <p class="chapter-text">What do we actually know, and how do we know it?</p>
+      </div>
+      <p class="chapter-credit">Spirit rover self-portrait from the McMurdo panorama, Mars, 2006. NASA/JPL-Caltech/Cornell Univ./Arizona State Univ., PIA16442</p>
+    </div>
+
+    <!-- ===== Case files (investigation mode) ===== -->
+    <section id="cases" class="cases env-lab" aria-labelledby="cases-title">
+      <p class="eyebrow">Evidence room · Case files</p>
+      <h2 id="cases-title" class="section-title">The Planetary Detective</h2>
+      <p class="section-intro">Become a planetary archaeologist. Pick a case, examine the photograph, records, timeline and NASA evidence, sort what is confirmed from what is guessed, then reach your conclusion and see the real record.</p>
+      <!-- js/cases.js fills these from data/cases.json -->
+      <div id="case-shelf" class="case-shelf" aria-busy="true">
+        <p class="loading">Unlocking the archive…</p>
+      </div>
+      <article id="case-view" class="case-view" aria-labelledby="case-title" hidden></article>
     </section>
 
-    <!-- ===== Location explorer ===== -->
-    <section id="map" aria-labelledby="map-title">
+    <!-- ===== Evidence or Assumption? (js/evidence-game.js, data/evidence-game.json) ===== -->
+    <section id="evidence-game" class="evidence-game env-lab" aria-labelledby="evidence-game-title">
+      <p class="eyebrow">Reasoning game</p>
+      <h2 id="evidence-game-title" class="section-title">Evidence or Assumption?</h2>
+      <p class="section-intro">Read the NASA evidence, then judge the claim. Is it supported, contradicted, or is there simply not enough evidence to decide? The evidence stays on screen: this is about reasoning, not memory.</p>
+      <div id="evidence-box" class="eg" aria-busy="true">
+        <p class="loading">Shuffling the claims…</p>
+      </div>
+    </section>
+
+    <!-- ===== Location explorer / heritage map ===== -->
+    <section id="map" class="env-worlds" aria-labelledby="map-title">
       <p class="eyebrow">Where they rest</p>
       <h2 id="map-title" class="section-title">Location explorer</h2>
       <p class="section-intro">Positions from NASA's NSSDCA records, plotted on a latitude/longitude grid.
         Only objects with verified coordinates are shown.</p>
-      <!-- js/explore.js fills this -->
+      <!-- js/explore.js fills this; js/heritage-map.js upgrades it -->
       <div id="map-box" class="map"></div>
     </section>
 
     <!-- ===== Mission Footprints Lab (js/footprints.js, data/footprints.json, css/footprints.css) ===== -->
-    <section id="footprints" class="footprints" aria-labelledby="footprints-title">
+    <section id="footprints" class="footprints env-lab" aria-labelledby="footprints-title">
       <p class="eyebrow">Image lab · Real NASA imagery</p>
       <h2 id="footprints-title" class="section-title">Mission Footprints Lab</h2>
       <p class="section-intro">Footprints, landing scars, rovers and landers, seen from the ground and from orbit. Each image comes with what it shows, who took it, why, what scientists learn from it, and what it cannot tell us.
@@ -228,21 +253,79 @@
       </div>
     </section>
 
+    <!-- ===== Moon vs Mars ===== -->
+    <section id="compare" class="env-worlds" aria-labelledby="compare-title">
+      <p class="eyebrow">Two worlds</p>
+      <h2 id="compare-title" class="section-title">Moon vs Mars</h2>
+      <p class="section-intro">Two very different places to leave a machine. Planet facts come from NASA's NSSDCA fact sheets.</p>
+      <!-- js/explore.js fills this from data/worlds.json and data/objects.json -->
+      <div id="compare-box" class="compare"></div>
+    </section>
+
+    <!-- ===== Chapter III: real NASA photo (InSight, PIA25287) ===== -->
+    <div class="chapter chapter-future" role="presentation">
+      <div class="chapter-inner">
+        <p class="chapter-no">Chapter III</p>
+        <p class="chapter-title">Shape the future</p>
+        <p class="chapter-text">Join real research, design the next explorer, and decide what we owe the places we visit.</p>
+      </div>
+      <p class="chapter-credit">InSight's final selfie, Mars, 24 April 2022. NASA/JPL-Caltech, PIA25287</p>
+    </div>
+
+    <!-- ===== Beyond the Archive: NASA citizen science ===== -->
+    <section id="beyond" class="beyond env-experience" aria-labelledby="beyond-title">
+      <p class="eyebrow">Citizen science on the Moon and Mars</p>
+      <h2 id="beyond-title" class="section-title">Beyond the Archive</h2>
+      <!-- js/citizen.js fills this from data/citizen-science.json -->
+      <div id="beyond-box"></div>
+    </section>
+
+    <!-- ===== Future Explorer (Mission Control Decision Room) ===== -->
+    <section id="decision" class="env-experience" aria-labelledby="decision-title">
+      <p class="eyebrow">Future explorer · Mission control</p>
+      <h2 id="decision-title" class="section-title">What would you do?</h2>
+      <p class="section-intro">One day, explorers will land beside the hardware we left behind. Should they document it, study it or preserve it? Make the call and see the trade-offs.</p>
+      <!-- js/cases.js fills this from data/decision.json -->
+      <div id="decision-box" class="decision"></div>
+    </section>
+
+    <!-- ===== The Ethics of Exploration (js/ethics.js, data/ethics.json) ===== -->
+    <section id="ethics" class="ethics env-experience" aria-labelledby="ethics-title">
+      <p class="eyebrow">Shape the future · Decision simulator</p>
+      <h2 id="ethics-title" class="section-title">The Ethics of Exploration</h2>
+      <p class="section-intro">Four dilemmas about the hardware we leave behind. Choose, then see the consequences for science, history, preservation and future explorers. There is no score: these are trade-offs, not quiz questions.</p>
+      <div id="ethics-box" class="eth" aria-busy="true">
+        <p class="loading">Convening the committee…</p>
+      </div>
+    </section>
+
+    <!-- ===== Rover experiences (separate pages) ===== -->
+    <section id="rover-experiences" class="env-experience" aria-labelledby="rover-exp-title">
+      <p class="eyebrow">Hands-on experiences</p>
+      <h2 id="rover-exp-title" class="section-title">Take the controls</h2>
+      <div class="exp-cards">
+        <a class="exp-card exp-rover" href="rover/index.html">
+          <span class="exp-kicker">Game · Moon or Mars</span>
+          <span class="exp-title">Rover Rescue: Mission to Discover</span>
+          <span class="exp-text">Drive a rover, collect samples, run four simulated instruments and decide what the evidence supports.</span>
+          <span class="exp-go">Launch the game →</span>
+        </a>
+        <a class="exp-card exp-build" href="rover/build.html">
+          <span class="exp-kicker">Engineering simulator</span>
+          <span class="exp-title">Build Your Own Rover</span>
+          <span class="exp-text">Choose wheels, instruments, power and radios for a fictional mission, within a budget, and read your design report.</span>
+          <span class="exp-go">Open the workshop →</span>
+        </a>
+      </div>
+    </section>
+
     <!-- ===== Quiz ===== -->
-    <section id="quiz" aria-labelledby="quiz-title">
+    <section id="quiz" class="env-experience" aria-labelledby="quiz-title">
       <p class="eyebrow">Test and learn</p>
       <h2 id="quiz-title" class="section-title">Mission quiz</h2>
       <p class="section-intro">Five questions built from the stories in this museum. Every answer reveals a piece of the story.</p>
       <!-- js/quiz.js fills this box -->
       <div id="quiz-box"></div>
-    </section>
-
-    <!-- ===== Beyond the Archive: NASA citizen science ===== -->
-    <section id="beyond" class="beyond" aria-labelledby="beyond-title">
-      <p class="eyebrow">Citizen science on the Moon and Mars</p>
-      <h2 id="beyond-title" class="section-title">Beyond the Archive</h2>
-      <!-- js/citizen.js fills this from data/citizen-science.json -->
-      <div id="beyond-box"></div>
     </section>
   </main>
 
@@ -250,7 +333,7 @@
     <p class="footer-title">Lunar Echoes · Beyond the Archive</p>
     <p>Built for the NASA Space Apps Challenge 2026 ("Abandoned but not Forgotten") by a student team.</p>
     <p>Facts: NASA Space Science Data Coordinated Archive (NSSDCA) Master Catalog and fact sheets, nasa.gov and science.nasa.gov.
-      Images: NASA Image and Video Library.</p>
+      Images: NASA Image and Video Library. Globes: NASA SVS CGI Moon Kit; Viking MDIM 2.1 (NASA/USGS) via NASA Mars Trek.</p>
     <p class="footer-disclaimer">LUNAR ECHOES is an independent educational project developed for NASA Space Apps Challenge. It is not affiliated with, operated by or endorsed by NASA. NASA project names, imagery and resources are referenced for educational purposes. Actual citizen-science participation takes place through the respective official platforms.</p>
   </footer>
 
@@ -268,5 +351,6 @@
   <script src="js/citizen.js?v=20261115"></script>
   <script src="js/beyond-extras.js?v=20261115"></script>
   <script src="js/main.js?v=20261115d"></script>
+  <script src="js/cinematic.js?v=20261115e"></script>
 </body>
 </html>
