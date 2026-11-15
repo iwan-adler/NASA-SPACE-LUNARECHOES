@@ -19,6 +19,8 @@ Space Apps asks teams to be open about how they used AI tools. Keep this file up
 
 | Claude Code (Anthropic) | **Cinematic visual redesign** (15 Nov 2026): a deep-space backdrop (CSS gradient and nebula, plus a star field drawn by code with no AI images), a glass navigation bar with Investigations/Experiences menus, a hero with rotating globes made from NASA global maps, chapter breaks using credited NASA photos, section environments, glass cards and reduced-motion-safe animation (`css/cinematic.css`, `js/cinematic.js`, `index.html`). No images were generated; no data or credits were changed. | **Needs team check** |
 
+| Claude Code (Anthropic) | **Round 3, Priority 2** (15 Nov 2026): One Mission, Four Perspectives (`js/perspectives.js`), the Virtual Planetary Museum (`js/museum.js`), the Planetary Time Capsule (`js/capsule.js`), the Future Landing Site Designer (`js/landing.js`), My Explorer's Logbook (`js/logbook.js`) and `css/experiences.css`, plus small hooks in `js/objects.js`, `js/main.js` and `rover/rover.js`. All facts are reused from `data/objects.json`. **Written by AI:** the perspective questions, the capsule preservation suggestions, the landing trade-off texts (labelled Interpretation) and all interface text. | **Needs team check** |
+
 ## What AI did not do
 
 - The AI did not invent facts. Every fact, date, coordinate and image in the app is traced to a NASA page in

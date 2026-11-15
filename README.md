@@ -52,6 +52,12 @@ data/ethics.json           Dilemmas and their labelled consequences
 css/heritage-map.css, css/footprints.css  Styles for the map and the image lab
 css/cinematic.css          Cinematic visual layer (loaded last): space backdrop, glass UI, hero globes, chapters
 js/cinematic.js            Star field, glass navigation menus, gentle reveal on scroll (presentational only)
+js/perspectives.js         One Mission, Four Perspectives switcher inside every object story
+js/museum.js               Virtual Planetary Museum: Moon and Mars halls, optional browser narration
+js/capsule.js              Planetary Time Capsule: choose records, write a message, download or print
+js/landing.js              Future Landing Site Designer: real distances to heritage sites on NASA maps
+js/logbook.js              My Explorer's Logbook: site-wide journey summary kept in this browser
+css/experiences.css        Styles for the five Priority 2 experiences
 assets/images/maps/        NASA basemaps (SVS CGI Moon Kit; Viking MDIM 2.1 via Mars Trek)
 assets/images/footprints/  Phoenix HiRISE comparison pair (PIA22223 figures 1 and 2)
 rover/build.html (+ build.js, build.css, build-data.json)  Build Your Own Rover simulator
@@ -117,6 +123,28 @@ Shape the future**. The footer carries the full project disclaimer. The audit an
 - **The Ethics of Exploration** (`#ethics`): four hypothetical dilemmas (retrieval, science vs preservation,
   documentation, rules for a busy Moon). Each consequence is shown from four perspectives and labelled Verified or
   Interpretation. There is no score.
+
+### Round 3 (Priority 2)
+
+- **One Mission, Four Perspectives:** every object story has Engineer, Scientist, Historian and Future explorer tabs.
+  They re-frame the object's existing sourced facts (labels unchanged). The guiding questions are prompts, not claims.
+  The tabs work with the arrow keys.
+- **Virtual Planetary Museum** (`#museum`): a full-screen Moon Hall and Mars Hall, one exhibit at a time, each with a
+  photo, a technical placard, the story and its legacy. Arrow keys move between exhibits. Optional narration uses the
+  browser's built-in speech synthesis, with no external service.
+- **Planetary Time Capsule** (`#capsule`): choose records and content, write a message and preservation instructions,
+  then download an HTML file or print. Facts are quoted from the archive with sources; the visitor's text is labelled as
+  theirs. It is not an official record.
+- **Future Landing Site Designer** (`#landing`): place a fictional site on the NASA Moon or Mars map, by click or by
+  coordinates.
+  - The page calculates great-circle distances to heritage objects, using the NSSDCA radius, and checks NASA's 2011
+    2.0 km no-overflight recommendation on the Moon.
+  - Terrain, resources and goals are labelled as the visitor's assumptions.
+  - The proposal is printable.
+- **My Explorer's Logbook** (`#logbook`): counts objects explored, cases, samples, instruments, questions answered,
+  citizen-science visits and preservation decisions, with a summary and the latest entries.
+  - It is kept in localStorage in this browser only. Rover Rescue mirrors a small summary for it.
+  - Printable and clearable. Not a certificate.
 
 ## Beyond the Mission
 

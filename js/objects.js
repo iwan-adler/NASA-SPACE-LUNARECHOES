@@ -609,6 +609,9 @@ function openStory(item, opener) {
   body.appendChild(fate);
   body.appendChild(makeBoundaryLegend());
 
+  // One mission, four perspectives (js/perspectives.js; skipped if that file is missing)
+  if (typeof makePerspectives === "function") body.appendChild(makePerspectives(item));
+
   // --- Passport sections ---
   var sections = makeEl("ol", "passport-sections");
   sections.setAttribute("aria-label", "Heritage passport");

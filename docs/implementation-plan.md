@@ -52,6 +52,15 @@ Audit of `main` at commit 535afa9 (15 Nov 2026), checked against the master proj
 
 The teammate's untracked globe (`welcome.html`) is still untouched. It could reuse `data/heritage-map.json` and the basemaps.
 
+## Round 3 (Priority 2): done
+
+- **Four Perspectives:** tabs in every object story.
+- **Virtual Planetary Museum:** two halls, with optional narration.
+- **Planetary Time Capsule:** download or print.
+- **Future Landing Site Designer:** real distances and NASA's 2 km lunar check.
+- **Explorer's Logbook:** a shared journal across the site, including Rover Rescue and citizen science.
+- Two P2 items already existed: the Heritage Charter and Ask a Planetary Scientist (Beyond the Archive).
+
 ## Next rounds (proposed)
 
 - **P1:**
