@@ -7,8 +7,15 @@
   .case-grid,
   .decision-brief { grid-template-columns: 1fr; }
   .case-photo { position: static; }
-  .beyond-grid { grid-template-columns: 1fr; }
-  .beyond-steps { grid-template-columns: 1fr 1fr; }
+  .compare-grid,
+  .shapes-grid,
+  .obs-grid,
+  .eras { grid-template-columns: 1fr; }
+  .lookfor { grid-template-columns: 1fr 1fr; }
+  .stage-name { display: none; }
+  .stage-step { justify-content: center; }
+  .stage-step[aria-current="step"] .stage-name { display: inline; }
+  .stage-stepper { grid-template-columns: repeat(5, auto); }
   .card-grid { grid-template-columns: repeat(2, 1fr); }
   .hero-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .compare,
@@ -54,7 +61,16 @@
   .decision-choices,
   .decision-tradeoffs { grid-template-columns: 1fr; }
   .passport-id { grid-template-columns: 1fr 1fr; }
-  .beyond-project { padding: 1.1rem; }
-  .beyond-steps { grid-template-columns: 1fr; }
+  .world-tabs,
+  .beyond-principles,
+  .journal-cols,
+  .lookfor { grid-template-columns: 1fr; }
+  .world-tab { min-height: 140px; }
+  .stage-stepper { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0.25rem; }
+  .stage-step { padding: 0.4rem 0.1rem; }
+  .stage-step[aria-current="step"] .stage-name { display: none; }
+  .stage-other { margin-left: 0; }
+  .continue-box { padding: 1.25rem; }
+  .beyond-table tbody th { width: auto; }
   .passport-section { padding-left: 2.4rem; }
 }
