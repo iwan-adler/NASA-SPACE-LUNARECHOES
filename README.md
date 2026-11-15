@@ -50,6 +50,8 @@ data/evidence-game.json    Claims, NASA evidence and explanations
 js/ethics.js               The Ethics of Exploration: four dilemmas, four perspectives, no score
 data/ethics.json           Dilemmas and their labelled consequences
 css/heritage-map.css, css/footprints.css  Styles for the map and the image lab
+css/cinematic.css          Cinematic visual layer (loaded last): space backdrop, glass UI, hero globes, chapters
+js/cinematic.js            Star field, glass navigation menus, gentle reveal on scroll (presentational only)
 assets/images/maps/        NASA basemaps (SVS CGI Moon Kit; Viking MDIM 2.1 via Mars Trek)
 assets/images/footprints/  Phoenix HiRISE comparison pair (PIA22223 figures 1 and 2)
 rover/build.html (+ build.js, build.css, build-data.json)  Build Your Own Rover simulator
