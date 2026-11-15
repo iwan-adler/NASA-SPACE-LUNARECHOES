@@ -172,7 +172,7 @@ All pages read on 14 Nov 2026. Participation happens only on the official sites.
 **Demo images:**
 - **Moon:** "LRO Finds Apollo 16 Booster Rocket Impact Site", credit NASA/Goddard/Arizona State University.
 - **Mars:** the MAVEN two-view cloud image from NASA's Cloudspotting page, credit NASA/LASP/CU Boulder, image processing by Kyle Connour.
-- Both load from NASA's servers. No offline copies have been saved yet.
+- Both were downloaded unchanged on 15 Nov 2026 into `assets/images/`, keeping NASA's file names, and checked as JPEGs. The page loads the local copy first and falls back to NASA's server.
 
 **Demo answer location (interpretation):** in the Moon demo, the "correct" spot is the rayed crater at the centre of NASA's image of the impact site. NASA's description identifies the site but does not mark a pixel position, so the click target (centre ±9 %) is our reading of the image.
 

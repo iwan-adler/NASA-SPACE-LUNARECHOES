@@ -65,8 +65,10 @@ function addImage(parent, item, className) {
 // Offline copies: a NASA image URL like
 // https://images-assets.nasa.gov/image/PIA25287/PIA25287~medium.jpg
 // is saved as assets/images/PIA25287~medium.jpg. Returns null for other URLs.
+// The NASA Science image used by the citizen-science section is saved the same way, by file name.
 function localImagePath(url) {
-  var match = /^https:\/\/images-assets\.nasa\.gov\/image\/[^/]+\/([^/]+\.jpg)$/i.exec(String(url || ""));
+  var match = /^https:\/\/images-assets\.nasa\.gov\/image\/[^/]+\/([^/]+\.jpg)$/i.exec(String(url || "")) ||
+              /^https:\/\/assets\.science\.nasa\.gov\/content\/dam\/science\/[^?#]+\/([^/?#]+\.jpg)$/i.exec(String(url || ""));
   return match ? "assets/images/" + match[1] : null;
 }
 

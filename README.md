@@ -41,7 +41,7 @@ js/citizen.js              Beyond the Archive: citizen-science section and pract
 data/citizen-science.json  MoonDiff and Cloudspotting content, sources and demo data
 data/objects.json          12 NASA-sourced object records
 data/worlds.json           Moon/Mars facts from NASA NSSDCA fact sheets
-assets/images/             Offline copies of the 16 NASA photos (credits in docs/research-sources.md)
+assets/images/             Offline copies of the 18 NASA photos (credits in docs/research-sources.md)
 docs/research-sources.md   Every fact and its source
 docs/ai-disclosure.md      How AI tools were used
 presentation/round1-outline.md  Pitch outline
@@ -58,7 +58,7 @@ python -m http.server 8000
 
 Then open http://localhost:8000. (The VS Code "Live Server" extension also works.)
 
-**Works offline.** All 16 NASA photos are saved in `assets/images/` (2.7 MB). The page loads these
+**Works offline.** All 18 NASA photos are saved in `assets/images/` (3.0 MB). The page loads these
 local copies first. If a copy is missing, it falls back to NASA's server (`images-assets.nasa.gov`),
 and if that also fails the image is hidden. `data/objects.json` keeps the original NASA URLs as the
 source record. A local file is named after the last part of its URL (e.g. `PIA25287~medium.jpg`).

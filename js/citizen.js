@@ -119,18 +119,6 @@ function demoHeader(parent, d) {
   parent.appendChild(label);
 }
 
-// Demo images load straight from NASA (no offline copy yet); removed if they fail, so no broken icon.
-function addRemoteImage(parent, url, alt, className) {
-  var img = makeEl("img", className);
-  img.src = url;
-  img.alt = alt;
-  img.loading = "lazy";
-  img.decoding = "async";
-  img.addEventListener("error", function () { img.remove(); });
-  parent.appendChild(img);
-  return img;
-}
-
 function demoCredit(d) {
   var c = makeEl("p", "tn-credit", "Image: " + d.credit + " ");
   if (isWebLink(d.imagePage)) c.appendChild(makeLink(d.imagePage, "(source ↗)"));
@@ -146,7 +134,7 @@ function buildFindDemo(parent, d) {
   var btn = makeEl("button", "find-image-btn");
   btn.type = "button";
   btn.setAttribute("aria-label", "Image to search: click where you think the crater is, or press Enter to choose a region. " + d.alt);
-  addRemoteImage(btn, d.image, d.alt, "find-image");
+  addImageUrl(btn, d.image, d.alt, "find-image"); // local copy first, then NASA
   stage.appendChild(btn);
   var guess = makeEl("span", "find-marker is-guess");
   guess.hidden = true;
@@ -267,7 +255,7 @@ function buildCloudDemo(parent, d) {
   demoHeader(parent, d);
 
   var fig = makeEl("figure", "cloud-figure");
-  addRemoteImage(fig, d.image, d.alt, "cloud-image");
+  addImageUrl(fig, d.image, d.alt, "cloud-image"); // local copy first, then NASA
   var cap = makeEl("figcaption");
   var capText = makeEl("span", "tn-caption");
   capText.appendChild(makeTag("verified"));
