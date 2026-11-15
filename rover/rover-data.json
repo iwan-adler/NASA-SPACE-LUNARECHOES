@@ -1,0 +1,315 @@
+{
+  "_note": "ROVER RESCUE: Mission to Discover. Game data. Sample descriptions and interpretations are based on the NASA sources in `sources` (read 15 Nov 2026). ALL instrument readings are SIMULATED: illustrative qualitative values chosen to match published descriptions, not real NASA measurements. The rover, energy budget, map and sample positions are fictional.",
+  "sources": {
+    "lpetss_basalt": { "name": "NASA JSC: Lunar Petrographic Thin Section Set, Mare Basalt Volcanism", "url": "https://astromaterials.jsc.nasa.gov/education/LPETSS/marebasalt.cfm" },
+    "lpetss_plutonic": { "name": "NASA JSC: Lunar Petrographic Thin Section Set, Plutonic Rocks", "url": "https://astromaterials.jsc.nasa.gov/education/LPETSS/Plutonic.cfm" },
+    "lpetss_breccia": { "name": "NASA JSC: Lunar Petrographic Thin Section Set, Lunar Breccias", "url": "https://astromaterials.jsc.nasa.gov/education/lpetss/breccias.cfm" },
+    "lpetss_regolith": { "name": "NASA JSC: Lunar Petrographic Thin Section Set, The Lunar Regolith", "url": "https://astromaterials.jsc.nasa.gov/education/LPETSS/Regolith.cfm" },
+    "a17": { "name": "NASA: 50 Years Ago, Apollo 17 Lands at Taurus-Littrow", "url": "https://www.nasa.gov/history/50-years-ago-apollo-17-lands-at-taurus-littrow/" },
+    "mars_facts": { "name": "NASA Science: Mars Facts", "url": "https://science.nasa.gov/mars/facts/" },
+    "meridiani": { "name": "NASA Science: Meridiani Planum", "url": "https://science.nasa.gov/resource/meridiani-planum-2/" },
+    "opp_six": { "name": "NASA Science: Six Things to Know About NASA's Opportunity Rover", "url": "https://science.nasa.gov/missions/mer/six-things-to-know-about-nasas-opportunity-rover/" },
+    "spirit_ntrs": { "name": "NASA NTRS: Overview of the Spirit Mars Exploration Rover Mission to Gusev Crater", "url": "https://ntrs.nasa.gov/citations/20080026038" },
+    "mer_nssdc": { "name": "NASA NSSDCA record 2003-027A (Spirit: Pancam, APXS, Mössbauer, Microscopic Imager, magnet array)", "url": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=2003-027A" },
+    "a16": { "name": "NASA NSSDCA record 1972-031C (Apollo 16 Lunar Module: portable surface magnetometer)", "url": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1972-031C" },
+    "viking_nssdc": { "name": "NASA NSSDCA record 1975-075C (Viking 1 Lander: sampler-arm magnet, magnetic properties)", "url": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1975-075C" }
+  },
+  "energy": { "start": 100, "max": 100, "drivePerUnit": 1, "driveUnitPx": 60, "collect": 6, "recharge": 25 },
+  "instruments": [
+    {
+      "id": "camera", "name": "Camera", "icon": "◉", "cost": 2,
+      "measures": "Colour, shape, texture and layering, seen as an image.",
+      "why": "Scientists look first: colour and texture suggest what a rock might be and where to look more closely.",
+      "real": "Inspired by the Panoramic Camera (Pancam) on NASA's Spirit and Opportunity rovers.",
+      "sources": ["mer_nssdc"]
+    },
+    {
+      "id": "spectrometer", "name": "Spectrometer", "icon": "≋", "cost": 6,
+      "measures": "Which chemical elements and minerals are present (shown here as simulated indicators).",
+      "why": "Composition is evidence a picture cannot give: two rocks can look alike but be made of different things.",
+      "real": "Inspired by the Alpha Particle X-Ray Spectrometer and Mössbauer spectrometer carried by Spirit and Opportunity.",
+      "sources": ["mer_nssdc"]
+    },
+    {
+      "id": "microscope", "name": "Microscope", "icon": "⊕", "cost": 3,
+      "measures": "Grain size, grain shape and surface structure, close up.",
+      "why": "Grain size and texture tell how a rock or soil formed: cooled lava, smashed fragments, wind-blown sand or water-laid layers.",
+      "real": "Inspired by the Microscopic Imager on Spirit and Opportunity.",
+      "sources": ["mer_nssdc"]
+    },
+    {
+      "id": "magnetic", "name": "Magnetic sensor", "icon": "⫶", "cost": 3,
+      "measures": "How strongly the sample responds to a magnet (simulated).",
+      "why": "Magnetic response hints at iron-bearing minerals and helps compare materials.",
+      "real": "Inspired by the magnets on the Viking 1 lander, whose goals included the magnetic properties of the Martian surface, the magnet array on Spirit, and the portable magnetometer carried on Apollo 16.",
+      "sources": ["viking_nssdc", "mer_nssdc", "a16"]
+    }
+  ],
+  "missions": {
+    "moon": {
+      "name": "Lunar Exploration Mission",
+      "short": "Moon",
+      "intro": "Your rover has landed on a fictional lunar plain beside the bright highlands. Find deposits, collect samples, and let the evidence tell you what happened here.",
+      "palette": { "ground": "#6d6e73", "ground2": "#5d5e63", "speck": "#8c8d92", "crater": "#4b4c51", "rim": "#9d9ea4", "rock": "#3f4045", "accent": "#cdd5e6" },
+      "features": "craters",
+      "codePrefix": "LUN",
+      "objectives": ["Collect at least 3 samples", "Analyse each with at least 2 instruments", "Answer the reasoning challenge for 2 samples"],
+      "sites": [
+        { "x": 520, "y": 420, "type": "mare_basalt" },
+        { "x": 1500, "y": 330, "type": "anorthosite" },
+        { "x": 1150, "y": 900, "type": "breccia" },
+        { "x": 380, "y": 1100, "type": "regolith" },
+        { "x": 1720, "y": 1180, "type": "orange_glass" }
+      ]
+    },
+    "mars": {
+      "name": "Martian Exploration Mission",
+      "short": "Mars",
+      "intro": "Your rover is on a fictional Martian plain with dunes, outcrops and dust. Collect samples and decide which conclusions the evidence really supports.",
+      "palette": { "ground": "#9a4a2c", "ground2": "#8a3f24", "speck": "#b8653f", "crater": "#6e2f1a", "rim": "#c7774d", "rock": "#4a2216", "accent": "#e07a4f" },
+      "features": "dunes",
+      "codePrefix": "MAR",
+      "objectives": ["Collect at least 3 samples", "Analyse each with at least 2 instruments", "Answer the reasoning challenge for 2 samples"],
+      "sites": [
+        { "x": 560, "y": 380, "type": "olivine_basalt" },
+        { "x": 1450, "y": 420, "type": "hematite_spherules" },
+        { "x": 1080, "y": 940, "type": "layered_sandstone" },
+        { "x": 420, "y": 1120, "type": "red_dust" },
+        { "x": 1760, "y": 1150, "type": "gypsum_vein" }
+      ]
+    }
+  },
+  "samples": {
+    "mare_basalt": {
+      "name": "Dark volcanic rock", "type": "Rock", "planet": "Moon", "label": "Dark rock from the plain",
+      "readings": {
+        "camera": { "Colour": "Dark grey", "Texture": "Massive, fine-grained; a few small holes" },
+        "spectrometer": { "Iron": "High", "Titanium": "Elevated", "Calcium + aluminium": "Moderate", "Indicated minerals": "Pyroxene, olivine, ilmenite (simulated)" },
+        "microscope": { "Grain size": "Fine to medium", "Structure": "Interlocking crystals, as in cooled lava" },
+        "magnetic": { "Magnetic response": "Weak" }
+      },
+      "interpretation": "A mare basalt: volcanic lava that flooded the dark lunar plains. The maria are dark, low-lying lava plains; high-titanium mare basalts contain about 9–13% titanium dioxide.",
+      "uncertainty": "These instruments cannot date the rock. NASA's sample guide gives returned mare basalts ages of about 3.15–3.85 billion years, but those ages came from laboratory measurements on Earth.",
+      "questions": [
+        { "q": "What do the high iron and elevated titanium indications suggest?", "needs": "spectrometer",
+          "options": ["It is a basalt like those that flooded the lunar maria", "It is a piece of ice", "Insufficient evidence"],
+          "best": "It is a basalt like those that flooded the lunar maria",
+          "explain": "Iron- and titanium-rich, finely crystalline dark rock matches the mare basalts. NASA's sample guide describes high-Ti mare basalts with about 9–13% titanium dioxide." },
+        { "q": "Could this sample alone prove how old the lunar plains are?", "needs": null,
+          "options": ["Yes, its colour shows its age", "No: age needs laboratory dating", "Insufficient evidence"],
+          "best": "No: age needs laboratory dating",
+          "alsoGood": "Insufficient evidence",
+          "explain": "Colour, composition and texture do not give an age. Mare basalt ages (about 3.15–3.85 billion years in NASA's sample guide) come from laboratory measurements on returned samples." }
+      ],
+      "sources": ["lpetss_basalt"]
+    },
+    "anorthosite": {
+      "name": "Bright highland rock", "type": "Rock", "planet": "Moon", "label": "Bright rock from the highland edge",
+      "readings": {
+        "camera": { "Colour": "Very light grey to white", "Texture": "Coarse, crushed in places" },
+        "spectrometer": { "Calcium + aluminium": "High", "Iron": "Low", "Indicated minerals": "Plagioclase feldspar (simulated)" },
+        "microscope": { "Grain size": "Coarse", "Structure": "Large pale crystals, fractured by impacts" },
+        "magnetic": { "Magnetic response": "Very weak" }
+      },
+      "interpretation": "An anorthosite from the lunar highlands, the ancient crust. Lunar anorthosites are called ferroan anorthosites; NASA's guide notes that highland samples have all been through several cratering events.",
+      "uncertainty": "The crushed texture shows impact damage, which makes it hard to know how much of the original rock is unaltered.",
+      "questions": [
+        { "q": "The sample is bright and rich in calcium and aluminium, with little iron. What does that suggest?", "needs": "spectrometer",
+          "options": ["Highland crust rock (anorthosite)", "Dark mare lava", "Insufficient evidence"],
+          "best": "Highland crust rock (anorthosite)",
+          "explain": "Bright, calcium- and aluminium-rich rock dominated by plagioclase matches lunar highland anorthosite, part of the early crust." },
+        { "q": "The crystals are fractured. Which conclusion does the evidence support best?", "needs": "microscope",
+          "options": ["The rock has been damaged by impacts", "The rock formed in water", "Insufficient evidence"],
+          "best": "The rock has been damaged by impacts",
+          "explain": "NASA's guide notes that all highland samples have undergone several cratering events, so fractured crystals fit impact damage. Nothing here points to water." }
+      ],
+      "sources": ["lpetss_plutonic"]
+    },
+    "breccia": {
+      "name": "Fragment-filled rock", "type": "Rock", "planet": "Moon", "label": "Rock made of broken pieces",
+      "readings": {
+        "camera": { "Colour": "Mixed grey, light and dark patches", "Texture": "Angular fragments set in a finer matrix" },
+        "spectrometer": { "Composition": "Mixed: varies from fragment to fragment", "Indicated minerals": "Several rock types together (simulated)" },
+        "microscope": { "Grain size": "Very mixed: fine matrix with large clasts", "Structure": "Angular clasts, some glassy melt" },
+        "magnetic": { "Magnetic response": "Variable" }
+      },
+      "interpretation": "An impact breccia. NASA describes lunar breccias as the lithified aggregates of clastic debris and melt generated by meteorite bombardment; most Apollo breccias formed in the highlands about 3.9–4.0 billion years ago.",
+      "uncertainty": "Each fragment may come from a different source rock, so the whole sample does not tell one simple story.",
+      "questions": [
+        { "q": "What process most likely formed this rock?", "needs": "microscope",
+          "options": ["Meteorite impacts smashed and welded fragments together", "Slow cooling of a single lava flow", "Insufficient evidence"],
+          "best": "Meteorite impacts smashed and welded fragments together",
+          "explain": "Angular clasts in a fine matrix with melt are the signature of impact breccias, formed by meteorite bombardment." },
+        { "q": "What additional measurement would best show where the fragments came from?", "needs": null,
+          "options": ["Analyse the composition of individual fragments", "Measure the rover's speed", "Insufficient evidence"],
+          "best": "Analyse the composition of individual fragments",
+          "explain": "Because each clast can be a different rock, scientists analyse fragments separately to trace their sources." }
+      ],
+      "sources": ["lpetss_breccia"]
+    },
+    "regolith": {
+      "name": "Fine grey soil", "type": "Soil", "planet": "Moon", "label": "Loose grey soil",
+      "readings": {
+        "camera": { "Colour": "Medium grey", "Texture": "Powdery; holds footprint-like marks" },
+        "spectrometer": { "Composition": "Mix of local rock types", "Other indicators": "Implanted hydrogen and helium from the solar wind (simulated)" },
+        "microscope": { "Grain size": "Very fine: much of it smaller than a tenth of a millimetre", "Structure": "Irregular glassy clumps (agglutinates) among rock and mineral grains" },
+        "magnetic": { "Magnetic response": "Weak to moderate" }
+      },
+      "interpretation": "Lunar regolith: the layer of loose debris covering the Moon. NASA's guide describes it as a fine grey soil, about half of which is smaller than 60–80 microns. Micrometeorites melt parts of it into agglutinates, and the solar wind implants hydrogen and helium.",
+      "uncertainty": "Regolith is constantly reworked by micrometeorites, so its grains have mixed histories.",
+      "questions": [
+        { "q": "The microscope shows glassy clumps. What made them?", "needs": "microscope",
+          "options": ["Micrometeorite impacts melting the soil", "Rain", "Insufficient evidence"],
+          "best": "Micrometeorite impacts melting the soil",
+          "explain": "With no atmosphere, the Moon's surface is bombarded by micrometeorites that melt soil into agglutinates." },
+        { "q": "Does finding hydrogen in this soil prove there was once liquid water here?", "needs": "spectrometer",
+          "options": ["Yes, hydrogen means water", "No: the solar wind implants hydrogen into lunar soil", "Insufficient evidence"],
+          "best": "No: the solar wind implants hydrogen into lunar soil",
+          "alsoGood": "Insufficient evidence",
+          "explain": "NASA's guide explains that the solar wind implants hydrogen and helium into the soil. Hydrogen alone is not evidence of past liquid water." }
+      ],
+      "sources": ["lpetss_regolith"]
+    },
+    "orange_glass": {
+      "name": "Orange soil", "type": "Soil", "planet": "Moon", "label": "Unusual orange patch",
+      "readings": {
+        "camera": { "Colour": "Bright orange", "Texture": "Fine, granular" },
+        "spectrometer": { "Titanium": "High", "Indicated material": "Volcanic glass (simulated)" },
+        "microscope": { "Grain size": "Very fine", "Structure": "Tiny spherical glass beads" },
+        "magnetic": { "Magnetic response": "Weak" }
+      },
+      "interpretation": "Volcanic glass beads, like the orange soil Harrison Schmitt discovered on Apollo 17. NASA reports that analysis showed it to be small spherical glass beads with a high titanium content. NASA's sample guide suggests orange glass may be the cause of the dark mantle at the edge of Mare Serenitatis.",
+      "uncertainty": "Colour alone could mislead; the evidence that matters is the bead shape and the composition.",
+      "questions": [
+        { "q": "The sample is made of tiny glass spheres. Which explanation fits the evidence best?", "needs": "microscope",
+          "options": ["Molten droplets that cooled quickly, as in a volcanic eruption", "Ordinary sand worn by water", "Insufficient evidence"],
+          "best": "Molten droplets that cooled quickly, as in a volcanic eruption",
+          "explain": "Glass forms when melt cools too fast to crystallise, and spherical beads point to droplets. Apollo 17's orange soil turned out to be volcanic glass beads." },
+        { "q": "Is the bright orange colour enough on its own to identify the material?", "needs": null,
+          "options": ["Yes, orange always means volcanic glass", "No: you also need shape and composition evidence", "Insufficient evidence"],
+          "best": "No: you also need shape and composition evidence",
+          "explain": "Colour is a clue, not proof. The microscope (bead shape) and spectrometer (high titanium) provide the supporting evidence." }
+      ],
+      "sources": ["a17", "lpetss_basalt"]
+    },
+    "olivine_basalt": {
+      "name": "Dark volcanic rock", "type": "Rock", "planet": "Mars", "label": "Dark rock, dusty surface",
+      "readings": {
+        "camera": { "Colour": "Dark grey under a reddish dust coating", "Texture": "Fine-grained, with a thin surface coating" },
+        "spectrometer": { "Iron": "High", "Magnesium": "Elevated", "Indicated minerals": "Olivine, pyroxene (simulated)" },
+        "microscope": { "Grain size": "Fine", "Structure": "Crystalline volcanic texture; thin coatings and vein fillings at the surface" },
+        "magnetic": { "Magnetic response": "Moderate" }
+      },
+      "interpretation": "An olivine-bearing basalt, like the rocks under Spirit's landing plain in Gusev Crater. NASA's mission overview notes that those plains rocks are covered by wind-blown dust, and that their coatings and vein fillings record a minor amount of transport and deposition by water.",
+      "uncertainty": "A thin coating could hide or change what the rock's surface tells you; real rovers brush or grind rocks before analysing them.",
+      "questions": [
+        { "q": "What does the olivine indication suggest about this rock?", "needs": "spectrometer",
+          "options": ["It is a volcanic basalt", "It is a water-laid sandstone", "Insufficient evidence"],
+          "best": "It is a volcanic basalt",
+          "explain": "Olivine-bearing, finely crystalline dark rock matches the olivine basalts Spirit studied in Gusev Crater." },
+        { "q": "Do the thin coatings prove that a large lake once covered this rock?", "needs": "microscope",
+          "options": ["Yes, coatings mean a lake", "No: they suggest at most a small amount of water activity", "Insufficient evidence"],
+          "best": "No: they suggest at most a small amount of water activity",
+          "explain": "NASA's overview describes only a minor amount of transport and deposition by water at Gusev's plains. Coatings alone cannot prove a lake." }
+      ],
+      "sources": ["spirit_ntrs"]
+    },
+    "hematite_spherules": {
+      "name": "Grey spherules", "type": "Concretions", "planet": "Mars", "label": "Field of tiny grey spheres",
+      "readings": {
+        "camera": { "Colour": "Grey to bluish-grey", "Texture": "Many small round spheres scattered on the surface" },
+        "spectrometer": { "Iron": "Very high", "Indicated minerals": "Gray crystalline hematite (an iron oxide) (simulated)" },
+        "microscope": { "Grain size": "Small spheres, much larger than the surrounding dust", "Structure": "Round, resistant grains; some still embedded in layered rock" },
+        "magnetic": { "Magnetic response": "Weak to moderate" }
+      },
+      "interpretation": "Hematite spherules, like Opportunity's \"blueberries\" at Meridiani Planum. NASA notes that on Earth gray crystalline hematite forms mostly in association with liquid water, and that Opportunity's spherules formed late from rising, acidic groundwater.",
+      "uncertainty": "Hematite can form in more than one way, so scientists combine composition with the setting: the spheres were embedded in layered sedimentary rock.",
+      "questions": [
+        { "q": "Could this sample provide evidence of past water activity?", "needs": "spectrometer",
+          "options": ["Yes: gray hematite spherules like these are linked to groundwater", "No: hematite has nothing to do with water", "Insufficient evidence"],
+          "best": "Yes: gray hematite spherules like these are linked to groundwater",
+          "explain": "On Earth, gray crystalline hematite forms mostly with liquid water, and NASA reports that Opportunity's blueberries formed from rising, acidic groundwater." },
+        { "q": "What additional observation would most strengthen the water interpretation?", "needs": null,
+          "options": ["Finding the spheres embedded in water-laid layered rock", "Measuring the air temperature", "Insufficient evidence"],
+          "best": "Finding the spheres embedded in water-laid layered rock",
+          "explain": "Context matters. At Meridiani the blueberries were embedded in soft, layered sedimentary sandstone, which strengthened the water story." }
+      ],
+      "sources": ["meridiani", "opp_six"]
+    },
+    "layered_sandstone": {
+      "name": "Layered outcrop", "type": "Sedimentary rock", "planet": "Mars", "label": "Pale, finely layered rock",
+      "readings": {
+        "camera": { "Colour": "Pale tan", "Texture": "Thin layers; soft and easily eroded" },
+        "spectrometer": { "Sulfur": "High", "Indicated minerals": "Sulfate salts mixed with altered sand grains (simulated)" },
+        "microscope": { "Grain size": "Sand-sized grains", "Structure": "Fine layering; some embedded spherules" },
+        "magnetic": { "Magnetic response": "Weak" }
+      },
+      "interpretation": "A sedimentary sandstone. NASA reports that Opportunity was the first rover to identify and characterize sedimentary rocks on another planet, and that its measurements showed these rocks formed in ancient ephemeral playas: shallow, temporary bodies of water.",
+      "uncertainty": "Layering alone could also come from wind. Composition and context are needed to separate wind-laid from water-laid layers.",
+      "questions": [
+        { "q": "The rock is layered and sulfur-rich. Which conclusion is best supported?", "needs": "spectrometer",
+          "options": ["It formed where water came and went, like a temporary playa", "It is a fresh lava flow", "Insufficient evidence"],
+          "best": "It formed where water came and went, like a temporary playa",
+          "explain": "NASA reports that Opportunity's layered sedimentary rocks formed in ancient ephemeral playas. Salt-rich layers fit evaporating water." },
+        { "q": "If you only had the camera image, could you be sure water laid these layers?", "needs": null,
+          "options": ["Yes, layers always mean water", "No: wind can also make layers", "Insufficient evidence"],
+          "best": "No: wind can also make layers",
+          "alsoGood": "Insufficient evidence",
+          "explain": "Layers are an observation; \"water\" is an interpretation. Composition and grain evidence are needed before concluding." }
+      ],
+      "sources": ["opp_six", "meridiani"]
+    },
+    "red_dust": {
+      "name": "Red dust and soil", "type": "Soil", "planet": "Mars", "label": "Reddish dusty soil",
+      "readings": {
+        "camera": { "Colour": "Rusty red-orange", "Texture": "Very fine dust over coarser soil" },
+        "spectrometer": { "Iron": "High", "Indicated minerals": "Oxidised (rusted) iron minerals (simulated)" },
+        "microscope": { "Grain size": "Very fine dust; some sand grains", "Structure": "Loose, wind-sorted grains" },
+        "magnetic": { "Magnetic response": "Moderate" }
+      },
+      "interpretation": "Martian dust and soil. NASA explains that Mars looks red because iron minerals in the Martian dirt oxidize, or rust.",
+      "uncertainty": "Dust is carried by wind across the planet, so it may not come from the rock directly below it.",
+      "questions": [
+        { "q": "Why is this soil red?", "needs": "spectrometer",
+          "options": ["Its iron minerals have oxidised (rusted)", "It is hot", "Insufficient evidence"],
+          "best": "Its iron minerals have oxidised (rusted)",
+          "explain": "NASA: iron minerals in the Martian dirt oxidize, or rust, causing the surface to look red." },
+        { "q": "Can you be sure this dust came from the rock directly underneath?", "needs": null,
+          "options": ["Yes, dust always comes from below", "No: wind moves dust across Mars", "Insufficient evidence"],
+          "best": "No: wind moves dust across Mars",
+          "alsoGood": "Insufficient evidence",
+          "explain": "Wind carries dust long distances, so its source is uncertain without more evidence." }
+      ],
+      "sources": ["mars_facts", "spirit_ntrs"]
+    },
+    "gypsum_vein": {
+      "name": "White mineral vein", "type": "Vein", "planet": "Mars", "label": "Bright white line in the rock",
+      "readings": {
+        "camera": { "Colour": "Bright white", "Texture": "Thin vein filling a crack in darker rock" },
+        "spectrometer": { "Calcium": "High", "Sulfur": "High", "Indicated minerals": "Gypsum, a calcium sulfate (simulated)" },
+        "microscope": { "Grain size": "Fine crystals", "Structure": "Mineral filling a fracture" },
+        "magnetic": { "Magnetic response": "None detected" }
+      },
+      "interpretation": "A gypsum vein, like the white veins Opportunity found on the rim of Endeavour crater. NASA calls gypsum veins a telltale sign of water that travelled through underground fractures.",
+      "uncertainty": "A vein shows that water moved through the rock, but not how long ago or whether the water was ever on the surface.",
+      "questions": [
+        { "q": "What does a calcium-sulfate (gypsum) vein filling a crack suggest?", "needs": "spectrometer",
+          "options": ["Water flowed through underground fractures", "A meteorite melted the rock", "Insufficient evidence"],
+          "best": "Water flowed through underground fractures",
+          "explain": "NASA describes Opportunity's gypsum veins as a telltale sign of water that travelled through underground fractures." },
+        { "q": "Does this vein show that Mars had surface lakes at the same time?", "needs": null,
+          "options": ["Yes, definitely", "No: it shows underground water, not surface lakes", "Insufficient evidence"],
+          "best": "No: it shows underground water, not surface lakes",
+          "alsoGood": "Insufficient evidence",
+          "explain": "A vein records groundwater moving through cracks. Surface lakes would need other evidence." }
+      ],
+      "sources": ["opp_six"]
+    }
+  },
+  "unanswered": {
+    "moon": ["How old is each sample? (needs laboratory dating)", "Where did each breccia fragment originally come from?", "How deep did the orange glass's volcanic source lie?"],
+    "mars": ["When exactly did water move through these rocks?", "Were conditions here ever habitable?", "Where did the wind-blown dust originally come from?"]
+  },
+  "simulatedNote": "SIMULATED: all instrument readings in this game are illustrative values chosen to match published NASA descriptions of these kinds of samples. They are not real NASA measurements. The map, rover, energy budget and sample locations are fictional.",
+  "disclaimer": "ROVER RESCUE is part of LUNAR ECHOES, an independent educational project developed for NASA Space Apps Challenge. It is not affiliated with, operated by or endorsed by NASA."
+}
