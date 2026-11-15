@@ -17,11 +17,14 @@
       <span class="brand-name">Lunar Echoes</span>
     </a>
     <nav class="site-nav" aria-label="Main">
+      <a href="#cases">Case files</a>
       <a href="#objects">Collection</a>
+      <a href="#decision">Future explorer</a>
       <a href="#timeline">Timeline</a>
       <a href="#compare">Moon vs Mars</a>
       <a href="#map">Locations</a>
       <a href="#quiz">Quiz</a>
+      <a href="#beyond">Citizen science</a>
     </nav>
   </header>
 
@@ -32,16 +35,18 @@
       <div class="hero-world hero-mars"></div>
     </div>
     <div class="hero-inner">
-      <p class="eyebrow">A digital museum of the machines we left behind</p>
+      <p class="eyebrow">Beyond the mission · A space heritage archive</p>
       <h1 id="hero-title">Lunar Echoes</h1>
+      <p class="hero-question">When humanity explores another world, what responsibility do we have for the things we leave there?</p>
       <p class="hero-lead">
         On the Moon and on Mars, landers, rovers and science stations still stand
         where people sent them. Most went silent long ago.
         <strong>One still answers when scientists shine a laser at it.</strong>
+        Investigate the evidence, then decide what future explorers should do.
       </p>
       <div class="hero-actions">
-        <a class="btn btn-primary" href="#objects">Enter the collection</a>
-        <button class="btn btn-ghost" type="button" data-open-story="apollo11-lrrr">Meet the one still in use</button>
+        <button class="btn btn-primary" type="button" data-open-case="0">Open a case file</button>
+        <a class="btn btn-ghost" href="#objects">Browse the collection</a>
       </div>
       <!-- js/explore.js fills these numbers from data/objects.json -->
       <dl id="hero-stats" class="hero-stats" aria-label="The collection in numbers"></dl>
@@ -50,6 +55,18 @@
   </section>
 
   <main id="main">
+    <!-- ===== Case files (investigation mode) ===== -->
+    <section id="cases" class="cases" aria-labelledby="cases-title">
+      <p class="eyebrow">Evidence room</p>
+      <h2 id="cases-title" class="section-title">Open a case file</h2>
+      <p class="section-intro">Pick a case. Examine the photographs and NASA evidence, submit your conclusion, then find out why the object matters.</p>
+      <!-- js/cases.js fills these from data/cases.json -->
+      <div id="case-shelf" class="case-shelf" aria-busy="true">
+        <p class="loading">Unlocking the archive…</p>
+      </div>
+      <article id="case-view" class="case-view" aria-labelledby="case-title" hidden></article>
+    </section>
+
     <!-- ===== Why this museum ===== -->
     <section id="intro" class="intro" aria-labelledby="intro-title">
       <h2 id="intro-title" class="section-title">Every machine is an echo of a mission</h2>
@@ -78,6 +95,15 @@
       <div id="objects-list" class="card-grid" aria-busy="true">
         <p class="loading">Opening the archive…</p>
       </div>
+    </section>
+
+    <!-- ===== Future Explorer (Mission Control Decision Room) ===== -->
+    <section id="decision" aria-labelledby="decision-title">
+      <p class="eyebrow">Future explorer · Mission control</p>
+      <h2 id="decision-title" class="section-title">What would you do?</h2>
+      <p class="section-intro">One day, explorers will land beside the hardware we left behind. Should they document it, study it or preserve it? Make the call and see the trade-offs.</p>
+      <!-- js/cases.js fills this from data/decision.json -->
+      <div id="decision-box" class="decision"></div>
     </section>
 
     <!-- ===== Timeline ===== -->
@@ -116,6 +142,14 @@
       <!-- js/quiz.js fills this box -->
       <div id="quiz-box"></div>
     </section>
+
+    <!-- ===== Beyond the Archive: NASA citizen science ===== -->
+    <section id="beyond" class="beyond" aria-labelledby="beyond-title">
+      <p class="eyebrow">Beyond the archive</p>
+      <h2 id="beyond-title" class="section-title">From discovering history to contributing to science</h2>
+      <!-- js/citizen.js fills this from data/citizen-science.json -->
+      <div id="beyond-box"></div>
+    </section>
   </main>
 
   <footer class="site-footer">
@@ -130,6 +164,8 @@
   <script src="js/timeline.js"></script>
   <script src="js/quiz.js"></script>
   <script src="js/explore.js"></script>
+  <script src="js/cases.js"></script>
+  <script src="js/citizen.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

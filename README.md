@@ -34,9 +34,14 @@ js/objects.js              Object cards
 js/timeline.js             Timeline list
 js/quiz.js                 Teaching quiz generated from the data
 js/explore.js              Landing numbers, Moon vs Mars, location explorer
+js/cases.js                Evidence Room case files and the Future Explorer scenario
+data/cases.json            The three case files: evidence, question, explanation, significance
+data/decision.json         The hypothetical Future Explorer scenario and its sourced trade-offs
+js/citizen.js              Beyond the Archive: citizen-science section and practice demos
+data/citizen-science.json  MoonDiff and Cloudspotting content, sources and demo data
 data/objects.json          12 NASA-sourced object records
 data/worlds.json           Moon/Mars facts from NASA NSSDCA fact sheets
-assets/images/             Offline copies of the 16 NASA photos (credits in docs/research-sources.md)
+assets/images/             Offline copies of the 18 NASA photos (credits in docs/research-sources.md)
 docs/research-sources.md   Every fact and its source
 docs/ai-disclosure.md      How AI tools were used
 presentation/round1-outline.md  Pitch outline
@@ -53,10 +58,35 @@ python -m http.server 8000
 
 Then open http://localhost:8000. (The VS Code "Live Server" extension also works.)
 
-**Works offline.** All 16 NASA photos are saved in `assets/images/` (2.7 MB). The page loads these
+**Works offline.** All 18 NASA photos are saved in `assets/images/` (3.0 MB). The page loads these
 local copies first. If a copy is missing, it falls back to NASA's server (`images-assets.nasa.gov`),
 and if that also fails the image is hidden. `data/objects.json` keeps the original NASA URLs as the
 source record. A local file is named after the last part of its URL (e.g. `PIA25287~medium.jpg`).
+
+## Beyond the Mission
+
+The site is built around one question: *When humanity explores another world, what responsibility do we have
+for the things we leave there?*
+
+- **Evidence Room** (`js/cases.js`, `data/cases.json`): three case files (Apollo 11 laser reflector,
+  Opportunity, Apollo 11 Eagle descent stage). Visitors examine NASA evidence one item at a time, submit a
+  conclusion, get the explanation, then read "Why it matters".
+- **Future Explorer** (`data/decision.json`): a clearly labelled *hypothetical* mission scenario. Visitors decide
+  how to document, study or preserve the Apollo 11 hardware, and see the trade-offs from NASA's 2011 heritage
+  recommendations (which NASA says are not legal requirements).
+- **Digital Heritage Passports:** every object's detail view is a passport with an identity card plus seven
+  sections: Purpose, Mission, Scientific contribution, Documented history, Current status (Then vs Now),
+  Heritage significance and Source evidence.
+- **Then vs Now:** a two-state switch between the archival photo and the documented present. A later NASA orbital
+  photo is shown only where one exists (4 objects). Otherwise the page says no recent photo is in our sources.
+- **Evidence boundary:** every statement is labelled **Verified** (linked NASA source), **Interpretation**
+  (our reasoning), **Unknown** (not documented; never guessed) or **Hypothetical**.
+- **Field Note:** a printable one-page discovery report for any object, with sources and space for the visitor's
+  own observations.
+- **Beyond the Archive** (`js/citizen.js`, `data/citizen-science.json`): two real NASA citizen-science projects,
+  **MoonDiff** (Moon) and **Cloudspotting on Mars: Shapes** (Mars). Each has an explanation, a link to our archive,
+  a practice demo (find the Apollo 16 booster crater; learn Martian cloud types) and a "Join" link to the official
+  project. The demos are educational only: nothing is sent to NASA or Zooniverse, and the site says so.
 
 ## Features
 

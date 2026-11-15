@@ -23,14 +23,14 @@ async function loadObjects() {
   return objects;
 }
 
-// Planet facts for the comparison. Optional: if this fails, the rest still works.
-async function loadWorlds() {
+// Optional data files (planet facts, case files, scenario). If one fails, the rest still works.
+async function loadOptional(path) {
   try {
-    var response = await fetch("data/worlds.json");
+    var response = await fetch(path);
     if (!response.ok) return null;
     return await response.json();
   } catch (e) {
-    console.warn("data/worlds.json could not be loaded:", e);
+    console.warn(path + " could not be loaded:", e);
     return null;
   }
 }
@@ -42,7 +42,7 @@ function showLoadError(error) {
   if (location.protocol === "file:") {
     message += " Open the site through a local server (see README).";
   }
-  ["objects-list", "timeline-list", "compare-box", "map-box", "quiz-box"].forEach(function (id, i) {
+  ["case-shelf", "objects-list", "decision-box", "timeline-list", "compare-box", "map-box", "quiz-box", "beyond-box"].forEach(function (id, i) {
     var el = document.getElementById(id);
     if (el) {
       el.innerHTML = "";
@@ -60,7 +60,11 @@ function showLoadError(error) {
 
 async function startApp() {
   var objects;
-  var worldsPromise = loadWorlds(); // load both files at the same time
+  // Load all files at the same time
+  var worldsPromise = loadOptional("data/worlds.json");
+  var casesPromise = loadOptional("data/cases.json");
+  var decisionPromise = loadOptional("data/decision.json");
+  var citizenPromise = loadOptional("data/citizen-science.json");
   try {
     objects = await loadObjects();
   } catch (error) {
@@ -68,13 +72,19 @@ async function startApp() {
     return;
   }
   var worlds = await worldsPromise;
+  var cases = await casesPromise;
+  var decision = await decisionPromise;
+  var citizen = await citizenPromise;
 
   // Each part runs separately, so one bug does not break the others.
   [
     ["Object explorer", function () { renderObjects(objects); }],      // js/objects.js
+    ["Evidence room", function () { renderCases(objects, cases); }],   // js/cases.js
+    ["Future explorer", function () { renderDecision(objects, decision); }], // js/cases.js
     ["Timeline", function () { renderTimeline(objects); }],            // js/timeline.js
     ["Explore", function () { renderExplore(objects, worlds); }],      // js/explore.js
-    ["Quiz", function () { startQuiz(objects); }]                      // js/quiz.js
+    ["Quiz", function () { startQuiz(objects); }],                     // js/quiz.js
+    ["Citizen science", function () { renderCitizenScience(citizen); }] // js/citizen.js
   ].forEach(function (part) {
     try {
       part[1]();

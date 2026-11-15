@@ -1,0 +1,144 @@
+{
+  "_note": "Case files for 'Open a Case File'. Each case points to an object in data/objects.json (objectId). The object's purpose, story and status are reused from that record. Every evidence item quotes or summarises a NASA source, linked by URL. Questions are answered only from that evidence. All sources are listed in docs/research-sources.md.",
+  "cases": [
+    {
+      "caseNumber": "LE-001",
+      "objectId": "apollo11-lrrr",
+      "codename": "The mirror that never switched off",
+      "hook": "It has no power supply at all. So how can scientists still be using it more than 50 years after it was left on the Moon?",
+      "evidence": [
+        {
+          "label": "Catalogue record",
+          "text": "NASA's catalogue lists the laser reflector as part of Apollo 11's early experiment package, but notes that it \"was not attached to the unit and required no power.\"",
+          "sourceName": "NASA NSSDCA record 1969-059C",
+          "sourceUrl": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1969-059C"
+        },
+        {
+          "label": "Engineering note",
+          "text": "The panel holds 100 \"corner cubes\" in a 46 cm aluminium frame. Each one reflects a beam of light straight back to where it came from.",
+          "sourceName": "NASA Goddard: Measuring the Moon's Distance",
+          "sourceUrl": "https://eclipse.gsfc.nasa.gov/SEhelp/ApolloLaser.html"
+        },
+        {
+          "label": "Status report",
+          "text": "NASA's 2011 guidance for future Moon missions says the Apollo 11 reflector \"continues to be an active scientific experiment\" and could be easily damaged by dust or chemical contamination.",
+          "sourceName": "NASA's Recommendations to Space-Faring Entities (2011), p. 18",
+          "sourceUrl": "https://www.nasa.gov/wp-content/uploads/2017/10/617743main_nasa-usg_lunar_historic_sites_reva-508.pdf"
+        },
+        {
+          "label": "Measurement log",
+          "text": "Observatories time laser pulses bounced off reflectors like this one, measuring the Earth–Moon distance to within a few millimetres.",
+          "sourceName": "NASA: The Apollo Experiment That Keeps on Giving",
+          "sourceUrl": "https://www.nasa.gov/missions/apollo/apollo-11/the-apollo-experiment-that-keeps-on-giving/"
+        }
+      ],
+      "question": "Laser measurements using reflectors like this one revealed something about the Moon's orbit. What is the Moon doing?",
+      "options": [
+        "Moving closer to Earth by about 3.8 cm a year",
+        "Moving away from Earth by about 3.8 cm a year",
+        "Staying at exactly the same distance",
+        "Moving away from Earth by about 3.8 metres a year"
+      ],
+      "answer": "Moving away from Earth by about 3.8 cm a year",
+      "explanation": "NASA's Moon fact sheet lists the Moon's \"recession rate from Earth\" as 3.8 cm per year. Laser ranging can measure the Earth–Moon distance to within a few millimetres, precise enough to track a change that small. The reflector needs no power, so it never stopped working, and NASA's 2011 guidance notes it is still an active experiment that dust and chemical contamination could easily degrade.",
+      "significance": "A small, power-free instrument left behind by explorers can keep producing science for more than half a century, but only while its site stays undisturbed. Here, protecting a piece of history and protecting an active experiment are the same job.",
+      "explanationSources": [
+        { "name": "NASA NSSDCA Moon Fact Sheet", "url": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html" },
+        { "name": "NASA's Recommendations to Space-Faring Entities (2011)", "url": "https://www.nasa.gov/wp-content/uploads/2017/10/617743main_nasa-usg_lunar_historic_sites_reva-508.pdf" }
+      ]
+    },
+    {
+      "caseNumber": "LE-002",
+      "objectId": "opportunity",
+      "codename": "The rover that went quiet",
+      "hook": "Opportunity drove 45.16 km across Mars over more than 14 years. Then, in June 2018, it stopped talking. What was happening when it sent its last message?",
+      "evidence": [
+        {
+          "label": "Catalogue record",
+          "text": "Opportunity came to rest in a crater about 20 m wide on 25 January 2004. NASA's catalogue records that \"the final communication from the rover was received on 10 June 2018.\"",
+          "sourceName": "NASA NSSDCA record 2003-032A",
+          "sourceUrl": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=2003-032A"
+        },
+        {
+          "label": "Power system",
+          "text": "Opportunity ran on solar panels. Its twin rover, Spirit, had already gone silent in 2010, after getting stuck in soft sand and failing to get enough sunlight to survive the winter.",
+          "sourceName": "NASA NSSDCA records 2003-032A and 2003-027A",
+          "sourceUrl": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=2003-027A"
+        },
+        {
+          "label": "Mission summary",
+          "text": "NASA Science: \"Opportunity last communicated with Earth on June 10, 2018, as a planet-wide dust storm blanketed the solar-powered rover's location on Mars.\"",
+          "sourceName": "NASA Science: Spirit and Opportunity",
+          "sourceUrl": "https://science.nasa.gov/mission/mars-exploration-rovers-spirit-and-opportunity/"
+        },
+        {
+          "label": "Orbital photograph",
+          "text": "On 20 September 2018, after the storm had cleared, a camera on Mars Reconnaissance Orbiter photographed the area from about 268 km up. Opportunity appears as a tiny blip.",
+          "sourceName": "NASA image PIA22549",
+          "sourceUrl": "https://images.nasa.gov/details/PIA22549"
+        }
+      ],
+      "question": "Opportunity was solar-powered. What was happening on Mars when it sent its last message to Earth?",
+      "options": [
+        "It had broken through a crust and got stuck in soft sand",
+        "A planet-wide dust storm was blanketing its location",
+        "It was being moved by a NASA mission to a new site",
+        "It had already lost contact years earlier, in 2010"
+      ],
+      "answer": "A planet-wide dust storm was blanketing its location",
+      "explanation": "NASA records that Opportunity's last message came on 10 June 2018, while a planet-wide dust storm blanketed the solar-powered rover. Getting stuck in sand, and going silent in 2010, is what happened to its twin Spirit. When the dust cleared, an orbiting camera could still spot Opportunity as a blip. Its 45.16 km drive stayed the record for driving on another world until NASA's Perseverance passed it on 11 October 2026.",
+      "significance": "Opportunity spent years studying the surface of Mars, and in the end the dusty Martian environment it studied ended its mission. Its silent body, still visible from orbit, is now part of the planet's history: a record of how far, and for how long, a human-made explorer could travel on another world.",
+      "explanationSources": [
+        { "name": "NASA Science: Spirit and Opportunity", "url": "https://science.nasa.gov/mission/mars-exploration-rovers-spirit-and-opportunity/" },
+        { "name": "NASA image PIA22549", "url": "https://images.nasa.gov/details/PIA22549" }
+      ]
+    },
+    {
+      "caseNumber": "LE-003",
+      "objectId": "apollo11-eagle-descent-stage",
+      "codename": "The half that stayed behind",
+      "hook": "Only the top half of the lunar module Eagle ever left the Moon. The bottom half is still at Tranquility Base. What was its last job?",
+      "evidence": [
+        {
+          "label": "Catalogue record",
+          "text": "Eagle landed on 20 July 1969 at 20:17:40 UT. NASA's catalogue says the ascent stage \"was launched from the Moon at the end of lunar surface operations and returned the astronauts\" to the command module.",
+          "sourceName": "NASA NSSDCA record 1969-059C",
+          "sourceUrl": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1969-059C"
+        },
+        {
+          "label": "Contents list",
+          "text": "The descent stage held the landing rocket, fuel and oxidizer tanks, water, oxygen and helium tanks, and storage space for the lunar equipment and experiments.",
+          "sourceName": "NASA NSSDCA record 1969-059C",
+          "sourceUrl": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1969-059C"
+        },
+        {
+          "label": "Photograph note",
+          "text": "NASA's description of photo AS11-40-5899: the plaque the crew left \"was attached to the ladder on the landing gear strut on the descent stage.\"",
+          "sourceName": "NASA image AS11-40-5899",
+          "sourceUrl": "https://images.nasa.gov/details/as11-40-5899"
+        },
+        {
+          "label": "Site protection",
+          "text": "NASA's 2011 guidance recommends that no future vehicle visit the Apollo 11 site, with an exclusion zone that \"extends 75 m from the lunar module descent stage.\"",
+          "sourceName": "NASA's Recommendations to Space-Faring Entities (2011), p. 17",
+          "sourceUrl": "https://www.nasa.gov/wp-content/uploads/2017/10/617743main_nasa-usg_lunar_historic_sites_reva-508.pdf"
+        }
+      ],
+      "question": "When Armstrong and Aldrin left the Moon, what was the descent stage's final job?",
+      "options": [
+        "It flew back to orbit together with the crew",
+        "It acted as the launch pad for the ascent stage",
+        "It was driven away to explore a new site",
+        "It was taken apart and packed for the trip home"
+      ],
+      "answer": "It acted as the launch pad for the ascent stage",
+      "explanation": "Only the ascent stage was launched from the Moon to return the astronauts to the command module. The descent stage, with its landing rocket and the crew's plaque, stayed behind as the launch pad. The challenge's own NASA resources describe descent stages as \"left behind as launch pads\". In 2009, NASA's Lunar Reconnaissance Orbiter photographed the landing site from orbit.",
+      "significance": "The descent stage is more than leftover equipment: it marks the place where people first set foot on another world. NASA's own 2011 guidance calls Apollo 11 \"the first instance in human history in which emissaries from this planet visited another body in the solar system\" and says the site \"requires preservation\". Our interpretation: the most important thing future explorers can do here may be to leave it exactly as it is.",
+      "explanationSources": [
+        { "name": "NASA NSSDCA record 1969-059C", "url": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1969-059C" },
+        { "name": "NASA's Recommendations to Space-Faring Entities (2011), p. 17", "url": "https://www.nasa.gov/wp-content/uploads/2017/10/617743main_nasa-usg_lunar_historic_sites_reva-508.pdf" },
+        { "name": "NASA image PIA12909 (LRO, 2009)", "url": "https://images.nasa.gov/details/PIA12909" }
+      ]
+    }
+  ]
+}
