@@ -42,7 +42,7 @@ function showLoadError(error) {
   if (location.protocol === "file:") {
     message += " Open the site through a local server (see README).";
   }
-  ["case-shelf", "objects-list", "decision-box", "timeline-list", "signal-box", "compare-box", "map-box", "quiz-box", "beyond-box"].forEach(function (id, i) {
+  ["case-shelf", "objects-list", "decision-box", "ethics-box", "timeline-list", "signal-box", "footprints-box", "evidence-box", "compare-box", "map-box", "quiz-box", "beyond-box"].forEach(function (id, i) {
     var el = document.getElementById(id);
     if (el) {
       el.innerHTML = "";
@@ -67,6 +67,10 @@ async function startApp() {
   var citizenPromise = loadOptional("data/citizen-science.json");
   var learningPromise = loadOptional("data/beyond-learning.json");
   var signalPromise = loadOptional("data/last-signal.json");
+  var mapPromise = loadOptional("data/heritage-map.json");
+  var footprintsPromise = loadOptional("data/footprints.json");
+  var egPromise = loadOptional("data/evidence-game.json");
+  var ethicsPromise = loadOptional("data/ethics.json");
   try {
     objects = await loadObjects();
   } catch (error) {
@@ -79,15 +83,23 @@ async function startApp() {
   var citizen = await citizenPromise;
   var learning = await learningPromise;
   var signal = await signalPromise;
+  var mapData = await mapPromise;
+  var footprints = await footprintsPromise;
+  var evidenceGame = await egPromise;
+  var ethics = await ethicsPromise;
 
   // Each part runs separately, so one bug does not break the others.
   [
     ["Object explorer", function () { renderObjects(objects); }],      // js/objects.js
     ["Evidence room", function () { renderCases(objects, cases); }],   // js/cases.js
     ["Future explorer", function () { renderDecision(objects, decision); }], // js/cases.js
+    ["Ethics", function () { renderEthics(ethics); }],                 // js/ethics.js
     ["Timeline", function () { renderTimeline(objects); }],            // js/timeline.js
     ["Last signal", function () { renderLastSignal(objects, signal); }], // js/last-signal.js
     ["Explore", function () { renderExplore(objects, worlds); }],      // js/explore.js
+    ["Heritage map", function () { renderHeritageMap(objects, mapData); }], // js/heritage-map.js (replaces the simple grid)
+    ["Footprints lab", function () { renderFootprints(footprints); }],  // js/footprints.js
+    ["Evidence game", function () { renderEvidenceGame(evidenceGame); }], // js/evidence-game.js
     ["Quiz", function () { startQuiz(objects); }],                     // js/quiz.js
     ["Citizen science", function () { renderCitizenScience(citizen); }], // js/citizen.js
     ["Beyond extras", function () { renderBeyondExtras(learning); }]     // js/beyond-extras.js (after citizen.js)

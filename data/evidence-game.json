@@ -1,0 +1,109 @@
+{
+  "_note": "Evidence or Assumption? Each round shows a piece of NASA evidence (quoted or summarised from the linked source) and a claim. The visitor decides whether the evidence supports the claim, contradicts it, or is insufficient to decide. Claims and explanations were written by AI; the evidence comes from sources already used elsewhere in the archive (docs/research-sources.md).",
+  "rounds": 6,
+  "answers": [
+    { "id": "supported", "label": "Supported by the evidence" },
+    { "id": "contradicted", "label": "Contradicted by the evidence" },
+    { "id": "insufficient", "label": "Insufficient evidence" }
+  ],
+  "claims": [
+    {
+      "evidence": "NASA's catalogue: \"the final communication from the rover was received on 10 June 2018.\"",
+      "claim": "Opportunity stopped communicating with Earth in June 2018.",
+      "answer": "supported",
+      "explain": "The catalogue gives the date of the final communication directly.",
+      "sourceName": "NASA NSSDCA record 2003-032A", "sourceUrl": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=2003-032A"
+    },
+    {
+      "evidence": "NASA's catalogue: \"the final communication from the rover was received on 10 June 2018.\" A planet-wide dust storm was blanketing the rover at the time.",
+      "claim": "The dust storm destroyed Opportunity's science instruments.",
+      "answer": "insufficient",
+      "explain": "The evidence tells us when it fell silent and what was happening around it, but says nothing about the state of its instruments. Silence is not the same as destruction.",
+      "sourceName": "NASA NSSDCA record 2003-032A", "sourceUrl": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=2003-032A"
+    },
+    {
+      "evidence": "NASA's description of the first photograph from the surface of Mars: a dark band \"may be due to a one-minute partial obscuration of the landscape due to clouds or dust\".",
+      "claim": "The dark band in Viking 1's first photo was definitely caused by a cloud.",
+      "answer": "insufficient",
+      "explain": "NASA gives clouds or dust as possible causes and does not pick one. \"Definitely\" goes further than the evidence.",
+      "sourceName": "NASA image PIA00381", "sourceUrl": "https://images.nasa.gov/details/PIA00381"
+    },
+    {
+      "evidence": "NASA's 2011 guidance says the Apollo 11 laser reflector \"continues to be an active scientific experiment.\" The reflector needs no power.",
+      "claim": "Scientists can still use the Apollo 11 laser reflector.",
+      "answer": "supported",
+      "explain": "An active experiment that needs no power is one scientists can still use, by bouncing laser light off it from Earth.",
+      "sourceName": "NASA's Recommendations to Space-Faring Entities (2011)", "sourceUrl": "https://www.nasa.gov/wp-content/uploads/2017/10/617743main_nasa-usg_lunar_historic_sites_reva-508.pdf"
+    },
+    {
+      "evidence": "Comparing HiRISE images of the Phoenix landing site from 2008 and 2017, NASA notes that \"the parachute has shifted in the wind, moving to the east.\"",
+      "claim": "Wind on Mars can move hardware that was left on the surface.",
+      "answer": "supported",
+      "explain": "The parachute is hardware left on the surface, and NASA reports that it moved in the wind between the two images.",
+      "sourceName": "NASA image PIA22223", "sourceUrl": "https://images.nasa.gov/details/PIA22223"
+    },
+    {
+      "evidence": "NASA's catalogue: the Mars Pathfinder lander and Sojourner worked until 27 September 1997, when communications were lost for reasons that are unknown.",
+      "claim": "We know exactly why Sojourner fell silent.",
+      "answer": "contradicted",
+      "explain": "The record says the reason is unknown. A confident explanation would be an assumption.",
+      "sourceName": "NASA NSSDCA record 1996-068A", "sourceUrl": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1996-068A"
+    },
+    {
+      "evidence": "NASA on Phoenix: \"The solar-powered robot was not designed to survive through the dark and cold conditions of a Martian arctic winter.\"",
+      "claim": "Phoenix was built to keep working through many Martian winters.",
+      "answer": "contradicted",
+      "explain": "NASA states directly that it was not designed to survive an arctic winter.",
+      "sourceName": "NASA image PIA22223", "sourceUrl": "https://images.nasa.gov/details/PIA22223"
+    },
+    {
+      "evidence": "NASA, describing HiRISE images from 2018 to 2024: InSight \"acquires the same reddish-brown hue as the rest of the planet.\"",
+      "claim": "Dust settles on hardware left on the surface of Mars.",
+      "answer": "supported",
+      "explain": "The lander turning the colour of the surrounding ground over the years is the dust settling on it.",
+      "sourceName": "NASA image PIA26515", "sourceUrl": "https://images.nasa.gov/details/PIA26515"
+    },
+    {
+      "evidence": "Apollo 12 astronauts removed Surveyor 3's TV camera and several other pieces and brought them back to Earth for scientific examination.",
+      "claim": "All of Surveyor 3 was brought back to Earth.",
+      "answer": "contradicted",
+      "explain": "Only the camera and some other parts came back. The rest of Surveyor 3 is still in its crater on the Moon.",
+      "sourceName": "NASA NSSDCA record 1967-035A", "sourceUrl": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1967-035A"
+    },
+    {
+      "evidence": "NASA's catalogue: on 27 August 1969 the Apollo 11 seismometer stopped accepting commands from Earth, and the experiment ended.",
+      "claim": "The Apollo 11 seismometer still sends moonquake data today.",
+      "answer": "contradicted",
+      "explain": "The experiment ended in August 1969.",
+      "sourceName": "NASA NSSDCA record 1969-059C", "sourceUrl": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1969-059C"
+    },
+    {
+      "evidence": "In 2009, NASA's Lunar Reconnaissance Orbiter passed over the Apollo 11 landing site again, providing a new view of the historic site from orbit.",
+      "claim": "The Apollo 11 descent stage is in perfect condition.",
+      "answer": "insufficient",
+      "explain": "An orbital view shows that the hardware is there, not its condition up close. No one has examined it since 1969.",
+      "sourceName": "NASA image PIA12909", "sourceUrl": "https://images.nasa.gov/details/PIA12909"
+    },
+    {
+      "evidence": "On Earth, gray crystalline hematite forms mostly in association with liquid water. Opportunity's hematite \"blueberries\" formed from acidic groundwater.",
+      "claim": "Life once existed at Meridiani Planum.",
+      "answer": "insufficient",
+      "explain": "Evidence of past water is not evidence of past life. Water is one requirement for life as we know it, not proof of it.",
+      "sourceName": "NASA Science: Meridiani Planum", "sourceUrl": "https://science.nasa.gov/resource/meridiani-planum-2/"
+    },
+    {
+      "evidence": "NASA says its 2011 lunar heritage recommendations \"are not legal requirements; rather they are technical recommendations for consideration by interested entities.\"",
+      "claim": "NASA's 2011 guidance for protecting Apollo sites is a law that every spacefaring nation must follow.",
+      "answer": "contradicted",
+      "explain": "NASA describes them as recommendations, not legal requirements.",
+      "sourceName": "NASA's Recommendations to Space-Faring Entities (2011)", "sourceUrl": "https://www.nasa.gov/wp-content/uploads/2017/10/617743main_nasa-usg_lunar_historic_sites_reva-508.pdf"
+    },
+    {
+      "evidence": "The Apollo 17 station was left running when the crew lifted off on 14 December 1972. On 30 September 1977 it was shut down along with all the other Apollo science stations.",
+      "claim": "The Apollo 17 station kept working after the astronauts went home.",
+      "answer": "supported",
+      "explain": "It was left running in December 1972 and shut down nearly five years later, so it operated long after the crew left.",
+      "sourceName": "NASA NSSDCA record 1972-096C", "sourceUrl": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1972-096C"
+    }
+  ]
+}

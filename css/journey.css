@@ -88,3 +88,29 @@
   .hj-steps { grid-template-columns: 1fr; }
   .hj-step:not(:last-child)::after { display: none; }
 }
+
+/* ---------- The Ethics of Exploration (js/ethics.js); reuses the decision-* styles ---------- */
+.eth-tabs { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.6rem; margin: 1rem 0 1.25rem; }
+.eth-tab {
+  font: inherit; text-align: left; cursor: pointer;
+  display: flex; flex-direction: column; gap: 0.15rem;
+  padding: 0.7rem 0.9rem; border-radius: 10px;
+  border: 1px solid var(--line); background: var(--panel); color: var(--text);
+}
+.eth-tab:hover { border-color: var(--muted); }
+.eth-tab[aria-pressed="true"] { border-color: var(--accent); background: var(--panel-2); }
+.eth-tab.is-decided .eth-tab-theme::after { content: " · decided"; color: var(--ok); }
+.eth-tab-theme { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.eth-tab-title { font-family: var(--serif); font-size: 1.1rem; }
+.eth-title { margin: 0 0 0.5rem; font-family: var(--serif); font-weight: 500; font-size: clamp(1.3rem, 3vw, 1.7rem); }
+.eth-title:focus { outline: none; }
+.eth-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.9rem; margin: 0.6rem 0; }
+.eth-persp { padding: 0.8rem 0.95rem; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); }
+.eth-persp h4 { margin: 0 0 0.3rem; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+.eth-line { margin: 0.4rem 0 0; font-size: 0.93rem; }
+.eth-note { padding: 0.7rem 0.9rem; border-radius: 10px; background: var(--panel-2); }
+.eth-summary { margin-top: 1.25rem; }
+.eth-summary h3 { margin: 0 0 0.4rem; font-size: 1rem; }
+.eth-summary ul { margin: 0; padding-left: 1.1rem; }
+.eth-closing { color: var(--muted); }
+@media (max-width: 700px) { .eth-grid { grid-template-columns: 1fr; } }

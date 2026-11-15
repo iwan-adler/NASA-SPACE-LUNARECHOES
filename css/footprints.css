@@ -1,0 +1,74 @@
+/* Lunar Echoes - Mission Footprints Lab (js/footprints.js). Uses tokens from css/style.css. */
+
+.fp-filters { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.9rem; }
+.fp-filter {
+  font: inherit; font-size: 0.9rem; cursor: pointer;
+  padding: 0.4rem 0.9rem; border-radius: 999px;
+  border: 1px solid var(--line); background: var(--panel); color: var(--muted);
+}
+.fp-filter[aria-pressed="true"] { border-color: var(--accent); color: var(--text); background: var(--panel-2); }
+
+.fp-strip { display: flex; gap: 0.6rem; overflow-x: auto; padding-bottom: 0.5rem; scroll-snap-type: x proximity; }
+.fp-thumb {
+  font: inherit; cursor: pointer; flex: none; width: 170px; padding: 0; text-align: left;
+  border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: var(--panel); color: var(--text);
+  scroll-snap-align: start;
+}
+.fp-thumb img { display: block; width: 100%; height: 96px; object-fit: cover; }
+.fp-thumb-text { display: flex; flex-direction: column; gap: 0.1rem; padding: 0.45rem 0.6rem 0.55rem; }
+.fp-thumb-tag { font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.fp-thumb-title { font-size: 0.85rem; line-height: 1.25; font-weight: 600; }
+.fp-thumb[aria-pressed="true"] { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+.fp-thumb.planet-moon[aria-pressed="true"] { border-color: var(--moon); box-shadow: 0 0 0 1px var(--moon); }
+.fp-thumb.planet-mars[aria-pressed="true"] { border-color: var(--mars); box-shadow: 0 0 0 1px var(--mars); }
+
+.fp-sheet {
+  display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 1.5rem;
+  margin-top: 1rem; padding: clamp(1rem, 2.5vw, 1.5rem);
+  border: 1px solid var(--line); border-radius: 14px; background: var(--panel);
+}
+.fp-sheet.planet-moon { border-top: 3px solid var(--moon); }
+.fp-sheet.planet-mars { border-top: 3px solid var(--mars); }
+.fp-media { margin: 0; }
+.fp-media > img { display: block; width: 100%; max-height: 520px; object-fit: contain; background: #000; border-radius: 10px; }
+.fp-media figcaption { margin-top: 0.5rem; font-size: 0.8rem; color: var(--muted); }
+.fp-kicker { margin: 0; font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+.fp-title { margin: 0.2rem 0 0.8rem; font-family: var(--serif); font-weight: 500; font-size: clamp(1.3rem, 2.8vw, 1.7rem); }
+.fp-fields { margin: 0; }
+.fp-fields dt { margin-top: 0.7rem; font-size: 0.82rem; color: var(--muted); }
+.fp-fields dt:first-child { margin-top: 0; }
+.fp-fields dd { margin: 0.15rem 0 0; font-size: 0.94rem; }
+.fp-cannot {
+  margin-top: 1rem; padding: 0.8rem 0.95rem; border-radius: 10px;
+  border: 1px solid rgba(255, 184, 107, 0.45); background: rgba(255, 184, 107, 0.06);
+}
+.fp-cannot h4 { margin: 0 0 0.3rem; font-size: 0.9rem; color: #ffb86b; }
+.fp-cannot p { margin: 0; font-size: 0.92rem; }
+.fp-actions { margin-top: 1rem; }
+
+/* Before/after slider */
+.fp-compare { position: relative; border-radius: 10px; overflow: hidden; background: #000; user-select: none; }
+.fp-compare img { display: block; width: 100%; height: auto; }
+.fp-after { position: absolute; inset: 0; height: 100%; object-fit: cover; }
+.fp-line { position: absolute; top: 0; bottom: 0; width: 2px; margin-left: -1px; background: #fff; box-shadow: 0 0 6px rgba(0, 0, 0, 0.7); pointer-events: none; }
+.fp-line::after {
+  content: "⟷"; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  width: 34px; height: 34px; border-radius: 50%; background: #fff; color: #111;
+  display: grid; place-items: center; font-size: 16px; font-weight: 700;
+}
+.fp-lab {
+  position: absolute; top: 10px; padding: 3px 8px; border-radius: 6px;
+  font-size: 0.78rem; font-weight: 600; background: rgba(7, 8, 13, 0.75); color: #fff; pointer-events: none;
+}
+.fp-lab-before { left: 10px; }
+.fp-lab-after { right: 10px; }
+.fp-range {
+  position: absolute; inset: 0; width: 100%; height: 100%; margin: 0;
+  opacity: 0; cursor: ew-resize; -webkit-appearance: none; appearance: none;
+}
+.fp-compare:focus-within { outline: 3px solid var(--accent); outline-offset: 2px; }
+.fp-basis { margin: 0.5rem 0 0; font-size: 0.85rem; }
+
+@media (max-width: 860px) {
+  .fp-sheet { grid-template-columns: 1fr; }
+}

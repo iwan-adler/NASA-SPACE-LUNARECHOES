@@ -66,6 +66,18 @@ function renderLastSignal(objects, data) {
   showSignal(0, false);
 }
 
+// Opens the channel for an object id and scrolls to it (used by the heritage map).
+function openSignalFor(id) {
+  for (var i = 0; i < signalChannels.length; i++) {
+    if (signalChannels[i].id === id) {
+      showSignal(i, true);
+      scrollToElement(document.getElementById("signal-box"));
+      return true;
+    }
+  }
+  return false;
+}
+
 // Builds the full, ordered event list for one channel, with a phase for each event.
 function signalEvents(item, ch) {
   var list = [];

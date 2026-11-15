@@ -41,6 +41,18 @@ css/journey.css            Homepage title, tagline, journey section, footer disc
 css/last-signal.css        The Last Signal styles
 css/detective.css          Planetary Detective workspace styles
 docs/implementation-plan.md  Audit of the master brief and the feature plan
+js/heritage-map.js         The Forgotten Footprints: Moon/Mars heritage map (replaces the simple grid)
+data/heritage-map.json     Basemaps, view windows and approximate positions for the map
+js/footprints.js           Mission Footprints Lab: NASA images with what they can and cannot tell us
+data/footprints.json       Image facts from NASA's own descriptions; one verified before/after pair
+js/evidence-game.js        Evidence or Assumption? reasoning game
+data/evidence-game.json    Claims, NASA evidence and explanations
+js/ethics.js               The Ethics of Exploration: four dilemmas, four perspectives, no score
+data/ethics.json           Dilemmas and their labelled consequences
+css/heritage-map.css, css/footprints.css  Styles for the map and the image lab
+assets/images/maps/        NASA basemaps (SVS CGI Moon Kit; Viking MDIM 2.1 via Mars Trek)
+assets/images/footprints/  Phoenix HiRISE comparison pair (PIA22223 figures 1 and 2)
+rover/build.html (+ build.js, build.css, build-data.json)  Build Your Own Rover simulator
 data/cases.json            The three case files: evidence, question, explanation, significance
 data/decision.json         The hypothetical Future Explorer scenario and its sourced trade-offs
 js/citizen.js              Beyond the Archive: citizen-science section and practice demos
@@ -85,6 +97,24 @@ Shape the future**. The footer carries the full project disclaimer. The audit an
   Visitors sort claims into Confirmed evidence, Reasonable interpretation, Unconfirmed possibility or Unknown, with
   sources. After the conclusion, "The real record" answers what, which mission, purpose, what happened, current status
   and what remains uncertain.
+
+### Round 2 (Priority 1)
+
+- **The Forgotten Footprints** (`#map`): real NASA maps of the Moon (LRO) and Mars (Viking). Each marker is labelled
+  Verified (NSSDCA coordinates), Approximate (site documented, exact spot not, with the reason) or Unknown (listed,
+  never plotted). Markers open a panel with mission, arrival date, status and links to the record and The Last Signal.
+- **Mission Footprints Lab** (`#footprints`): 9 NASA images. Each shows what is pictured, the mission, the instrument
+  (only if NASA names it), the date, why it was taken, what scientists learn, and *what it cannot tell us*. There is one
+  before/after slider, for Phoenix, the only pair NASA describes as the same area with matched geometry. The slider
+  works with a keyboard.
+- **Evidence or Assumption?** (`#evidence-game`): judge 6 random claims against NASA evidence as Supported,
+  Contradicted or Insufficient evidence.
+- **Build Your Own Rover** (`rover/build.html`): fictional missions, a 100-point budget, and Strong / Adequate / Weak
+  ratings with reasons. It produces a printable design report with real-world reference notes from NASA sources.
+  It is an educational simulation, not an engineering tool.
+- **The Ethics of Exploration** (`#ethics`): four hypothetical dilemmas (retrieval, science vs preservation,
+  documentation, rules for a busy Moon). Each consequence is shown from four perspectives and labelled Verified or
+  Interpretation. There is no score.
 
 ## Beyond the Mission
 
