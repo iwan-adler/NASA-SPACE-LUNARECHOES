@@ -214,6 +214,28 @@ All pages were read on 14–15 Nov 2026. Real participation happens only on the 
 
 No participation statistics or research outcomes are stated anywhere.
 
+### The Last Signal (`data/last-signal.json`)
+
+- **Events** reuse the sourced `events`, `fate` and `status` fields in `data/objects.json`.
+- **Launch dates** added for objects whose events did not include one. Each comes from the NSSDCA record linked on that channel:
+  - Apollo 11: 1969-07-16 ([1969-059C](https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1969-059C))
+  - Apollo 15: 1971-07-26 ([1971-063C](https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1971-063C))
+  - Apollo 17: 1972-12-07 ([1972-096C](https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1972-096C))
+  - Spirit: 2003-06-10 ([2003-027A](https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=2003-027A))
+  - Opportunity: 2003-07-08 ([2003-032A](https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=2003-032A))
+- **Last documented event:** for each object it is the matching event already in `objects.json`.
+  - Three channels are marked as "exact final communication not recorded in our sources": Surveyor 3, the Eagle descent stage and the Apollo 15 rover. The page shows their last documented event instead.
+  - No final transmission, conversation or log is quoted or invented.
+- **Durations** ("from arrival to the last documented event") are calculated by the page from those dates. They are not quoted figures.
+
+### The Planetary Detective workspace (`data/cases.json` → `claims`, `unknowns`)
+
+- Each claim is classified as Confirmed evidence, Reasonable interpretation, Unconfirmed possibility or Unknown.
+- Each claim links to one of the evidence sources already listed for that case above.
+- **Written by AI and labelled:**
+  - the claims and their explanations;
+  - the "What remains uncertain" lists, which only say what our sources do *not* document.
+
 ### ROVER RESCUE: Mission to Discover (`rover/rover-data.json`)
 
 An educational mini-game. **All instrument readings are SIMULATED**: illustrative qualitative values (e.g. "Iron: High")

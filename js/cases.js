@@ -107,7 +107,24 @@ function openCase(index, scroll) {
     exhibits.appendChild(dt);
     exhibits.appendChild(makeEl("dd", "", showValue(e[1])));
   });
-  var recordNote = makeEl("p", "evidence-source", "Exhibits A–C: ");
+  // Exhibit D: timeline clues from the object's dated mission journey
+  if (Array.isArray(item.events) && item.events.length) {
+    var dtD = makeEl("dt", "", "Exhibit D · Timeline clues ");
+    dtD.appendChild(makeTag("verified"));
+    exhibits.appendChild(dtD);
+    var ddD = makeEl("dd", "");
+    var tl = makeEl("ol", "case-timeline");
+    item.events.forEach(function (e) {
+      var li = makeEl("li", "");
+      li.appendChild(makeEl("time", "", formatDate(e.date)));
+      li.lastChild.setAttribute("datetime", e.date);
+      li.appendChild(document.createTextNode(" " + e.label));
+      tl.appendChild(li);
+    });
+    ddD.appendChild(tl);
+    exhibits.appendChild(ddD);
+  }
+  var recordNote = makeEl("p", "evidence-source", "Exhibits A–D: ");
   recordNote.appendChild(isWebLink(item.source) ? makeLink(item.source, sourceName(item.source)) : document.createTextNode(showValue(item.source)));
   right.appendChild(exhibits);
   right.appendChild(recordNote);
@@ -163,6 +180,10 @@ function openCase(index, scroll) {
   });
   updateCounter();
   right.appendChild(evList);
+
+  // Investigation workspace: sort claims by how well the evidence supports them
+  var workspace = makeWorkspace(c);
+  if (workspace) right.appendChild(workspace);
 
   // The question
   var form = makeEl("form", "case-question");
@@ -264,6 +285,7 @@ function showVerdict(verdict, c, item, correct, index) {
     sig.appendChild(makeEl("p", "", c.significance));
     verdict.appendChild(sig);
   }
+  verdict.appendChild(makeRealRecord(c, item));
   var actions = makeEl("div", "case-actions");
   var story = makeEl("button", "btn btn-ghost", "Read the full story");
   story.type = "button";
@@ -277,6 +299,121 @@ function showVerdict(verdict, c, item, correct, index) {
     actions.appendChild(nb);
   }
   verdict.appendChild(actions);
+}
+
+// ---------- Planetary Detective: evidence classification ----------
+
+var CLAIM_KINDS = [
+  { id: "confirmed", label: "Confirmed evidence", hint: "Stated in a NASA source" },
+  { id: "interpretation", label: "Reasonable interpretation", hint: "Follows from the evidence, but is reasoning" },
+  { id: "possibility", label: "Unconfirmed possibility", hint: "Could be true; no evidence either way" },
+  { id: "unknown", label: "Unknown", hint: "Not documented; can't be answered" }
+];
+function claimKind(id) {
+  for (var i = 0; i < CLAIM_KINDS.length; i++) if (CLAIM_KINDS[i].id === id) return CLAIM_KINDS[i];
+  return CLAIM_KINDS[0];
+}
+
+// The workspace: one row per claim, four classification buttons, feedback with the source.
+function makeWorkspace(c) {
+  if (!Array.isArray(c.claims) || !c.claims.length) return null;
+  var ws = makeEl("section", "detective-ws");
+  ws.setAttribute("aria-label", "Investigation workspace");
+  ws.appendChild(makeEl("h4", "", "Investigation workspace"));
+  ws.appendChild(makeEl("p", "detective-intro", "A good detective separates what is known from what is guessed. Sort each statement by the evidence behind it. Read the evidence above first."));
+
+  var key = makeEl("ul", "detective-key");
+  CLAIM_KINDS.forEach(function (k) {
+    var li = makeEl("li", "claim-" + k.id);
+    li.appendChild(makeEl("strong", "", k.label));
+    li.appendChild(document.createTextNode(": " + k.hint));
+    key.appendChild(li);
+  });
+  ws.appendChild(key);
+
+  var status = makeEl("p", "detective-status");
+  status.setAttribute("aria-live", "polite");
+  var done = 0, careful = 0;
+  function updateStatus() {
+    status.textContent = "Sorted " + done + " of " + c.claims.length + (done ? " · matched the evidence on " + careful : "");
+  }
+
+  var list = makeEl("ol", "detective-claims");
+  c.claims.forEach(function (cl, i) {
+    var li = makeEl("li", "detective-claim");
+    li.appendChild(makeEl("p", "detective-claim-text", "“" + cl.text + "”"));
+    var group = makeEl("div", "detective-choices");
+    group.setAttribute("role", "group");
+    group.setAttribute("aria-label", "Classify statement " + (i + 1));
+    var feedback = makeEl("div", "detective-feedback");
+    feedback.hidden = true;
+    CLAIM_KINDS.forEach(function (k) {
+      var b = makeEl("button", "detective-choice claim-" + k.id, k.label);
+      b.type = "button";
+      b.setAttribute("aria-pressed", "false");
+      b.addEventListener("click", function () {
+        var right = k.id === cl.answer;
+        group.querySelectorAll("button").forEach(function (x) {
+          x.disabled = true;
+          if (x === b) x.setAttribute("aria-pressed", "true");
+          if (x.classList.contains("claim-" + cl.answer)) x.classList.add("is-answer");
+        });
+        if (!right) b.classList.add("is-wrong");
+        li.classList.add(right ? "is-right" : "is-off");
+        feedback.hidden = false;
+        feedback.appendChild(makeEl("p", "detective-verdict", (right ? "✓ Matches the evidence: " : "✗ The evidence says: ") + claimKind(cl.answer).label + "."));
+        feedback.appendChild(makeEl("p", "", cl.explain));
+        if (isWebLink(cl.sourceUrl)) {
+          var src = makeEl("p", "evidence-source", "Evidence: ");
+          src.appendChild(makeLink(cl.sourceUrl, cl.sourceName + " ↗"));
+          feedback.appendChild(src);
+        }
+        done++;
+        if (right) careful++;
+        updateStatus();
+      });
+      group.appendChild(b);
+    });
+    li.appendChild(group);
+    li.appendChild(feedback);
+    list.appendChild(li);
+  });
+  ws.appendChild(list);
+  updateStatus();
+  ws.appendChild(status);
+  return ws;
+}
+
+// Revealed after the conclusion: the real historical record, and what remains uncertain.
+function makeRealRecord(c, item) {
+  var box = makeEl("div", "detective-record");
+  box.appendChild(makeEl("h4", "", "The real record"));
+  var dl = makeEl("dl", "");
+  [["What is the object?", item.name + " (" + showValue(item.category) + ")"],
+   ["Which mission?", showValue(item.mission) + ", arrived " + showValue(item.year)],
+   ["What was its purpose?", item.purpose],
+   ["What happened to it?", item.fate],
+   ["What is its status now?", item.status]].forEach(function (r) {
+    var dt = makeEl("dt", "", r[0] + " ");
+    dt.appendChild(makeTag("verified"));
+    dl.appendChild(dt);
+    dl.appendChild(makeEl("dd", "", showValue(r[1])));
+  });
+  if (Array.isArray(c.unknowns) && c.unknowns.length) {
+    var dt = makeEl("dt", "", "What remains uncertain? ");
+    dt.appendChild(makeTag("unknown"));
+    dl.appendChild(dt);
+    var dd = makeEl("dd", "");
+    var ul = makeEl("ul", "");
+    c.unknowns.forEach(function (u) { ul.appendChild(makeEl("li", "", u)); });
+    dd.appendChild(ul);
+    dl.appendChild(dd);
+  }
+  box.appendChild(dl);
+  var src = makeEl("p", "evidence-source", "Record: ");
+  if (isWebLink(item.source)) src.appendChild(makeLink(item.source, sourceName(item.source)));
+  box.appendChild(src);
+  return box;
 }
 
 function closeCase() {
