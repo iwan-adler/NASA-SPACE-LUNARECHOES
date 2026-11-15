@@ -40,15 +40,26 @@ function renderCitizenScience(data) {
   beyondData = data;
   beyondLoad();
 
+  // Page order follows the discovery journey; the extra sections are filled by js/beyond-extras.js.
+  function slot(id, cls) {
+    var s = makeEl("section", cls || "beyond-block");
+    s.id = id;
+    box.appendChild(s);
+    return s;
+  }
   box.appendChild(buildHero(data));
+  slot("beyond-ppf");
   box.appendChild(buildSubnav());
   box.appendChild(buildWorldTabs(data));
   ["moon", "mars"].forEach(function (w) { box.appendChild(buildWorldPanel(w, data.worlds[w])); });
   box.appendChild(buildComparison(data));
-  var journal = makeEl("section", "beyond-journal");
-  journal.id = "beyond-journal";
+  slot("beyond-impact");
+  slot("beyond-wall");
+  slot("beyond-ask");
+  slot("beyond-profile");
+  var journal = slot("beyond-journal", "beyond-journal");
   journal.setAttribute("aria-labelledby", "journal-title");
-  box.appendChild(journal);
+  slot("beyond-charter");
 
   var note = makeEl("p", "beyond-disclaimer");
   note.appendChild(makeEl("strong", "", "Independent project. "));
@@ -62,28 +73,49 @@ function renderCitizenScience(data) {
   function fromHash() {
     var h = location.hash;
     if (h === "#beyond-moon" || h === "#beyond-mars") selectWorld(h.slice(8), true);
-    if (h === "#beyond-journal") scrollToElement(document.getElementById("beyond-journal"));
+    else if (/^#beyond-(journal|wall|ask|charter|compare|impact|profile|ppf)$/.test(h)) {
+      var el = document.querySelector(h);
+      if (el) scrollToElement(el);
+    }
   }
   window.addEventListener("hashchange", fromHash);
   fromHash();
 }
 
 // ---------- Shared intro ----------
+// Planetary Mission Control: the opening of the experience
 function buildHero(data) {
   var h = data.hero;
-  var hero = makeEl("div", "beyond-hero");
-  hero.appendChild(makeEl("p", "beyond-tagline-top", h.tagline));
+  var hero = makeEl("div", "beyond-hero mission-control");
+  hero.appendChild(makeEl("p", "beyond-tagline-top", h.eyebrow || h.tagline));
   hero.appendChild(makeEl("h3", "beyond-hero-title", h.title));
+  if (h.subtitle) hero.appendChild(makeEl("p", "mc-subtitle", h.subtitle));
   hero.appendChild(makeEl("p", "beyond-hero-text", h.narrative));
+
+  if (h.objective) {
+    var brief = makeEl("div", "mc-briefing");
+    brief.appendChild(makeEl("p", "mc-briefing-label", "Mission briefing · Objective"));
+    brief.appendChild(makeEl("p", "mc-objective", h.objective));
+    hero.appendChild(brief);
+  }
+
+  var actions = makeEl("div", "mc-actions");
   var go = makeEl("button", "btn btn-primary beyond-begin", h.button);
   go.type = "button";
-  go.addEventListener("click", function () {
-    selectWorld(beyond.world, true);
+  go.addEventListener("click", function () { selectWorld(beyond.world, true); });
+  actions.appendChild(go);
+  ["moon", "mars"].forEach(function (w) {
+    var b = makeEl("button", "btn btn-ghost mc-path is-" + w,
+      w === "moon" ? "Lunar investigation →" : "Martian atmosphere investigation →");
+    b.type = "button";
+    b.addEventListener("click", function () { selectWorld(w, true); });
+    actions.appendChild(b);
   });
-  hero.appendChild(go);
+  hero.appendChild(actions);
+  hero.appendChild(makeEl("p", "mc-tagline", h.tagline));
 
   var pr = makeEl("ul", "beyond-principles");
-  pr.setAttribute("aria-label", "Three principles of scientific observation");
+  pr.setAttribute("aria-label", "How scientists think: four steps");
   data.principles.forEach(function (p) {
     var li = makeEl("li");
     li.appendChild(makeEl("strong", "", p.title));
@@ -98,7 +130,8 @@ function buildSubnav() {
   var nav = makeEl("nav", "beyond-subnav");
   nav.setAttribute("aria-label", "Beyond the Archive");
   [["Moon investigation", "#beyond-moon"], ["Mars investigation", "#beyond-mars"],
-   ["Compare", "#beyond-compare"], ["My discovery journal", "#beyond-journal"]].forEach(function (l) {
+   ["Two worlds", "#beyond-compare"], ["Open questions", "#beyond-wall"], ["Ask a scientist", "#beyond-ask"],
+   ["My discovery journal", "#beyond-journal"], ["Explorer charter", "#beyond-charter"]].forEach(function (l) {
     var a = makeEl("a", "", l[0]);
     a.href = l[1];
     a.addEventListener("click", function (e) {
@@ -319,6 +352,13 @@ function moonCompare(s, d) {
   label.appendChild(makeEl("span", "demo-flag", "Illustration"));
   label.appendChild(document.createTextNode(" " + c.illustrationLabel));
   s.appendChild(label);
+  if (c.limitation) {
+    var lim = para(s, c.limitation, "unknown", "illus-limitation");
+    if (c.video && isWebLink(c.video.url)) {
+      lim.appendChild(document.createTextNode(" "));
+      lim.appendChild(makeLink(c.video.url, c.video.name + " ↗"));
+    }
+  }
 
   var grid = makeEl("div", "compare-grid");
   var steps = makeEl("ol", "compare-steps");
@@ -505,7 +545,7 @@ function moonInvestigate(s, d) {
     look.appendChild(card);
   });
   s.appendChild(look);
-  observationLab(s, d.lab, d.lab, "moon-lab", d.sources);
+  observationLab(s, d.lab, d, "moon-lab", d.sources);
 }
 
 // ---------- MARS ----------
@@ -536,6 +576,8 @@ function marsShapes(s, d) {
   cap.appendChild(makeTag("verified"));
   cap.appendChild(document.createTextNode(" " + d.caption));
   fig.appendChild(cap);
+  var info = makeImageInfo(d);
+  if (info) fig.appendChild(info);
 
   var side = makeEl("div", "shapes-side");
   side.appendChild(makeEl("p", "beyond-small-title", "Cloud shapes in the project's field guide. Select each one:"));
@@ -569,13 +611,33 @@ function marsShapes(s, d) {
 function marsObserve(s, d) {
   observationLab(s, { image: d.image, imagePage: d.imagePage, credit: d.credit, alt: d.alt,
     instrument: d.instrument, researching: "Researchers want to map which cloud shapes appear on Mars, and where and when, to learn about water vapour, winds and daily weather.",
-    questions: d.lab.questions, canCannot: d.lab.canCannot }, null, "mars-lab", d.sources);
+    questions: d.lab.questions, canCannot: d.lab.canCannot, projectLink: d.lab.projectLink }, d, "mars-lab", d.sources);
+}
+
+// ---------- Shared: Science behind the image (expandable, every row labelled) ----------
+function makeImageInfo(wd) {
+  if (!wd || !Array.isArray(wd.imageInfo)) return null;
+  var det = makeEl("details", "image-info");
+  var sum = makeEl("summary", "", "Science behind the image");
+  det.appendChild(sum);
+  var dl = makeEl("dl", "image-info-list");
+  wd.imageInfo.forEach(function (row) {
+    var dt = makeEl("dt", "", row[0] + " ");
+    dt.appendChild(makeTag(row[2] || "verified"));
+    dl.appendChild(dt);
+    dl.appendChild(makeEl("dd", "", row[1]));
+  });
+  det.appendChild(dl);
+  det.appendChild(sourceLine("Sources: ", wd.imageInfoSources));
+  det.addEventListener("toggle", function () { if (det.open) markDone("image-info"); });
+  return det;
 }
 
 // ---------- Shared: Observation Lab ----------
 // Shows a real, credited image, says what collected it and what is being researched, then asks three
 // questions where "Not sure" is always a valid answer, and ends with what the image can and cannot establish.
-function observationLab(s, lab, _unused, milestone, sources) {
+// `wd` = the world's data (for the Science behind the image panel).
+function observationLab(s, lab, wd, milestone, sources) {
   var box = makeEl("div", "obs-lab");
   var head = makeEl("div", "obs-head");
   head.appendChild(makeEl("span", "demo-flag", "Observation lab"));
@@ -587,6 +649,8 @@ function observationLab(s, lab, _unused, milestone, sources) {
   figureWithCredit(left, lab.image, lab.alt, lab.credit, lab.imagePage);
   para(left, lab.instrument, "verified", "obs-meta");
   para(left, lab.researching, "verified", "obs-meta");
+  var info = makeImageInfo(wd);
+  if (info) left.appendChild(info);
   grid.appendChild(left);
 
   var right = makeEl("div", "obs-questions");
@@ -596,13 +660,14 @@ function observationLab(s, lab, _unused, milestone, sources) {
     if (qi >= lab.questions.length) {
       var end = makeEl("div", "obs-end");
       end.appendChild(makeEl("p", "demo-verdict is-correct",
-        "Lab complete. You gave " + sure + " evidence-based answer" + (sure === 1 ? "" : "s") + " and said \"Not sure\" " + unsure + " time" + (unsure === 1 ? "" : "s") + ". Both are part of science."));
+        "Lab complete. You gave " + sure + " evidence-based answer" + (sure === 1 ? "" : "s") + " and chose uncertainty " + unsure + " time" + (unsure === 1 ? "" : "s") + ". Both are part of science."));
       var cc = makeEl("dl", "can-cannot");
       cc.appendChild(makeEl("dt", "", "What this image can establish"));
       cc.appendChild(makeEl("dd", "", lab.canCannot.can));
       cc.appendChild(makeEl("dt", "", "What it cannot establish on its own"));
       cc.appendChild(makeEl("dd", "", lab.canCannot.cannot));
       end.appendChild(cc);
+      if (lab.projectLink) para(end, lab.projectLink, null, "obs-project-link");
       var again = makeEl("button", "btn btn-ghost", "Try the lab again");
       again.type = "button";
       again.addEventListener("click", function () { qi = 0; sure = 0; unsure = 0; showQ(); });
@@ -625,7 +690,7 @@ function observationLab(s, lab, _unused, milestone, sources) {
       b.type = "button";
       b.addEventListener("click", function () {
         opts.querySelectorAll("button").forEach(function (x) { x.disabled = true; });
-        var isBest = o === q.best, isUnsure = o === "Not sure";
+        var isBest = o === q.best, isUnsure = o === (q.unsure || "Not sure");
         b.classList.add(isBest ? "correct" : isUnsure ? "unsure" : "wrong");
         if (!isBest) opts.querySelectorAll("button").forEach(function (x) { if (x.textContent === q.best) x.classList.add("best"); });
         if (isUnsure) unsure++; else if (isBest) sure++;
@@ -680,9 +745,25 @@ function continueStage(s, d, w) {
   a.target = "_blank";
   a.rel = "noopener noreferrer";
   a.setAttribute("aria-label", c.button + " (official project, opens in a new tab)");
-  a.addEventListener("click", function () { markDone(w + "-official"); });
   box.appendChild(a);
   box.appendChild(makeEl("p", "continue-must", c.mustSubmit));
+  // Only the visitor can say they actually visited: nothing is recorded automatically
+  if (c.record) {
+    var rec = makeEl("button", "btn btn-ghost record-visit", c.record);
+    rec.type = "button";
+    function sync() {
+      var done = !!beyond.done[w + "-official"];
+      rec.setAttribute("aria-pressed", done ? "true" : "false");
+      rec.textContent = done ? "✓ Recorded in my journal" : c.record;
+    }
+    rec.addEventListener("click", function () {
+      if (beyond.done[w + "-official"]) { delete beyond.done[w + "-official"]; beyondSave(); renderJournal(); updateWorldTabs(); }
+      else markDone(w + "-official");
+      sync();
+    });
+    sync();
+    box.appendChild(rec);
+  }
   s.appendChild(box);
 
   s.appendChild(makeEl("p", "beyond-small-title", "What happens after you leave Lunar Echoes:"));
@@ -733,10 +814,19 @@ function buildComparison(data) {
 }
 
 // ---------- My Discovery Journal ----------
+// A personal learning record kept only in this browser tab (sessionStorage). Not a certificate.
+// beyond.questions = Open Questions Wall items the visitor opened; beyond.notes = optional private notes;
+// beyond.charter = the visitor's Future Explorer Charter (written by js/beyond-extras.js).
+
+function journalLabel(w) {
+  return w === "moon" ? "Moon · MoonDiff" : w === "mars" ? "Mars · Cloudspotting on Mars: Shapes" : "Across both worlds";
+}
+
 function renderJournal() {
   var sec = document.getElementById("beyond-journal");
   if (!sec || !beyondData) return;
   var j = beyondData.journal;
+  var keepFocus = document.activeElement && sec.contains(document.activeElement) ? document.activeElement.id : null;
   sec.innerHTML = "";
   var h = makeEl("h3", "beyond-section-title", "My discovery journal");
   h.id = "journal-title";
@@ -745,53 +835,140 @@ function renderJournal() {
   sec.appendChild(makeEl("p", "journal-progress", doneCount + " of " + j.milestones.length + " milestones reached"));
 
   var cols = makeEl("div", "journal-cols");
-  ["moon", "mars"].forEach(function (w) {
+  ["moon", "mars", "both"].forEach(function (w) {
     var col = makeEl("div", "journal-col is-" + w);
-    col.appendChild(makeEl("h4", "", w === "moon" ? "Moon · MoonDiff" : "Mars · Cloudspotting on Mars: Shapes"));
+    col.appendChild(makeEl("h4", "", journalLabel(w)));
     var ul = makeEl("ul", "journal-list");
     j.milestones.filter(function (m) { return m.world === w; }).forEach(function (m) {
-      var li = makeEl("li", beyond.done[m.id] ? "is-done" : "", (beyond.done[m.id] ? "✓ " : "○ ") + m.text);
-      ul.appendChild(li);
+      ul.appendChild(makeEl("li", beyond.done[m.id] ? "is-done" : "", (beyond.done[m.id] ? "✓ " : "○ ") + m.text));
     });
     col.appendChild(ul);
     cols.appendChild(col);
   });
   sec.appendChild(cols);
 
-  // Summary: My Planetary Science Journey
+  // Optional private notes (kept in this tab only)
+  var notesLabel = makeEl("label", "journal-notes-label", "My notes (optional, stays in this browser tab; please do not enter personal information)");
+  notesLabel.htmlFor = "journal-notes";
+  var notes = makeEl("textarea", "journal-notes");
+  notes.id = "journal-notes";
+  notes.maxLength = 600;
+  notes.rows = 3;
+  notes.value = beyond.notes || "";
+  notes.addEventListener("input", function () { beyond.notes = notes.value; beyondSave(); });
+  sec.appendChild(notesLabel);
+  sec.appendChild(notes);
+
+  // Summary: My Planetary Discovery Journal
   var sum = makeEl("div", "journey-summary");
   sum.appendChild(makeEl("p", "journey-kicker", "Learning record"));
-  sum.appendChild(makeEl("h4", "journey-title", "My Planetary Science Journey"));
+  sum.appendChild(makeEl("h4", "journey-title", "My Planetary Discovery Journal"));
   var explored = ["moon", "mars"].filter(function (w) { return beyond.done[w + "-explored"]; });
   sum.appendChild(makeEl("p", "", explored.length
     ? "Worlds explored: " + explored.map(function (w) { return w === "moon" ? "the Moon" : "Mars"; }).join(" and ") + "."
-    : "No world explored yet. Begin with the Moon or Mars above."));
+    : "No world explored yet. Begin in Mission Control above."));
   var learned = j.milestones.filter(function (m) { return beyond.done[m.id] && !/official/.test(m.id); });
   if (learned.length) {
-    sum.appendChild(makeEl("p", "beyond-small-title", "What I learned"));
+    sum.appendChild(makeEl("p", "beyond-small-title", "Learning activities completed"));
     var ul = makeEl("ul");
     learned.forEach(function (m) { ul.appendChild(makeEl("li", "", m.text.replace(/^I /, ""))); });
     sum.appendChild(ul);
   }
-  sum.appendChild(makeEl("p", "beyond-small-title", "Where I can take part for real"));
+  var qs = journalQuestions();
+  if (qs.length) {
+    sum.appendChild(makeEl("p", "beyond-small-title", "Questions I explored"));
+    var qul = makeEl("ul");
+    qs.forEach(function (q) { qul.appendChild(makeEl("li", "", q)); });
+    sum.appendChild(qul);
+  }
+  sum.appendChild(makeEl("p", "beyond-small-title", "Official opportunities to continue"));
   var links = makeEl("div", "journey-links");
   ["moon", "mars"].forEach(function (w) {
     var c = beyondData.worlds[w].continue;
     var a = makeEl("a", "btn btn-ghost", beyondData.worlds[w].project + " ↗");
     a.href = c.url; a.target = "_blank"; a.rel = "noopener noreferrer";
-    a.addEventListener("click", function () { markDone(w + "-official"); });
     links.appendChild(a);
   });
   sum.appendChild(links);
   sum.appendChild(makeEl("p", "journey-note", j.note));
+
+  var acts = makeEl("div", "journey-actions");
+  var print = makeEl("button", "btn btn-primary", "Print or save my journal");
+  print.type = "button";
+  print.addEventListener("click", openJournalPrint);
   var reset = makeEl("button", "btn btn-ghost journal-reset", "Clear my journal");
   reset.type = "button";
   reset.addEventListener("click", function () {
     beyond.done = {};
+    beyond.questions = [];
+    beyond.notes = "";
     beyondSave();
     renderJournal();
     updateWorldTabs();
+    document.querySelectorAll(".record-visit").forEach(function (b) { b.setAttribute("aria-pressed", "false"); });
   });
-  sum.appendChild(reset);
+  acts.appendChild(print);
+  acts.appendChild(reset);
+  sum.appendChild(acts);
   sec.appendChild(sum);
+  if (keepFocus && document.getElementById(keepFocus)) document.getElementById(keepFocus).focus();
+}
+
+// Titles of the open questions the visitor explored (filled by js/beyond-extras.js)
+function journalQuestions() {
+  var ids = Array.isArray(beyond.questions) ? beyond.questions : [];
+  var titles = (typeof beyondQuestionTitle === "function") ? ids.map(beyondQuestionTitle).filter(Boolean) : [];
+  return titles;
+}
+
+function escapeHtml(s) {
+  return String(s === undefined || s === null ? "" : s)
+    .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+}
+
+// Opens a clean, printable summary in a new tab (or downloads it if pop-ups are blocked)
+function openJournalPrint() {
+  var j = beyondData.journal;
+  var done = j.milestones.filter(function (m) { return beyond.done[m.id]; });
+  var explored = ["moon", "mars"].filter(function (w) { return beyond.done[w + "-explored"]; })
+    .map(function (w) { return w === "moon" ? "The Moon" : "Mars"; });
+  var today = new Date();
+  var dateText = today.getDate() + " " + MONTHS[today.getMonth()] + " " + today.getFullYear();
+  var ch = beyond.charter;
+  var html = "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">" +
+    "<title>My Planetary Discovery Journal</title><style>" +
+    "body{font-family:Georgia,'Times New Roman',serif;color:#111;max-width:720px;margin:24px auto;padding:0 20px;line-height:1.5}" +
+    "h1{font-size:28px;margin:4px 0 2px}h2{font-family:Arial,sans-serif;font-size:12px;letter-spacing:.12em;text-transform:uppercase;border-bottom:1px solid #999;margin:20px 0 6px}" +
+    ".k{font-family:Arial,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#555}.note{border:1px solid #333;padding:8px 10px;font-size:13px}" +
+    "li{margin:3px 0}.url{font-family:Arial,sans-serif;font-size:12px;color:#333;word-break:break-all}button{font-family:Arial,sans-serif;padding:8px 14px}@media print{button{display:none}}" +
+    "</style></head><body><button onclick=\"window.print()\">Print or save as PDF</button>" +
+    "<p class=\"k\">Lunar Echoes · Beyond the Archive · " + escapeHtml(dateText) + "</p><h1>My Planetary Discovery Journal</h1>" +
+    "<h2>Worlds explored</h2><p>" + (explored.length ? escapeHtml(explored.join(" and ")) : "None yet") + "</p>" +
+    "<h2>Learning activities completed</h2><ul>" + (done.length ? done.map(function (m) { return "<li>" + escapeHtml(m.text) + "</li>"; }).join("") : "<li>None yet</li>") + "</ul>" +
+    "<h2>Scientific concepts</h2><ul><li>Observation: what I can actually see.</li><li>Interpretation: what it might mean.</li><li>Evidence: what supports an interpretation.</li><li>Uncertainty: what I cannot confidently conclude, which is a valid scientific answer.</li></ul>" +
+    (journalQuestions().length ? "<h2>Questions I explored</h2><ul>" + journalQuestions().map(function (q) { return "<li>" + escapeHtml(q) + "</li>"; }).join("") + "</ul>" : "") +
+    (beyond.notes ? "<h2>My notes</h2><p>" + escapeHtml(beyond.notes) + "</p>" : "") +
+    (ch && ch.principles && ch.principles.length ? "<h2>My Future Explorer Charter</h2><ul>" + ch.principles.map(function (p) { return "<li>" + escapeHtml(p) + "</li>"; }).join("") + "</ul>" + (ch.text ? "<p><em>" + escapeHtml(ch.text) + "</em></p>" : "") : "") +
+    "<h2>Continue with real citizen science</h2><ul>" + ["moon", "mars"].map(function (w) {
+      var d = beyondData.worlds[w];
+      return "<li>" + escapeHtml(d.project) + "<br><span class=\"url\">" + escapeHtml(d.continue.url) + "</span></li>";
+    }).join("") + "</ul>" +
+    "<p class=\"note\">" + escapeHtml(j.note) + "</p><p class=\"k\">" + escapeHtml(beyondData.disclaimer) + "</p></body></html>";
+  openHtmlDocument(html, "my-planetary-discovery-journal.html");
+}
+
+// Shared by the journal and the charter: open generated HTML in a new tab, or download it.
+function openHtmlDocument(html, filename) {
+  var blob = new Blob([html], { type: "text/html" });
+  var url = URL.createObjectURL(blob);
+  var win = window.open(url, "_blank");
+  if (!win) {
+    var a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+  }
+  setTimeout(function () { URL.revokeObjectURL(url); }, 60000);
 }

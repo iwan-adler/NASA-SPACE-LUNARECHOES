@@ -1,16 +1,31 @@
 {
   "_note": "Content for BEYOND THE ARCHIVE. All facts come from the sources listed with each block (read 14-15 Nov 2026). Our own educational explanations are marked kind: 'interpretation'. The activities are educational only: nothing done on this website is sent to NASA, MoonDiff or Zooniverse. No verified Lunar Orbiter / LRO image pair could be obtained, so the Moon comparison is a clearly labelled ILLUSTRATION, not imagery. See docs/research-sources.md.",
   "hero": {
-    "eyebrow": "Beyond the Archive",
+    "eyebrow": "Planetary Mission Control",
     "title": "Beyond every mission lies another discovery.",
     "tagline": "The next discovery could begin with you.",
-    "narrative": "Humanity has explored two worlds. Some missions have ended. Some equipment remains. But discovery never stops. Today, people around the world can help scientists investigate the Moon and Mars using real scientific observations.",
+    "subtitle": "Two worlds. Different scientific questions. Countless opportunities to explore.",
+    "narrative": "We have explored the footprints humanity left behind on the Moon and Mars. But exploration does not end when a mission ends. Scientists continue to investigate these worlds, and people around the world can participate in some of that scientific work.",
+    "objective": "Investigate how scientific observations help us understand the Moon and Mars, and discover how you can participate in real planetary research.",
     "button": "Begin your investigation"
   },
   "principles": [
-    { "title": "Observation is different from interpretation", "text": "What you see (a bright ring) is not the same as what you conclude (a new crater)." },
-    { "title": "Evidence is different from assumption", "text": "A conclusion needs evidence that supports it, not just a shape that looks familiar." },
-    { "title": "Uncertainty is a valid scientific response", "text": "\"Not sure\" is an honest answer. In real projects, experts review what volunteers flag." }
+    {
+      "title": "Observation",
+      "text": "What can I actually see?"
+    },
+    {
+      "title": "Interpretation",
+      "text": "What might it mean?"
+    },
+    {
+      "title": "Evidence",
+      "text": "What supports that interpretation?"
+    },
+    {
+      "title": "Uncertainty",
+      "text": "What can I not confidently conclude? Saying so is a valid scientific answer."
+    }
   ],
   "worlds": {
     "moon": {
@@ -20,7 +35,13 @@
       "project": "MoonDiff",
       "image": "https://images-assets.nasa.gov/image/GSFC_20171208_Archive_e000501/GSFC_20171208_Archive_e000501~orig.jpg",
       "opening": "Decades separate these observations. What changed on the Moon while humanity was looking away?",
-      "stages": ["Enter the Lunar Archive", "Compare", "Investigate", "Connect to Lunar Echoes", "Continue the investigation"],
+      "stages": [
+        "Enter the Lunar Archive",
+        "Compare",
+        "Investigate",
+        "Connect to Lunar Echoes",
+        "Continue the investigation"
+      ],
       "eras": [
         {
           "id": "lo",
@@ -54,19 +75,52 @@
         "title": "How a comparison works",
         "illustrationLabel": "Illustration, not real lunar imagery. Drawn shapes show the techniques MoonDiff volunteers use. They are not observations.",
         "steps": [
-          { "id": "align", "title": "1 · Align", "text": "Before volunteers see a pair, MoonDiff's team map-projects and coregisters it. Without that step, a feature in the LRO image can appear several kilometres away in the Lunar Orbiter image. Drag the slider to line up the two illustrated frames." },
-          { "id": "blink", "title": "2 · Blink or fade", "text": "Volunteers compare pairs side by side, or by blinking or fading between them, so that anything that changed seems to jump out. Blink the aligned frames, or fade between them." },
-          { "id": "flag", "title": "3 · Flag a change", "text": "In MoonDiff, volunteers draw a polygon around an area that changed. Here, click the spot you think changed." }
+          {
+            "id": "align",
+            "title": "1 · Align",
+            "text": "Before volunteers see a pair, MoonDiff's team map-projects and coregisters it. Without that step, a feature in the LRO image can appear several kilometres away in the Lunar Orbiter image. Drag the slider to line up the two illustrated frames."
+          },
+          {
+            "id": "blink",
+            "title": "2 · Blink or fade",
+            "text": "Volunteers compare pairs side by side, or by blinking or fading between them, so that anything that changed seems to jump out. Blink the aligned frames, or fade between them."
+          },
+          {
+            "id": "flag",
+            "title": "3 · Flag a change",
+            "text": "In MoonDiff, volunteers draw a polygon around an area that changed. Here, click the spot you think changed."
+          }
         ],
         "found": "You spotted the crater that appears only in the newer frame. In MoonDiff, this would be flagged as a possible change, not yet a discovery.",
         "falseAlarm": "That mark is in the old frame only, but it is a film scratch, not a change on the Moon. The real Lunar Orbiter images were scanned from film and reassembled from strips by hand, so they contain distortions and artefacts. Look for a crater that appears only in the newer frame.",
-        "missed": "Nothing changed there. Blink again and look for a crater that appears only in the newer frame."
+        "missed": "Nothing changed there. Blink again and look for a crater that appears only in the newer frame.",
+        "limitation": "Why an illustration? We could not obtain a verified, published, co-registered pair of Lunar Orbiter and LRO images, and building one ourselves from raw archive data would not be authentic. Real pairs are available only inside MoonDiff.",
+        "video": {
+          "name": "Watch MoonDiff's own intro video",
+          "url": "https://trek.nasa.gov/app/static/moondiff_intro.webm"
+        }
       },
       "lookFor": [
-        { "title": "New impact craters", "text": "Space rocks hit the Moon and blast new craters. MoonDiff aims to measure how often that happens.", "kind": "verified" },
-        { "title": "Other surface changes", "text": "Rocks break off and roll down hills; MoonDiff's team also asks what geologic changes are happening right now.", "kind": "verified" },
-        { "title": "Spacecraft hardware", "text": "Spaceships land and spaceships crash. NASA says volunteers might spot historical objects, like the missing ascent stage of the Apollo 11 lunar lander.", "kind": "verified" },
-        { "title": "Things that only look like changes", "text": "Different sun angles, viewing angles and old-film artefacts can make an unchanged area look different. That is why lunar experts review every identified change.", "kind": "interpretation" }
+        {
+          "title": "New impact craters",
+          "text": "Space rocks hit the Moon and blast new craters. MoonDiff aims to measure how often that happens.",
+          "kind": "verified"
+        },
+        {
+          "title": "Other surface changes",
+          "text": "Rocks break off and roll down hills; MoonDiff's team also asks what geologic changes are happening right now.",
+          "kind": "verified"
+        },
+        {
+          "title": "Spacecraft hardware",
+          "text": "Spaceships land and spaceships crash. NASA says volunteers might spot historical objects, like the missing ascent stage of the Apollo 11 lunar lander.",
+          "kind": "verified"
+        },
+        {
+          "title": "Things that only look like changes",
+          "text": "Different sun angles, viewing angles and old-film artefacts can make an unchanged area look different. That is why lunar experts review every identified change.",
+          "kind": "interpretation"
+        }
       ],
       "lab": {
         "image": "https://images-assets.nasa.gov/image/GSFC_20171208_Archive_e000501/GSFC_20171208_Archive_e000501~orig.jpg",
@@ -77,55 +131,99 @@
         "alt": "Grey lunar surface seen from orbit, with many small craters and one crater surrounded by bright rays near the centre.",
         "questions": [
           {
-            "principle": "Observation vs interpretation",
+            "principle": "Observation",
             "q": "Look at the centre of the image. Which statement is an observation?",
-            "options": ["There is a crater surrounded by bright rays", "A rocket stage made this crater", "Not sure"],
+            "options": [
+              "There is a crater surrounded by bright rays",
+              "A rocket stage made this crater",
+              "Not enough evidence to decide"
+            ],
             "best": "There is a crater surrounded by bright rays",
             "feedback": {
               "There is a crater surrounded by bright rays": "Yes. That is what the image directly shows: an observation.",
               "A rocket stage made this crater": "That is an interpretation. The image alone shows a rayed crater; it cannot show what made it.",
-              "Not sure": "Fair. Try describing only what you can see: shape, brightness, pattern. That is an observation."
-            }
+              "Not enough evidence to decide": "Fair. Try describing only what you can see: shape, brightness, pattern. That is an observation."
+            },
+            "unsure": "Not enough evidence to decide"
           },
           {
-            "principle": "Evidence vs assumption",
+            "principle": "Interpretation",
+            "q": "What might have made the rayed crater?",
+            "options": [
+              "Something hit the surface here: a space rock or a spacecraft",
+              "It was painted onto the image",
+              "Not enough evidence to decide"
+            ],
+            "best": "Something hit the surface here: a space rock or a spacecraft",
+            "feedback": {
+              "Something hit the surface here: a space rock or a spacecraft": "A reasonable interpretation. On the Moon, space rocks blast new craters, and spacecraft land and sometimes crash. The image alone cannot say which.",
+              "It was painted onto the image": "There is no evidence for that. It is a real orbital photograph from LRO's Narrow Angle Camera.",
+              "Not enough evidence to decide": "Also reasonable. We know craters form when something hits the surface, but not from this image alone what hit it."
+            },
+            "unsure": "Not enough evidence to decide"
+          },
+          {
+            "principle": "Evidence",
             "q": "From this image alone, could a natural space rock have made this crater?",
-            "options": ["Yes, the image alone cannot rule it out", "No, it is obviously human-made", "Not sure"],
+            "options": [
+              "Yes, the image alone cannot rule it out",
+              "No, it is obviously human-made",
+              "Not enough evidence to decide"
+            ],
             "best": "Yes, the image alone cannot rule it out",
             "feedback": {
               "Yes, the image alone cannot rule it out": "Right. NASA linked this crater to Apollo 16 using more evidence than one picture: the Apollo-era tracking estimate pointed to the area, and the crater was finally found about 30 km from that estimate.",
               "No, it is obviously human-made": "That is an assumption. Natural impacts also make rayed craters. NASA needed the Apollo-era tracking estimate plus LRO imagery, and the site was about 30 km from the estimate.",
-              "Not sure": "A good scientific answer. The image alone cannot tell you; NASA used extra evidence, including the Apollo-era tracking estimate."
-            }
+              "Not enough evidence to decide": "A good scientific answer. The image alone cannot tell you; NASA used extra evidence, including the Apollo-era tracking estimate."
+            },
+            "unsure": "Not enough evidence to decide"
           },
           {
             "principle": "Uncertainty",
             "q": "A MoonDiff volunteer sees a bright spot in the new image that is not in the 1967 image. Is it a confirmed new crater?",
-            "options": ["Yes, it is a discovery", "Not yet: it is a possible change that experts will review", "Not sure"],
+            "options": [
+              "Yes, it is a discovery",
+              "Not yet: it is a possible change that experts will review",
+              "Not enough evidence to decide"
+            ],
             "best": "Not yet: it is a possible change that experts will review",
             "feedback": {
               "Yes, it is a discovery": "Not yet. In MoonDiff, lunar experts review each identified change in a separate review tool before anything is written up as a discovery.",
               "Not yet: it is a possible change that experts will review": "Exactly. Volunteers flag possible changes; lunar experts review each one, and discoveries are written up as scientific papers.",
-              "Not sure": "That is the honest starting point. In MoonDiff, a flagged spot is a candidate until lunar experts review it."
-            }
+              "Not enough evidence to decide": "That is the honest starting point. In MoonDiff, a flagged spot is a candidate until lunar experts review it."
+            },
+            "unsure": "Not enough evidence to decide"
           }
         ],
         "canCannot": {
           "can": "This image can show a crater's shape, size and bright rays.",
           "cannot": "It cannot, on its own, show what made the crater, or when."
-        }
+        },
+        "projectLink": "In MoonDiff you apply the same thinking: flag what you observe, and let lunar experts review what it means."
       },
       "connect": {
         "intro": "Lunar imagery and the history of the hardware in our archive are connected: the same orbital cameras that search for new craters have photographed the places where explorers left equipment. But MoonDiff has not confirmed the location or condition of any object in our archive.",
         "items": [
-          { "objectId": "apollo11-eagle-descent-stage", "text": "Eagle's bottom half is still at Tranquility Base. Its top half, the ascent stage, carried the crew back to orbit, and NASA calls it \"missing\". It is one of the historical objects MoonDiff volunteers might spot.", "kind": "verified" },
-          { "objectId": "apollo11-lrrr", "text": "This mirror is still used by scientists on Earth. Orbital imaging is one way to study a site without going near equipment that is still in use.", "kind": "interpretation" },
-          { "objectId": "surveyor-3", "text": "Surveyor 3 shows why comparing over time matters: Apollo 12 astronauts visited it 31 months after it landed, and its returned parts showed what the lunar environment had done to them.", "kind": "verified" }
+          {
+            "objectId": "apollo11-eagle-descent-stage",
+            "text": "Eagle's bottom half is still at Tranquility Base. Its top half, the ascent stage, carried the crew back to orbit, and NASA calls it \"missing\". It is one of the historical objects MoonDiff volunteers might spot.",
+            "kind": "verified"
+          },
+          {
+            "objectId": "apollo11-lrrr",
+            "text": "This mirror is still used by scientists on Earth. Orbital imaging is one way to study a site without going near equipment that is still in use.",
+            "kind": "interpretation"
+          },
+          {
+            "objectId": "surveyor-3",
+            "text": "Surveyor 3 shows why comparing over time matters: Apollo 12 astronauts visited it 31 months after it landed, and its returned parts showed what the lunar environment had done to them.",
+            "kind": "verified"
+          }
         ]
       },
       "continue": {
         "headline": "Ready to explore real lunar imagery?",
-        "button": "Open the official MoonDiff project",
+        "button": "Explore the Moon with MoonDiff",
         "url": "https://trek.nasa.gov/app/",
         "after": [
           "MoonDiff opens on NASA's Moon Trek site, which offers sign-up, a tour and an intro video.",
@@ -133,12 +231,75 @@
           "You compare them side by side, or by blinking or fading, and draw a polygon around anything that changed.",
           "Lunar experts review each identified change. Discoveries will be written up as scientific journal papers, with contributors credited as authors or in the acknowledgements."
         ],
-        "mustSubmit": "Real classifications can only be made on MoonDiff itself. Nothing on Lunar Echoes is sent to MoonDiff or NASA."
+        "mustSubmit": "Real classifications can only be made on MoonDiff itself. Nothing on Lunar Echoes is sent to MoonDiff or NASA.",
+        "record": "I opened the official project: record it in my journal"
       },
       "sources": [
-        { "name": "NASA: Join MoonDiff and Go Moon-Combing with NASA! (1 Aug 2023)", "url": "https://science.nasa.gov/get-involved/citizen-science/join-moondiff-and-go-moon-combing-with-nasa/" },
-        { "name": "MoonDiff (NASA Moon Trek)", "url": "https://trek.nasa.gov/app/" },
-        { "name": "MoonDiff background", "url": "https://trek.nasa.gov/app/background/" }
+        {
+          "name": "NASA: Join MoonDiff and Go Moon-Combing with NASA! (1 Aug 2023)",
+          "url": "https://science.nasa.gov/get-involved/citizen-science/join-moondiff-and-go-moon-combing-with-nasa/"
+        },
+        {
+          "name": "MoonDiff (NASA Moon Trek)",
+          "url": "https://trek.nasa.gov/app/"
+        },
+        {
+          "name": "MoonDiff background",
+          "url": "https://trek.nasa.gov/app/background/"
+        }
+      ],
+      "imageInfo": [
+        [
+          "Image title",
+          "LRO Finds Apollo 16 Booster Rocket Impact Site",
+          "verified"
+        ],
+        [
+          "Spacecraft",
+          "NASA's Lunar Reconnaissance Orbiter (LRO)",
+          "verified"
+        ],
+        [
+          "Instrument",
+          "LROC Narrow Angle Camera (high resolution)",
+          "verified"
+        ],
+        [
+          "Target",
+          "The Apollo 16 S-IVB impact crater, on Mare Insularum about 160 miles (260 km) southwest of Copernicus crater, at 1.921° N, 335.377° E",
+          "verified"
+        ],
+        [
+          "Observation date",
+          "Not stated in NASA's image record",
+          "unknown"
+        ],
+        [
+          "What it shows",
+          "A crater with bright rays near the centre: the site where Apollo 16's S-IVB rocket stage hit the Moon",
+          "verified"
+        ],
+        [
+          "Why it was collected",
+          "LRO had already found the impact sites of the Apollo 13, 14, 15 and 17 boosters; Apollo 16's stayed elusive because radio contact was lost before impact",
+          "verified"
+        ],
+        [
+          "Scientific purpose",
+          "Seismometers left by earlier Apollo crews measured the energy of these deliberate impacts to study the Moon's interior; knowing where each booster hit completes that record",
+          "interpretation"
+        ],
+        [
+          "Credit",
+          "NASA/Goddard/Arizona State University",
+          "verified"
+        ]
+      ],
+      "imageInfoSources": [
+        {
+          "name": "NASA image record GSFC_20171208_Archive_e000501",
+          "url": "https://images.nasa.gov/details/GSFC_20171208_Archive_e000501"
+        }
       ]
     },
     "mars": {
@@ -147,7 +308,13 @@
       "selectLine": "Investigate cloud formations in the Martian atmosphere",
       "project": "Cloudspotting on Mars: Shapes",
       "opening": "Mars may look silent from a distance. But above its surface, an atmosphere is constantly revealing clues.",
-      "stages": ["Enter the Martian Atmosphere", "Discover the Shapes", "Learn to Observe", "Connect to Lunar Echoes", "Continue the investigation"],
+      "stages": [
+        "Enter the Martian Atmosphere",
+        "Discover the Shapes",
+        "Learn to Observe",
+        "Connect to Lunar Echoes",
+        "Continue the investigation"
+      ],
       "maven": [
         "MAVEN stands for Mars Atmosphere and Volatile EvolutioN. It entered orbit around Mars on 21 September 2014.",
         "It has produced a wealth of data about how Mars' atmosphere responds to the Sun and the solar wind, and how these interactions can explain the loss of the Martian atmosphere to space.",
@@ -166,65 +333,133 @@
       "alt": "Two views of Mars from orbit. Left: a globe covered in swirls and streaks of white cloud, with a thin red line near the right edge. Right: a globe where dust and cloud mix into large pale features, with craters visible in the lower half.",
       "caption": "Left: Martian clouds in many forms, lit by the Sun from the right; the red line marks the change from day to night. Right: dust and clouds mixing into huge features that cross large parts of Mars. Craters are easy to see in the lower half, where the air is clearer.",
       "shapes": [
-        { "name": "Disk cloud", "text": "Round, bright clouds. Volunteers check the surface view underneath, because a volcano, a patch of surface ice or a crater can look similar.", "source": "field guide; NASA launch article" },
-        { "name": "Vortex cloud", "text": "Clouds that curl in on themselves like a spiral, a little like a hurricane on Earth, though without the same destructive energy.", "source": "field guide; NASA launch article" },
-        { "name": "Streak cloud", "text": "Long, narrow, mostly straight clouds of roughly the same width. Sometimes their shadow is visible too.", "source": "field guide" },
-        { "name": "Gravity-wave clouds", "text": "Clouds that form in rows, appearing and disappearing in a preferred direction.", "source": "field guide" },
-        { "name": "Twilight cloud", "text": "Clouds high enough to stay lit by the Sun after the ground beneath them has gone dark, just past the day–night line.", "source": "field guide; NASA launch article" }
+        {
+          "name": "Disk cloud",
+          "text": "Round, bright clouds. Volunteers check the surface view underneath, because a volcano, a patch of surface ice or a crater can look similar.",
+          "source": "field guide; NASA launch article"
+        },
+        {
+          "name": "Vortex cloud",
+          "text": "Clouds that curl in on themselves like a spiral, a little like a hurricane on Earth, though without the same destructive energy.",
+          "source": "field guide; NASA launch article"
+        },
+        {
+          "name": "Streak cloud",
+          "text": "Long, narrow, mostly straight clouds of roughly the same width. Sometimes their shadow is visible too.",
+          "source": "field guide"
+        },
+        {
+          "name": "Gravity-wave clouds",
+          "text": "Clouds that form in rows, appearing and disappearing in a preferred direction.",
+          "source": "field guide"
+        },
+        {
+          "name": "Twilight cloud",
+          "text": "Clouds high enough to stay lit by the Sun after the ground beneath them has gone dark, just past the day–night line.",
+          "source": "field guide; NASA launch article"
+        }
       ],
       "lab": {
         "questions": [
           {
-            "principle": "Observation vs interpretation",
+            "principle": "Observation",
             "q": "In the left view, near the right edge, which statement is an observation?",
-            "options": ["There is a thin red line", "The Sun is setting there right now", "Not sure"],
+            "options": [
+              "There is a thin red line",
+              "The Sun is setting there right now",
+              "Not sure"
+            ],
             "best": "There is a thin red line",
             "feedback": {
               "There is a thin red line": "Yes, that is what you can see. The project explains what it means: the line is drawn to mark where day turns into night. It is a marker, not a cloud.",
               "The Sun is setting there right now": "That is an interpretation. The visible fact is a thin red line; the project explains that it marks the change from day to night.",
               "Not sure": "Fair. Describe only what you can see: a thin red line. What it means comes from the image's documentation."
-            }
+            },
+            "unsure": "Not sure"
           },
           {
-            "principle": "Evidence vs assumption",
+            "principle": "Interpretation",
+            "q": "Bright white shapes stand out against the darker disk. What might they be?",
+            "options": [
+              "Possibly clouds: they reflect ultraviolet light strongly",
+              "Definitely snow lying on the ground",
+              "Not sure"
+            ],
+            "best": "Possibly clouds: they reflect ultraviolet light strongly",
+            "feedback": {
+              "Possibly clouds: they reflect ultraviolet light strongly": "A good interpretation. In these ultraviolet images, clouds reflect strongly and appear white, though surface ice can look similar too.",
+              "Definitely snow lying on the ground": "Too certain. White can be cloud or surface ice, which is why volunteers check a second view of the surface.",
+              "Not sure": "Fair. White suggests cloud in these ultraviolet images, but surface ice can look similar."
+            },
+            "unsure": "Not sure"
+          },
+          {
+            "principle": "Evidence",
             "q": "In the right view, there are large pale features near the top. Are they clouds?",
-            "options": ["Definitely clouds", "Possibly clouds, dust, or a mix of both", "Not sure"],
+            "options": [
+              "Definitely clouds",
+              "Possibly clouds, dust, or a mix of both",
+              "Not sure"
+            ],
             "best": "Possibly clouds, dust, or a mix of both",
             "feedback": {
               "Definitely clouds": "That is an assumption. NASA's caption says dust and clouds mix to create these huge features, so pale does not automatically mean cloud.",
               "Possibly clouds, dust, or a mix of both": "Good reasoning. NASA's caption describes dust and clouds mixing here; the image alone cannot separate them.",
               "Not sure": "A valid answer. Even NASA's caption describes these as dust and clouds mixing together."
-            }
+            },
+            "unsure": "Not sure"
           },
           {
             "principle": "Uncertainty",
             "q": "You spot a round white feature. Can you call it a disk cloud straight away?",
-            "options": ["Yes, round and white means disk cloud", "Not yet: check whether it is surface ice, a volcano or a crater", "Not sure"],
+            "options": [
+              "Yes, round and white means disk cloud",
+              "Not yet: check whether it is surface ice, a volcano or a crater",
+              "Not sure"
+            ],
             "best": "Not yet: check whether it is surface ice, a volcano or a crater",
             "feedback": {
               "Yes, round and white means disk cloud": "Not yet. The project asks volunteers to check that what they see isn't a volcano or a patch of ice on the surface, using a second view of what lies underneath.",
               "Not yet: check whether it is surface ice, a volcano or a crater": "Exactly. The project's field guide shows round white features that turned out to be surface features, not clouds.",
               "Not sure": "Honest, and the right instinct. In the real project, you check the surface view before you decide."
-            }
+            },
+            "unsure": "Not sure"
           }
         ],
         "canCannot": {
           "can": "These images can show bright features, their shapes, and where they sit relative to day and night.",
           "cannot": "On their own they cannot always separate cloud from dust, ice or terrain. That takes a second view and careful comparison."
-        }
+        },
+        "projectLink": "In Cloudspotting on Mars: Shapes you apply the same thinking: check the surface view, then tag the cloud shapes you can support."
       },
       "connect": {
         "intro": "Every Mars machine in our archive worked on the surface, at one spot, under this sky. MAVEN watches from orbit, across the whole planet. The surface and the atmosphere are two sides of the same story.",
         "items": [
-          { "objectId": "viking1-lander", "text": "Viking 1 studied Martian weather from the ground: a boom on one of its legs carried temperature, wind-direction and wind-speed sensors.", "kind": "verified" },
-          { "objectId": "phoenix", "text": "Phoenix was sent to the Martian arctic partly to study polar climate and weather, and the lower atmosphere above it.", "kind": "verified" },
-          { "objectId": "opportunity", "text": "The atmosphere decided Opportunity's fate: it sent its last message as a planet-wide dust storm blanketed the solar-powered rover.", "kind": "verified" },
-          { "objectId": "insight", "text": "Dust from the atmosphere slowly covered InSight's solar panels until it could no longer make enough power.", "kind": "verified" }
+          {
+            "objectId": "viking1-lander",
+            "text": "Viking 1 studied Martian weather from the ground: a boom on one of its legs carried temperature, wind-direction and wind-speed sensors.",
+            "kind": "verified"
+          },
+          {
+            "objectId": "phoenix",
+            "text": "Phoenix was sent to the Martian arctic partly to study polar climate and weather, and the lower atmosphere above it.",
+            "kind": "verified"
+          },
+          {
+            "objectId": "opportunity",
+            "text": "The atmosphere decided Opportunity's fate: it sent its last message as a planet-wide dust storm blanketed the solar-powered rover.",
+            "kind": "verified"
+          },
+          {
+            "objectId": "insight",
+            "text": "Dust from the atmosphere slowly covered InSight's solar panels until it could no longer make enough power.",
+            "kind": "verified"
+          }
         ]
       },
       "continue": {
         "headline": "Want to help researchers investigate the Martian atmosphere?",
-        "button": "Join Cloudspotting on Mars",
+        "button": "Explore Cloudspotting on Mars",
         "url": "https://www.zooniverse.org/projects/matteocrismani/cloudspotting-on-mars-shapes",
         "after": [
           "The project runs on Zooniverse. NASA says it is open to everyone with an internet-enabled computer, with no sign-up deadline.",
@@ -233,39 +468,186 @@
           "Your classifications help build a database of when and where these cloud shapes appear."
         ],
         "mustSubmit": "Real classifications can only be submitted on Zooniverse. Nothing on Lunar Echoes is sent to Zooniverse or NASA.",
-        "note": "This is Cloudspotting on Mars: Shapes. NASA also runs a separate, original Cloudspotting on Mars project."
+        "note": "This is Cloudspotting on Mars: Shapes. NASA also runs a separate, original Cloudspotting on Mars project.",
+        "record": "I opened the official project: record it in my journal"
       },
       "sources": [
-        { "name": "NASA: Cloudspotting on Mars: Shapes", "url": "https://science.nasa.gov/citizen-science/cloudspotting-on-mars-shapes/" },
-        { "name": "NASA: New Project Invites You To Do Martian Cloud Science with NASA (29 Oct 2024)", "url": "https://science.nasa.gov/get-involved/citizen-science/new-project-invites-you-to-do-martian-cloud-science-with-nasa/" },
-        { "name": "Zooniverse: Cloudspotting on Mars: Shapes (project and field guide)", "url": "https://www.zooniverse.org/projects/matteocrismani/cloudspotting-on-mars-shapes" }
+        {
+          "name": "NASA: Cloudspotting on Mars: Shapes",
+          "url": "https://science.nasa.gov/citizen-science/cloudspotting-on-mars-shapes/"
+        },
+        {
+          "name": "NASA: New Project Invites You To Do Martian Cloud Science with NASA (29 Oct 2024)",
+          "url": "https://science.nasa.gov/get-involved/citizen-science/new-project-invites-you-to-do-martian-cloud-science-with-nasa/"
+        },
+        {
+          "name": "Zooniverse: Cloudspotting on Mars: Shapes (project and field guide)",
+          "url": "https://www.zooniverse.org/projects/matteocrismani/cloudspotting-on-mars-shapes"
+        }
+      ],
+      "imageInfo": [
+        [
+          "Image title",
+          "Example images from NASA's Cloudspotting on Mars: Shapes page (two views of Mars)",
+          "verified"
+        ],
+        [
+          "Spacecraft",
+          "NASA's MAVEN (Mars Atmosphere and Volatile EvolutioN)",
+          "verified"
+        ],
+        [
+          "Instrument",
+          "The project's images come from MAVEN's Imaging Ultraviolet Spectrograph (IUVS), according to its science pages. NASA's caption for this particular image does not name the instrument.",
+          "unknown"
+        ],
+        [
+          "Target",
+          "The atmosphere of Mars, seen across the planet's disk",
+          "verified"
+        ],
+        [
+          "Observation date",
+          "Not stated in NASA's caption",
+          "unknown"
+        ],
+        [
+          "What it shows",
+          "Left: clouds in many forms, lit by the Sun from the right; the red line marks day turning to night. Right: dust and clouds mixing into huge features; craters show where the air is clearer.",
+          "verified"
+        ],
+        [
+          "Why it looks sliced",
+          "Project images are built by scanning across the disk of Mars, so the planet can look cut into strips with some sections repeated",
+          "verified"
+        ],
+        [
+          "Scientific purpose",
+          "IUVS whole-disk images measure water-ice and dust in the atmosphere; clouds reflect ultraviolet strongly and appear white",
+          "verified"
+        ],
+        [
+          "Credit",
+          "NASA/LASP/CU Boulder, image processing by Kyle Connour",
+          "verified"
+        ]
+      ],
+      "imageInfoSources": [
+        {
+          "name": "NASA: Cloudspotting on Mars: Shapes",
+          "url": "https://science.nasa.gov/citizen-science/cloudspotting-on-mars-shapes/"
+        },
+        {
+          "name": "Zooniverse: project science case and FAQ",
+          "url": "https://www.zooniverse.org/projects/matteocrismani/cloudspotting-on-mars-shapes"
+        }
       ]
     }
   },
   "comparison": {
     "rows": [
-      ["What you investigate", "Changes on the surface", "Cloud formations in the atmosphere"],
-      ["What you do", "Compare images from different eras and flag changes", "Classify cloud shapes in orbital images"],
-      ["The images", "Lunar Orbiter (1967) and Lunar Reconnaissance Orbiter (2009 on)", "NASA's MAVEN spacecraft"],
-      ["After you submit", "Lunar experts review each identified change", "Classifications build a database of cloud shapes"],
-      ["The project", "MoonDiff", "Cloudspotting on Mars: Shapes"]
+      [
+        "What you investigate",
+        "Changes on the surface",
+        "Cloud formations in the atmosphere"
+      ],
+      [
+        "What you do",
+        "Compare images from different eras and flag changes",
+        "Classify cloud shapes in orbital images"
+      ],
+      [
+        "The images",
+        "Lunar Orbiter (1967) and Lunar Reconnaissance Orbiter (2009 on)",
+        "NASA's MAVEN spacecraft"
+      ],
+      [
+        "After you submit",
+        "Lunar experts review each identified change",
+        "Classifications build a database of cloud shapes"
+      ],
+      [
+        "The project",
+        "MoonDiff",
+        "Cloudspotting on Mars: Shapes"
+      ]
     ],
     "summary": "Both projects rely on the same thing: careful human observation, which helps scientists study planetary environments in ways software alone cannot yet manage."
   },
   "journal": {
     "milestones": [
-      { "id": "moon-explored", "world": "moon", "text": "I entered the Lunar Archive and met the two spacecraft eras." },
-      { "id": "moon-compare", "world": "moon", "text": "I learned how lunar image comparison works: align, blink, flag." },
-      { "id": "moon-lab", "world": "moon", "text": "I practised telling observation from interpretation on a real LRO image." },
-      { "id": "moon-connect", "world": "moon", "text": "I connected lunar imagery to the hardware in the Lunar Echoes archive." },
-      { "id": "moon-official", "world": "moon", "text": "I opened the official MoonDiff project." },
-      { "id": "mars-explored", "world": "mars", "text": "I entered the Martian atmosphere and met NASA's MAVEN spacecraft." },
-      { "id": "mars-shapes", "world": "mars", "text": "I learned the cloud shapes volunteers look for on Mars." },
-      { "id": "mars-lab", "world": "mars", "text": "I practised checking evidence and uncertainty on a real MAVEN image." },
-      { "id": "mars-connect", "world": "mars", "text": "I connected Martian clouds to the surface missions in the archive." },
-      { "id": "mars-official", "world": "mars", "text": "I opened the official Cloudspotting on Mars: Shapes project." }
+      {
+        "id": "moon-explored",
+        "world": "moon",
+        "text": "I entered the Lunar Archive and met the two spacecraft eras."
+      },
+      {
+        "id": "moon-compare",
+        "world": "moon",
+        "text": "I learned how lunar image comparison works: align, blink, flag."
+      },
+      {
+        "id": "moon-lab",
+        "world": "moon",
+        "text": "I practised telling observation from interpretation on a real LRO image."
+      },
+      {
+        "id": "moon-connect",
+        "world": "moon",
+        "text": "I connected lunar imagery to the hardware in the Lunar Echoes archive."
+      },
+      {
+        "id": "mars-explored",
+        "world": "mars",
+        "text": "I entered the Martian atmosphere and met NASA's MAVEN spacecraft."
+      },
+      {
+        "id": "mars-shapes",
+        "world": "mars",
+        "text": "I learned the cloud shapes volunteers look for on Mars."
+      },
+      {
+        "id": "mars-lab",
+        "world": "mars",
+        "text": "I practised checking evidence and uncertainty on a real MAVEN image."
+      },
+      {
+        "id": "mars-connect",
+        "world": "mars",
+        "text": "I connected Martian clouds to the surface missions in the archive."
+      },
+      {
+        "id": "image-info",
+        "world": "both",
+        "text": "I explored the science behind a NASA image."
+      },
+      {
+        "id": "wall",
+        "world": "both",
+        "text": "I explored the Open Questions Wall."
+      },
+      {
+        "id": "ask",
+        "world": "both",
+        "text": "I asked the planetary-scientist question bank."
+      },
+      {
+        "id": "charter",
+        "world": "both",
+        "text": "I wrote my Future Explorer Charter."
+      },
+      {
+        "id": "moon-official",
+        "world": "moon",
+        "text": "I recorded that I opened the official MoonDiff project."
+      },
+      {
+        "id": "mars-official",
+        "world": "mars",
+        "text": "I recorded that I opened the official Cloudspotting on Mars: Shapes project."
+      }
     ],
-    "note": "This is a learning record, not a NASA participation certificate. Completing these activities does not mean you have contributed to NASA research. It is saved only in this browser tab, and no personal information is collected."
+    "note": "This is a personal learning record. It is not a NASA certificate, an official research participation certificate, proof of contribution to NASA, or an academic qualification. It is saved only in this browser tab; no account or personal information is needed."
   },
-  "disclaimer": "Lunar Echoes is an independent educational project made for the NASA Space Apps Challenge 2026. It is not affiliated with, endorsed by or operated by NASA, MoonDiff or Zooniverse. Official project descriptions are quoted or summarised from the linked sources; explanations marked \"Interpretation\" are ours. The activities on this page are for learning only: nothing you do here is sent anywhere or used in research. To contribute, join the official projects on their own websites."
+  "disclaimer": "LUNAR ECHOES is an independent educational project developed for NASA Space Apps Challenge. It is not affiliated with, operated by or endorsed by NASA. NASA project names, imagery and resources are referenced for educational purposes. Actual citizen-science participation takes place through the respective official platforms."
 }
