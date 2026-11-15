@@ -1,0 +1,67 @@
+/* Build Your Own Rover. Builds on rover.css (tokens, header, buttons). */
+body.build { --accent: #e8c27a; }
+.builder { max-width: 1180px; margin: 0 auto; padding: 24px 20px 48px; }
+.b-intro h2 { font-size: 1.7rem; margin: 0 0 6px; }
+
+.b-layout { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 24px; align-items: start; margin-top: 16px; }
+.b-form fieldset { border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 16px 16px; margin: 0 0 16px; background: var(--panel); }
+.b-form legend { padding: 0 6px; font-weight: 700; }
+
+.b-mission-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; }
+.b-mission, .b-opt {
+  display: flex; gap: 10px; align-items: flex-start; cursor: pointer;
+  padding: 10px 12px; border-radius: 10px; border: 1px solid var(--line); background: var(--panel2);
+}
+.b-mission:hover, .b-opt:hover { border-color: var(--muted); }
+.b-mission:has(input:checked), .b-opt:has(input:checked) { border-color: var(--accent); background: #232a40; }
+.b-mission input, .b-opt input { margin-top: 4px; accent-color: var(--accent); flex: none; }
+.b-mission-body, .b-opt-body { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.b-mission-planet { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.b-mission.is-moon .b-mission-planet { color: var(--moon); }
+.b-mission.is-mars .b-mission-planet { color: var(--mars); }
+.b-mission-name { font-weight: 700; }
+.b-mission-brief { font-size: 0.88rem; color: var(--muted); }
+.b-cat { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 8px; }
+.b-cat legend { grid-column: 1 / -1; }
+.b-opt-top { display: flex; justify-content: space-between; gap: 8px; }
+.b-opt-name { font-weight: 600; }
+.b-opt-cost { color: var(--accent); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.b-opt-desc { font-size: 0.86rem; color: var(--muted); }
+.b-opt-facts { font-size: 0.75rem; color: var(--muted); opacity: 0.85; }
+
+.b-side { position: sticky; top: 16px; padding: 16px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel); display: flex; flex-direction: column; gap: 10px; }
+.b-meter-label { margin: 0 0 6px; }
+.b-bar { display: block; height: 10px; border-radius: 99px; background: #262b3c; overflow: hidden; }
+#b-bar-fill { display: block; height: 100%; width: 0; background: var(--good); transition: width .2s ease; }
+#b-bar-fill.near { background: var(--warn); }
+#b-bar-fill.over { background: var(--bad); }
+.b-stats { display: grid; grid-template-columns: 1fr auto; gap: 4px 10px; margin: 0; font-size: 0.92rem; }
+.b-stats dt { color: var(--muted); }
+.b-stats dd { margin: 0; text-align: right; font-variant-numeric: tabular-nums; }
+.b-side .btn.primary { width: 100%; padding: 11px; }
+.b-problems { margin: 0; color: var(--bad); font-size: 0.9rem; }
+.b-problems:empty { display: none; }
+
+.b-report { margin-top: 28px; padding: 22px; border: 1px solid var(--line); border-top: 3px solid var(--accent); border-radius: var(--radius); background: var(--panel); }
+.b-report h2 { margin: 0; font-size: 1.5rem; }
+.b-report h2:focus { outline: none; }
+.b-report-sub { margin: 4px 0 10px; color: var(--muted); font-size: 0.9rem; }
+.b-overall { font-size: 1.15rem; font-weight: 700; margin: 0 0 14px; }
+.b-ratings { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+.b-rating { border: 1px solid var(--line); border-radius: 10px; padding: 12px; background: var(--panel2); }
+.b-rating h3 { margin: 0 0 6px; font-size: 1rem; display: flex; justify-content: space-between; gap: 8px; align-items: center; }
+.b-rating p { margin: 4px 0 0; font-size: 0.88rem; color: var(--muted); }
+.b-chip { font-size: 0.75rem; font-weight: 700; padding: 2px 8px; border-radius: 99px; border: 1px solid currentColor; }
+.b-rating.is-strong .b-chip { color: var(--good); }
+.b-rating.is-adequate .b-chip { color: var(--warn); }
+.b-rating.is-weak .b-chip { color: var(--bad); }
+.b-rating.is-weak { border-color: color-mix(in srgb, var(--bad) 45%, var(--line)); }
+.b-h { margin: 20px 0 8px; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.b-choices, .b-trade, .b-refs { margin: 0; padding-left: 18px; font-size: 0.92rem; }
+.b-choices li, .b-trade li, .b-refs li { margin: 4px 0; }
+.b-acts { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
+
+@media (max-width: 900px) {
+  .b-layout { grid-template-columns: 1fr; }
+  .b-side { position: static; order: -1; }
+}

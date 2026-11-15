@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Build Your Own Rover | Lunar Echoes</title>
+  <meta name="description" content="An educational rover engineering simulation: choose wheels, instruments, power and communications for a fictional mission, within a budget.">
+  <link rel="stylesheet" href="rover.css?v=20261115d">
+  <link rel="stylesheet" href="build.css?v=20261115d">
+</head>
+<body class="build">
+  <a class="skip" href="#builder">Skip to the builder</a>
+  <header class="top">
+    <a class="back" href="../index.html#journey">← Lunar Echoes</a>
+    <h1>BUILD YOUR OWN ROVER <span>Engineering simulator</span></h1>
+    <p class="sim-badge" title="Fictional missions and illustrative numbers">EDUCATIONAL SIMULATION</p>
+  </header>
+
+  <main id="builder" class="builder">
+    <section class="b-intro" aria-labelledby="b-title">
+      <h2 id="b-title">Design a rover for a mission</h2>
+      <p class="lead">Pick a fictional mission, then choose wheels, cameras, instruments, an arm, power and communications. You have <strong id="b-budget-total">100</strong> budget points. Every choice is a trade-off: when you are ready, evaluate the design and read your mission design report.</p>
+      <p class="note" id="b-disclaimer"></p>
+      <p class="note" id="b-status" role="status"></p>
+    </section>
+
+    <div class="b-layout">
+      <form id="b-form" class="b-form" novalidate>
+        <fieldset class="b-missions">
+          <legend>1. Choose a mission</legend>
+          <div id="b-mission-list" class="b-mission-list"></div>
+        </fieldset>
+        <div id="b-categories"></div>
+      </form>
+
+      <aside class="b-side" aria-label="Design summary">
+        <div class="b-meter">
+          <p class="b-meter-label">Budget used <strong id="b-cost">0</strong> / <span id="b-budget">100</span></p>
+          <span class="b-bar"><span id="b-bar-fill"></span></span>
+        </div>
+        <dl class="b-stats">
+          <dt>Mass</dt><dd id="b-mass">0</dd>
+          <dt>Power needed</dt><dd id="b-demand">0</dd>
+          <dt>Power available here</dt><dd id="b-supply">0</dd>
+        </dl>
+        <p class="note small">Mass and power are in illustrative units.</p>
+        <button type="button" id="b-evaluate" class="btn primary">Evaluate design</button>
+        <p id="b-problems" class="b-problems" aria-live="polite"></p>
+      </aside>
+    </div>
+
+    <section id="b-report" class="b-report" hidden aria-labelledby="b-report-title"></section>
+  </main>
+
+  <footer class="foot">
+    <p>Part of LUNAR ECHOES. LUNAR ECHOES is an independent educational project developed for NASA Space Apps Challenge. It is not affiliated with, operated by or endorsed by NASA. NASA project names, imagery and resources are referenced for educational purposes. Actual citizen-science participation takes place through the respective official platforms.</p>
+    <p><a href="index.html">Try Rover Rescue: drive a rover and analyse samples →</a></p>
+  </footer>
+
+  <script src="build.js?v=20261115d"></script>
+</body>
+</html>

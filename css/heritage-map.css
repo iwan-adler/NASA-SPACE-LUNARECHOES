@@ -1,0 +1,96 @@
+/* Lunar Echoes - The Forgotten Footprints heritage map (js/heritage-map.js). Uses tokens from css/style.css. */
+
+.hm { display: block; }
+.hm-key-verified { --hm: var(--ok); }
+.hm-key-approximate { --hm: #f2c14e; }
+.hm-key-unknown { --hm: #8a90a3; }
+
+.hm-tabs { display: flex; gap: 0.5rem; margin-bottom: 0.9rem; }
+.hm-tab {
+  font: inherit; cursor: pointer;
+  padding: 0.5rem 1.1rem; border-radius: 999px;
+  border: 1px solid var(--line); background: var(--panel); color: var(--muted);
+}
+.hm-tab[aria-pressed="true"].is-moon { border-color: var(--moon); color: var(--moon); background: var(--panel-2); }
+.hm-tab[aria-pressed="true"].is-mars { border-color: var(--mars); color: var(--mars); background: var(--panel-2); }
+
+.hm-legend { list-style: none; margin: 0 0 1rem; padding: 0; display: flex; flex-wrap: wrap; gap: 0.4rem 1.4rem; font-size: 0.85rem; color: var(--muted); }
+.hm-legend strong { color: var(--text); font-weight: 600; }
+.hm-swatch {
+  display: inline-block; width: 11px; height: 11px; border-radius: 50%; margin-right: 0.4rem; vertical-align: -1px;
+  background: var(--hm);
+}
+.hm-key-approximate .hm-swatch { background: transparent; border: 2px dashed var(--hm); }
+.hm-key-unknown .hm-swatch { background: transparent; border: 2px solid var(--hm); }
+
+.hm-stage { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 1.25rem; align-items: start; }
+
+.hm-map {
+  position: relative;
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background-color: #111;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+.hm-map::after { /* slight darkening so markers read on bright terrain */
+  content: ""; position: absolute; inset: 0; background: rgba(7, 8, 13, 0.25); pointer-events: none;
+}
+.hm-grid { position: absolute; background: rgba(255, 255, 255, 0.16); pointer-events: none; z-index: 1; }
+.hm-grid-v { top: 0; bottom: 0; width: 1px; }
+.hm-grid-h { left: 0; right: 0; height: 1px; }
+.hm-grid.is-zero { background: rgba(255, 255, 255, 0.32); }
+
+.hm-marker {
+  position: absolute; z-index: 2;
+  width: 18px; height: 18px; margin: -9px 0 0 -9px; padding: 0;
+  border-radius: 50%; cursor: pointer;
+  border: 2px solid #0b0d14;
+  background: var(--ok);
+  box-shadow: 0 0 0 3px rgba(116, 214, 166, 0.35);
+}
+.hm-marker.is-approximate { background: rgba(7, 8, 13, 0.4); border: 2px dashed #f2c14e; box-shadow: none; }
+.hm-marker:hover, .hm-marker:focus-visible, .hm-marker.is-selected { transform: scale(1.25); box-shadow: 0 0 0 5px rgba(232, 194, 122, 0.55); }
+.hm-count {
+  position: absolute; top: -9px; right: -10px;
+  min-width: 16px; height: 16px; padding: 0 4px; border-radius: 8px;
+  font-size: 10px; line-height: 16px; font-weight: 700; color: #0b0d14; background: var(--accent);
+}
+.hm-label {
+  position: absolute; left: 16px; top: -4px;
+  white-space: nowrap; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.02em;
+  color: #fff; text-shadow: 0 1px 3px #000, 0 0 6px #000;
+  pointer-events: none;
+}
+.hm-credit { margin: 0.5rem 0 0; font-size: 0.78rem; color: var(--muted); }
+
+.hm-panel {
+  border: 1px solid var(--line); border-radius: 12px; background: var(--panel);
+  padding: 1rem; max-height: 560px; overflow-y: auto;
+}
+.hm-panel.is-moon { border-top: 3px solid var(--moon); }
+.hm-panel.is-mars { border-top: 3px solid var(--mars); }
+.hm-panel-hint { margin: 0; color: var(--muted); font-size: 0.92rem; }
+.hm-panel-site { margin: 0 0 0.6rem; font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.hm-obj { padding: 0.75rem 0; border-top: 1px solid var(--line); }
+.hm-obj:first-of-type { border-top: 0; padding-top: 0; }
+.hm-obj h4 { margin: 0 0 0.35rem; font-family: var(--serif); font-weight: 500; font-size: 1.15rem; }
+.hm-obj p { margin: 0.35rem 0 0; font-size: 0.88rem; }
+.hm-obj-meta { color: var(--muted); }
+.hm-cert strong { font-weight: 600; color: var(--hm); }
+.hm-basis { color: var(--muted); }
+.hm-actions { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.7rem; }
+.hm-actions .btn { font-size: 0.85rem; padding: 0.4rem 0.9rem; }
+
+.hm-list-title { margin: 1.5rem 0 0.5rem; font-size: 0.85rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.hm-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.3rem; font-size: 0.9rem; }
+.hm-list-name { font: inherit; font-weight: 600; background: none; border: 0; padding: 0; color: var(--text); cursor: pointer; text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 3px; }
+.hm-list-name:hover { color: var(--accent); }
+.hm-list-where { color: var(--muted); }
+
+@media (max-width: 900px) {
+  .hm-stage { grid-template-columns: 1fr; }
+  .hm-panel { max-height: none; }
+  .hm-label { display: none; }
+}

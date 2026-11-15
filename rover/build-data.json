@@ -1,0 +1,89 @@
+{
+  "_note": "Build Your Own Rover. An EDUCATIONAL SIMULATION with fictional missions and illustrative numbers (budget points, mass units, power units). It is not a real engineering tool. The 'Real-world reference' notes are the only factual statements; each links to a NASA source already used in this project (docs/research-sources.md).",
+  "budget": 100,
+  "missions": [
+    {
+      "id": "ice", "planet": "Moon", "name": "Shadow Crater Survey",
+      "brief": "A fictional mission to drive into a cold crater floor that never sees sunlight, and press a spectrometer against the soil to look for clues that ice might be mixed into it.",
+      "sunlight": 0.15, "terrain": "rough", "distance": "short", "dataNeed": "medium",
+      "key": ["spectrometer", "camera_wide"],
+      "needsArm": true,
+      "notes": ["There is almost no sunlight on the crater floor, so solar power struggles.", "Slopes into the crater are steep and rough."]
+    },
+    {
+      "id": "water", "planet": "Mars", "name": "Ancient Water Detective",
+      "brief": "A fictional mission to cross several kilometres of plains to layered rock outcrops, and find out whether those rocks formed in water.",
+      "sunlight": 0.8, "terrain": "mixed", "distance": "long", "dataNeed": "high",
+      "key": ["spectrometer", "microscope", "abrasion"],
+      "needsArm": true,
+      "notes": ["Composition and grain-scale texture are the key evidence, so instruments must touch the rock.", "Long drives over soft ground: getting stuck is a real risk."]
+    },
+    {
+      "id": "weather", "planet": "Mars", "name": "Dust and Sky Watch",
+      "brief": "A fictional mission to stay at one site for a long time, watching dust, clouds and how the surface changes through the seasons.",
+      "sunlight": 0.55, "terrain": "flat", "distance": "none", "dataNeed": "high",
+      "key": ["weather", "camera_wide"],
+      "needsArm": false,
+      "notes": ["Dust will settle on everything over months, including solar panels.", "Lots of images and measurements to send home."]
+    }
+  ],
+  "categories": [
+    {
+      "id": "wheels", "name": "Wheels and suspension", "pick": "one",
+      "options": [
+        { "id": "w4", "name": "4 small wheels", "cost": 8, "mass": 10, "power": 2, "mobility": 1, "capacity": 60, "desc": "Light and cheap, but struggles on rough or soft ground." },
+        { "id": "w6", "name": "6 wheels with flexible suspension", "cost": 16, "mass": 16, "power": 3, "mobility": 2, "capacity": 90, "desc": "Keeps all wheels on uneven ground. A good all-rounder." },
+        { "id": "w6l", "name": "6 large wheels, heavy-duty", "cost": 24, "mass": 24, "power": 5, "mobility": 3, "capacity": 130, "desc": "Climbs and crosses soft ground best, but is heavy and costly." }
+      ]
+    },
+    {
+      "id": "camera", "name": "Camera system", "pick": "one",
+      "options": [
+        { "id": "camera_nav", "name": "Navigation cameras only", "cost": 5, "mass": 2, "power": 2, "science": 1, "desc": "Enough to drive safely. Little science detail." },
+        { "id": "camera_wide", "name": "Panoramic colour stereo camera on a mast", "cost": 12, "mass": 5, "power": 4, "science": 2, "desc": "Wide colour views for choosing targets and studying the landscape." }
+      ]
+    },
+    {
+      "id": "instruments", "name": "Science instruments", "pick": "many",
+      "options": [
+        { "id": "spectrometer", "name": "Spectrometer", "cost": 14, "mass": 6, "power": 6, "science": 2, "contact": true, "desc": "Measures which elements and minerals are present. Placed against the target." },
+        { "id": "microscope", "name": "Microscopic imager", "cost": 9, "mass": 3, "power": 3, "science": 1, "contact": true, "desc": "Close-up views of grain size and texture." },
+        { "id": "abrasion", "name": "Rock abrasion tool", "cost": 10, "mass": 6, "power": 7, "science": 1, "contact": true, "desc": "Grinds away a rock's dusty outer surface so instruments can see fresh rock." },
+        { "id": "magnets", "name": "Magnet targets", "cost": 3, "mass": 1, "power": 0, "science": 1, "desc": "Collects magnetic dust so cameras can study it." },
+        { "id": "weather", "name": "Weather station", "cost": 8, "mass": 3, "power": 3, "science": 2, "desc": "Measures temperature, wind and pressure over time." }
+      ]
+    },
+    {
+      "id": "arm", "name": "Robotic arm", "pick": "one",
+      "options": [
+        { "id": "arm_none", "name": "No arm", "cost": 0, "mass": 0, "power": 0, "reach": false, "desc": "Saves budget, but contact instruments cannot reach a rock." },
+        { "id": "arm_std", "name": "Arm with an instrument turret", "cost": 14, "mass": 8, "power": 4, "reach": true, "desc": "Places contact instruments on rocks and soil." }
+      ]
+    },
+    {
+      "id": "power", "name": "Power system", "pick": "one",
+      "options": [
+        { "id": "solar_s", "name": "Small solar panels", "cost": 8, "mass": 6, "supply": 22, "solar": true, "desc": "Cheap and light. Output drops with less sunlight or dust on the panels." },
+        { "id": "solar_l", "name": "Large solar panels", "cost": 14, "mass": 10, "supply": 40, "solar": true, "desc": "More power in sunlight, but still depends on the Sun and clean panels." },
+        { "id": "nuclear", "name": "Radioisotope power source", "cost": 34, "mass": 18, "supply": 30, "solar": false, "desc": "Steady power day and night, whatever the dust. Very expensive in this simulation." }
+      ]
+    },
+    {
+      "id": "comms", "name": "Communications", "pick": "one",
+      "options": [
+        { "id": "dte", "name": "Direct-to-Earth antenna", "cost": 8, "mass": 4, "power": 4, "data": 1, "desc": "Talks straight to Earth. Simple, but sends data slowly." },
+        { "id": "relay", "name": "Orbiter relay radio", "cost": 10, "mass": 3, "power": 3, "data": 2, "desc": "Sends data through a spacecraft in orbit: more data per day." },
+        { "id": "both", "name": "Both, for backup", "cost": 16, "mass": 6, "power": 5, "data": 3, "desc": "More data and a backup if one link fails." }
+      ]
+    }
+  ],
+  "references": [
+    { "text": "Spirit and Opportunity were solar-powered rovers that carried a panoramic camera, an Alpha Particle X-Ray Spectrometer, a Mössbauer spectrometer, a Microscopic Imager, a Rock Abrasion Tool and a magnet array.", "sourceName": "NASA NSSDCA record 2003-027A", "sourceUrl": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=2003-027A", "tags": ["spectrometer", "microscope", "abrasion", "magnets", "camera_wide", "solar"] },
+    { "text": "Spirit broke through a thin crust into soft sand in 2009 and got stuck. Its solar panels then could not gather enough sunlight to survive the winter.", "sourceName": "NASA NSSDCA record 2003-027A", "sourceUrl": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=2003-027A", "tags": ["mobility", "solar"] },
+    { "text": "Opportunity, also solar-powered, last communicated on 10 June 2018, while a planet-wide dust storm blanketed its location.", "sourceName": "NASA NSSDCA record 2003-032A", "sourceUrl": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=2003-032A", "tags": ["solar", "dust"] },
+    { "text": "Over four years, dust slowly covered InSight's solar panels. Its dusty panels produced less power until the mission ended in December 2022.", "sourceName": "NASA: InSight mission retired", "sourceUrl": "https://www.nasa.gov/missions/insight/nasa-retires-insight-mars-lander-mission-after-years-of-science/", "tags": ["solar", "dust"] },
+    { "text": "Phoenix, a solar-powered lander, was not designed to survive the dark and cold conditions of a Martian arctic winter.", "sourceName": "NASA image PIA22223", "sourceUrl": "https://images.nasa.gov/details/PIA22223", "tags": ["solar", "dark"] },
+    { "text": "Viking 1's sampler arm carried a magnet, and studying the magnetic properties of the Martian surface was one of the lander's goals.", "sourceName": "NASA NSSDCA record 1975-075C", "sourceUrl": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1975-075C", "tags": ["magnets", "arm"] }
+  ],
+  "disclaimer": "Build Your Own Rover is an educational simulation. The missions are fictional and every cost, mass and power number is illustrative. It is not a real engineering design tool. Real-world reference notes link to NASA sources."
+}

@@ -42,6 +42,16 @@ Audit of `main` at commit 535afa9 (15 Nov 2026), checked against the master proj
    - An investigation workspace where visitors classify claims as Confirmed, Reasonable interpretation, Unconfirmed possibility or Unknown, with explanations and sources.
    - Then the existing conclusion, followed by a "real record" reveal: object, mission, purpose, what happened, status and what remains uncertain.
 
+## Round 2 (Priority 1): done
+
+- **The Forgotten Footprints:** a heritage map on real NASA basemaps with Moon and Mars views. Markers are labelled verified, approximate or unknown, open an information panel, and link to the archive and The Last Signal.
+- **Mission Footprints Lab:** 9 NASA images with what, who, instrument, when, why, what we learn and what we cannot conclude. One verified before/after slider (Phoenix, PIA22223).
+- **Evidence or Assumption?:** 14 claims; each round draws 6 at random.
+- **Build Your Own Rover** (`rover/build.html`): 3 fictional missions, a budget, qualitative ratings and a printable report.
+- **The Ethics of Exploration:** 4 dilemmas, each seen from 4 perspectives, with no score.
+
+The teammate's untracked globe (`welcome.html`) is still untouched. It could reuse `data/heritage-map.json` and the basemaps.
+
 ## Next rounds (proposed)
 
 - **P1:**

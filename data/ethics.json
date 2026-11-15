@@ -1,0 +1,161 @@
+{
+  "_note": "The Ethics of Exploration. HYPOTHETICAL educational scenarios, not real missions and not NASA policy. There is no score. Each consequence is labelled: 'verified' (a fact from the linked NASA source) or 'interpretation' (our reasoning about likely consequences). Sources are the NASA documents already used in this project (docs/research-sources.md).",
+  "disclaimer": "These are hypothetical educational scenarios. They are not real missions, not NASA policy and not legal advice. Facts used in the consequences link to NASA sources; everything else is labelled as interpretation.",
+  "perspectives": ["Science", "History", "Preservation", "Future explorers"],
+  "sources": {
+    "recs": { "name": "NASA's Recommendations to Space-Faring Entities (2011)", "url": "https://www.nasa.gov/wp-content/uploads/2017/10/617743main_nasa-usg_lunar_historic_sites_reva-508.pdf" },
+    "a12": { "name": "NASA history: 55 Years Ago, Apollo 12 Makes a Pinpoint Landing on the Moon", "url": "https://www.nasa.gov/history/55-years-ago-apollo-12-makes-a-pinpoint-landing-on-the-moon/" },
+    "lro": { "name": "NASA image PIA12909: Apollo 11, Second Look", "url": "https://images.nasa.gov/details/PIA12909" },
+    "phx": { "name": "NASA image PIA22223: Phoenix nearly a decade later", "url": "https://images.nasa.gov/details/PIA22223" },
+    "insight": { "name": "NASA image PIA26515: HiRISE studies the dust on InSight", "url": "https://images.nasa.gov/details/PIA26515" },
+    "sojourner": { "name": "NASA NSSDCA record 1996-068A (Mars Pathfinder)", "url": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1996-068A" }
+  },
+  "scenarios": [
+    {
+      "id": "retrieve",
+      "title": "Bring it home?",
+      "theme": "Retrieving inactive equipment",
+      "objectId": "sojourner",
+      "setup": "Imagine a future crewed mission to Mars lands near Ares Vallis, where the small rover Sojourner has rested since 1997. A museum on Earth asks the crew to bring Sojourner home so millions of people can see it.",
+      "choices": [
+        {
+          "label": "Bring Sojourner back to Earth",
+          "consequences": {
+            "Science": [{ "k": "interpretation", "t": "Engineers could study how decades on Mars changed its materials, in a real laboratory." }, { "k": "verified", "t": "There is a precedent: Apollo 12 astronauts removed parts of Surveyor 3, which were studied on Earth.", "s": "a12" }],
+            "History": [{ "k": "interpretation", "t": "Far more people could see a piece of exploration history up close." }],
+            "Preservation": [{ "k": "interpretation", "t": "The site loses the object that gives it meaning. Its exact position and surroundings, part of the story, would be gone for good." }, { "k": "verified", "t": "Apollo 12's landing near Surveyor 3 caused significant sandblasting and pitting. A visit can change what you came to study.", "s": "a12" }],
+            "Future explorers": [{ "k": "interpretation", "t": "It would set a precedent that historic hardware can be removed when someone wants it." }]
+          }
+        },
+        {
+          "label": "Leave it, but document it in detail",
+          "consequences": {
+            "Science": [{ "k": "interpretation", "t": "Photos and measurements on site can still show how it has aged, but without laboratory tests." }],
+            "History": [{ "k": "interpretation", "t": "It stays where it made history, but only the crew sees it in person." }],
+            "Preservation": [{ "k": "interpretation", "t": "The site stays whole. Careful approach routes would limit any disturbance." }],
+            "Future explorers": [{ "k": "interpretation", "t": "A detailed record helps anyone who studies or visits the site later." }]
+          }
+        },
+        {
+          "label": "Do not approach. Photograph it from a distance or from orbit",
+          "consequences": {
+            "Science": [{ "k": "verified", "t": "Orbital cameras can watch how sites change: HiRISE images showed dust building up on Phoenix and InSight over the years.", "s": "phx" }],
+            "History": [{ "k": "interpretation", "t": "The least intrusive option, but the public sees it only in images." }],
+            "Preservation": [{ "k": "interpretation", "t": "The site is left exactly as it is." }],
+            "Future explorers": [{ "k": "interpretation", "t": "Leaves every option open for the future, including decisions made with better tools." }]
+          }
+        }
+      ],
+      "note": { "k": "verified", "t": "NASA's 2011 heritage recommendations cover U.S. sites on the Moon. We found no equivalent NASA document for Mars hardware in our sources.", "s": "recs" }
+    },
+    {
+      "id": "science",
+      "title": "A landing too close?",
+      "theme": "Scientific research versus preservation",
+      "objectId": "apollo17-alsep",
+      "setup": "Imagine a new robotic science mission wants to study the same valley as Apollo 17, the last crewed Moon landing. Landing right beside the Apollo 17 site would save weeks of driving and allow direct comparison with 1972 measurements.",
+      "choices": [
+        {
+          "label": "Land close to the Apollo 17 site",
+          "consequences": {
+            "Science": [{ "k": "interpretation", "t": "More time for science, and samples from almost the same spot as Apollo 17's." }],
+            "History": [{ "k": "interpretation", "t": "Rocket exhaust could disturb the hardware, the tracks and the footprints of the last crewed landing." }],
+            "Preservation": [{ "k": "verified", "t": "NASA recommends that landers not fly over a historic site within 2.0 km, to avoid rocket plumes, blown dust and the risk of a crash.", "s": "recs" }],
+            "Future explorers": [{ "k": "interpretation", "t": "Saves effort now, but may reduce what the site can teach later." }]
+          }
+        },
+        {
+          "label": "Land more than 2 km away and drive in carefully",
+          "consequences": {
+            "Science": [{ "k": "interpretation", "t": "Less time for science because of the drive, but the comparison is still possible." }],
+            "History": [{ "k": "interpretation", "t": "The historic site is protected from landing effects." }],
+            "Preservation": [{ "k": "verified", "t": "This follows NASA's recommended 2.0 km landing distance for historic sites.", "s": "recs" }],
+            "Future explorers": [{ "k": "interpretation", "t": "Shows that science and preservation can share a valley when missions plan for both." }]
+          }
+        },
+        {
+          "label": "Study the valley from orbit only",
+          "consequences": {
+            "Science": [{ "k": "interpretation", "t": "No new samples, and much less detail than a surface mission." }],
+            "History": [{ "k": "interpretation", "t": "No risk to the site at all." }],
+            "Preservation": [{ "k": "verified", "t": "Orbital imaging has documented Apollo sites before: LRO photographed the Apollo 11 site in 2009.", "s": "lro" }],
+            "Future explorers": [{ "k": "interpretation", "t": "Keeps the site untouched, but leaves surface questions unanswered for now." }]
+          }
+        }
+      ]
+    },
+    {
+      "id": "document",
+      "title": "How should we keep the record?",
+      "theme": "Documenting exploration sites",
+      "objectId": "phoenix",
+      "setup": "Imagine an international team asks how humanity should document the places where spacecraft rest on the Moon and Mars. They can afford one approach for the next ten years.",
+      "choices": [
+        {
+          "label": "Regular imaging from orbit",
+          "consequences": {
+            "Science": [{ "k": "verified", "t": "NASA notes that monitoring how dust changes at a site helps scientists understand how quickly a surface changes, and helps estimate how old craters are.", "s": "insight" }],
+            "History": [{ "k": "interpretation", "t": "Builds a long, consistent record of every site, but only from above." }],
+            "Preservation": [{ "k": "interpretation", "t": "Nothing touches the sites." }],
+            "Future explorers": [{ "k": "interpretation", "t": "A time series of images will be valuable to anyone planning a visit." }]
+          }
+        },
+        {
+          "label": "Send small robots to visit selected sites",
+          "consequences": {
+            "Science": [{ "k": "interpretation", "t": "Close-up data on how materials have aged, for a few sites." }],
+            "History": [{ "k": "interpretation", "t": "Detailed records, but only of the sites that were chosen." }],
+            "Preservation": [{ "k": "verified", "t": "NASA warns that dust and contamination could easily damage the still-active Apollo 11 laser reflector. A visit carries risk.", "s": "recs" }],
+            "Future explorers": [{ "k": "interpretation", "t": "Develops careful approach techniques that later missions could reuse." }]
+          }
+        },
+        {
+          "label": "Build a public digital archive from existing records",
+          "consequences": {
+            "Science": [{ "k": "interpretation", "t": "No new data, but scattered records become easy to find and compare." }],
+            "History": [{ "k": "interpretation", "t": "Makes the stories accessible to everyone. This museum is a small example." }],
+            "Preservation": [{ "k": "interpretation", "t": "Zero risk to the sites, but no information about their condition today." }],
+            "Future explorers": [{ "k": "interpretation", "t": "Gives future teams a starting point, though it will slowly go out of date." }]
+          }
+        }
+      ]
+    },
+    {
+      "id": "rules",
+      "title": "Rules for a busy Moon",
+      "theme": "Future missions and planetary stewardship",
+      "objectId": "apollo11-eagle-descent-stage",
+      "setup": "Imagine that in the coming decades many countries and companies send landers to the Moon. People are debating how historic sites like Tranquility Base should be protected.",
+      "choices": [
+        {
+          "label": "Keep voluntary recommendations, like NASA's 2011 guidance",
+          "consequences": {
+            "Science": [{ "k": "interpretation", "t": "Flexible: missions can adapt the guidance to their science goals." }],
+            "History": [{ "k": "verified", "t": "NASA's guidance recommends that no one visit the Apollo 11 site, with an exclusion zone of 75 m around the descent stage.", "s": "recs" }],
+            "Preservation": [{ "k": "verified", "t": "NASA says these \"are not legal requirements; rather they are technical recommendations for consideration by interested entities.\"", "s": "recs" }],
+            "Future explorers": [{ "k": "interpretation", "t": "Relies on everyone choosing to follow the guidance." }]
+          }
+        },
+        {
+          "label": "Agree binding international rules",
+          "consequences": {
+            "Science": [{ "k": "interpretation", "t": "Clear rules could limit some research near historic sites." }],
+            "History": [{ "k": "interpretation", "t": "Stronger protection for sites that belong to all of humanity's story." }],
+            "Preservation": [{ "k": "interpretation", "t": "Rules only protect sites if they can be agreed and followed by many parties, which is slow and hard." }],
+            "Future explorers": [{ "k": "interpretation", "t": "Predictable rules make planning easier for every mission." }]
+          }
+        },
+        {
+          "label": "Decide site by site, with scientists and historians together",
+          "consequences": {
+            "Science": [{ "k": "interpretation", "t": "Allows research where it matters most, and protection where it matters most." }],
+            "History": [{ "k": "interpretation", "t": "Each site's own meaning is considered, for example Apollo 11 as the first crewed landing." }],
+            "Preservation": [{ "k": "interpretation", "t": "Needs expert time for every case, and decisions may differ from site to site." }],
+            "Future explorers": [{ "k": "interpretation", "t": "A careful process, but slower than one simple rule." }]
+          }
+        }
+      ]
+    }
+  ],
+  "closing": "There is no single right answer to any of these. Each choice trades knowledge, access and protection against one another. Planetary stewardship means weighing them openly, with the evidence in front of you."
+}

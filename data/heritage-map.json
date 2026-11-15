@@ -1,0 +1,35 @@
+{
+  "_note": "The Forgotten Footprints heritage map. Verified positions come from latitude/longitude in data/objects.json (NSSDCA). `approximate` lists objects whose site is documented but whose exact position is not; each is plotted at a documented nearby point and labelled Approximate. Objects in neither list are shown as Unknown and are not plotted. Basemaps are equirectangular (plate carrée), centred on 0° longitude, east-positive.",
+  "basemaps": {
+    "Moon": {
+      "image": "assets/images/maps/moon-lroc-color-2k.jpg",
+      "view": { "lonMin": -60, "lonMax": 60, "latMin": -40, "latMax": 50 },
+      "viewNote": "Near side only, 60° W to 60° E and 40° S to 50° N. All the Moon objects in this archive are on the near side.",
+      "credit": "Lunar map: NASA's Scientific Visualization Studio, CGI Moon Kit (LRO camera colour mosaic)",
+      "url": "https://svs.gsfc.nasa.gov/4720/"
+    },
+    "Mars": {
+      "image": "assets/images/maps/mars-viking-mdim21-2k.jpg",
+      "view": { "lonMin": -180, "lonMax": 180, "latMin": -90, "latMax": 90 },
+      "viewNote": "Whole planet, 180° W to 180° E.",
+      "credit": "Mars map: Viking MDIM 2.1 colorized global mosaic (NASA/USGS), from NASA's Mars Trek",
+      "url": "https://trek.nasa.gov/mars/"
+    }
+  },
+  "approximate": [
+    {
+      "id": "apollo11-lrrr",
+      "latitude": 0.6735, "longitude": 23.4730,
+      "basis": "NASA's catalogue says the reflector was deployed about 5 m north-north-west of the seismometer. It is plotted at the seismometer's recorded position.",
+      "sourceName": "NASA NSSDCA record 1969-059C",
+      "sourceUrl": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1969-059C"
+    },
+    {
+      "id": "apollo15-lrv",
+      "latitude": 26.13239, "longitude": 3.63330,
+      "basis": "The rover's final parking spot is not given in our sources. It is plotted at the Apollo 15 landing site, where the mission took place.",
+      "sourceName": "NASA NSSDCA record 1971-063C",
+      "sourceUrl": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1971-063C"
+    }
+  ]
+}

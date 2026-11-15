@@ -7,9 +7,11 @@
   <title>Lunar Echoes</title>
   <link rel="stylesheet" href="css/style.css?v=20261115">
   <link rel="stylesheet" href="css/beyond.css?v=20261115">
-  <link rel="stylesheet" href="css/journey.css?v=20261115c">
+  <link rel="stylesheet" href="css/journey.css?v=20261115d">
   <link rel="stylesheet" href="css/last-signal.css?v=20261115b">
-  <link rel="stylesheet" href="css/detective.css?v=20261115c">
+  <link rel="stylesheet" href="css/detective.css?v=20261115d">
+  <link rel="stylesheet" href="css/heritage-map.css?v=20261115d">
+  <link rel="stylesheet" href="css/footprints.css?v=20261115d">
   <link rel="stylesheet" href="css/responsive.css?v=20261115">
 </head>
 <body>
@@ -25,10 +27,11 @@
       <a href="#objects">Archive</a>
       <a href="#last-signal">Last Signal</a>
       <a href="#cases">Detective</a>
-      <a href="#map">Locations</a>
+      <a href="#map">Heritage map</a>
       <a href="#beyond">Citizen science</a>
       <a href="rover/index.html">Rover Rescue</a>
       <a href="#decision">Future explorer</a>
+      <a href="#ethics">Ethics</a>
     </nav>
   </header>
 
@@ -82,7 +85,9 @@
           <h3>What is true, and how do we know?</h3>
           <ul class="hj-links">
             <li><a href="#cases"><strong>The Planetary Detective</strong><span>Sort evidence from assumption in three case files</span></a></li>
-            <li><a href="#map"><strong>Where they rest</strong><span>Verified locations only; unknowns are listed</span></a></li>
+            <li><a href="#evidence-game"><strong>Evidence or Assumption?</strong><span>Judge claims against NASA evidence</span></a></li>
+            <li><a href="#map"><strong>The Forgotten Footprints</strong><span>Heritage map: verified, approximate and unknown locations</span></a></li>
+            <li><a href="#footprints"><strong>Mission Footprints Lab</strong><span>Real NASA images, and what they can and cannot tell us</span></a></li>
             <li><a href="#compare"><strong>Moon vs Mars</strong><span>Two very different worlds to leave a machine</span></a></li>
             <li><a href="#beyond"><strong>Citizen science</strong><span>MoonDiff and Cloudspotting on Mars: Shapes</span></a></li>
           </ul>
@@ -92,7 +97,9 @@
           <h3>How should we explore next?</h3>
           <ul class="hj-links">
             <li><a href="rover/index.html"><strong>Rover Rescue</strong><span>Drive, sample and reason like a planetary scientist</span></a></li>
+            <li><a href="rover/build.html"><strong>Build Your Own Rover</strong><span>Engineer a rover for a mission, within a budget</span></a></li>
             <li><a href="#decision"><strong>Future explorer</strong><span>Document, study or preserve? See the trade-offs</span></a></li>
+            <li><a href="#ethics"><strong>The Ethics of Exploration</strong><span>Four dilemmas, four perspectives, no score</span></a></li>
             <li><a href="#beyond-charter"><strong>Future Explorer Charter</strong><span>Write your own principles</span></a></li>
             <li><a href="#quiz"><strong>Mission quiz</strong><span>Five questions from the stories</span></a></li>
           </ul>
@@ -110,6 +117,16 @@
         <p class="loading">Unlocking the archive…</p>
       </div>
       <article id="case-view" class="case-view" aria-labelledby="case-title" hidden></article>
+    </section>
+
+    <!-- ===== Evidence or Assumption? (js/evidence-game.js, data/evidence-game.json) ===== -->
+    <section id="evidence-game" class="evidence-game" aria-labelledby="evidence-game-title">
+      <p class="eyebrow">Reasoning game</p>
+      <h2 id="evidence-game-title" class="section-title">Evidence or Assumption?</h2>
+      <p class="section-intro">Read the NASA evidence, then judge the claim. Is it supported, contradicted, or is there simply not enough evidence to decide? The evidence stays on screen: this is about reasoning, not memory.</p>
+      <div id="evidence-box" class="eg" aria-busy="true">
+        <p class="loading">Shuffling the claims…</p>
+      </div>
     </section>
 
     <!-- ===== Why this museum ===== -->
@@ -151,6 +168,16 @@
       <div id="decision-box" class="decision"></div>
     </section>
 
+    <!-- ===== The Ethics of Exploration (js/ethics.js, data/ethics.json) ===== -->
+    <section id="ethics" class="ethics" aria-labelledby="ethics-title">
+      <p class="eyebrow">Shape the future · Decision simulator</p>
+      <h2 id="ethics-title" class="section-title">The Ethics of Exploration</h2>
+      <p class="section-intro">Four dilemmas about the hardware we leave behind. Choose, then see the consequences for science, history, preservation and future explorers. There is no score: these are trade-offs, not quiz questions.</p>
+      <div id="ethics-box" class="eth" aria-busy="true">
+        <p class="loading">Convening the committee…</p>
+      </div>
+    </section>
+
     <!-- ===== Timeline ===== -->
     <section id="timeline" aria-labelledby="timeline-title">
       <p class="eyebrow">Through time</p>
@@ -190,6 +217,17 @@
       <div id="map-box" class="map"></div>
     </section>
 
+    <!-- ===== Mission Footprints Lab (js/footprints.js, data/footprints.json, css/footprints.css) ===== -->
+    <section id="footprints" class="footprints" aria-labelledby="footprints-title">
+      <p class="eyebrow">Image lab · Real NASA imagery</p>
+      <h2 id="footprints-title" class="section-title">Mission Footprints Lab</h2>
+      <p class="section-intro">Footprints, landing scars, rovers and landers, seen from the ground and from orbit. Each image comes with what it shows, who took it, why, what scientists learn from it, and what it cannot tell us.
+        Labels show what NASA states (Verified), what is our reasoning (Interpretation) and what is not recorded (Unknown).</p>
+      <div id="footprints-box" class="fp" aria-busy="true">
+        <p class="loading">Developing the film…</p>
+      </div>
+    </section>
+
     <!-- ===== Quiz ===== -->
     <section id="quiz" aria-labelledby="quiz-title">
       <p class="eyebrow">Test and learn</p>
@@ -222,9 +260,13 @@
   <script src="js/quiz.js?v=20261115"></script>
   <script src="js/explore.js?v=20261115"></script>
   <script src="js/cases.js?v=20261115c"></script>
-  <script src="js/last-signal.js?v=20261115c"></script>
+  <script src="js/last-signal.js?v=20261115d"></script>
+  <script src="js/heritage-map.js?v=20261115d"></script>
+  <script src="js/footprints.js?v=20261115d"></script>
+  <script src="js/evidence-game.js?v=20261115d"></script>
+  <script src="js/ethics.js?v=20261115d"></script>
   <script src="js/citizen.js?v=20261115"></script>
   <script src="js/beyond-extras.js?v=20261115"></script>
-  <script src="js/main.js?v=20261115b"></script>
+  <script src="js/main.js?v=20261115d"></script>
 </body>
 </html>

@@ -236,6 +236,41 @@ No participation statistics or research outcomes are stated anywhere.
   - the claims and their explanations;
   - the "What remains uncertain" lists, which only say what our sources do *not* document.
 
+### The Forgotten Footprints heritage map (`data/heritage-map.json`)
+
+- **Basemaps (equirectangular, centred on 0° longitude):**
+  - **Moon:** NASA's Scientific Visualization Studio CGI Moon Kit, `lroc_color_2k.jpg` (LRO camera colour mosaic), https://svs.gsfc.nasa.gov/4720/. Saved as `assets/images/maps/moon-lroc-color-2k.jpg`.
+  - **Mars:** Viking MDIM 2.1 colorized global mosaic (NASA/USGS), stitched from NASA Mars Trek's zoom-2 map tiles (`Mars_Viking_MDIM21_ClrMosaic_global_232m`), https://trek.nasa.gov/mars/. Saved as `assets/images/maps/mars-viking-mdim21-2k.jpg`.
+  - Both were checked against known features: Olympus Mons at about 18° N, 134° W; Tycho and Mare Tranquillitatis on the Moon.
+- **Verified positions:** `latitude`/`longitude` in `data/objects.json` (NSSDCA).
+- **Approximate positions**, labelled on the map:
+  - The Apollo 11 reflector is plotted at the seismometer's recorded position. NSSDCA 1969-059C: the reflector was deployed "about 5 meters NNW of the EASEP".
+  - The Apollo 15 rover is plotted at the Apollo 15 landing site, 26.13239 N 3.63330 E (NSSDCA 1971-063C). Its final parking spot is not in our sources.
+- **Unknown:** InSight. NSSDCA 2018-042A gives only the region (western Elysium Planitia), so it is listed, not plotted.
+
+### Mission Footprints Lab (`data/footprints.json`)
+
+- **Descriptions:** read from the NASA Image and Video Library API (15 Nov 2026) for:
+  - AS11-37-5551, PIA12909, AS12-48-7134
+  - PIA00381, PIA04318, PIA22549
+  - PIA22223, PIA26515, PIA25287
+- **Instrument field:** filled only where NASA names one (Viking Lander camera #2, Imager for Mars Pathfinder, HiRISE). Elsewhere it is marked Unknown.
+- **Before/after slider:** only PIA22223, figures 1 and 2 (HiRISE PSP_009290_2485, 20 Jul 2008, and ESP_053451_2485, 21 Dec 2017). NASA says the two cover the same ~300 m area, "closely matched in viewing and illumination geometry". Source files: https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia22/pia22223/figures/PIA22223_fig1.jpg (and `_fig2`), resized to 900 px in `assets/images/footprints/`.
+- **AS12-48-7134:** NASA's title names Alan Bean, but its description says Conrad is examining the camera. The lab shows this as an open question rather than choosing.
+
+### Evidence or Assumption? (`data/evidence-game.json`), Ethics of Exploration (`data/ethics.json`)
+
+- Every evidence statement and every "Verified" consequence reuses a source already listed in this document.
+- The claims, explanations and "Interpretation" consequences were written by AI and are labelled as interpretation.
+
+### Build Your Own Rover (`rover/build-data.json`)
+
+- An educational simulation. The missions are fictional, and costs, masses and power values are illustrative.
+- The "Real-world reference" notes are the only factual statements, sourced from:
+  - NSSDCA 2003-027A, 2003-032A and 1975-075C;
+  - NASA's InSight retirement article;
+  - PIA22223.
+
 ### ROVER RESCUE: Mission to Discover (`rover/rover-data.json`)
 
 An educational mini-game. **All instrument readings are SIMULATED**: illustrative qualitative values (e.g. "Iron: High")
@@ -269,6 +304,9 @@ Written by AI and labelled in the game: the qualitative readings, the reasoning 
   (`/planetary/lunar/lunar_sites.txt`) returned 404 on 14 Nov 2026.
 
 ## Image credits
+
+Map basemaps: NASA SVS CGI Moon Kit (LRO); Viking MDIM 2.1 colorized mosaic (NASA/USGS) via NASA Mars Trek.
+Phoenix comparison figures: NASA/JPL-Caltech/Univ. of Arizona, PIA22223.
 
 All images: **NASA Image and Video Library**. Each ID was matched to its NASA description.
 NASA media usage guidelines: https://www.nasa.gov/nasa-brand-center/images-and-media/
