@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rover Rescue: Mission to Discover | Lunar Echoes</title>
+  <meta name="description" content="An educational rover game: explore the Moon or Mars, collect samples, use simulated instruments and reason from evidence.">
+  <link rel="stylesheet" href="rover.css?v=20261115">
+</head>
+<body>
+  <a class="skip" href="#game">Skip to the game</a>
+
+  <header class="top">
+    <a class="back" href="../index.html">← Lunar Echoes</a>
+    <h1>ROVER RESCUE <span>Mission to Discover</span></h1>
+    <p class="sim-badge" title="All instrument readings are simulated">SIMULATED DATA</p>
+  </header>
+
+  <main id="game">
+    <!-- 1. Mission selection -->
+    <section id="select" class="select" aria-labelledby="select-title">
+      <h2 id="select-title">Choose your mission</h2>
+      <p class="lead">Drive a rover, find sample sites, analyse what you collect with four instruments, and decide what the evidence really supports. Sometimes the best answer is <strong>"Insufficient evidence"</strong>.</p>
+      <div class="mission-cards">
+        <button type="button" class="mission-card moon" data-mission="moon">
+          <span class="mc-world" aria-hidden="true"></span>
+          <span class="mc-title">Lunar Exploration Mission</span>
+          <span class="mc-text">Grey plains, bright highlands and craters. Basalts, breccias, regolith and a surprise in orange.</span>
+          <span class="mc-go">Start on the Moon →</span>
+        </button>
+        <button type="button" class="mission-card mars" data-mission="mars">
+          <span class="mc-world" aria-hidden="true"></span>
+          <span class="mc-title">Martian Exploration Mission</span>
+          <span class="mc-text">Rust-red dust, dunes and layered rock. Look for the clues that water left behind.</span>
+          <span class="mc-go">Start on Mars →</span>
+        </button>
+      </div>
+      <p class="note" id="sim-note"></p>
+      <p class="note" id="load-status" role="status"></p>
+    </section>
+
+    <!-- 2. Exploration -->
+    <section id="play" class="play" hidden aria-label="Rover exploration">
+      <div class="stage">
+        <canvas id="world" width="960" height="600" tabindex="0" aria-describedby="nearby"></canvas>
+
+        <div class="hud hud-tl">
+          <p class="hud-mission" id="hud-mission"></p>
+          <div class="energy" aria-label="Rover energy">
+            <span class="energy-label">Energy</span>
+            <span class="energy-bar"><span id="energy-fill"></span></span>
+            <span id="energy-num">100</span>
+          </div>
+          <p class="hud-line" id="hud-status">Status: ready</p>
+        </div>
+
+        <div class="hud hud-tr">
+          <p class="hud-line"><strong>Samples</strong> <span id="hud-count">0</span></p>
+          <p class="hud-line scanner" id="scanner" aria-live="off"></p>
+        </div>
+
+        <div id="toasts" class="toasts" aria-live="polite"></div>
+        <p id="nearby" class="nearby" aria-live="polite"></p>
+
+        <div class="pad" aria-label="Drive controls">
+          <button type="button" class="pad-btn up" data-dir="up" aria-label="Drive up">▲</button>
+          <button type="button" class="pad-btn left" data-dir="left" aria-label="Drive left">◀</button>
+          <button type="button" class="pad-btn right" data-dir="right" aria-label="Drive right">▶</button>
+          <button type="button" class="pad-btn down" data-dir="down" aria-label="Drive down">▼</button>
+        </div>
+      </div>
+
+      <aside class="panel" aria-label="Rover controls">
+        <div class="actions">
+          <button type="button" id="btn-collect" class="btn primary" disabled>Collect sample <kbd>E</kbd></button>
+          <button type="button" id="btn-lab" class="btn">Open lab <kbd>L</kbd></button>
+          <button type="button" id="btn-journal" class="btn">Journal <kbd>J</kbd></button>
+          <button type="button" id="btn-recharge" class="btn">Recharge <kbd>R</kbd></button>
+        </div>
+
+        <h2 class="panel-h">Objectives</h2>
+        <ul id="objectives" class="objectives"></ul>
+
+        <h2 class="panel-h">Inventory</h2>
+        <ul id="inventory" class="inventory"><li class="empty">No samples yet. Drive to a marked site.</li></ul>
+
+        <h2 class="panel-h">Instruments</h2>
+        <ul id="inst-list" class="inst-list"></ul>
+
+        <details class="help">
+          <summary>How to play</summary>
+          <ul>
+            <li>Drive with the <kbd>arrow keys</kbd> or <kbd>W A S D</kbd>, or the on-screen pad.</li>
+            <li>Pulsing markers are sample sites. The scanner points to the nearest one.</li>
+            <li>Press <kbd>E</kbd> near a site to collect it.</li>
+            <li>Open the lab (<kbd>L</kbd>) to run instruments, read the sample report and answer reasoning challenges.</li>
+            <li>Low on energy? Press <kbd>R</kbd> to recharge with the solar panels. There is no way to lose.</li>
+          </ul>
+        </details>
+        <button type="button" id="btn-switch" class="btn ghost">Change mission</button>
+        <p class="note small" id="sim-note-2"></p>
+      </aside>
+    </section>
+  </main>
+
+  <!-- Lab -->
+  <dialog id="lab" class="sheet" aria-labelledby="lab-title">
+    <div class="sheet-head">
+      <h2 id="lab-title">Rover lab</h2>
+      <button type="button" class="close" data-close aria-label="Close lab">✕</button>
+    </div>
+    <div class="lab-body">
+      <nav class="lab-samples" aria-label="Collected samples" id="lab-samples"></nav>
+      <div class="lab-main" id="lab-main"></div>
+    </div>
+  </dialog>
+
+  <!-- Journal -->
+  <dialog id="journal" class="sheet" aria-labelledby="journal-title">
+    <div class="sheet-head">
+      <h2 id="journal-title">Mission journal</h2>
+      <button type="button" class="close" data-close aria-label="Close journal">✕</button>
+    </div>
+    <div id="journal-body" class="journal-body"></div>
+  </dialog>
+
+  <footer class="foot">
+    <p id="disclaimer"></p>
+    <p>Sources: see the <strong>Sources</strong> list inside each sample report and in <code>docs/research-sources.md</code>.</p>
+  </footer>
+
+  <script src="rover.js?v=20261115"></script>
+</body>
+</html>

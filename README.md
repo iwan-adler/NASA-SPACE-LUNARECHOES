@@ -109,7 +109,38 @@ for the things we leave there?*
   - **Future Explorer Charter:** visitor-chosen principles, printable and copyable, labelled as not NASA policy.
   - Nothing is sent to NASA, MoonDiff or Zooniverse, and the page says so.
   - Deep links: `#beyond-moon`, `#beyond-mars`, `#beyond-wall`, `#beyond-ask`, `#beyond-journal`, `#beyond-charter`.
-  - Deep links: `#beyond-moon`, `#beyond-mars`, `#beyond-journal`.
+
+## ROVER RESCUE: Mission to Discover (game)
+
+A standalone educational rover game in its own folder. It shares no code or CSS with the main site, so it cannot
+break other features. The main nav has one link to it ("Rover Rescue game").
+
+```
+rover/index.html       Game page (mission select, exploration, lab and journal dialogs)
+rover/rover.css        Game styles only
+rover/rover.js         Canvas exploration, HUD, collection, instruments, reports, reasoning, journal
+rover/rover-data.json  Missions, sample types, instruments, questions and NASA sources
+```
+
+**Run it on its own:** start a local server in the project folder (`python -m http.server 8000`) and open
+http://localhost:8000/rover/. `#moon` or `#mars` at the end of the URL starts that mission straight away.
+
+- **Missions:** Moon (mare basalt, anorthosite, impact breccia, regolith, orange glass) or Mars (olivine basalt,
+  hematite spherules, layered sandstone, red dust, gypsum vein), each with its own terrain and palette.
+- **Controls:**
+  - Drive with the arrow keys or W A S D, the on-screen pad (touch screens), or by clicking or tapping the map.
+  - E collects, L opens the lab, J opens the journal, R recharges.
+- **Lab:** four instruments: camera, spectrometer, microscope and magnetic sensor. Each one explains what it measures,
+  why scientists use it and which real instrument inspired it.
+- **Report:** a structured sample report that fills in as you measure. Printable.
+- **Reasoning challenges:** "Insufficient evidence" is always an option. Some questions unlock only after the right
+  instrument has been run, and wrong answers can be rethought.
+- **Energy:** forgiving. Recharge is free and unlimited, and there is no way to lose.
+- **Journal:** progress is kept for the browser session only. Nothing is sent anywhere.
+- **SIMULATED:** every instrument reading is a qualitative, illustrative value that matches published NASA descriptions.
+  None is a real NASA measurement. Sources: `docs/research-sources.md` → "ROVER RESCUE".
+- **To add a sample:** add an entry under `samples` and a site `{ x, y, type }` under the mission in `rover-data.json`,
+  and give it a swatch colour in `SWATCH` at the top of `rover.js`.
 
 ## Features
 

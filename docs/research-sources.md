@@ -214,6 +214,30 @@ All pages were read on 14–15 Nov 2026. Real participation happens only on the 
 
 No participation statistics or research outcomes are stated anywhere.
 
+### ROVER RESCUE: Mission to Discover (`rover/rover-data.json`)
+
+An educational mini-game. **All instrument readings are SIMULATED**: illustrative qualitative values (e.g. "Iron: High")
+chosen to match the published descriptions below. They are not real NASA measurements. The map, rover, energy
+budget and sample positions are fictional, and the game says so on screen and in every printout. Sources were read on 15 Nov 2026.
+
+| Game content | What the source supports | Source |
+|---|---|---|
+| Mare basalt (Moon) | Maria are dark, low-lying lava plains. High-Ti group: 3,550–3,850 million years and 9–13% TiO2. Low-Ti group: 3,150–3,450 million years and 1–5% TiO2. Orange glass 74220 could be the cause of the dark mantle at the edge of Mare Serenitatis. | [NASA JSC LPETSS: Mare Basalt Volcanism](https://astromaterials.jsc.nasa.gov/education/LPETSS/marebasalt.cfm) |
+| Anorthosite (Moon) | Highland crust; lunar anorthosites are "ferroan anorthosites"; all highland samples have undergone several cratering events. | [NASA JSC LPETSS: Plutonic Rocks](https://astromaterials.jsc.nasa.gov/education/LPETSS/Plutonic.cfm) |
+| Impact breccia (Moon) | Breccias are aggregates of clastic debris and melt from meteorite bombardment; most Apollo breccias formed in the highlands about 3,900–4,000 million years ago. | [NASA JSC LPETSS: Lunar Breccias](https://astromaterials.jsc.nasa.gov/education/lpetss/breccias.cfm) |
+| Regolith (Moon) | Fine grey soil; about half finer than 60–80 microns; micrometeorites form agglutinates; the solar wind implants H and He. | [NASA JSC LPETSS: The Lunar Regolith](https://astromaterials.jsc.nasa.gov/education/LPETSS/Regolith.cfm) |
+| Orange soil (Moon) | Schmitt's Apollo 17 discovery near Shorty Crater: small spherical glass beads with a high titanium content. | [NASA: 50 Years Ago, Apollo 17 Lands at Taurus-Littrow](https://www.nasa.gov/history/50-years-ago-apollo-17-lands-at-taurus-littrow/) |
+| Olivine basalt (Mars) | Spirit's plains: olivine-bearing basalts covered by wind-blown dust; coatings and vein fillings from a minor amount of aqueous transport. | [NASA NTRS 20080026038](https://ntrs.nasa.gov/citations/20080026038) |
+| Hematite spherules (Mars) | Gray crystalline hematite usually forms with liquid water on Earth; "blueberries" embedded in soft layered sandstone; formed from acidic groundwater. | [NASA Science: Meridiani Planum](https://science.nasa.gov/resource/meridiani-planum-2/), [Six Things to Know About Opportunity](https://science.nasa.gov/missions/mer/six-things-to-know-about-nasas-opportunity-rover/) |
+| Layered sandstone (Mars) | First sedimentary rocks identified on another planet; formed in ancient ephemeral playas. | [Six Things to Know About Opportunity](https://science.nasa.gov/missions/mer/six-things-to-know-about-nasas-opportunity-rover/) |
+| Gypsum vein (Mars) | White gypsum veins at Endeavour crater's rim: a telltale sign of water travelling through underground fractures. | Same page |
+| Red dust (Mars) | Iron minerals in the Martian dirt oxidize (rust), so the surface looks red. | [NASA Science: Mars Facts](https://science.nasa.gov/mars/facts/) |
+| Camera, spectrometer, microscope instruments | Modelled on Spirit and Opportunity's Pancam, APXS, Mössbauer spectrometer and Microscopic Imager. | [NSSDCA 2003-027A](https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=2003-027A) |
+| Magnetic sensor | Modelled on the sampler-arm magnet of Viking 1 (whose goals included magnetic properties), Spirit's magnet array and Apollo 16's portable surface magnetometer. | [NSSDCA 1975-075C](https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1975-075C), [2003-027A](https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=2003-027A), [1972-031C](https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1972-031C) |
+
+Written by AI and labelled in the game: the qualitative readings, the reasoning questions and their explanations, and the
+"uncertainty" notes.
+
 ### Coordinates
 
 - Stored as planetocentric degrees, **east longitude positive, −180 to 180**.
