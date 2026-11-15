@@ -1,5 +1,5 @@
 {
-  "_note": "Case files for 'Open a Case File'. Each case points to an object in data/objects.json (objectId). The object's purpose, story and status are reused from that record. Every evidence item quotes or summarises a NASA source, linked by URL. Questions are answered only from that evidence. All sources are listed in docs/research-sources.md.",
+  "_note": "Case files for 'Open a Case File'. Each case points to an object in data/objects.json (objectId). The object's purpose, story and status are reused from that record. Every evidence item quotes or summarises a NASA source, linked by URL. Questions are answered only from that evidence. All sources are listed in docs/research-sources.md. `claims` power the Detective workspace: each claim is classified as confirmed, interpretation (reasonable interpretation), possibility (unconfirmed possibility) or unknown, with an explanation that points to the case's own evidence source. `unknowns` lists what remains uncertain.",
   "cases": [
     {
       "caseNumber": "LE-001",
@@ -43,8 +43,55 @@
       "explanation": "NASA's Moon fact sheet lists the Moon's \"recession rate from Earth\" as 3.8 cm per year. Laser ranging can measure the Earth–Moon distance to within a few millimetres, precise enough to track a change that small. The reflector needs no power, so it never stopped working, and NASA's 2011 guidance notes it is still an active experiment that dust and chemical contamination could easily degrade.",
       "significance": "A small, power-free instrument left behind by explorers can keep producing science for more than half a century, but only while its site stays undisturbed. Here, protecting a piece of history and protecting an active experiment are the same job.",
       "explanationSources": [
-        { "name": "NASA NSSDCA Moon Fact Sheet", "url": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html" },
-        { "name": "NASA's Recommendations to Space-Faring Entities (2011)", "url": "https://www.nasa.gov/wp-content/uploads/2017/10/617743main_nasa-usg_lunar_historic_sites_reva-508.pdf" }
+        {
+          "name": "NASA NSSDCA Moon Fact Sheet",
+          "url": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html"
+        },
+        {
+          "name": "NASA's Recommendations to Space-Faring Entities (2011)",
+          "url": "https://www.nasa.gov/wp-content/uploads/2017/10/617743main_nasa-usg_lunar_historic_sites_reva-508.pdf"
+        }
+      ],
+      "claims": [
+        {
+          "text": "The reflector needs no power to work.",
+          "answer": "confirmed",
+          "explain": "NASA's catalogue says it \"was not attached to the unit and required no power.\"",
+          "sourceName": "NASA NSSDCA record 1969-059C",
+          "sourceUrl": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1969-059C"
+        },
+        {
+          "text": "Laser ranging with reflectors like this one can measure the Earth–Moon distance to within a few millimetres.",
+          "answer": "confirmed",
+          "explain": "Stated in NASA's article on the experiment.",
+          "sourceName": "NASA: The Apollo Experiment That Keeps on Giving",
+          "sourceUrl": "https://www.nasa.gov/missions/apollo/apollo-11/the-apollo-experiment-that-keeps-on-giving/"
+        },
+        {
+          "text": "Because it needs no power, it can keep working for as long as its surface stays clean and undisturbed.",
+          "answer": "interpretation",
+          "explain": "A reasonable conclusion from two sourced facts (no power needed, and dust or contamination could easily damage it), but it is our reasoning, not a NASA statement.",
+          "sourceName": "NASA's Recommendations to Space-Faring Entities (2011), p. 18",
+          "sourceUrl": "https://www.nasa.gov/wp-content/uploads/2017/10/617743main_nasa-usg_lunar_historic_sites_reva-508.pdf"
+        },
+        {
+          "text": "Dust has already reduced how well the Apollo 11 reflector works.",
+          "answer": "possibility",
+          "explain": "NASA's 2011 guidance warns that dust could easily damage it, but our sources do not report whether, or how much, that has already happened.",
+          "sourceName": "NASA's Recommendations to Space-Faring Entities (2011), p. 18",
+          "sourceUrl": "https://www.nasa.gov/wp-content/uploads/2017/10/617743main_nasa-usg_lunar_historic_sites_reva-508.pdf"
+        },
+        {
+          "text": "The total number of laser pulses that have ever hit this reflector.",
+          "answer": "unknown",
+          "explain": "None of our sources gives this number, so we cannot say. Guessing would be inventing data.",
+          "sourceName": "NASA: The Apollo Experiment That Keeps on Giving",
+          "sourceUrl": "https://www.nasa.gov/missions/apollo/apollo-11/the-apollo-experiment-that-keeps-on-giving/"
+        }
+      ],
+      "unknowns": [
+        "How much the reflector's performance has changed since 1969 is not reported in our sources.",
+        "How many measurements have been made with this particular reflector is not given in our sources."
       ]
     },
     {
@@ -89,8 +136,55 @@
       "explanation": "NASA records that Opportunity's last message came on 10 June 2018, while a planet-wide dust storm blanketed the solar-powered rover. Getting stuck in sand, and going silent in 2010, is what happened to its twin Spirit. When the dust cleared, an orbiting camera could still spot Opportunity as a blip. Its 45.16 km drive stayed the record for driving on another world until NASA's Perseverance passed it on 11 October 2026.",
       "significance": "Opportunity spent years studying the surface of Mars, and in the end the dusty Martian environment it studied ended its mission. Its silent body, still visible from orbit, is now part of the planet's history: a record of how far, and for how long, a human-made explorer could travel on another world.",
       "explanationSources": [
-        { "name": "NASA Science: Spirit and Opportunity", "url": "https://science.nasa.gov/mission/mars-exploration-rovers-spirit-and-opportunity/" },
-        { "name": "NASA image PIA22549", "url": "https://images.nasa.gov/details/PIA22549" }
+        {
+          "name": "NASA Science: Spirit and Opportunity",
+          "url": "https://science.nasa.gov/mission/mars-exploration-rovers-spirit-and-opportunity/"
+        },
+        {
+          "name": "NASA image PIA22549",
+          "url": "https://images.nasa.gov/details/PIA22549"
+        }
+      ],
+      "claims": [
+        {
+          "text": "Opportunity's final communication was received on 10 June 2018.",
+          "answer": "confirmed",
+          "explain": "Recorded in NASA's NSSDCA catalogue entry for Opportunity.",
+          "sourceName": "NASA NSSDCA record 2003-032A",
+          "sourceUrl": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=2003-032A"
+        },
+        {
+          "text": "The dust storm blocked the sunlight its solar panels needed, so it ran out of power.",
+          "answer": "interpretation",
+          "explain": "NASA says the storm blanketed the solar-powered rover when it last communicated. Linking the two as cause and effect is a reasonable reading of that evidence.",
+          "sourceName": "NASA Science: Spirit and Opportunity",
+          "sourceUrl": "https://science.nasa.gov/mission/mars-exploration-rovers-spirit-and-opportunity/"
+        },
+        {
+          "text": "Opportunity was still visible from orbit after the storm.",
+          "answer": "confirmed",
+          "explain": "A Mars Reconnaissance Orbiter camera photographed it as a tiny blip on 20 September 2018 (NASA image PIA22549).",
+          "sourceName": "NASA image PIA22549",
+          "sourceUrl": "https://images.nasa.gov/details/PIA22549"
+        },
+        {
+          "text": "A gust of wind could clean its panels and wake it up one day.",
+          "answer": "possibility",
+          "explain": "Nothing in our sources says this has happened or will happen. It is a possibility, not evidence.",
+          "sourceName": "NASA Science: Spirit and Opportunity",
+          "sourceUrl": "https://science.nasa.gov/mission/mars-exploration-rovers-spirit-and-opportunity/"
+        },
+        {
+          "text": "The exact condition of Opportunity's instruments today.",
+          "answer": "unknown",
+          "explain": "No source in this case describes the state of its instruments after June 2018.",
+          "sourceName": "NASA NSSDCA record 2003-032A",
+          "sourceUrl": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=2003-032A"
+        }
+      ],
+      "unknowns": [
+        "The condition of Opportunity's instruments and batteries today is not documented in our sources.",
+        "Our sources record its last communication, not the exact moment its systems stopped working."
       ]
     },
     {
@@ -135,9 +229,59 @@
       "explanation": "Only the ascent stage was launched from the Moon to return the astronauts to the command module. The descent stage, with its landing rocket and the crew's plaque, stayed behind as the launch pad. The challenge's own NASA resources describe descent stages as \"left behind as launch pads\". In 2009, NASA's Lunar Reconnaissance Orbiter photographed the landing site from orbit.",
       "significance": "The descent stage is more than leftover equipment: it marks the place where people first set foot on another world. NASA's own 2011 guidance calls Apollo 11 \"the first instance in human history in which emissaries from this planet visited another body in the solar system\" and says the site \"requires preservation\". Our interpretation: the most important thing future explorers can do here may be to leave it exactly as it is.",
       "explanationSources": [
-        { "name": "NASA NSSDCA record 1969-059C", "url": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1969-059C" },
-        { "name": "NASA's Recommendations to Space-Faring Entities (2011), p. 17", "url": "https://www.nasa.gov/wp-content/uploads/2017/10/617743main_nasa-usg_lunar_historic_sites_reva-508.pdf" },
-        { "name": "NASA image PIA12909 (LRO, 2009)", "url": "https://images.nasa.gov/details/PIA12909" }
+        {
+          "name": "NASA NSSDCA record 1969-059C",
+          "url": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1969-059C"
+        },
+        {
+          "name": "NASA's Recommendations to Space-Faring Entities (2011), p. 17",
+          "url": "https://www.nasa.gov/wp-content/uploads/2017/10/617743main_nasa-usg_lunar_historic_sites_reva-508.pdf"
+        },
+        {
+          "name": "NASA image PIA12909 (LRO, 2009)",
+          "url": "https://images.nasa.gov/details/PIA12909"
+        }
+      ],
+      "claims": [
+        {
+          "text": "The descent stage stayed on the Moon and served as the launch pad for the ascent stage.",
+          "answer": "confirmed",
+          "explain": "NASA's catalogue says the ascent stage was launched from the Moon and returned the astronauts; the descent stage stayed behind.",
+          "sourceName": "NASA NSSDCA record 1969-059C",
+          "sourceUrl": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1969-059C"
+        },
+        {
+          "text": "The crew's plaque is attached to the descent stage's landing gear.",
+          "answer": "confirmed",
+          "explain": "NASA's description of photo AS11-40-5899 says the plaque was attached to the ladder on the landing gear strut.",
+          "sourceName": "NASA image AS11-40-5899",
+          "sourceUrl": "https://images.nasa.gov/details/as11-40-5899"
+        },
+        {
+          "text": "NASA recommends that future vehicles stay at least 75 m from the descent stage.",
+          "answer": "confirmed",
+          "explain": "NASA's 2011 guidance sets an exclusion zone that extends 75 m from the descent stage. It is a recommendation, not a law.",
+          "sourceName": "NASA's Recommendations to Space-Faring Entities (2011), p. 17",
+          "sourceUrl": "https://www.nasa.gov/wp-content/uploads/2017/10/617743main_nasa-usg_lunar_historic_sites_reva-508.pdf"
+        },
+        {
+          "text": "The descent stage is the most important object at Tranquility Base.",
+          "answer": "interpretation",
+          "explain": "A judgement about value. It is reasonable, since it marks the first crewed landing, but it is an opinion, not a documented fact.",
+          "sourceName": "NASA's Recommendations to Space-Faring Entities (2011), p. 17",
+          "sourceUrl": "https://www.nasa.gov/wp-content/uploads/2017/10/617743main_nasa-usg_lunar_historic_sites_reva-508.pdf"
+        },
+        {
+          "text": "Its materials are in the same condition today as in July 1969.",
+          "answer": "unknown",
+          "explain": "No one has examined it up close since 1969, and our sources contain no measurement of its condition.",
+          "sourceName": "NASA NSSDCA record 1969-059C",
+          "sourceUrl": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1969-059C"
+        }
+      ],
+      "unknowns": [
+        "Its physical condition today has not been measured up close since 1969.",
+        "Our sources do not say how the Moon's environment has affected its materials."
       ]
     }
   ]

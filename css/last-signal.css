@@ -1,0 +1,165 @@
+/* Lunar Echoes - The Last Signal (js/last-signal.js). Uses tokens from css/style.css. */
+
+.signal-layout {
+  display: grid;
+  grid-template-columns: minmax(220px, 290px) 1fr;
+  gap: 1.5rem;
+  align-items: start;
+  margin-top: 1.5rem;
+}
+
+/* ---------- Channel list ---------- */
+.signal-channels {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  position: sticky;
+  top: 5rem;
+}
+.signal-group {
+  margin: 0.6rem 0 0.2rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.signal-group.planet-moon { color: var(--moon); }
+.signal-group.planet-mars { color: var(--mars); }
+.signal-group:first-child { margin-top: 0; }
+.signal-channel {
+  font: inherit;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  width: 100%;
+  text-align: left;
+  padding: 0.55rem 0.75rem;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  color: var(--text);
+  cursor: pointer;
+}
+.signal-channel:hover { border-color: var(--muted); }
+.signal-channel[aria-pressed="true"] { border-color: var(--accent); background: var(--panel-2); }
+.signal-channel-text { display: flex; flex-direction: column; min-width: 0; }
+.signal-channel-name { font-weight: 600; font-size: 0.92rem; line-height: 1.25; }
+.signal-channel-sub { font-size: 0.78rem; color: var(--muted); }
+
+/* The "LED": green for still in use, amber for an ended mission, grey when the last communication is not recorded */
+.signal-led {
+  flex: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #c79a4b;
+  box-shadow: 0 0 0 3px rgba(199, 154, 75, 0.15);
+}
+.kind-ongoing .signal-led { background: var(--ok, #6fd39a); box-shadow: 0 0 0 3px rgba(111, 211, 154, 0.2); animation: signal-blink 2.4s ease-in-out infinite; }
+.kind-left .signal-led,
+.kind-stopped .signal-led { background: #6b7184; box-shadow: none; }
+@keyframes signal-blink { 50% { opacity: 0.35; } }
+
+/* ---------- Panel ---------- */
+.signal-panel {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--panel);
+  padding: clamp(1rem, 2.5vw, 1.6rem);
+  min-width: 0;
+}
+.signal-panel.planet-moon { border-top: 3px solid var(--moon); }
+.signal-panel.planet-mars { border-top: 3px solid var(--mars); }
+.signal-head { display: flex; gap: 1rem; align-items: center; }
+.signal-photo { flex: none; width: 96px; height: 96px; border-radius: 10px; overflow: hidden; background: var(--panel-2); }
+.signal-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.signal-mission { margin: 0; font-size: 0.85rem; color: var(--muted); }
+.signal-title { margin: 0.15rem 0 0.4rem; font-family: var(--serif); font-weight: 500; font-size: clamp(1.3rem, 3vw, 1.7rem); }
+.signal-title:focus { outline: none; }
+.signal-title:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+
+.signal-card {
+  margin: 1.2rem 0 0.4rem;
+  padding: 1rem 1.1rem;
+  border-radius: 10px;
+  background: var(--panel-2);
+  border-left: 4px solid #c79a4b;
+}
+.kind-ongoing .signal-card { border-left-color: var(--ok, #6fd39a); }
+.kind-left .signal-card,
+.kind-stopped .signal-card { border-left-color: #6b7184; }
+.signal-kind { margin: 0; font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+.signal-card-title { margin: 0.2rem 0 0; font-family: var(--serif); font-size: 1.3rem; }
+.signal-card-date { margin: 0 0 0.6rem; color: var(--accent); font-variant-numeric: tabular-nums; }
+.signal-card-note { margin: 0.35rem 0 0; font-size: 0.93rem; }
+
+/* ---------- Trace ---------- */
+.signal-trace { margin: 1rem 0 0.5rem; }
+.signal-trace svg { display: block; width: 100%; height: auto; }
+.signal-trace figcaption { font-size: 0.8rem; color: var(--muted); }
+.trace-active { fill: none; stroke: var(--accent); stroke-width: 2; stroke-linejoin: round; }
+.planet-moon .trace-active { stroke: var(--moon); }
+.planet-mars .trace-active { stroke: var(--mars); }
+.trace-silent { fill: none; stroke: var(--muted); stroke-width: 2; stroke-dasharray: 6 6; opacity: 0.6; }
+.trace-dot { fill: var(--panel); stroke: var(--text); stroke-width: 2; }
+.trace-dot.phase-signal { fill: var(--accent); stroke: var(--bg); stroke-width: 3; }
+.trace-dot.phase-after { stroke: var(--muted); }
+.trace-year { fill: var(--muted); font-size: 22px; font-family: var(--sans); }
+
+/* ---------- Timeline ---------- */
+.signal-timeline { list-style: none; margin: 0.75rem 0 0; padding: 0; border-left: 2px solid var(--line); }
+.signal-event {
+  position: relative;
+  display: grid;
+  grid-template-columns: 11rem 1fr;
+  gap: 0.15rem 1rem;
+  padding: 0.5rem 0 0.5rem 1.1rem;
+}
+.signal-event::before {
+  content: "";
+  position: absolute;
+  left: -6px;
+  top: 0.9rem;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--panel);
+  border: 2px solid var(--muted);
+}
+.signal-event-phase { grid-column: 1 / -1; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.signal-event-date { color: var(--muted); font-variant-numeric: tabular-nums; }
+.signal-event.phase-signal::before { background: var(--accent); border-color: var(--accent); }
+.signal-event.phase-signal .signal-event-phase { color: var(--accent); }
+.signal-event.phase-signal .signal-event-label { font-weight: 600; }
+.signal-event.phase-after { opacity: 0.8; }
+.signal-event.phase-after::before { border-style: dashed; }
+
+.signal-span { margin: 1rem 0 0; font-size: 0.95rem; color: var(--muted); }
+.signal-span strong { color: var(--text); font-weight: 600; }
+
+.signal-remains { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.2rem 0 0.8rem; }
+.signal-remain { padding: 0.9rem 1rem; border: 1px solid var(--line); border-radius: 10px; }
+.signal-remain h4 { margin: 0 0 0.4rem; font-size: 0.95rem; }
+.signal-remain p { margin: 0; font-size: 0.93rem; }
+
+.signal-actions { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1rem; }
+
+@media (max-width: 860px) {
+  .signal-layout { grid-template-columns: 1fr; }
+  .signal-channels {
+    position: static;
+    flex-direction: row;
+    overflow-x: auto;
+    padding-bottom: 0.4rem;
+    scroll-snap-type: x proximity;
+  }
+  .signal-group { display: none; }
+  .signal-channel { width: auto; min-width: 210px; flex: none; scroll-snap-align: start; }
+  .signal-remains { grid-template-columns: 1fr; }
+}
+@media (max-width: 520px) {
+  .signal-event { grid-template-columns: 1fr; }
+  .signal-photo { width: 64px; height: 64px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .kind-ongoing .signal-led { animation: none; }
+}

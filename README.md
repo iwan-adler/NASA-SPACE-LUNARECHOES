@@ -34,7 +34,13 @@ js/objects.js              Object cards
 js/timeline.js             Timeline list
 js/quiz.js                 Teaching quiz generated from the data
 js/explore.js              Landing numbers, Moon vs Mars, location explorer
-js/cases.js                Evidence Room case files and the Future Explorer scenario
+js/cases.js                Planetary Detective case files (workspace, real record) and the Future Explorer scenario
+js/last-signal.js          The Last Signal: each mission from launch to its last documented event
+data/last-signal.json      Launch dates (NSSDCA) and last-documented-event markers for The Last Signal
+css/journey.css            Homepage title, tagline, journey section, footer disclaimer
+css/last-signal.css        The Last Signal styles
+css/detective.css          Planetary Detective workspace styles
+docs/implementation-plan.md  Audit of the master brief and the feature plan
 data/cases.json            The three case files: evidence, question, explanation, significance
 data/decision.json         The hypothetical Future Explorer scenario and its sourced trade-offs
 js/citizen.js              Beyond the Archive: citizen-science section and practice demos
@@ -62,6 +68,23 @@ Then open http://localhost:8000. (The VS Code "Live Server" extension also works
 local copies first. If a copy is missing, it falls back to NASA's server (`images-assets.nasa.gov`),
 and if that also fails the image is hidden. `data/objects.json` keeps the original NASA URLs as the
 source record. A local file is named after the last part of its URL (e.g. `PIA25287~medium.jpg`).
+
+## Beyond the Archive: the connected journey
+
+The homepage is titled **LUNAR ECHOES · BEYOND THE ARCHIVE** with the tagline *"Humanity explored. History remained.
+Discovery continues."* A journey section links every experience under **Explore the past → Investigate the present →
+Shape the future**. The footer carries the full project disclaimer. The audit and roadmap are in
+`docs/implementation-plan.md`.
+
+- **The Last Signal** (`#last-signal`): pick a mission channel to see its launch, arrival, milestones, last documented
+  event, what happened afterwards, how it ended and what remained.
+  - A trace shows a pulse while the mission was active and a flat line after its last documented event.
+  - Each channel links to the object's story.
+  - Where our sources do not record an actual final communication, the page says so.
+- **The Planetary Detective** (`#cases`): each case file adds timeline clues (Exhibit D) and an investigation workspace.
+  Visitors sort claims into Confirmed evidence, Reasonable interpretation, Unconfirmed possibility or Unknown, with
+  sources. After the conclusion, "The real record" answers what, which mission, purpose, what happened, current status
+  and what remains uncertain.
 
 ## Beyond the Mission
 

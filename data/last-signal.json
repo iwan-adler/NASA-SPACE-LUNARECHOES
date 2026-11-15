@@ -1,0 +1,72 @@
+{
+  "_note": "The Last Signal. Adds to the sourced `events` in data/objects.json; it does not replace them. `launch` dates come from the NSSDCA record named in `source`. `signal` marks the last documented event. `match` is a phrase from that object's event label, and `documented` says whether our sources record an actual final communication (true) or only the last documented event (false). Nothing here is a quoted transmission or log. See docs/research-sources.md (The Last Signal).",
+  "channels": [
+    {
+      "id": "surveyor-3",
+      "signal": { "kind": "stopped", "title": "Stopped working after lunar sunset", "match": "Stops working", "documented": false,
+        "note": "The record gives the day it stopped working after its first lunar sunset. It does not describe a final transmission." }
+    },
+    {
+      "id": "apollo11-eagle-descent-stage",
+      "launch": { "date": "1969-07-16", "label": "Apollo 11 launches from Earth", "source": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1969-059C" },
+      "signal": { "kind": "left", "title": "Left behind as a launch pad", "match": "Ascent stage lifts off", "documented": false,
+        "note": "Our sources describe no communication from the descent stage after the ascent stage lifted off. Its last documented event is serving as the launch pad." }
+    },
+    {
+      "id": "apollo11-lrrr",
+      "launch": { "date": "1969-07-16", "label": "Apollo 11 launches from Earth", "source": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1969-059C" },
+      "signal": { "kind": "ongoing", "title": "No last signal: still in use", "match": null, "documented": true,
+        "note": "It is a passive mirror and needs no power. It never transmits: observatories bounce laser light off it, and that work continues." }
+    },
+    {
+      "id": "apollo11-seismometer",
+      "launch": { "date": "1969-07-16", "label": "Apollo 11 launches from Earth", "source": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1969-059C" },
+      "signal": { "kind": "commands", "title": "Stopped accepting commands from Earth", "match": "Stops accepting commands", "documented": true,
+        "note": "NASA's record gives the date it stopped accepting commands, which ended the experiment." }
+    },
+    {
+      "id": "apollo15-lrv",
+      "launch": { "date": "1971-07-26", "label": "Apollo 15 launches from Earth", "source": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1971-063C" },
+      "signal": { "kind": "left", "title": "Parked after the final moonwalk", "match": "Third and final moonwalk", "documented": false,
+        "note": "Our sources do not record when the rover's equipment last communicated with Earth. The last documented event is the crew's final moonwalk before they left." }
+    },
+    {
+      "id": "apollo17-alsep",
+      "launch": { "date": "1972-12-07", "label": "Apollo 17 launches from Earth", "source": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1972-096C" },
+      "signal": { "kind": "shutdown", "title": "Switched off from Earth", "match": "Shut down", "documented": true,
+        "note": "It did not fall silent by itself: it was shut down on 30 September 1977, together with all the other Apollo science stations." }
+    },
+    {
+      "id": "viking1-lander",
+      "signal": { "kind": "contact", "title": "Contact lost", "match": "Contact lost", "documented": true,
+        "note": "NASA's record gives the date contact was lost." }
+    },
+    {
+      "id": "sojourner",
+      "signal": { "kind": "contact", "title": "Communications lost", "match": "Contact lost", "documented": true,
+        "note": "The lander and rover worked until 27 September 1997, when communications were lost. The reason is not known." }
+    },
+    {
+      "id": "spirit",
+      "launch": { "date": "2003-06-10", "label": "Launched towards Mars", "source": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=2003-027A" },
+      "signal": { "kind": "transmission", "title": "Last transmission", "match": "Last transmission", "documented": true,
+        "note": "Stuck in soft sand, its solar panels could not gather enough sunlight to survive the winter." }
+    },
+    {
+      "id": "opportunity",
+      "launch": { "date": "2003-07-08", "label": "Launched towards Mars", "source": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=2003-032A" },
+      "signal": { "kind": "transmission", "title": "Last message to Earth", "match": "Last message", "documented": true,
+        "note": "NASA's catalogue: the final communication from the rover was received on 10 June 2018, during a planet-wide dust storm." }
+    },
+    {
+      "id": "phoenix",
+      "signal": { "kind": "transmission", "title": "Last signal", "match": "Last signal", "documented": true,
+        "note": "As the Martian summer ended, its solar panels got less sunlight." }
+    },
+    {
+      "id": "insight",
+      "signal": { "kind": "contact", "title": "Last contact with Earth", "match": "Last contact", "documented": true,
+        "note": "After it missed two more calls, NASA declared the mission over on 21 December 2022." }
+    }
+  ]
+}

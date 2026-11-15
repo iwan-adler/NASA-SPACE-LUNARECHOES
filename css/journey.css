@@ -1,0 +1,90 @@
+/* Lunar Echoes: Beyond the Archive. Homepage title, tagline, journey section, footer disclaimer.
+   Uses the colour tokens defined in css/style.css. */
+
+.hero h1 .hero-subtitle {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 0.42em;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-family: var(--sans);
+  font-weight: 500;
+}
+.hero-tagline {
+  margin: 0.25rem 0 1.1rem;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+  color: var(--accent);
+}
+
+/* ---------- Journey ---------- */
+.home-journey .section-title { max-width: 22ch; }
+.hj-steps {
+  list-style: none;
+  margin: 2rem 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+  counter-reset: none;
+}
+.hj-step {
+  position: relative;
+  padding: 1.4rem 1.3rem 1.2rem;
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--step, var(--accent));
+  border-radius: 12px;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--step, var(--accent)) 7%, var(--panel)) 0, var(--panel) 55%);
+}
+.hj-step.is-past { --step: var(--moon); }
+.hj-step.is-present { --step: var(--accent); }
+.hj-step.is-future { --step: var(--mars); }
+/* thin connector between the steps on wide screens */
+.hj-step:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 2.05rem;
+  right: -1.25rem;
+  width: 1.25rem;
+  height: 1px;
+  background: var(--line);
+}
+.hj-no {
+  margin: 0 0 0.35rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--step, var(--accent));
+}
+.hj-step h3 { margin: 0 0 0.9rem; font-family: var(--serif); font-size: 1.3rem; font-weight: 500; }
+.hj-links { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.35rem; }
+.hj-links a {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  padding: 0.6rem 0.7rem;
+  border-radius: 8px;
+  color: var(--text);
+  text-decoration: none;
+  border: 1px solid transparent;
+}
+.hj-links a:hover,
+.hj-links a:focus-visible { border-color: var(--line); background: var(--panel-2); }
+.hj-links a strong { font-weight: 600; }
+.hj-links a strong::after { content: " →"; color: var(--step, var(--accent)); }
+.hj-links a span { font-size: 0.88rem; color: var(--muted); }
+
+.footer-disclaimer {
+  max-width: 72ch;
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.85rem;
+}
+
+@media (max-width: 900px) {
+  .hj-steps { grid-template-columns: 1fr; }
+  .hj-step:not(:last-child)::after { display: none; }
+}

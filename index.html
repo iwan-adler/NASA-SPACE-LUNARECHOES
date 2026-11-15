@@ -7,6 +7,9 @@
   <title>Lunar Echoes</title>
   <link rel="stylesheet" href="css/style.css?v=20261115">
   <link rel="stylesheet" href="css/beyond.css?v=20261115">
+  <link rel="stylesheet" href="css/journey.css?v=20261115c">
+  <link rel="stylesheet" href="css/last-signal.css?v=20261115b">
+  <link rel="stylesheet" href="css/detective.css?v=20261115c">
   <link rel="stylesheet" href="css/responsive.css?v=20261115">
 </head>
 <body>
@@ -18,15 +21,14 @@
       <span class="brand-name">Lunar Echoes</span>
     </a>
     <nav class="site-nav" aria-label="Main">
-      <a href="#cases">Case files</a>
-      <a href="#objects">Collection</a>
-      <a href="#decision">Future explorer</a>
-      <a href="#timeline">Timeline</a>
-      <a href="#compare">Moon vs Mars</a>
+      <a href="#journey">Journey</a>
+      <a href="#objects">Archive</a>
+      <a href="#last-signal">Last Signal</a>
+      <a href="#cases">Detective</a>
       <a href="#map">Locations</a>
-      <a href="#quiz">Quiz</a>
-      <a href="#beyond">Beyond the Archive</a>
-      <a href="rover/index.html">Rover Rescue game</a>
+      <a href="#beyond">Citizen science</a>
+      <a href="rover/index.html">Rover Rescue</a>
+      <a href="#decision">Future explorer</a>
     </nav>
   </header>
 
@@ -37,8 +39,9 @@
       <div class="hero-world hero-mars"></div>
     </div>
     <div class="hero-inner">
-      <p class="eyebrow">Beyond the mission · A space heritage archive</p>
-      <h1 id="hero-title">Lunar Echoes</h1>
+      <p class="eyebrow">NASA Space Apps Challenge 2026 · A planetary heritage museum</p>
+      <h1 id="hero-title">Lunar Echoes <span class="hero-subtitle">Beyond the Archive</span></h1>
+      <p class="hero-tagline">Humanity explored. History remained. Discovery continues.</p>
       <p class="hero-question">When humanity explores another world, what responsibility do we have for the things we leave there?</p>
       <p class="hero-lead">
         On the Moon and on Mars, landers, rovers and science stations still stand
@@ -47,8 +50,9 @@
         Investigate the evidence, then decide what future explorers should do.
       </p>
       <div class="hero-actions">
-        <button class="btn btn-primary" type="button" data-open-case="0">Open a case file</button>
-        <a class="btn btn-ghost" href="#objects">Browse the collection</a>
+        <a class="btn btn-primary" href="#journey">Begin the journey</a>
+        <button class="btn btn-ghost" type="button" data-open-case="0">Open a case file</button>
+        <a class="btn btn-ghost" href="#objects">Browse the archive</a>
       </div>
       <!-- js/explore.js fills these numbers from data/objects.json -->
       <dl id="hero-stats" class="hero-stats" aria-label="The collection in numbers"></dl>
@@ -57,11 +61,50 @@
   </section>
 
   <main id="main">
+    <!-- ===== The journey: one story through every experience (css/journey.css) ===== -->
+    <section id="journey" class="home-journey" aria-labelledby="journey-title">
+      <p class="eyebrow">The challenge · Abandoned but not Forgotten</p>
+      <h2 id="journey-title" class="section-title">Explore the past. Investigate the present. Shape the future.</h2>
+      <p class="section-intro">Since 1967, NASA has sent landers, rovers and science stations to the Moon and Mars. Most fell silent long ago, but the hardware is still there.
+        This museum tells their stories from NASA's own records, shows how planetary science works, and asks what future explorers owe the places we visit.</p>
+      <ol class="hj-steps">
+        <li class="hj-step is-past">
+          <p class="hj-no">01 · Explore the past</p>
+          <h3>What did we leave behind?</h3>
+          <ul class="hj-links">
+            <li><a href="#objects"><strong>Planetary Heritage Archive</strong><span>12 objects, each with its passport and sources</span></a></li>
+            <li><a href="#last-signal"><strong>The Last Signal</strong><span>How each mission progressed and ended</span></a></li>
+            <li><a href="#timeline"><strong>Timeline of arrivals</strong><span>1967 to 2018, year by year</span></a></li>
+          </ul>
+        </li>
+        <li class="hj-step is-present">
+          <p class="hj-no">02 · Investigate the present</p>
+          <h3>What is true, and how do we know?</h3>
+          <ul class="hj-links">
+            <li><a href="#cases"><strong>The Planetary Detective</strong><span>Sort evidence from assumption in three case files</span></a></li>
+            <li><a href="#map"><strong>Where they rest</strong><span>Verified locations only; unknowns are listed</span></a></li>
+            <li><a href="#compare"><strong>Moon vs Mars</strong><span>Two very different worlds to leave a machine</span></a></li>
+            <li><a href="#beyond"><strong>Citizen science</strong><span>MoonDiff and Cloudspotting on Mars: Shapes</span></a></li>
+          </ul>
+        </li>
+        <li class="hj-step is-future">
+          <p class="hj-no">03 · Shape the future</p>
+          <h3>How should we explore next?</h3>
+          <ul class="hj-links">
+            <li><a href="rover/index.html"><strong>Rover Rescue</strong><span>Drive, sample and reason like a planetary scientist</span></a></li>
+            <li><a href="#decision"><strong>Future explorer</strong><span>Document, study or preserve? See the trade-offs</span></a></li>
+            <li><a href="#beyond-charter"><strong>Future Explorer Charter</strong><span>Write your own principles</span></a></li>
+            <li><a href="#quiz"><strong>Mission quiz</strong><span>Five questions from the stories</span></a></li>
+          </ul>
+        </li>
+      </ol>
+    </section>
+
     <!-- ===== Case files (investigation mode) ===== -->
     <section id="cases" class="cases" aria-labelledby="cases-title">
-      <p class="eyebrow">Evidence room</p>
-      <h2 id="cases-title" class="section-title">Open a case file</h2>
-      <p class="section-intro">Pick a case. Examine the photographs and NASA evidence, submit your conclusion, then find out why the object matters.</p>
+      <p class="eyebrow">Evidence room · Case files</p>
+      <h2 id="cases-title" class="section-title">The Planetary Detective</h2>
+      <p class="section-intro">Become a planetary archaeologist. Pick a case, examine the photograph, records, timeline and NASA evidence, sort what is confirmed from what is guessed, then reach your conclusion and see the real record.</p>
       <!-- js/cases.js fills these from data/cases.json -->
       <div id="case-shelf" class="case-shelf" aria-busy="true">
         <p class="loading">Unlocking the archive…</p>
@@ -117,6 +160,17 @@
       <ol id="timeline-list"></ol>
     </section>
 
+    <!-- ===== The Last Signal (js/last-signal.js, data/last-signal.json, css/last-signal.css) ===== -->
+    <section id="last-signal" class="last-signal" aria-labelledby="last-signal-title">
+      <p class="eyebrow">Mission histories</p>
+      <h2 id="last-signal-title" class="section-title">The Last Signal</h2>
+      <p class="section-intro">Every mission has a beginning and an end. Tune in to a channel to follow one from launch to its last documented event, and see what stayed behind.
+        We never invent a final message: where the exact last communication is not recorded in our sources, we say so.</p>
+      <div id="signal-box" class="signal" aria-busy="true">
+        <p class="loading">Listening for signals…</p>
+      </div>
+    </section>
+
     <!-- ===== Moon vs Mars ===== -->
     <section id="compare" aria-labelledby="compare-title">
       <p class="eyebrow">Two worlds</p>
@@ -155,10 +209,11 @@
   </main>
 
   <footer class="site-footer">
-    <p class="footer-title">Lunar Echoes</p>
+    <p class="footer-title">Lunar Echoes · Beyond the Archive</p>
     <p>Built for the NASA Space Apps Challenge 2026 ("Abandoned but not Forgotten") by a student team.</p>
     <p>Facts: NASA Space Science Data Coordinated Archive (NSSDCA) Master Catalog and fact sheets, nasa.gov and science.nasa.gov.
-      Images: NASA Image and Video Library. This project is not affiliated with or endorsed by NASA.</p>
+      Images: NASA Image and Video Library.</p>
+    <p class="footer-disclaimer">LUNAR ECHOES is an independent educational project developed for NASA Space Apps Challenge. It is not affiliated with, operated by or endorsed by NASA. NASA project names, imagery and resources are referenced for educational purposes. Actual citizen-science participation takes place through the respective official platforms.</p>
   </footer>
 
   <!-- Order matters: helpers first, main.js last -->
@@ -166,9 +221,10 @@
   <script src="js/timeline.js?v=20261115"></script>
   <script src="js/quiz.js?v=20261115"></script>
   <script src="js/explore.js?v=20261115"></script>
-  <script src="js/cases.js?v=20261115"></script>
+  <script src="js/cases.js?v=20261115c"></script>
+  <script src="js/last-signal.js?v=20261115c"></script>
   <script src="js/citizen.js?v=20261115"></script>
   <script src="js/beyond-extras.js?v=20261115"></script>
-  <script src="js/main.js?v=20261115"></script>
+  <script src="js/main.js?v=20261115b"></script>
 </body>
 </html>

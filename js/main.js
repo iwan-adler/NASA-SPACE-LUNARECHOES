@@ -42,7 +42,7 @@ function showLoadError(error) {
   if (location.protocol === "file:") {
     message += " Open the site through a local server (see README).";
   }
-  ["case-shelf", "objects-list", "decision-box", "timeline-list", "compare-box", "map-box", "quiz-box", "beyond-box"].forEach(function (id, i) {
+  ["case-shelf", "objects-list", "decision-box", "timeline-list", "signal-box", "compare-box", "map-box", "quiz-box", "beyond-box"].forEach(function (id, i) {
     var el = document.getElementById(id);
     if (el) {
       el.innerHTML = "";
@@ -66,6 +66,7 @@ async function startApp() {
   var decisionPromise = loadOptional("data/decision.json");
   var citizenPromise = loadOptional("data/citizen-science.json");
   var learningPromise = loadOptional("data/beyond-learning.json");
+  var signalPromise = loadOptional("data/last-signal.json");
   try {
     objects = await loadObjects();
   } catch (error) {
@@ -77,6 +78,7 @@ async function startApp() {
   var decision = await decisionPromise;
   var citizen = await citizenPromise;
   var learning = await learningPromise;
+  var signal = await signalPromise;
 
   // Each part runs separately, so one bug does not break the others.
   [
@@ -84,6 +86,7 @@ async function startApp() {
     ["Evidence room", function () { renderCases(objects, cases); }],   // js/cases.js
     ["Future explorer", function () { renderDecision(objects, decision); }], // js/cases.js
     ["Timeline", function () { renderTimeline(objects); }],            // js/timeline.js
+    ["Last signal", function () { renderLastSignal(objects, signal); }], // js/last-signal.js
     ["Explore", function () { renderExplore(objects, worlds); }],      // js/explore.js
     ["Quiz", function () { startQuiz(objects); }],                     // js/quiz.js
     ["Citizen science", function () { renderCitizenScience(citizen); }], // js/citizen.js
