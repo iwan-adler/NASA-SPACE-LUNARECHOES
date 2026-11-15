@@ -61,6 +61,7 @@ css/experiences.css        Styles for the five Priority 2 experiences
 assets/images/maps/        NASA basemaps (SVS CGI Moon Kit; Viking MDIM 2.1 via Mars Trek)
 assets/images/footprints/  Phoenix HiRISE comparison pair (PIA22223 figures 1 and 2)
 rover/build.html (+ build.js, build.css, build-data.json)  Build Your Own Rover simulator
+rover/rover-cinematic.css  Deep-space theme for both rover pages (shares ../js/cinematic.js with the main site)
 data/cases.json            The three case files: evidence, question, explanation, significance
 data/decision.json         The hypothetical Future Explorer scenario and its sourced trade-offs
 js/citizen.js              Beyond the Archive: citizen-science section and practice demos

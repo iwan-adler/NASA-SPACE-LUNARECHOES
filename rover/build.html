@@ -7,8 +7,16 @@
   <meta name="description" content="An educational rover engineering simulation: choose wheels, instruments, power and communications for a fictional mission, within a budget.">
   <link rel="stylesheet" href="rover.css?v=20261115d">
   <link rel="stylesheet" href="build.css?v=20261115d">
+  <link rel="stylesheet" href="rover-cinematic.css?v=20261115h">
 </head>
 <body class="build">
+  <!-- Deep-space backdrop shared with the main site (rover-cinematic.css, ../js/cinematic.js) -->
+  <div class="cosmos" aria-hidden="true">
+    <canvas id="starfield" class="cosmos-stars"></canvas>
+    <div class="cosmos-twinkle"></div>
+    <div class="cosmos-nebula"></div>
+  </div>
+
   <a class="skip" href="#builder">Skip to the builder</a>
   <header class="top">
     <a class="back" href="../index.html#journey">← Lunar Echoes</a>
@@ -58,5 +66,6 @@
   </footer>
 
   <script src="build.js?v=20261115d"></script>
+  <script src="../js/cinematic.js?v=20261115h"></script>
 </body>
 </html>

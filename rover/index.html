@@ -6,8 +6,16 @@
   <title>Rover Rescue: Mission to Discover | Lunar Echoes</title>
   <meta name="description" content="An educational rover game: explore the Moon or Mars, collect samples, use simulated instruments and reason from evidence.">
   <link rel="stylesheet" href="rover.css?v=20261115">
+  <link rel="stylesheet" href="rover-cinematic.css?v=20261115h">
 </head>
 <body>
+  <!-- Deep-space backdrop shared with the main site (rover-cinematic.css, ../js/cinematic.js) -->
+  <div class="cosmos" aria-hidden="true">
+    <canvas id="starfield" class="cosmos-stars"></canvas>
+    <div class="cosmos-twinkle"></div>
+    <div class="cosmos-nebula"></div>
+  </div>
+
   <a class="skip" href="#game">Skip to the game</a>
 
   <header class="top">
@@ -131,5 +139,6 @@
   </footer>
 
   <script src="rover.js?v=20261115g"></script>
+  <script src="../js/cinematic.js?v=20261115h"></script>
 </body>
 </html>
