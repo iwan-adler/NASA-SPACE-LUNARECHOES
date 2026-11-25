@@ -283,3 +283,8 @@ journey, then-now, comparison, map, quiz) are styled in their own labelled secti
 - **Branding:** check the official Space Apps branding guidelines before using any NASA or Space Apps logos.
 - **AI use:** log it in `docs/ai-disclosure.md`.
 - **Don't overwrite teammates' work:** `git pull` before you start, and commit small changes often.
+
+
+## Team & Contributors
+
+- **Yaswanth Botu** ([@yaswanth-Botu](https://github.com/yaswanth-Botu)) – UI Development
